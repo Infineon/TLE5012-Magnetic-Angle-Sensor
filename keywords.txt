@@ -1,0 +1,82 @@
+#######################################
+# Syntax Coloring Map For IFX TLE5012
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+errorTypes	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+readFromSensor	KEYWORD2
+readBlockCRC	KEYWORD2
+readMoreRegisters	KEYWORD2
+
+readStatus	KEYWORD2
+readAngleValue	KEYWORD2
+readAngleSpeed	KEYWORD2
+readAngleRevolution	KEYWORD2
+
+readUpdStatus	KEYWORD2
+readUpdAngleValue	KEYWORD2
+readUpdAngleSpeed	KEYWORD2
+readUpdAngleRevolution	KEYWORD2
+
+readTemp	KEYWORD2
+readRawX	KEYWORD2
+readRawY	KEYWORD2
+
+readActivationStatus	KEYWORD2
+readOffsetX	KEYWORD2
+readOffsetY	KEYWORD2
+
+readIntMode1	KEYWORD2
+readSIL	KEYWORD2
+readIntMode2	KEYWORD2
+readIntMode3	KEYWORD2
+readSynch	KEYWORD2
+readIFAB	KEYWORD2
+readIntMode4	KEYWORD2
+readTempCoeff	KEYWORD2
+
+writeToSensor	KEYWORD2
+
+writeActivationStatus	KEYWORD2
+writeIntMode1	KEYWORD2
+writeSIL	KEYWORD2
+
+writeIntMode2	KEYWORD2
+writeIntMode3	KEYWORD2
+writeOffsetX	KEYWORD2
+writeOffsetY	KEYWORD2
+writeSynch	KEYWORD2
+writeIFAB	KEYWORD2
+writeIntMode4	KEYWORD2
+writeTempCoeff	KEYWORD2
+
+writeTempCoeffUpdate	KEYWORD2
+
+getAngleSpeed	KEYWORD2
+getAngleValue	KEYWORD2
+getNumRevolutions	KEYWORD2
+
+getUpdAngleSpeed	KEYWORD2
+getUpdAngleValue	KEYWORD2
+getUpdNumRevolutions	KEYWORD2
+getTemperature	KEYWORD2
+getAngleRange	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+tle5012	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
