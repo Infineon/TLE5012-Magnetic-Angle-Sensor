@@ -1,4 +1,7 @@
-#include "TLE5012.h"
+#include "Tle5012.h"
+
+// Tle5012 Object
+Tle5012 Tle5012MagneticAngleSensor = Tle5012();
 
 errorTypes checkError;
 bool s = true;
@@ -7,7 +10,7 @@ void setup() {
   delay(1000);
   Serial.begin(9600);
   Serial.println("init done!");
-  checkError = tle5012.begin();
+  checkError = Tle5012MagneticAngleSensor.begin();
 }
 
 void loop() {
@@ -16,36 +19,36 @@ void loop() {
     uint16_t a = 0;
   
     Serial.println("read intmode2");
-    checkError = tle5012.readIntMode2(a);
+    checkError = Tle5012MagneticAngleSensor.readIntMode2(a);
     Serial.println(a,HEX);
   
     Serial.println("write intmode 2");
-    checkError  = tle5012.writeIntMode2(0x804);
+    checkError  = Tle5012MagneticAngleSensor.writeIntMode2(0x804);
   
     Serial.println("read intmode2");
-    checkError = tle5012.readIntMode2(a);
+    checkError = Tle5012MagneticAngleSensor.readIntMode2(a);
     Serial.println(a,HEX);
   
     Serial.println("read intmode3");
-    checkError = tle5012.readIntMode3(a);
+    checkError = Tle5012MagneticAngleSensor.readIntMode3(a);
     Serial.println(a,HEX);
   
     Serial.println("write intmode 3");
-    checkError  = tle5012.writeIntMode3(0x8000);
+    checkError  = Tle5012MagneticAngleSensor.writeIntMode3(0x8000);
   
     Serial.println("intmode3");
-    checkError = tle5012.readIntMode3(a);
+    checkError = Tle5012MagneticAngleSensor.readIntMode3(a);
     Serial.println(a,HEX);
   
     Serial.println("Offset X");
-    checkError = tle5012.readOffsetX(a);
+    checkError = Tle5012MagneticAngleSensor.readOffsetX(a);
     Serial.println(a,HEX);
   
     Serial.println("write Offset X");
-    checkError  = tle5012.writeOffsetX(0xD960);
+    checkError  = Tle5012MagneticAngleSensor.writeOffsetX(0xD960);
   
     Serial.println("read Offset X");
-    checkError = tle5012.readOffsetX(a);
+    checkError = Tle5012MagneticAngleSensor.readOffsetX(a);
     Serial.println(a,HEX);
   
     s = false;

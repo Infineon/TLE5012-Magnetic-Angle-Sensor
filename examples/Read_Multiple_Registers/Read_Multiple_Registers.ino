@@ -1,4 +1,7 @@
-#include "TLE5012.h"
+#include "Tle5012.h"
+
+// Tle5012 Object
+Tle5012 Tle5012MagneticAngleSensor = Tle5012();
 
 //here for the command: 
 //the first two digits (80) is for read
@@ -13,7 +16,7 @@ void setup() {
   delay(1000);
   Serial.begin(9600);
   Serial.println("init done!");
-  checkError = tle5012.begin();
+  checkError = Tle5012MagneticAngleSensor.begin();
 }
 
 void loop() 
@@ -21,7 +24,7 @@ void loop()
   if (s && (checkError == 0))
   {
     uint16_t data[leng];
-    checkError = tle5012.readMoreRegisters(command, data);
+    checkError = Tle5012MagneticAngleSensor.readMoreRegisters(command, data);
     if (checkError == 0)
     {
       for (int i = 0; i<leng; i++)

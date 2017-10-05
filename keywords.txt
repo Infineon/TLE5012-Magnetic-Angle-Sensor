@@ -1,5 +1,5 @@
 #######################################
-# Syntax Coloring Map For IFX TLE5012
+# Syntax Coloring Map For IFX Tle5012
 #######################################
 
 #######################################
@@ -74,7 +74,7 @@ getAngleRange	KEYWORD2
 # Instances (KEYWORD2)
 #######################################
 
-tle5012	KEYWORD2
+Tle5012	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
