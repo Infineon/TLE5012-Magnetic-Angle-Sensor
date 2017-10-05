@@ -1,5 +1,5 @@
 /**
- * This class controls the TLE5012 Angle sensor
+ * This class controls the Tle5012 Angle sensor
  */
 
 #ifndef TLE5012_H_
@@ -121,17 +121,17 @@ typedef enum errorTypes
 };
 
 
-class TLE5012
+class Tle5012
 {
 public:
 	//standard constructor
-	TLE5012();
+	Tle5012();
 
 	//constructor given own SPI Class
-	TLE5012(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck);
+	Tle5012(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck);
 
 	//standard deconstructor
-	~TLE5012();
+	~Tle5012();
 
 	//the next three functions initialize the spi connections and the chipselect and reads all the register values from 08 - 0F(first byte) and stores them that are needed to calculate the CRC
 	errorTypes begin();
@@ -141,14 +141,14 @@ public:
 	//ends the SPI connection
 	void end();
 
-	//general Function to read from the TLE5012.
+	//general Function to read from the Tle5012.
 	errorTypes readFromSensor(uint16_t command, uint16_t &data);
 	//used to read all the registers used to calculate the CRC
 	errorTypes readBlockCRC();
 	//can be used to read 1 or more consecutive registers, and the values of the various registers are stored in data
 	errorTypes readMoreRegisters(uint16_t command, uint16_t data[]);
 
-	//reads functions for reading the various registers in the TLE5012.
+	//reads functions for reading the various registers in the Tle5012.
 	errorTypes readStatus(uint16_t &data);
 	errorTypes readAngleValue(int16_t &data);
 	errorTypes readAngleSpeed(int16_t &data);
@@ -176,10 +176,10 @@ public:
 	errorTypes readIntMode4(uint16_t &data);
 	errorTypes readTempCoeff(uint16_t &data);
 
-	//Standard function to write to a register in the TLE5012
+	//Standard function to write to a register in the Tle5012
 	errorTypes writeToSensor(uint16_t command,uint16_t dataToWrite, bool changeCRC);
 
-	//Write functions for writing to various registers in the TLE5012
+	//Write functions for writing to various registers in the Tle5012
 	errorTypes writeActivationStatus(uint16_t dataToWrite);
 	errorTypes writeIntMode1(uint16_t dataToWrite);
 	errorTypes writeSIL(uint16_t dataToWrite);
@@ -240,7 +240,7 @@ private:
 };
 
 //preinstantiated object
-extern TLE5012 tle5012;
+extern Tle5012 tle5012;
 
 
 #endif
