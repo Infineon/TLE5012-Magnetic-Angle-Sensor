@@ -93,7 +93,7 @@
 #define DUMMY 					0xFFFF
 
 /**
- * This is used for keeping track of which register need to have its value changed, so that you don't need to read all the registers each time the CRC needs to be updated
+ * This is used for keeping track of which register need to have its value changed, so that you don't need to read all the _registers each time the CRC needs to be updated
  */
 //typedef enum registerIndex
 //{
@@ -133,22 +133,23 @@ public:
 	//standard deconstructor
 	~Tle5012();
 
-	//the next three functions initialize the spi connections and the chipselect and reads all the register values from 08 - 0F(first byte) and stores them that are needed to calculate the CRC
+	//the next four functions initialize the spi connections and the _chipselect and reads all the register values from 08 - 0F(first byte) and stores them that are needed to calculate the CRC
 	errorTypes begin();
-	errorTypes begin(SPISettings, uint32_t chipselect);
-	errorTypes begin(uint32_t cF, uint8_t bO, uint8_t dM, uint32_t chipselect);
+	errorTypes begin(uint32_t cs);
+	errorTypes begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs);
+	errorTypes begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs, SPISettings &settings);
 
 	//ends the SPI connection
 	void end();
 
 	//general Function to read from the Tle5012.
 	errorTypes readFromSensor(uint16_t command, uint16_t &data);
-	//used to read all the registers used to calculate the CRC
+	//used to read all the _registers used to calculate the CRC
 	errorTypes readBlockCRC();
-	//can be used to read 1 or more consecutive registers, and the values of the various registers are stored in data
+	//can be used to read 1 or more consecutive _registers, and the values of the various _registers are stored in data
 	errorTypes readMoreRegisters(uint16_t command, uint16_t data[]);
 
-	//reads functions for reading the various registers in the Tle5012.
+	//reads functions for reading the various _registers in the Tle5012.
 	errorTypes readStatus(uint16_t &data);
 	errorTypes readAngleValue(int16_t &data);
 	errorTypes readAngleSpeed(int16_t &data);
@@ -179,7 +180,7 @@ public:
 	//Standard function to write to a register in the Tle5012
 	errorTypes writeToSensor(uint16_t command,uint16_t dataToWrite, bool changeCRC);
 
-	//Write functions for writing to various registers in the Tle5012
+	//Write functions for writing to various _registers in the Tle5012
 	errorTypes writeActivationStatus(uint16_t dataToWrite);
 	errorTypes writeIntMode1(uint16_t dataToWrite);
 	errorTypes writeSIL(uint16_t dataToWrite);
@@ -217,14 +218,14 @@ public:
 
 private:
 
-	SPIClass* spiConnection;
-	SPISettings spiSetting = SPISettings(SPEED,MSBFIRST,SPI_MODE1);
-	uint16_t chipselect = SS;
-	uint16_t masterout = MOSI;
-	uint16_t masterin = MISO;
-	uint16_t clock = SCK;
-	//keeps track of the values stored in the 8 registers, for which the crc is calculated
-	uint16_t registers[CRC_NUM_REGISTERS];
+	SPIClass* _spiConnection;
+	SPISettings _spiSetting;
+	uint16_t _chipselect;
+	uint16_t _masterout;
+	uint16_t _masterin;
+	uint16_t _clock;
+	//keeps track of the values stored in the 8 _registers, for which the crc is calculated
+	uint16_t _registers[CRC_NUM_REGISTERS];
 
 	errorTypes regularCrcUpdate();
 

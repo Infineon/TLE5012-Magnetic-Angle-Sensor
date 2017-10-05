@@ -4,47 +4,51 @@
 
 Tle5012::Tle5012()
 {
-	spiConnection = &SPI;
-}
-
-Tle5012::Tle5012(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck)
-{
-	masterout = mosi;
-	masterin = miso;
-	clock = sck;
-	spiConnection = &conf;
+	_spiConnection = &SPI;
+	_spiSetting = SPISettings(SPEED,MSBFIRST,SPI_MODE1);
+	_chipselect = SS;
+	_masterout = MOSI;
+	_masterin = MISO;
+	_clock = SCK;
 }
 
 Tle5012::~Tle5012()
 {
-	spiConnection->end();
+	_spiConnection->end();
 }
 
 errorTypes Tle5012::begin()
 {
-	spiConnection->begin();
-	pinMode(chipselect,OUTPUT);
-	digitalWrite(chipselect,HIGH);
+	return begin(SPI, _masterin, _masterout, _clock, _chipselect, _spiSetting);
+}
 
-	//To make sure that all the registers are storing values that are not corrupted, the function calculates the CRC based on the initial values of the registers and stores the values for future use
 
+errorTypes Tle5012::begin(uint32_t cs)
+{
+	return begin(SPI, _masterin, _masterout, _clock, cs, _spiSetting);
+}
+
+errorTypes Tle5012::begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs)
+{
+	return begin(conf, miso, mosi, sck, cs, _spiSetting);
+}
+
+errorTypes Tle5012::begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs, SPISettings &settings)
+{
+	_masterout = mosi;
+	_masterin = miso;
+	_clock = sck;
+	_spiConnection = &conf;
+	
+	_chipselect = cs;
+	_spiSetting = settings;
+
+	_spiConnection->begin();
+	pinMode(_chipselect,OUTPUT);
+	digitalWrite(_chipselect,HIGH);
+	
+	//To make sure that all the _registers are storing values that are not corrupted, the function calculates the CRC based on the initial values of the _registers and stores the values for future use
 	return readBlockCRC();
-}
-
-
-
-errorTypes Tle5012::begin(SPISettings setting, uint32_t chipselectPin)
-{
-	spiSetting = setting;
-	chipselect = chipselectPin;
-	return begin();
-
-}
-
-errorTypes Tle5012::begin(uint32_t clockFrequency, uint8_t bitOrder, uint8_t dataMode, uint32_t chipselectPin)
-{
-	SPISettings spiSet = SPISettings(clockFrequency,bitOrder,dataMode);
-	return begin(spiSet, chipselectPin);
 }
 
 /**
@@ -104,11 +108,11 @@ uint8_t crcCalc(uint8_t* crcData, uint8_t length)
  */
 void Tle5012::triggerUpdate()
 {
-	digitalWrite(clock, LOW);
-	digitalWrite(masterout, HIGH);
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_clock, LOW);
+	digitalWrite(_masterout, HIGH);
+	digitalWrite(_chipselect,LOW);
 	delay(1);
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 }
 
 
@@ -186,24 +190,24 @@ void Tle5012::resetSafety()
 {
 	triggerUpdate();
 
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_chipselect,LOW);
 
 	delayMicroseconds(DELAYuS);
-	spiConnection->beginTransaction(spiSetting);
-	spiConnection->transfer16(READ_STA_CMD);
-	spiConnection->transfer16(DUMMY);
-	spiConnection->transfer16(DUMMY);
-	spiConnection->endTransaction();
+	_spiConnection->beginTransaction(_spiSetting);
+	_spiConnection->transfer16(READ_STA_CMD);
+	_spiConnection->transfer16(DUMMY);
+	_spiConnection->transfer16(DUMMY);
+	_spiConnection->endTransaction();
 	delayMicroseconds(DELAYuS);
 
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 }
 
 
 /**
- * General read function for reading registers from the Tle5012.
+ * General read function for reading _registers from the Tle5012.
  * Command[in]	-- the command for reading
- * data[out] 	-- where the data received from the registers will be stored
+ * data[out] 	-- where the data received from the _registers will be stored
  *
  *
  * structure of command word, the numbers represent the bit position of the 2 byte command
@@ -225,17 +229,17 @@ errorTypes Tle5012::readFromSensor(uint16_t command, uint16_t &data)
 
 	uint16_t readreg;
 
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_chipselect,LOW);
 
 	delayMicroseconds(DELAYuS);
-	spiConnection->beginTransaction(spiSetting);
-	spiConnection->transfer16(command);
-	readreg = spiConnection->transfer16(DUMMY);
-	safety = spiConnection->transfer16(DUMMY);
-	spiConnection->endTransaction();
+	_spiConnection->beginTransaction(_spiSetting);
+	_spiConnection->transfer16(command);
+	readreg = _spiConnection->transfer16(DUMMY);
+	safety = _spiConnection->transfer16(DUMMY);
+	_spiConnection->endTransaction();
 	delayMicroseconds(DELAYuS);
 
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 
 	errorTypes checkError = checkSafety(safety, command, &readreg, 1);
 
@@ -253,59 +257,59 @@ errorTypes Tle5012::readFromSensor(uint16_t command, uint16_t &data)
 }
 
 /**
- * Reads the block of registers from addresses 08 - 0F in order to figure out the CRC.
+ * Reads the block of _registers from addresses 08 - 0F in order to figure out the CRC.
  */
 errorTypes Tle5012::readBlockCRC()
 {
 	uint16_t safety = 0;
 
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_chipselect,LOW);
 
 	delayMicroseconds(DELAYuS);
-	spiConnection->beginTransaction(spiSetting);
-	spiConnection->transfer16(READ_BLOCK_CRC);
+	_spiConnection->beginTransaction(_spiSetting);
+	_spiConnection->transfer16(READ_BLOCK_CRC);
 
 	for (uint8_t i=0; i < CRC_NUM_REGISTERS; i++)
 	{
-		registers[i] = spiConnection->transfer16(DUMMY);
+		_registers[i] = _spiConnection->transfer16(DUMMY);
 	}
 
-	safety = spiConnection->transfer16(DUMMY);
-	spiConnection->endTransaction();
+	safety = _spiConnection->transfer16(DUMMY);
+	_spiConnection->endTransaction();
 	delayMicroseconds(DELAYuS);
 
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 
-	errorTypes checkError = checkSafety(safety, READ_BLOCK_CRC, registers, CRC_NUM_REGISTERS);
+	errorTypes checkError = checkSafety(safety, READ_BLOCK_CRC, _registers, CRC_NUM_REGISTERS);
 
 	return checkError;
 
 }
 
 /**
- * used to read 1 or more than 1 consecutive registers
+ * used to read 1 or more than 1 consecutive _registers
  */
 errorTypes Tle5012::readMoreRegisters(uint16_t command, uint16_t data[])
 {
 	uint16_t lengthOfResponse = command & (0x000F);
 	uint16_t safety = 0;
 
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_chipselect,LOW);
 
 	delayMicroseconds(DELAYuS);
-	spiConnection->beginTransaction(spiSetting);
-	spiConnection->transfer16(command);
+	_spiConnection->beginTransaction(_spiSetting);
+	_spiConnection->transfer16(command);
 
 	for (uint8_t i=0; i < lengthOfResponse; i++)
 	{
-		data[i] = spiConnection->transfer16(DUMMY);
+		data[i] = _spiConnection->transfer16(DUMMY);
 	}
 
-	safety = spiConnection->transfer16(DUMMY);
-	spiConnection->endTransaction();
+	safety = _spiConnection->transfer16(DUMMY);
+	_spiConnection->endTransaction();
 	delayMicroseconds(DELAYuS);
 
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 
 	errorTypes checkError = checkSafety(safety, command, data, lengthOfResponse);
 
@@ -557,7 +561,7 @@ errorTypes Tle5012::readSIL(uint16_t &data)
 
 /**
  * The next eight functions are used primarily for storing the parameters and control of how the sensor works.
- * The values stored in them are used to calculate the CRC, and their values are stored in the private component of the class, registers.
+ * The values stored in them are used to calculate the CRC, and their values are stored in the private component of the class, _registers.
  */
 
 errorTypes Tle5012::readIntMode2(uint16_t &data)
@@ -603,7 +607,7 @@ errorTypes Tle5012::readTempCoeff(uint16_t &data)
 
 /**
  * This function is called each time any register in the range 08 - 0F(first byte) is changed.
- * It calculates the new CRC based on the value of all the registers and then stores the value in 0F(second byte)
+ * It calculates the new CRC based on the value of all the _registers and then stores the value in 0F(second byte)
  */
 errorTypes Tle5012::regularCrcUpdate()
 {
@@ -613,8 +617,8 @@ errorTypes Tle5012::regularCrcUpdate()
 
 	for (uint8_t i = 0; i < CRC_NUM_REGISTERS; i++)
 	{
-		temp[2*i] = getFirstByte(registers[i]);
-		temp[(2*i)+1] = getSecondByte(registers[i]);
+		temp[2*i] = getFirstByte(_registers[i]);
+		temp[(2*i)+1] = getSecondByte(_registers[i]);
 	}
 
 	uint8_t crc = crcCalc(temp, 15);
@@ -623,13 +627,13 @@ errorTypes Tle5012::regularCrcUpdate()
 	uint16_t secondTempByte = (uint16_t) crc;
 	uint16_t valToSend = (firstTempByte << 8) | secondTempByte;
 
-	registers[7] = valToSend;
+	_registers[7] = valToSend;
 
 	return writeTempCoeffUpdate(valToSend);
 }
 
 /**
- * General write function for writing registers from the Tle5012.
+ * General write function for writing _registers from the Tle5012.
  * commmand[in]		-- the command to execute the write
  * dataToWrite[in]	-- the new data that will be written to the register
  * index[in]		-- the registerIndex helps figure out in which register the value changed, so that we don't need to read all the register again to calculate the CRC
@@ -638,17 +642,17 @@ errorTypes Tle5012::writeToSensor(uint16_t command, uint16_t dataToWrite, bool c
 {
 	uint16_t safety = 0;
 
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_chipselect,LOW);
 
 	delayMicroseconds(DELAYuS);
-	spiConnection->beginTransaction(spiSetting);
-	spiConnection->transfer16(command);
-	spiConnection->transfer16(dataToWrite);
-	safety = spiConnection->transfer16(DUMMY);
-	spiConnection->endTransaction();
+	_spiConnection->beginTransaction(_spiSetting);
+	_spiConnection->transfer16(command);
+	_spiConnection->transfer16(dataToWrite);
+	safety = _spiConnection->transfer16(DUMMY);
+	_spiConnection->endTransaction();
 	delayMicroseconds(DELAYuS);
 
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 
 	uint16_t data[1] = {dataToWrite};
 
@@ -680,7 +684,7 @@ errorTypes  Tle5012::writeSIL(uint16_t dataToWrite)
 }
 
 /**
- * If the next eight function are called anytime and the values stored in the corresponding registers is changed, then a new CRC has to be calculated and stored in register 0F (second byte)
+ * If the next eight function are called anytime and the values stored in the corresponding _registers is changed, then a new CRC has to be calculated and stored in register 0F (second byte)
  */
 
 /**
@@ -744,17 +748,17 @@ errorTypes  Tle5012::writeTempCoeffUpdate(uint16_t dataToWrite)
 
 	triggerUpdate();
 
-	digitalWrite(chipselect,LOW);
+	digitalWrite(_chipselect,LOW);
 
 	delayMicroseconds(DELAYuS);
-	spiConnection->beginTransaction(spiSetting);
-	spiConnection->transfer16(WIRTE_TEMP_COEFF);
-	spiConnection->transfer16(dataToWrite);
-	safety = spiConnection->transfer16(DUMMY);
-	spiConnection->endTransaction();
+	_spiConnection->beginTransaction(_spiSetting);
+	_spiConnection->transfer16(WIRTE_TEMP_COEFF);
+	_spiConnection->transfer16(dataToWrite);
+	safety = _spiConnection->transfer16(DUMMY);
+	_spiConnection->endTransaction();
 	delayMicroseconds(DELAYuS);
 
-	digitalWrite(chipselect,HIGH);
+	digitalWrite(_chipselect,HIGH);
 
 	errorTypes checkError = checkSafety(safety, WIRTE_TEMP_COEFF, data, 1);
 
