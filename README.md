@@ -1,7 +1,7 @@
 # TLE5012B-Angle-Sensor
-<img src="https://www.infineon.com/export/sites/default/media/products/Sensors/TLE_5012B_DSO-8-16_plain_lowres.jpg_945841647.jpg">
+<img src="https://www.infineon.com/export/sites/default/media/products/Sensors/TLE_5012B_DSO-8-16_plain_lowres.jpg_945841647.jpg" width="200">
 
-Library of Infineon's highly sensitive [TLE5012B] 360° magnetic angle sensor(https://www.infineon.com/cms/en/product/sensor/magnetic-position-sensor/angle-sensor/tle5012b-e1000/) for Arduino.
+Library of Infineon's highly sensitive [TLE5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-position-sensor/angle-sensor/tle5012b-e1000/) 360° magnetic angle sensor for Arduino.
 
 ## Summary
 The [TLE5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-position-sensor/angle-sensor/tle5012b-e1000/) is a 360° angle sensor that detects the orientation of a magnetic field. This is achieved by measuring sine and cosine angle components with monolithic integrated Giant Magneto Resistance (iGMR) elements. These raw signals (sine and cosine) are digitally processed internally to calculate the angle orientation of the magnetic field (magnet). The TLE5012B is a pre-calibrated sensor. The calibration parameters are stored in laser fuses. At start-up the values of the fuses are written into flip-flops, where these values can be changed by the application-specific parameters. Further precision of the angle measurement over a wide temperature range and a long lifetime can be improved by enabling an optional internal autocalibration algorithm. Data communications are accomplished with a bi-directional Synchronous Serial Communication (SSC) that is SPI-compatible. The sensor configuration is stored in registers, which are accessible by the SSC interface. Additionally four other interfaces are available with the TLE5012B: Pulse-Width-Modulation (PWM) Protocol, Short-PWM-Code (SPC) Protocol, Hall Switch Mode (HSM) and Incremental Interface (IIF). These interfaces can be used in parallel with SSC or alone. Pre-configured sensor derivates with different interface settings are available.
@@ -34,4 +34,4 @@ To install the TLE5012B angle sensor library in the Arduino IDE, please go now t
 ![Install Library](https://raw.githubusercontent.com/infineon/assets/master/Pictures/Library_Install_ZIP.png)
 
 ## Usage
-Please follow the example sketches in the /examples directory in this library to learn more about the usage of the library. Especially, take care of the SPI and I²C configuration of the sensor. For more information, please consult the datasheet [here](https://www.infineon.com/dgdl/Infineon-TLE5012B_Exxxx-DS-v02_01-EN.pdf?fileId=db3a304334fac4c601350f31c43c433f).
+Please follow the example sketches in the /examples directory in this library to learn more about the usage of the library. Especially, take care of the right interface of the sensor; this library only supports SPI via SSC. For more information, please consult the datasheet [here](https://www.infineon.com/dgdl/Infineon-TLE5012B_Exxxx-DS-v02_01-EN.pdf?fileId=db3a304334fac4c601350f31c43c433f).
