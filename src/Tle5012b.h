@@ -1,9 +1,41 @@
 /**
- * This class controls the Tle5012 Angle sensor
+ * Tle5012b.h - Library for Arduino for the TLE5012B angle sensor.
+ *
+ * The TLE5012B is a pre-calibrated 360° angle sensor that detects the orientation 
+ * of a magnetic field. The raw signals (sine and cosine) are digitally processed 
+ * internally to calculate the angle orientation of the magnetic field (magnet).
+ *
+ * Have a look at the application note/datasheet for more information.
+ *
+ * Copyright (c) 2018 Infineon Technologies AG
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ * disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef TLE5012_H_
-#define TLE5012_H_
+/**
+ * This class controls the Tle5012b Angle sensor
+ */
+
+#ifndef TLE5012B_H_
+#define TLE5012B_H_
 
 #include "SPI.h"
 
@@ -111,7 +143,7 @@
 /**
  * Error types from safety word
  */
-typedef enum errorTypes
+enum errorTypes
 {
 	NO_ERROR = 0x00,
 	SYSTEM_ERROR = 0x01,
@@ -121,17 +153,17 @@ typedef enum errorTypes
 };
 
 
-class Tle5012
+class Tle5012b
 {
 public:
 	//standard constructor
-	Tle5012();
+	Tle5012b();
 
 	//constructor given own SPI Class
-	Tle5012(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck);
+	Tle5012b(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck);
 
 	//standard deconstructor
-	~Tle5012();
+	~Tle5012b();
 
 	//the next four functions initialize the spi connections and the _chipselect and reads all the register values from 08 - 0F(first byte) and stores them that are needed to calculate the CRC
 	errorTypes begin();
@@ -142,14 +174,14 @@ public:
 	//ends the SPI connection
 	void end();
 
-	//general Function to read from the Tle5012.
+	//general Function to read from the Tle5012b.
 	errorTypes readFromSensor(uint16_t command, uint16_t &data);
 	//used to read all the _registers used to calculate the CRC
 	errorTypes readBlockCRC();
 	//can be used to read 1 or more consecutive _registers, and the values of the various _registers are stored in data
 	errorTypes readMoreRegisters(uint16_t command, uint16_t data[]);
 
-	//reads functions for reading the various _registers in the Tle5012.
+	//reads functions for reading the various _registers in the Tle5012b.
 	errorTypes readStatus(uint16_t &data);
 	errorTypes readAngleValue(int16_t &data);
 	errorTypes readAngleSpeed(int16_t &data);
@@ -177,10 +209,10 @@ public:
 	errorTypes readIntMode4(uint16_t &data);
 	errorTypes readTempCoeff(uint16_t &data);
 
-	//Standard function to write to a register in the Tle5012
+	//Standard function to write to a register in the Tle5012b
 	errorTypes writeToSensor(uint16_t command,uint16_t dataToWrite, bool changeCRC);
 
-	//Write functions for writing to various _registers in the Tle5012
+	//Write functions for writing to various _registers in the Tle5012b
 	errorTypes writeActivationStatus(uint16_t dataToWrite);
 	errorTypes writeIntMode1(uint16_t dataToWrite);
 	errorTypes writeSIL(uint16_t dataToWrite);
@@ -239,9 +271,5 @@ private:
 	void triggerUpdate();
 
 };
-
-//preinstantiated object
-extern Tle5012 tle5012;
-
 
 #endif

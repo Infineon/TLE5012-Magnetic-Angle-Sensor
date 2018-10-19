@@ -1,8 +1,40 @@
-#include "Tle5012.h"
+/**
+ * Tle5012b.cpp - Library for Arduino for the TLE5012B angle sensor.
+ *
+ * The TLE5012B is a pre-calibrated 360Â° angle sensor that detects the orientation 
+ * of a magnetic field. The raw signals (sine and cosine) are digitally processed 
+ * internally to calculate the angle orientation of the magnetic field (magnet).
+ *
+ * Have a look at the application note/datasheet for more information.
+ *
+ * Copyright (c) 2018 Infineon Technologies AG
+ *
+ * Redistribution and use in source and binary forms, with or without modification,are permitted provided that the
+ * following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+ * disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holders nor the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "Tle5012b.h"
 #include "Arduino.h"
 
 
-Tle5012::Tle5012()
+Tle5012b::Tle5012b()
 {
 	_spiConnection = &SPI;
 	_spiSetting = SPISettings(SPEED,MSBFIRST,SPI_MODE1);
@@ -12,28 +44,28 @@ Tle5012::Tle5012()
 	_clock = SCK;
 }
 
-Tle5012::~Tle5012()
+Tle5012b::~Tle5012b()
 {
 	_spiConnection->end();
 }
 
-errorTypes Tle5012::begin()
+errorTypes Tle5012b::begin()
 {
 	return begin(SPI, _masterin, _masterout, _clock, _chipselect, _spiSetting);
 }
 
 
-errorTypes Tle5012::begin(uint32_t cs)
+errorTypes Tle5012b::begin(uint32_t cs)
 {
 	return begin(SPI, _masterin, _masterout, _clock, cs, _spiSetting);
 }
 
-errorTypes Tle5012::begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs)
+errorTypes Tle5012b::begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs)
 {
 	return begin(conf, miso, mosi, sck, cs, _spiSetting);
 }
 
-errorTypes Tle5012::begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs, SPISettings &settings)
+errorTypes Tle5012b::begin(SPIClass &conf, uint16_t miso, uint16_t mosi, uint16_t sck, uint32_t cs, SPISettings &settings)
 {
 	_masterout = mosi;
 	_masterin = miso;
@@ -106,7 +138,7 @@ uint8_t crcCalc(uint8_t* crcData, uint8_t length)
 /**
  * Triggers an update
  */
-void Tle5012::triggerUpdate()
+void Tle5012b::triggerUpdate()
 {
 	digitalWrite(_clock, LOW);
 	digitalWrite(_masterout, HIGH);
@@ -117,7 +149,7 @@ void Tle5012::triggerUpdate()
 
 
 /**
- * After every transaction with the Tle5012, a safety word is returned to check the validity of the value received.
+ * After every transaction with the Tle5012b, a safety word is returned to check the validity of the value received.
  * This is the structure of safety word, in which the numbers represent the bit position in 2 bytes.
  * 15 - indication of chip reset or watchdog overflow: 0 reset occured, 1 no reset
  * 14 - 0 System error, 1 No error
@@ -130,7 +162,7 @@ void Tle5012::triggerUpdate()
  * and needs to be checked with the CRC sent in the safety word.
  */
 
-errorTypes Tle5012::checkSafety(uint16_t safety, uint16_t command, uint16_t* readreg, uint16_t length)
+errorTypes Tle5012b::checkSafety(uint16_t safety, uint16_t command, uint16_t* readreg, uint16_t length)
 {
 	errorTypes errorCheck ;
 
@@ -186,7 +218,7 @@ errorTypes Tle5012::checkSafety(uint16_t safety, uint16_t command, uint16_t* rea
 
 //when an error occurs in the safety word, the error bit remains 0(error), until the status register is read again.
 //flushes out safety errors, that might have occured by reading the register without a safety word.
-void Tle5012::resetSafety()
+void Tle5012b::resetSafety()
 {
 	triggerUpdate();
 
@@ -205,7 +237,7 @@ void Tle5012::resetSafety()
 
 
 /**
- * General read function for reading _registers from the Tle5012.
+ * General read function for reading _registers from the Tle5012b.
  * Command[in]	-- the command for reading
  * data[out] 	-- where the data received from the _registers will be stored
  *
@@ -218,7 +250,7 @@ void Tle5012::resetSafety()
  * 3:0 - 4 bit number of data words.
  */
 
-errorTypes Tle5012::readFromSensor(uint16_t command, uint16_t &data)
+errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data)
 {
 	uint16_t safety = 0;
 
@@ -259,7 +291,7 @@ errorTypes Tle5012::readFromSensor(uint16_t command, uint16_t &data)
 /**
  * Reads the block of _registers from addresses 08 - 0F in order to figure out the CRC.
  */
-errorTypes Tle5012::readBlockCRC()
+errorTypes Tle5012b::readBlockCRC()
 {
 	uint16_t safety = 0;
 
@@ -289,7 +321,7 @@ errorTypes Tle5012::readBlockCRC()
 /**
  * used to read 1 or more than 1 consecutive _registers
  */
-errorTypes Tle5012::readMoreRegisters(uint16_t command, uint16_t data[])
+errorTypes Tle5012b::readMoreRegisters(uint16_t command, uint16_t data[])
 {
 	uint16_t lengthOfResponse = command & (0x000F);
 	uint16_t safety = 0;
@@ -318,18 +350,18 @@ errorTypes Tle5012::readMoreRegisters(uint16_t command, uint16_t data[])
 
 }
 
-errorTypes Tle5012::readStatus(uint16_t &data)
+errorTypes Tle5012b::readStatus(uint16_t &data)
 {
 	return readFromSensor(READ_STA_CMD, data);
 }
 
-errorTypes Tle5012::readUpdStatus(uint16_t &data)
+errorTypes Tle5012b::readUpdStatus(uint16_t &data)
 {
 	return readFromSensor(READ_UPD_STA_CMD, data);
 }
 
 
-errorTypes Tle5012::readActivationStatus(uint16_t &data)
+errorTypes Tle5012b::readActivationStatus(uint16_t &data)
 {
 	return readFromSensor(READ_ACTIV_STA_CMD, data);
 }
@@ -337,7 +369,7 @@ errorTypes Tle5012::readActivationStatus(uint16_t &data)
 /**
  * The angle value is a 15 bit signed integer. However, the register returns 16 bits, so we need to do some bit arithmetic.
  */
-errorTypes Tle5012::readAngleValue(int16_t &data)
+errorTypes Tle5012b::readAngleValue(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status = readFromSensor(READ_ANGLE_VAL_CMD, rawData);
@@ -363,7 +395,7 @@ errorTypes Tle5012::readAngleValue(int16_t &data)
 /**
  * The angle speed is a 15 bit signed integer. However, the register returns 16 bits, so we need to do some bit arithmetic.
  */
-errorTypes Tle5012::readAngleSpeed(int16_t &data)
+errorTypes Tle5012b::readAngleSpeed(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status =  readFromSensor(READ_ANGLE_SPD_CMD, rawData);
@@ -389,7 +421,7 @@ errorTypes Tle5012::readAngleSpeed(int16_t &data)
 /**
  * The angle value is a 9 bit signed integer. However, the register returns 16 bits, so we need to do some bit arithmetic.
  */
-errorTypes Tle5012::readAngleRevolution(int16_t &data)
+errorTypes Tle5012b::readAngleRevolution(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status =	readFromSensor(READ_ANGLE_REV_CMD, rawData);
@@ -414,7 +446,7 @@ errorTypes Tle5012::readAngleRevolution(int16_t &data)
 /**
  * The angle value is a 9 bit signed integer. However, the register returns 16 bits, so we need to do some bit arithmetic.
  */
-errorTypes Tle5012::readTemp(int16_t &data)
+errorTypes Tle5012b::readTemp(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status =	readFromSensor(READ_TEMP_CMD, rawData);
@@ -441,7 +473,7 @@ errorTypes Tle5012::readTemp(int16_t &data)
 /**
  * The rawX value is signed 16 bit value
  */
-errorTypes Tle5012::readRawX(int16_t &data)
+errorTypes Tle5012b::readRawX(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status =	readFromSensor(READ_RAW_X_CMD, rawData);
@@ -460,7 +492,7 @@ errorTypes Tle5012::readRawX(int16_t &data)
 /**
  * The rawY is a signed 16 bit value
  */
-errorTypes Tle5012::readRawY(int16_t &data)
+errorTypes Tle5012b::readRawY(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status =	readFromSensor(READ_RAW_Y_CMD, rawData);
@@ -477,7 +509,7 @@ errorTypes Tle5012::readRawY(int16_t &data)
 }
 
 
-errorTypes Tle5012::readUpdAngleValue(int16_t &data)
+errorTypes Tle5012b::readUpdAngleValue(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status = readFromSensor(READ_UPD_ANGLE_VAL_CMD, rawData);
@@ -501,7 +533,7 @@ errorTypes Tle5012::readUpdAngleValue(int16_t &data)
 	return NO_ERROR;
 }
 
-errorTypes Tle5012::readUpdAngleSpeed(int16_t &data)
+errorTypes Tle5012b::readUpdAngleSpeed(int16_t &data)
 {
 	uint16_t rawData = 0;
 	errorTypes status =  readFromSensor(READ_UPD_ANGLE_SPD_CMD, rawData);
@@ -524,7 +556,7 @@ errorTypes Tle5012::readUpdAngleSpeed(int16_t &data)
 	return NO_ERROR;
 }
 
-errorTypes Tle5012::readUpdAngleRevolution(int16_t &data)
+errorTypes Tle5012b::readUpdAngleRevolution(int16_t &data)
 {
 	uint16_t rawData = 0;
 
@@ -549,12 +581,12 @@ errorTypes Tle5012::readUpdAngleRevolution(int16_t &data)
 	return NO_ERROR;
 }
 
-errorTypes Tle5012::readIntMode1(uint16_t &data)
+errorTypes Tle5012b::readIntMode1(uint16_t &data)
 {
 	return readFromSensor(READ_INTMODE_1, data);
 }
 
-errorTypes Tle5012::readSIL(uint16_t &data)
+errorTypes Tle5012b::readSIL(uint16_t &data)
 {
 	return readFromSensor(READ_SIL, data);
 }
@@ -564,43 +596,43 @@ errorTypes Tle5012::readSIL(uint16_t &data)
  * The values stored in them are used to calculate the CRC, and their values are stored in the private component of the class, _registers.
  */
 
-errorTypes Tle5012::readIntMode2(uint16_t &data)
+errorTypes Tle5012b::readIntMode2(uint16_t &data)
 {
 	return readFromSensor(READ_INTMODE_2, data);
 }
 
-errorTypes Tle5012::readIntMode3(uint16_t &data)
+errorTypes Tle5012b::readIntMode3(uint16_t &data)
 {
 	return readFromSensor(READ_INTMODE_3, data);
 }
 
 
-errorTypes Tle5012::readOffsetX(uint16_t &data)
+errorTypes Tle5012b::readOffsetX(uint16_t &data)
 {
 	return readFromSensor(READ_OFFSET_X, data);
 }
 
-errorTypes Tle5012::readOffsetY(uint16_t &data)
+errorTypes Tle5012b::readOffsetY(uint16_t &data)
 {
 	return readFromSensor(READ_OFFSET_Y, data);
 }
 
-errorTypes Tle5012::readSynch(uint16_t &data)
+errorTypes Tle5012b::readSynch(uint16_t &data)
 {
 	return readFromSensor(READ_SYNCH, data);
 }
 
-errorTypes Tle5012::readIFAB(uint16_t &data)
+errorTypes Tle5012b::readIFAB(uint16_t &data)
 {
 	return readFromSensor(READ_IFAB,data);
 }
 
-errorTypes Tle5012::readIntMode4(uint16_t &data)
+errorTypes Tle5012b::readIntMode4(uint16_t &data)
 {
 	return readFromSensor(READ_INTMODE_4, data);
 }
 
-errorTypes Tle5012::readTempCoeff(uint16_t &data)
+errorTypes Tle5012b::readTempCoeff(uint16_t &data)
 {
 	return readFromSensor(READ_TEMP_COEFF, data);
 }
@@ -609,7 +641,7 @@ errorTypes Tle5012::readTempCoeff(uint16_t &data)
  * This function is called each time any register in the range 08 - 0F(first byte) is changed.
  * It calculates the new CRC based on the value of all the _registers and then stores the value in 0F(second byte)
  */
-errorTypes Tle5012::regularCrcUpdate()
+errorTypes Tle5012b::regularCrcUpdate()
 {
 	readBlockCRC();
 
@@ -633,12 +665,12 @@ errorTypes Tle5012::regularCrcUpdate()
 }
 
 /**
- * General write function for writing _registers from the Tle5012.
+ * General write function for writing _registers from the Tle5012b.
  * commmand[in]		-- the command to execute the write
  * dataToWrite[in]	-- the new data that will be written to the register
  * index[in]		-- the registerIndex helps figure out in which register the value changed, so that we don't need to read all the register again to calculate the CRC
  */
-errorTypes Tle5012::writeToSensor(uint16_t command, uint16_t dataToWrite, bool changeCRC)
+errorTypes Tle5012b::writeToSensor(uint16_t command, uint16_t dataToWrite, bool changeCRC)
 {
 	uint16_t safety = 0;
 
@@ -668,17 +700,17 @@ errorTypes Tle5012::writeToSensor(uint16_t command, uint16_t dataToWrite, bool c
 }
 
 
-errorTypes Tle5012::writeActivationStatus(uint16_t dataToWrite)
+errorTypes Tle5012b::writeActivationStatus(uint16_t dataToWrite)
 {
 	 return writeToSensor(WRITE_ACTIV_STA,dataToWrite, false);
 }
 
-errorTypes  Tle5012::writeIntMode1(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeIntMode1(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_INTMODE_1,dataToWrite, false);
 }
 
-errorTypes  Tle5012::writeSIL(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeSIL(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_SIL,dataToWrite, false);
 }
@@ -689,7 +721,7 @@ errorTypes  Tle5012::writeSIL(uint16_t dataToWrite)
 
 /**
  * The Interface Mode 2 register stores the following values
- 	- angle range from bit 14 - 4, where 0x200 is 90° (-45° to 45°) and 0x80 is 360°(-180° to 180°). The calculation is based on the formula (360 * (2^7 / 2^9))
+ 	- angle range from bit 14 - 4, where 0x200 is 90ï¿½ (-45ï¿½ to 45ï¿½) and 0x80 is 360ï¿½(-180ï¿½ to 180ï¿½). The calculation is based on the formula (360 * (2^7 / 2^9))
  	- angle direction in bit 3, 0 =  counterclockwise rotation of magnet and 1 = clockwise rotation of magnet
  	- prediction in bit 2, where 0 = prediction disabled and 1 = prediction enabled
  	- Autocalibration mode in bits 1 - 0, where 00 = no autocalibration mode, 01 = autocalibartion mode 1, 10 = autocalibration mode 2, 11 = autocalibration mode 3
@@ -697,42 +729,42 @@ errorTypes  Tle5012::writeSIL(uint16_t dataToWrite)
  	Be careful when changing the values of this register. If the angle range is changed to 0x80 and the angle value exceeds the valid range of -45 to 45, you will get a DSPU overflow error, and the safety word will show a system error.
  	Furthermore, autocalibration only works with the angle range of 0x80, so if you change the angle range in autocalibration mode, then an error will occur.
  */
-errorTypes  Tle5012::writeIntMode2(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeIntMode2(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_INTMODE_2,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeIntMode3(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeIntMode3(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_INTMODE_3,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeOffsetX(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeOffsetX(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_OFFSET_X,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeOffsetY(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeOffsetY(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_OFFSET_Y,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeSynch(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeSynch(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_SYNCH,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeIFAB(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeIFAB(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_IFAB,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeIntMode4(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeIntMode4(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_INTMODE_4,dataToWrite, true);
 }
 
-errorTypes  Tle5012::writeTempCoeff(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeTempCoeff(uint16_t dataToWrite)
 {
 	return writeToSensor(WIRTE_TEMP_COEFF,dataToWrite, true);
 }
@@ -740,7 +772,7 @@ errorTypes  Tle5012::writeTempCoeff(uint16_t dataToWrite)
 /**
  * This function is used in order to update the CRC in the register 0F(second byte)
  */
-errorTypes  Tle5012::writeTempCoeffUpdate(uint16_t dataToWrite)
+errorTypes  Tle5012b::writeTempCoeffUpdate(uint16_t dataToWrite)
 {
 	uint16_t safety = 0;
 	uint16_t readreg = 0;
@@ -816,7 +848,7 @@ double calculateAngleSpeed(double angRange, int16_t rawAngleSpeed, uint16_t firM
 /**
  * returns the angle speed
  */
-errorTypes Tle5012::getAngleSpeed(double &finalAngleSpeed)
+errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed)
 {
 	int16_t rawAngleSpeed = 0;
 	double angleRange = 0.0;
@@ -871,7 +903,7 @@ errorTypes Tle5012::getAngleSpeed(double &finalAngleSpeed)
 /**
  * returns the angle value
  */
-errorTypes Tle5012::getAngleValue(double &angleValue)
+errorTypes Tle5012b::getAngleValue(double &angleValue)
 {
 	int16_t rawAnglevalue = 0;
 	errorTypes checkError = readAngleValue(rawAnglevalue);
@@ -889,12 +921,12 @@ errorTypes Tle5012::getAngleValue(double &angleValue)
 /**
  * returns the number of revolutions
  */
-errorTypes Tle5012::getNumRevolutions(int16_t &numRev)
+errorTypes Tle5012b::getNumRevolutions(int16_t &numRev)
 {
 	return readAngleRevolution(numRev);
 }
 
-errorTypes Tle5012::getUpdAngleSpeed(double &angleSpeed)
+errorTypes Tle5012b::getUpdAngleSpeed(double &angleSpeed)
 {
 	int16_t rawAngleSpeed = 0;
 	double angleRange = 0.0;
@@ -940,7 +972,7 @@ errorTypes Tle5012::getUpdAngleSpeed(double &angleSpeed)
 	return NO_ERROR;
 }
 
-errorTypes Tle5012::getUpdAngleValue(double &angleValue)
+errorTypes Tle5012b::getUpdAngleValue(double &angleValue)
 {
 	int16_t rawAnglevalue = 0;
 	errorTypes checkError = readUpdAngleValue(rawAnglevalue);
@@ -955,12 +987,12 @@ errorTypes Tle5012::getUpdAngleValue(double &angleValue)
 	return NO_ERROR;
 }
 
-errorTypes Tle5012::getUpdNumRevolutions(int16_t &numRev)
+errorTypes Tle5012b::getUpdNumRevolutions(int16_t &numRev)
 {
 	return readAngleRevolution(numRev);
 }
 
-errorTypes Tle5012::getTemperature(double &temperature)
+errorTypes Tle5012b::getTemperature(double &temperature)
 {
 	int16_t rawTemp = 0;
 	errorTypes checkError = readTemp(rawTemp);
@@ -975,7 +1007,7 @@ errorTypes Tle5012::getTemperature(double &temperature)
 	return NO_ERROR;
 }
 
-errorTypes Tle5012::getAngleRange(double &angleRange)
+errorTypes Tle5012b::getAngleRange(double &angleRange)
 {
 	uint16_t rawData = 0;
 	errorTypes checkError = readIntMode2(rawData);
@@ -993,7 +1025,4 @@ errorTypes Tle5012::getAngleRange(double &angleRange)
 
 	return NO_ERROR;
 }
-
-//preinstantiated object
-Tle5012 tle5012 = Tle5012();
 

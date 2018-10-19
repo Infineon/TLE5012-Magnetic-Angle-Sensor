@@ -1,7 +1,7 @@
-#include "Tle5012.h"
+#include "Tle5012b.h"
 
-// Tle5012 Object
-Tle5012 Tle5012MagneticAngleSensor = Tle5012();
+// Tle5012b Object
+Tle5012b Tle5012MagneticAngleSensor = Tle5012b();
 
 errorTypes checkError;
 bool s = true;
@@ -11,6 +11,9 @@ void setup() {
   Serial.begin(9600);
   Serial.println("init done!");
   checkError = Tle5012MagneticAngleSensor.begin();
+  // If you do not use the standard SPI pins, you can reconfigure these
+  // Check the other begin functions for other options
+  // checkError = Tle5012MagneticAngleSensor.begin(SPI, MISO, MOSI, SCK, SS, SPISettings(SPEED,MSBFIRST,SPI_MODE1));
 }
 
 void loop() {

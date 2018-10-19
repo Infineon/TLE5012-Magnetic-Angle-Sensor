@@ -1,26 +1,29 @@
-#include "Tle5012.h"
+#include "Tle5012b.h"
 
-// Tle5012 Object
-Tle5012 Tle5012MagneticAngleSensor = Tle5012();
+// Tle5012b Object
+Tle5012b Tle5012MagneticAngleSensor = Tle5012b();
 
-errorTypes checkError;
+errorTypes checkError = NO_ERROR;
 
 void setup() {
   // put your setup code here, to run once:
   delay(1000);
   Serial.begin(9600);
   checkError = Tle5012MagneticAngleSensor.begin();
+  // If you do not use the standard SPI pins, you can reconfigure these
+  // Check the other begin functions for other options
+  // checkError = Tle5012MagneticAngleSensor.begin(SPI, MISO, MOSI, SCK, SS, SPISettings(SPEED,MSBFIRST,SPI_MODE1));
+
   Serial.println("init done!");
   Serial.println("AngleSpeed\tAngleValue\trevolutions\tAngleRange");
 }
 
 void loop() {
+  // put your main code here, to run repeatedly:
   if (checkError == 0)
   {
-    errorTypes checkError;
     double d = 0.0;
     int16_t b = 0;
-    uint16_t a = 0;
     checkError = Tle5012MagneticAngleSensor.getAngleSpeed(d);
     Serial.print(d);
   
@@ -36,8 +39,6 @@ void loop() {
     Tle5012MagneticAngleSensor.getAngleRange(d);
     Serial.println(d);
   }
-  
-
-  
+  Serial.println(checkError);
   delay(30);
 }
