@@ -22,6 +22,19 @@ The [TLE5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-position-
 ## Hardware
 Please find the datasheet of the TLE5012B [here](https://www.infineon.com/dgdl/Infineon-TLE5012B_Exxxx-DS-v02_01-EN.pdf?fileId=db3a304334fac4c601350f31c43c433f). It depends on the evaluation board which you are using or the respective configuration of the sensor on your PCB which communication protocol as well as addresses you need to use for communicating with the sensor. This library only works with the SPI compatible Synchronous Serial Communication (SSC) interface of the TLE5012B.
 
+## Connection guide
+To connect the 3-wire SSC interface to an Arduino with a 4-wire SPI interface you will need a resistor with a value between 3.3k Ohm and 10k Ohm. Connect the resistor between DATA and MOSI (pin 11 on an UNO). If you are connecting multiple sensors they can all share one DATA line and one resistor.
+TLE5012B pin | Pin Function | Arduino Pin | Function
+-------------|--------------|-------------|---------
+2|SCK|13|SCK
+3|CSQ|10|SS
+4|DATA|12|MISO
+|Resistor|11|MOSI
+6|Vdd|3.3V or 5V|Power
+7|GND|GND|Ground
+
+Refer to the reference for your specific Arduino to confirm these pin numbers for the SPI interface. Chip-select (CSQ) can use any available digital pin. Change the .begin() in the library examples to use your pin number.
+
 ## Installation
 
 ### Integration of Library
