@@ -169,19 +169,16 @@ errorTypes Tle5012b::checkSafety(uint16_t safety, uint16_t command, uint16_t* re
 	if (!((safety) & SYSTEM_ERROR_MASK))
 	{
 		errorCheck = SYSTEM_ERROR;
-		resetSafety();
 	}
 
 	else if (!((safety) & INTERFACE_ERROR_MASK))
 	{
 		errorCheck = INTERFACE_ACCESS_ERROR;
-		resetSafety();
 	}
 
 	else if (!((safety) & INV_ANGLE_ERROR_MASK))
 	{
 		errorCheck = INVALID_ANGLE_ERROR;
-		resetSafety();
 	}
 
 	else
