@@ -251,12 +251,6 @@ void Tle5012b::resetSafety()
 errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data)
 {
 	uint16_t safety = 0;
-
-	if (command & CHECK_CMD_UPDATE)
-	{
-		triggerUpdate();
-	}
-
 	uint16_t readreg;
 
 	digitalWrite(_chipselect,LOW);
@@ -767,8 +761,6 @@ errorTypes  Tle5012b::writeTempCoeffUpdate(uint16_t dataToWrite)
 	uint16_t safety = 0;
 	uint16_t readreg = 0;
 	uint16_t data[1] = {dataToWrite};
-
-	triggerUpdate();
 
 	digitalWrite(_chipselect,LOW);
 
