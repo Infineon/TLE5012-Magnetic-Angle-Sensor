@@ -143,7 +143,7 @@ void Tle5012b::triggerUpdate()
 	digitalWrite(_clock, LOW);
 	digitalWrite(_masterout, HIGH);
 	digitalWrite(_chipselect,LOW);
-	delay(1);
+	delayMicroseconds(DELAYuS);
 	digitalWrite(_chipselect,HIGH);
 }
 
@@ -224,13 +224,11 @@ void Tle5012b::resetSafety()
 
 	digitalWrite(_chipselect,LOW);
 
-	delayMicroseconds(DELAYuS);
 	_spiConnection->beginTransaction(_spiSetting);
 	_spiConnection->transfer16(READ_STA_CMD);
 	_spiConnection->transfer16(DUMMY);
 	_spiConnection->transfer16(DUMMY);
 	_spiConnection->endTransaction();
-	delayMicroseconds(DELAYuS);
 
 	digitalWrite(_chipselect,HIGH);
 }
@@ -263,13 +261,11 @@ errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data)
 
 	digitalWrite(_chipselect,LOW);
 
-	delayMicroseconds(DELAYuS);
 	_spiConnection->beginTransaction(_spiSetting);
 	_spiConnection->transfer16(command);
 	readreg = _spiConnection->transfer16(DUMMY);
 	safety = _spiConnection->transfer16(DUMMY);
 	_spiConnection->endTransaction();
-	delayMicroseconds(DELAYuS);
 
 	digitalWrite(_chipselect,HIGH);
 
@@ -297,7 +293,6 @@ errorTypes Tle5012b::readBlockCRC()
 
 	digitalWrite(_chipselect,LOW);
 
-	delayMicroseconds(DELAYuS);
 	_spiConnection->beginTransaction(_spiSetting);
 	_spiConnection->transfer16(READ_BLOCK_CRC);
 
@@ -308,7 +303,6 @@ errorTypes Tle5012b::readBlockCRC()
 
 	safety = _spiConnection->transfer16(DUMMY);
 	_spiConnection->endTransaction();
-	delayMicroseconds(DELAYuS);
 
 	digitalWrite(_chipselect,HIGH);
 
@@ -328,7 +322,6 @@ errorTypes Tle5012b::readMoreRegisters(uint16_t command, uint16_t data[])
 
 	digitalWrite(_chipselect,LOW);
 
-	delayMicroseconds(DELAYuS);
 	_spiConnection->beginTransaction(_spiSetting);
 	_spiConnection->transfer16(command);
 
@@ -339,7 +332,6 @@ errorTypes Tle5012b::readMoreRegisters(uint16_t command, uint16_t data[])
 
 	safety = _spiConnection->transfer16(DUMMY);
 	_spiConnection->endTransaction();
-	delayMicroseconds(DELAYuS);
 
 	digitalWrite(_chipselect,HIGH);
 
@@ -676,13 +668,11 @@ errorTypes Tle5012b::writeToSensor(uint16_t command, uint16_t dataToWrite, bool 
 
 	digitalWrite(_chipselect,LOW);
 
-	delayMicroseconds(DELAYuS);
 	_spiConnection->beginTransaction(_spiSetting);
 	_spiConnection->transfer16(command);
 	_spiConnection->transfer16(dataToWrite);
 	safety = _spiConnection->transfer16(DUMMY);
 	_spiConnection->endTransaction();
-	delayMicroseconds(DELAYuS);
 
 	digitalWrite(_chipselect,HIGH);
 
@@ -782,13 +772,11 @@ errorTypes  Tle5012b::writeTempCoeffUpdate(uint16_t dataToWrite)
 
 	digitalWrite(_chipselect,LOW);
 
-	delayMicroseconds(DELAYuS);
 	_spiConnection->beginTransaction(_spiSetting);
 	_spiConnection->transfer16(WIRTE_TEMP_COEFF);
 	_spiConnection->transfer16(dataToWrite);
 	safety = _spiConnection->transfer16(DUMMY);
 	_spiConnection->endTransaction();
-	delayMicroseconds(DELAYuS);
 
 	digitalWrite(_chipselect,HIGH);
 

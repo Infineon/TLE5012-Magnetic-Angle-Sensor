@@ -118,8 +118,8 @@
 //default speed of SPI transfer
 #define SPEED					500000
 
-//delay for the update
-#define DELAYuS 				100
+//delay for the update "command" - datasheet page 26 - see also fig. 24
+#define DELAYuS 				1
 
 //dummy variable used for receive. Each time this is sent, it is for the purposes of receiving using SPI transfer.
 #define DUMMY 					0xFFFF
@@ -186,6 +186,9 @@ public:
 	errorTypes readAngleValue(int16_t &data);
 	errorTypes readAngleSpeed(int16_t &data);
 	errorTypes readAngleRevolution(int16_t &data);
+
+	//triggers an update to save a consistent set of registers at one instant
+	void triggerUpdate();
 
 	errorTypes readUpdStatus(uint16_t &data);
 	errorTypes readUpdAngleValue(int16_t &data);
@@ -266,9 +269,6 @@ private:
 
 	//in case the safety word sends an error, this function is called so that the error bit is reset to 1.
 	void resetSafety();
-
-	//triggers an update in the register
-	void triggerUpdate();
 
 };
 
