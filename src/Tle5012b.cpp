@@ -989,7 +989,7 @@ errorTypes Tle5012b::getUpdAngleValue(double &angleValue)
 
 errorTypes Tle5012b::getUpdNumRevolutions(int16_t &numRev)
 {
-	return readAngleRevolution(numRev);
+	return readUpdAngleRevolution(numRev);
 }
 
 errorTypes Tle5012b::getTemperature(double &temperature)
