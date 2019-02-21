@@ -1,0 +1,38 @@
+language: python
+python:
+    - "2.7"
+        
+branches:
+  only:
+    - master
+env:
+    global:
+        - USR_NAME="mhoechner"
+        - USR_EMAIL="Moritz.Hoechner@infineon.com"
+        # new token needs to be generated & encrypted
+        - secure: OLSYr2ioMsqS+l43+s+yzfaVeCTK0Z1ky+Tm31bHdU66Ahq8+ZiDNX4fVDuziJtuHJWR3pEmqnYdSqSqcuByObM+I7uW3RaV2fOAtvCnWQcar5jt0+TYHuuLbfLu7vsL6ntBkQJXWibLO3JlVFp8ZVNd33WUE0mrnNdR7xormwy6EV7Ry9X/j43G+zHGjAKXxcfWIKs279pHvhtye4Vhlg3U8MkEwlkgpGiMbpWmk5CaePTi82KuoIOAceVZ8ixssuqpt4DgCnl7m6t1D+8MnjXxPLISvOr0pHNHTJ+3/gv1dGUrxENyPiW9d1q8OnrKyD9CniqC6Rklj+g5mhR+v+FJvjfa2k85SXVvFYikkqUyXkIVZkJu+PxZX0mfY18SbI7GB8mOkjgcusI9KhzNhZJQxUzza/DBe2MOR72mHVdpHlsOtx/1PjaUjJtS6lFBBZw1gCKYsFkGU3UfY+Jr3yajU1veCICgde0gm3SfhCDsQVymi7hsfnbBj8YhrY1K5+YJ6JHk5Wu6x2SsT8Al2/YSZoDdUDCZZ8Y4WNO+ZY2vF0ZU3jOcK/JSuLV6W7VzXAhSaYHVAHq2fXNgW7EWkRaLeFGtjgwvZIkhQ1Mrsl6oObMJhFhaD6vP4MlwvTWKp0MB8NdFWsgR2ITU80sREp4RBzJVSQIvLiBCIwi0upY=
+    matrix:
+        - PLATFORMIO_CI_SRC=examples/Read_Angle_Speed_Revolutions
+        - PLATFORMIO_CI_SRC=examples/Read_Angle_Value_Processing
+        - PLATFORMIO_CI_SRC=examples/Read_Multiple_Registers
+        - PLATFORMIO_CI_SRC=examples/Read_Speed_Processing
+        - PLATFORMIO_CI_SRC=examples/Read_Write_Registers
+       
+
+install:
+    - pip install -U platformio
+    - platformio platform install https://github.com/Infineon/platformio-infineonxmc.git
+script:
+    - platformio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc1100_h_bridge2go --board=xmc1300_boot_kit --board=xmc4700_relax_kit --project-option="lib_deps=Wire"
+
+after_success:
+    # only build once (after one job by checking id, however this does not work reliably)
+    # - |
+    #   if [ $(($TRAVIS_JOB_ID - $TRAVIS_BUILD_ID)) -eq 2 ]; then
+    #     export REPO_NAME=${TRAVIS_REPO_SLUG#*/}
+    #     git clone https://github.com/Infineon/InfineonDoxyGenerator.git
+    #     cd well-automated-documentation/docs
+    #     # cd $TRAVIS_BUILD_DIR/docs
+    #     chmod +x publish_pdf.sh
+    #     ./publish_pdf.sh
+    #   fi
