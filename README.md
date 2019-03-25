@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Infineon/TLE5012-Magnetic-Angle-Sensor.svg?branch=master)](https://travis-ci.org/Infineon/TLE5012-Magnetic-Angle-Sensor)
 
-<img src="https://www.infineon.com/export/sites/default/media/products/Sensors/TLE_5012B_DSO-8-16_plain_lowres.jpg_945841647.jpg">
+<img src="https://www.infineon.com/export/sites/default/media/products/Sensors/TLE_5012B_DSO-8-16_plain_lowres.jpg_945841647.jpg" width=200>
 
 Library of Infineon's highly sensitive [TLE5012B] 360° magnetic angle sensor(https://www.infineon.com/cms/en/product/sensor/magnetic-position-sensor/angle-sensor/tle5012b-e1000/) for Arduino.
 
