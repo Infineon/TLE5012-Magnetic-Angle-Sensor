@@ -116,10 +116,10 @@
 #define GET_BIT_14_4				0x7FF0
 
 //default speed of SPI transfer
-#define SPEED					500000
+#define SPEED					8000000
 
 //delay for the update
-#define DELAYuS 				100
+#define DELAYuS 				10
 
 //dummy variable used for receive. Each time this is sent, it is for the purposes of receiving using SPI transfer.
 #define DUMMY 					0xFFFF
