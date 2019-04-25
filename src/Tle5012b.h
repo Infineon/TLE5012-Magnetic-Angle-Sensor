@@ -75,16 +75,16 @@
 
 //Commands for write
 #define WRITE_ACTIV_STA				0x0011
-#define WIRTE_INTMODE_1				0x5061
-#define WIRTE_SIL					0x5071
-#define WIRTE_INTMODE_2				0x5081
-#define WIRTE_INTMODE_3				0x5091
-#define WIRTE_OFFSET_X				0x50A1
-#define WIRTE_OFFSET_Y				0x50B1
-#define WIRTE_SYNCH					0x50C1
-#define WIRTE_IFAB					0x50D1
-#define WIRTE_INTMODE_4				0x50E1
-#define WIRTE_TEMP_COEFF			0x50F1
+#define WRITE_INTMODE_1				0x5061
+#define WRITE_SIL					0x5071
+#define WRITE_INTMODE_2				0x5081
+#define WRITE_INTMODE_3				0x5091
+#define WRITE_OFFSET_X				0x50A1
+#define WRITE_OFFSET_Y				0x50B1
+#define WRITE_SYNCH					0x50C1
+#define WRITE_IFAB					0x50D1
+#define WRITE_INTMODE_4				0x50E1
+#define WRITE_TEMP_COEFF			0x50F1
 
 //mask to check if the command want the value in the register or the value in the update buffer
 #define CHECK_CMD_UPDATE			0x0400
