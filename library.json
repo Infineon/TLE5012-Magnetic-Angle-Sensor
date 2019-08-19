@@ -1,0 +1,16 @@
+{  
+   "name":"TLE5012-Magnetic-Angle-Sensor",
+   "keywords":"hall, sensor, magnetic, sensor2go, TLE5012B",
+   "description":"This library provides an interface to communicate with the TLE5012B via SPI interface",
+   "repository":{  
+      "type":"git",
+      "url":"https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor.git",
+      "branch":"master"
+   },
+   "version":"2.0.1",
+   "frameworks":"arduino",
+   "platforms":[  
+      "infineonxmc",
+      "atmelavr"
+   ]
+}
