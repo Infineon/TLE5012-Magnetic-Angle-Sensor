@@ -1,19 +1,29 @@
+/*!
+ * \name        Read_Write_Registrs
+ * \author      Infineon Technologies AG
+ * \copyright   2019 Infineon Technologies AG
+ * \version     2.0.1
+ * \brief
+ * This example show how to use the register write functions
+ * of the sensor, to change certain bits with deafult low speed
+ * 9600 baud comunication and standard sensor settings
+ */
+
 #include "Tle5012b.h"
 
 // Tle5012b Object
-Tle5012b Tle5012MagneticAngleSensor = Tle5012b();
-
-errorTypes checkError;
+Tle5012b Tle5012MagneticAngleSensor;
+errorTypes checkError = NO_ERROR;
 bool s = true;
 
 void setup() {
-  delay(1000);
+  delay(2000);
   Serial.begin(9600);
-  Serial.println("init done!");
+  Serial.println("init done!\n");
   checkError = Tle5012MagneticAngleSensor.begin();
-  // If you do not use the standard SPI pins, you can reconfigure these
-  // Check the other begin functions for other options
-  // checkError = Tle5012MagneticAngleSensor.begin(SPI, MISO, MOSI, SCK, SS, SPISettings(SPEED,MSBFIRST,SPI_MODE1));
+  Serial.print("checkerror: ");
+  Serial.println(checkError, HEX);
+  delay(1000);
 }
 
 void loop() {
@@ -21,38 +31,55 @@ void loop() {
   {
     uint16_t a = 0;
   
-    Serial.println("read intmode2");
     checkError = Tle5012MagneticAngleSensor.readIntMode2(a);
-    Serial.println(a,HEX);
-  
-    Serial.println("write intmode 2");
+    Serial.print("read intmode2:\t0x");
+    Serial.print(a,HEX);
+    Serial.print("\tcheckError: ");
+    Serial.println(checkError,HEX);
+    
     checkError  = Tle5012MagneticAngleSensor.writeIntMode2(0x804);
-  
-    Serial.println("read intmode2");
+    Serial.print("write intmode2:\t0x804\tcheckError: ");
+    Serial.println(checkError,HEX);
+    
     checkError = Tle5012MagneticAngleSensor.readIntMode2(a);
-    Serial.println(a,HEX);
-  
-    Serial.println("read intmode3");
+    Serial.print("read intmode2:\t0x");
+    Serial.print(a,HEX);
+    Serial.print("\tcheckError: ");
+    Serial.println(checkError,HEX);
+    Serial.println("");
+    //  
     checkError = Tle5012MagneticAngleSensor.readIntMode3(a);
-    Serial.println(a,HEX);
-  
-    Serial.println("write intmode 3");
+    Serial.print("read intmode3:\t0x");
+    Serial.print(a,HEX);
+    Serial.print("\tcheckError: ");
+    Serial.println(checkError,HEX);
+    
     checkError  = Tle5012MagneticAngleSensor.writeIntMode3(0x8000);
-  
-    Serial.println("intmode3");
+    Serial.print("write intmode3:\t0x8000\tcheckError: ");
+    Serial.println(checkError,HEX);
+
     checkError = Tle5012MagneticAngleSensor.readIntMode3(a);
-    Serial.println(a,HEX);
-  
-    Serial.println("Offset X");
+    Serial.print("read intmode3:\t0x");
+    Serial.print(a,HEX);
+    Serial.print("\tcheckError: ");
+    Serial.println(checkError,HEX);
+    Serial.println("");
+    //
     checkError = Tle5012MagneticAngleSensor.readOffsetX(a);
-    Serial.println(a,HEX);
-  
-    Serial.println("write Offset X");
+    Serial.print("read OffsetX:\t0x");
+    Serial.print(a,HEX);
+    Serial.print("\tcheckError: ");
+    Serial.println(checkError,HEX);
+
     checkError  = Tle5012MagneticAngleSensor.writeOffsetX(0xD960);
-  
-    Serial.println("read Offset X");
+    Serial.print("write OffsetX;\t0xD960\tcheckError: ");
+    Serial.println(checkError,HEX);
+    
     checkError = Tle5012MagneticAngleSensor.readOffsetX(a);
-    Serial.println(a,HEX);
+    Serial.print("read OffsetX:\t0x");
+    Serial.print(a,HEX);
+    Serial.print("\tcheckError: ");
+    Serial.println(checkError,HEX);
   
     s = false;
   }

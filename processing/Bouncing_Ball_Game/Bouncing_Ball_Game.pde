@@ -46,7 +46,7 @@ void setup()
   f = createFont("Arial",16,true);
   String portName = Serial.list()[0];
   //frameRate(55);
-  myPort = new Serial(this, portName, 9600);
+  myPort = new Serial(this, portName, 1000000);
   if (myPort.available() > 0)
   {
     while(val == null) {val = myPort.readStringUntil('\n');}
@@ -70,6 +70,7 @@ void draw()
     {
       parseVal();
       makeBoard();
+      myPort.clear();
     }
   }
 }

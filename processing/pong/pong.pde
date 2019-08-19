@@ -1,6 +1,6 @@
 /**
-* Run Read_Angle_Value_Processing before running this. This program runs the game Pong. You can control your paddle with the TLE5012.
-*/
+ * Run Read_Angle_Value_Processing before running this. This program runs the game Pong. You can control your paddle with the TLE5012.
+ */
 
 import processing.serial.*;
 
@@ -278,7 +278,7 @@ void setup() {
   //frameRate(50);
   String portName = Serial.list()[0];
   String val = null;  
-  myPort = new Serial(this, portName, 9600);
+  myPort = new Serial(this, portName, 1000000);
   if (myPort.available() > 0)
   {
     while (val == null) {
@@ -304,6 +304,7 @@ void draw() {
   if (val != null)
   {
     parseVal(val);
+    myPort.clear();
   }
 
 

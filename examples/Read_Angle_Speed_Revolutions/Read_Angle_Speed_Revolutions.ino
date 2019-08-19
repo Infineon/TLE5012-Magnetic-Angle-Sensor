@@ -1,25 +1,35 @@
+/*!
+ * \name        ReadAngleSpeedRevolutions
+ * \author      Infineon Technologies AG
+ * \copyright   2019 Infineon Technologies AG
+ * \version     2.0.1
+ * \brief
+ * This is a fast running example to demonstrate the possible readout
+ * speed of the sensor for the angle, angle speed and number of revolutions
+ * at once.
+ * For reconfiguring of the SPI interface, have a look at the documentation.
+ * 
+ * \Atteintion
+ * we use fast serail output setting og 1000000 baud.
+ */
+
 #include "Tle5012b.h"
+
 
 // Tle5012b Object
 Tle5012b Tle5012MagneticAngleSensor = Tle5012b();
-
 errorTypes checkError = NO_ERROR;
 
 void setup() {
-  // put your setup code here, to run once:
-  delay(1000);
-  Serial.begin(9600);
+  delay(2000);
+  Serial.begin(1000000);
   checkError = Tle5012MagneticAngleSensor.begin();
-  // If you do not use the standard SPI pins, you can reconfigure these
-  // Check the other begin functions for other options
-  // checkError = Tle5012MagneticAngleSensor.begin(SPI, MISO, MOSI, SCK, SS, SPISettings(SPEED,MSBFIRST,SPI_MODE1));
-
   Serial.println("init done!");
   Serial.println("AngleSpeed\tAngleValue\trevolutions\tAngleRange");
+  delay(1000);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   if (checkError == 0)
   {
     double d = 0.0;
@@ -27,7 +37,7 @@ void loop() {
     checkError = Tle5012MagneticAngleSensor.getAngleSpeed(d);
     Serial.print(d);
   
-    Serial.print("\t\t");
+    Serial.print("\t");
     checkError = Tle5012MagneticAngleSensor.getAngleValue(d);
     Serial.print(d);
   
@@ -39,6 +49,5 @@ void loop() {
     Tle5012MagneticAngleSensor.getAngleRange(d);
     Serial.println(d);
   }
-  Serial.println(checkError);
-  delay(30);
+  delay(30); //can be removed
 }
