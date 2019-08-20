@@ -1,24 +1,33 @@
-#include "Tle5012b.h"
+/*!
+ * \name        ReadSpeedProcessing
+ * \author      Infineon Technologies AG
+ * \copyright   2019 Infineon Technologies AG
+ * \version     2.0.1
+ * \brief
+ * Demonstrates the fast readout of the angle speed.
+ * Depending on the microcontroller you use more or less
+ * speed on the serial port is possible.
+ */
 
-// Tle5012b Object
-Tle5012b Tle5012MagneticAngleSensor = Tle5012b();
+#include "Tle5012b_reg.h"
+
+Tle5012b_reg Tle5012MagneticAngleSensor;
+errorTypes checkError = NO_ERROR;
 
 void setup() {
-  // put your setup code here, to run once:
-  delay(1000);
-  Serial.begin(9600);
-  Tle5012MagneticAngleSensor.begin();
-  // If you do not use the standard SPI pins, you can reconfigure these
-  // Check the other begin functions for other options
-  // checkError = Tle5012MagneticAngleSensor.begin(SPI, MISO, MOSI, SCK, SS, SPISettings(SPEED,MSBFIRST,SPI_MODE1));
+  delay(2000);
+  Serial.begin(1000000);
+  checkError = Tle5012MagneticAngleSensor.begin();
+  Serial.print("checkerror: ");
+  Serial.println(checkError, HEX);
   Serial.println("init done");
-
+  delay(1000);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   double d = 0.0;
   Tle5012MagneticAngleSensor.getAngleSpeed(d);
   Serial.println(d);
+  // remark this for even more speed
   delay(10);
 }

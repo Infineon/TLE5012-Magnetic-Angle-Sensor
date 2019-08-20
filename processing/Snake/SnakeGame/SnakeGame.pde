@@ -1,6 +1,7 @@
 /**
-* You can play snake use the TLE5012 Magnet Sensor. In order to play, please change the delay(10) to delay(100) in the Read_Angle_Value_Processing and run it.
-*/
+ * You can play snake use the TLE5012 Magnet Sensor. In order to play, please change the delay(10) to delay(100) 
+ * in the Read_Angle_Value_Processing and run it.
+ */
 
 import processing.serial.*;
 
@@ -28,16 +29,13 @@ class BorderLib
         if (i == 0) {
           x = 0;
           y = 0;
-        }
-        else if (i == XRES) {
+        } else if (i == XRES) {
           x = 0; 
           y = YRES-1;
-        }
-        else if (i == XRES*2) {
+        } else if (i == XRES*2) {
           x = 0;
           y = 1;
-        }
-        else if (i == XRES*2 + YRES-2) {
+        } else if (i == XRES*2 + YRES-2) {
           x = XRES-1;
           y = 1;
         }
@@ -49,8 +47,7 @@ class BorderLib
         else y++;
       }
       border = new Border (b);
-    }
-    else if (n == 2)
+    } else if (n == 2)
     {
       int [] [] b = new int [20] [2];
       int count = 0;
@@ -61,8 +58,7 @@ class BorderLib
           b [count] [0] = x;
           b [count] [1] = y;
           count++;
-        }
-        else if (x == (int) (XRES*2.0/3.0) && y < 10)
+        } else if (x == (int) (XRES*2.0/3.0) && y < 10)
         {
           b [count] [0] = x;
           b [count] [1] = y;
@@ -136,84 +132,84 @@ class Letters
     // write letters --------------------------------------------------------------
     // 0
     int w = 3, h = 5;
-    n0 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,0,1,1,0,1,1,1,1}), w, h);
+    n0 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1}), w, h);
 
     // 1
     w = 1;
-    n1 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,1}), w, h);
+    n1 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 1}), w, h);
 
     // 2
     w = 3;
-    n2 = new Letter (twoDimenstions(w, h, new int [] {1,1,0,0,0,1,0,1,0,1,0,0,1,1,1}), w, h);
+    n2 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1}), w, h);
 
     // 3
-    n3 = new Letter (twoDimenstions(w, h, new int [] {1,1,0,0,0,1,0,1,0,0,0,1,1,1,0}), w, h);
+    n3 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0}), w, h);
 
     // 4
-    n4 = new Letter (twoDimenstions(w, h, new int [] {1,0,0,1,0,1,1,1,1,0,0,1,0,0,1}), w, h);
+    n4 = new Letter (twoDimenstions(w, h, new int [] {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1}), w, h);
 
     // 5
-    n5 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,0,1,1,1,0,0,1,1,1,0}), w, h);
+    n5 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0}), w, h);
 
     // 6
-    n6 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,0,1,1,1,1,0,1,1,1,1}), w, h);
+    n6 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1}), w, h);
 
     // 7
-    n7 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,0,0,1,0,1,0,0,1,0,0,1,0}), w, h);
+    n7 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0}), w, h);
 
     // 8
-    n8 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,1,1,1,0,1,1,1,1}), w, h);
+    n8 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1}), w, h);
 
     // 9
-    n9 = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,1,1,0,0,1,0,1,0}), w, h);
+    n9 = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0}), w, h);
 
     // s
-    s = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,0,1,1,1,0,0,1,1,1,1}), w, h);
+    s = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1}), w, h);
 
     // n
     w = 4;
-    n = new Letter (twoDimenstions(w, h, new int [] {1,0,0,1,1,1,0,1,1,0,1,1,1,0,0,1,1,0,0,1}), w, h);
+    n = new Letter (twoDimenstions(w, h, new int [] {1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1}), w, h);
 
     // a
     w = 3;
-    a = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,1,1,1,0,1,1,0,1}), w, h);
+    a = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1}), w, h);
 
     // k
-    k = new Letter (twoDimenstions(w, h, new  int [] {1,0,1,1,0,1,1,1,0,1,0,1,1,0,1}), w, h);
+    k = new Letter (twoDimenstions(w, h, new  int [] {1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1}), w, h);
 
     // e
-    e = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,0,1,1,0,1,0,0,1,1,1}), w, h);
+    e = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1}), w, h);
 
     // e thin
     w = 2;
-    e_s = new Letter (twoDimenstions(w, h, new int [] {1,1,1,0,1,1,1,0,1,1}), w, h);
+    e_s = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 0, 1, 1, 1, 0, 1, 1}), w, h);
 
     // g
     w = 3;
-    g = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,0,1,0,1,1,0,1,0,1,1}), w, h);
+    g = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1}), w, h);
 
     // m
     w = 5;
-    m = new Letter (twoDimenstions(w, h, new int [] {1,1,0,1,1,1,0,1,0,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,1}), w, h);
+    m = new Letter (twoDimenstions(w, h, new int [] {1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1}), w, h);
 
     // o
     w = 3;
-    o = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,0,1,1,0,1,1,1,1}), w, h);
+    o = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1}), w, h);
 
     // v
-    v = new Letter (twoDimenstions(w, h, new int [] {1,0,1,1,0,1,1,0,1,1,0,1,0,1,0}), w, h);
+    v = new Letter (twoDimenstions(w, h, new int [] {1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0}), w, h);
 
     // r
-    r = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,1,0,1,0,1,1,0,1}), w, h);
-    
+    r = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1}), w, h);
+
     // p
-    p = new Letter (twoDimenstions(w, h, new int [] {1,1,1,1,0,1,1,1,0,1,0,0,1,0,0}), w, h);
+    p = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0}), w, h);
 
     // b
-    b = new Letter (twoDimenstions(w, h, new int [] {1,1,0,1,0,1,1,1,0,1,0,1,1,1,1}), w, h);
-    
+    b = new Letter (twoDimenstions(w, h, new int [] {1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1}), w, h);
+
     // t
-    t = new Letter (twoDimenstions(w, h, new int [] {1,1,1,0,1,0,0,1,0,0,1,0,0,1,0}), w, h);
+    t = new Letter (twoDimenstions(w, h, new int [] {1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0}), w, h);
 
     // :
     w = 1;
@@ -235,7 +231,7 @@ class Letters
       s, letterSpace, n, letterSpace, a, letterSpace, k, letterSpace, e
     };
     presets.put ("snake", snake);
-    
+
     Letter [] start = {
       s, letterSpace, t, letterSpace, a, letterSpace, r, letterSpace, t
     };
@@ -255,7 +251,7 @@ class Letters
       s, letterSpace, doubleDot
     };
     presets.put ("s:", sDoubleDot);
-    
+
     Letter [] pDoubleDot = {
       p, letterSpace, doubleDot
     };
@@ -263,48 +259,48 @@ class Letters
 
     presets.put ("space", new Letter[] {
       letterSpace
-    }
-    );
+      }
+      );
     presets.put ("0", new Letter[] {
       n0
-    }
-    );
+      }
+      );
     presets.put ("1", new Letter[] {
       n1
-    }
-    );
+      }
+      );
     presets.put ("2", new Letter[] {
       n2
-    }
-    );
+      }
+      );
     presets.put ("3", new Letter[] {
       n3
-    }
-    );
+      }
+      );
     presets.put ("4", new Letter[] {
       n4
-    }
-    );
+      }
+      );
     presets.put ("5", new Letter[] {
       n5
-    }
-    );
+      }
+      );
     presets.put ("6", new Letter[] {
       n6
-    }
-    );
+      }
+      );
     presets.put ("7", new Letter[] {
       n7
-    }
-    );
+      }
+      );
     presets.put ("8", new Letter[] {
       n8
-    }
-    );
+      }
+      );
     presets.put ("9", new Letter[] {
       n9
-    }
-    );
+      }
+      );
   }
 
   public Letter [] getLetters (String ss)
@@ -320,9 +316,9 @@ class Letters
     for (int i = 0; i < cArray.length; i++) cArray [i] = intToString.charAt (i);
     Letter [] numbers = new Letter [cArray.length*2];
     int count = 0;
-    
+
     Letter [] tempSpace = (Letter [] ) presets.get ("space");
-    
+
     for (int i = 0; i < cArray.length; i++) 
     {
       Letter [] temp = (Letter [] ) presets.get (str (cArray[i]));
@@ -363,8 +359,8 @@ class Letter
     this.l = l;
     this.w = l.length;
   }
-  
-   Letter (int [] [] l, int w, int h)
+
+  Letter (int [] [] l, int w, int h)
   {
     this.l = l;
     this.w = w;
@@ -375,43 +371,42 @@ class Letter
   {
     return w;
   }
-  
+
   public int getHeight ()
   {
     return h;
   }
-  
+
   public int [] [] getPos ()
   {
     return l;
   }
-
 }
 
 public class Points
 {
   int p;
-  
+
   Points ()
   {
     init();
   }
-  
+
   private void init ()
   {
     p = 0;
   }
-  
+
   public int getIntPoints ()
   {
     return p;
   }
-  
+
   public String getPoints ()
   {
     return str (p);
   }
-  
+
   public void finalize (int m)
   {
     p = m;
@@ -428,22 +423,22 @@ public class Snake
     this.n = n;
     init(x, y, n);
   }
-  
+
   public int getInitLength ()
   {
     return n;
   }
-  
+
   public int getHeadX ()
   {
     return pos [0] [0];
   }
-  
+
   public int getHeadY ()
   {
     return pos [0] [1];
   }
-  
+
   public int getSnakeLength ()
   {
     return pos.length;
@@ -480,13 +475,13 @@ public class Snake
     //int tempY = 
     temp [temp.length-1] [0] = pos [pos.length-1] [0]-xdir; 
     temp [temp.length-1] [1] = pos [pos.length-1] [1]-ydir;
-    
+
     if (temp [temp.length-1] [0] < 0) temp [temp.length-1] [0] = XRES-1;
     else if (temp [temp.length-1] [0] >= XRES) temp [temp.length-1] [0] = 0;
-    
+
     if (temp [temp.length-1] [1] < 0) temp [temp.length-1] [1] = YRES-1;
     else if (temp [temp.length-1] [1] >= YRES) temp [temp.length-1] [1] = 0;
-    
+
     pos = new int [temp.length] [2];
     arrayCopy (temp, pos);
   }
@@ -505,7 +500,7 @@ public class Snake
       pos [i] [0] = x;
       pos [i] [1] = y;
     }
-    
+
     for (int i = 0; i < pos.length; i++) move();
   }
 
@@ -826,8 +821,7 @@ public class Game
     else if (mode == 1) {
       play ();
       endCount = 0;
-    }
-    else if (mode == 2) {
+    } else if (mode == 2) {
       display (endScreen ());
       endCount++;
     }
@@ -1008,10 +1002,10 @@ void setup ()
   frameRate (10);
 
   game = new Game (8);
-  
+
   String portName = Serial.list()[0];
   String val = null;  
-  myPort = new Serial(this, portName, 9600);
+  myPort = new Serial(this, portName, 1000000);
   if (myPort.available() > 0)
   {
     while (val == null) {
@@ -1033,8 +1027,9 @@ void draw ()
   if (val != null)
   {
     move = parseVal(val);
+    myPort.clear();
   }
-   
+
   if (move == 0) game.input('u');
   if (move == 1) game.input('d');
   if (move == 2) game.input('l');
@@ -1048,7 +1043,7 @@ void keyPressed ()
   if (keyCode == DOWN) game.input('d');
   if (keyCode == LEFT) game.input('l');
   if (keyCode == RIGHT) game.input('r');
-  
+
   if (keyCode == BACKSPACE) game.saveImg("text/" + timestamp());
 }
 
@@ -1081,11 +1076,11 @@ int parseVal(String val)
       pos = 360.0 + pos;
     }
     println(pos);
-   if (pos >= 0 && pos < 90) return 0;
-   else if (pos >= 90 && pos < 180) return 1;
-   else if (pos >= 180 && pos < 270) return 2;
-   else if (pos >= 270 && pos < 360) return 3;
-   else return -1;
+    if (pos >= 0 && pos < 90) return 0;
+    else if (pos >= 90 && pos < 180) return 1;
+    else if (pos >= 180 && pos < 270) return 2;
+    else if (pos >= 270 && pos < 360) return 3;
+    else return -1;
   }
   catch (Exception e)
   {
