@@ -12,7 +12,7 @@ To install the TLE5012B angle sensor library in the Arduino IDE, please go now t
 ## Usage
 Please follow the example sketches in the /examples directory in this library to learn more about the usage of the library. Especially, take care of the SPI and I²C configuration of the sensor. For more information, please consult the datasheet [here](https://www.infineon.com/dgdl/Infineon-Angle_Sensor_TLE5012B-UM-v01_02-en-UM-v01_02-EN.pdf?fileId=5546d46146d18cb40146ec2eeae4633b).
  For more information:
-* see here for the sensors user manual [TLE5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-position-sensor/angle-sensor/tle5012b-e1000/)
+* see here for the sensors user manual [TLE5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-sensors/magnetic-position-sensors/angle-sensors/)
 * you can find several application notes concerning the sensor position and disc magnet design on the same page
 * there is a handy [pin out picture](https://raw.githubusercontent.com/infineon/assets/master/Pictures/TLE5012B_Sensor_2Go_Pin_out.png)
 <img src="https://raw.githubusercontent.com/infineon/assets/master/Pictures/TLE5012B_Sensor_2Go_Pin_out.png" width=100%>
