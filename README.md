@@ -30,6 +30,9 @@ For the description of library [installation](docs/Installation.md)
 ## Examples
 For the description of the [examples](docs/Examples.md)
 
+## Library documentation
+The doxygen [library documentation](https://infineon.github.io/TLE5012-Magnetic-Angle-Sensor/).
+
 ## Hardware
 Please find the datasheet of the TLE5012B [here](https://www.infineon.com/dgdl/Infineon-TLE5012B_Exxxx-DS-v02_01-EN.pdf?fileId=db3a304334fac4c601350f31c43c433f). It depends on the evaluation board which you are using or the respective configuration of the sensor on your PCB which communication protocol as well as addresses you need to use for communicating with the sensor. This library only works with the SPI compatible Synchronous Serial Communication (SSC) interface of the TLE5012B.
 
