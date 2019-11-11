@@ -4,10 +4,10 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "TLE5012B"
-PROJECT_NUMBER         = 2.0.1
-PROJECT_BRIEF          = "TLE5012B GMR Based Angle Sensor"
-PROJECT_LOGO           = "https://raw.githubusercontent.com/infineon/assets/master/Pictures/ifx_logo.png
+PROJECT_NAME           = ""
+PROJECT_NUMBER         = 
+PROJECT_BRIEF          = 
+PROJECT_LOGO           = 
 OUTPUT_DIRECTORY       = ./docs
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO

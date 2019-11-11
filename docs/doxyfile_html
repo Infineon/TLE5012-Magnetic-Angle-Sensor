@@ -4,10 +4,10 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "TLE5012B"
-PROJECT_NUMBER         = 2.0.1
+PROJECT_NAME           = ""
+PROJECT_NUMBER         = 
 PROJECT_BRIEF          = 
-PROJECT_LOGO           = ./img/ifx_logo2.png
+PROJECT_LOGO           = 
 OUTPUT_DIRECTORY       = ./docs
 CREATE_SUBDIRS         = YES
 ALLOW_UNICODE_NAMES    = NO
