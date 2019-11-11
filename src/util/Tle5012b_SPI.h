@@ -50,7 +50,7 @@ class Tle5012b_SPI : public SPIClass
 	public:
 
 	/*!
-	 * Consrtuctor with optional SPI channel number which can be used for XMC4700 or
+	 * Constructor with optional SPI channel number which can be used for XMC4700 or
 	 * any other microcontroller with more than the default SPI to connect more
 	 * than four sensors at a time.
 	 * @param spiNum [in] optional SPI channel number

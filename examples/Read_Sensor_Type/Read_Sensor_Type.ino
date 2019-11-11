@@ -13,7 +13,7 @@
  * Additional by removing the remarks on certain write functions, some sensor setups can
  * be set/unset or switched on/off.
  *
- * \attention This Scetch needs more memroy then the Arduino/Genuino UNO has so some
+ * \attention This Sketch needs more memroy then the Arduino/Genuino UNO has so some
  * routines are not available
  */
 

@@ -14,7 +14,7 @@
  * own library Tle5012b_reg which resides on top of the normal Tle5012b library.
  * Therefore it should only be used if extensive register operations are needed.
  * 
- * \attention This Scetch needs ca. 35kB of  memory and does not compile on the original Arduino/Genuino Uno
+ * \attention This Sketch needs ca. 35kB of  memory and does not compile on the original Arduino/Genuino Uno
  */
 #if defined(__AVR_ATmega328P__) 
 // Needs more memory than the Arduino/Genuino UNO has

@@ -2,7 +2,7 @@
  * Run Arduino file Read_Angle_Value_Processing before running this file.
  * Using the Angle Value received from the TLE5012, you can control the small white circle. Collect the blue circles and avoid being touched by the black ones.
  * If you are moving up then clockwise you turn right, counterclockwise left
- * If you are moving down then clockwose ypi turn
+ * If you are moving down then clockwise ypi turn
  */
 import processing.serial.*;
 

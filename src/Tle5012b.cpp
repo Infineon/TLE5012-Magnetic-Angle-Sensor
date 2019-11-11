@@ -17,7 +17,7 @@
  * that is SPI-compatible. The sensor configuration is stored in registers, which are accessible by the
  * SSC interface. Additionally four other interfaces are available with the TLE5012B: Pulse-Width-Modulation (PWM)
  * Protocol, Short-PWM-Code (SPC) Protocol, Hall Switch Mode (HSM) and Incremental Interface (IIF). These interfaces
- * can be used in parallel with SSC or alone. Pre-configured sensor derivates with different interface settings are available.
+ * can be used in parallel with SSC or alone. Pre-configured sensor derivate with different interface settings are available.
  * Online diagnostic functions are provided to ensure reliable operation.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the

@@ -1,5 +1,5 @@
 /*!
- * \name        Read_Write_Registrs
+ * \name        Read_Write_Registers
  * \author      Infineon Technologies AG
  * \copyright   2019 Infineon Technologies AG
  * \version     2.0.1

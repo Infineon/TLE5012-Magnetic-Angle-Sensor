@@ -151,7 +151,7 @@ void Tle5012b_4wire::triggerUpdate()
 /**
  * After every transaction with the Tle5012b_4wire, a safety word is returned to check the validity of the value received.
  * This is the structure of safety word, in which the numbers represent the bit position in 2 bytes.
- * 15 - indication of chip reset or watchdog overflow: 0 reset occured, 1 no reset
+ * 15 - indication of chip reset or watchdog overflow: 0 reset occurred, 1 no reset
  * 14 - 0 System error, 1 No error
  * 13 - 0 Infterface access error, 1 No error
  * 12 - 0 Invalid angle value, 1 valid angle value
@@ -214,7 +214,7 @@ errorTypes Tle5012b_4wire::checkSafety(uint16_t safety, uint16_t command, uint16
 }
 
 //when an error occurs in the safety word, the error bit remains 0(error), until the status register is read again.
-//flushes out safety errors, that might have occured by reading the register without a safety word.
+//flushes out safety errors, that might have occurred by reading the register without a safety word.
 void Tle5012b_4wire::resetSafety()
 {
 	triggerUpdate();
@@ -649,7 +649,7 @@ errorTypes Tle5012b_4wire::regularCrcUpdate()
 
 /**
  * General write function for writing _registers from the Tle5012b_4wire.
- * commmand[in]		-- the command to execute the write
+ * command[in]		-- the command to execute the write
  * dataToWrite[in]	-- the new data that will be written to the register
  * index[in]		-- the registerIndex helps figure out in which register the value changed, so that we don't need to read all the register again to calculate the CRC
  */
@@ -702,7 +702,7 @@ errorTypes  Tle5012b_4wire::writeSIL(uint16_t dataToWrite)
 
 /**
  * The Interface Mode 2 register stores the following values
- 	- angle range from bit 14 - 4, where 0x200 is 90� (-45� to 45�) and 0x80 is 360�(-180� to 180�). The calculation is based on the formula (360 * (2^7 / 2^9))
+ 	- angle range from bit 14 - 4, where 0x200 is 90° (-45° to 45°) and 0x80 is 360°(-180° to 180°). The calculation is based on the formula (360 * (2^7 / 2^9))
  	- angle direction in bit 3, 0 =  counterclockwise rotation of magnet and 1 = clockwise rotation of magnet
  	- prediction in bit 2, where 0 = prediction disabled and 1 = prediction enabled
  	- Autocalibration mode in bits 1 - 0, where 00 = no autocalibration mode, 01 = autocalibartion mode 1, 10 = autocalibration mode 2, 11 = autocalibration mode 3

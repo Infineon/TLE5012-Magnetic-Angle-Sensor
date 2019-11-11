@@ -8,7 +8,7 @@
  * Depending on your microcontroller more or less speed on
  * the serial port is possible.
  * 
- * \Atteintion
+ * \attention
  * we use fast serail output setting og 1000000 baud.
  */
 

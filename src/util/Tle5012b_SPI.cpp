@@ -73,7 +73,7 @@ void Tle5012b_SPI::setCSPin(uint8_t cs)
 	/*!
 	* XMC microcontroller familly needs special settings for
 	* using SPI channels settings for each type and SPI channel.
-	* Also the send/receive should be done in XMC CMIS function for
+	* Also the send/receive should be done in XMC CMSIS function for
 	* a fast data fetch by avoiding the SPI library.
 	*/
 
@@ -205,9 +205,9 @@ void Tle5012b_SPI::setCSPin(uint8_t cs)
 
 #else
 	/*!
-	 * Any other arduino compliant library souch run through the default
-	 * SPI setup. This implement the 3-Wire SPI, so MISO/MOSI are conected short.
-	 * If you want to us the buld chip with a 4-Wire SPI than checkout the
+	 * Any other arduino compliant library such run through the default
+	 * SPI setup. This implement the 3-Wire SPI, so MISO/MOSI are connected short.
+	 * If you want to us the build chip with a 4-Wire SPI than checkout the
 	 * special 4-Wire library
 	 */
 
