@@ -9,7 +9,7 @@
  * at once.
  * For reconfiguring of the SPI interface, have a look at the documentation.
  * 
- * \Atteintion
+ * \attention
  * we use fast serail output setting og 1000000 baud.
  */
 

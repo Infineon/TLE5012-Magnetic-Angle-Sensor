@@ -9,8 +9,8 @@
  * This example reads all main Sensor registers (angle,revolution,speed,range and temperature)
  * for a simple first test of the sensor and comunication.
  * 
- * \Attention
- * We use default very low spee 9600 baud, but the sensor can much more, see the other examples
+ * \attention
+ * We use default very low speed 9600 baud, but the sensor can much more, see the other examples
  */
 
 Tle5012b Tle5012MagneticAngleSensor;

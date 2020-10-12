@@ -7,10 +7,11 @@
  * This example demonstrates how to read multiple raw registers at once.
  * In this case you have to recalculate values like angle, angle speed etc.
  * be your self.
- * \detail
- * the read command offset of 0x8000 will be set by the readMoreRegisters ommand
+ * 
+ * \details
+ * the read command offset of 0x8000 will be set by the readMoreRegisters command
  * so we need only the register offset from where we start and 
- * the second digit is how many consecutive registers to read whitch is
+ * the second digit is how many consecutive registers to read which is
  * be done by adding the length and the command values.
  * A max of 15 value can read at once, one additional value is reserved for
  * the safety bit.

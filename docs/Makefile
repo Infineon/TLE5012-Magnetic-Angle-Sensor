@@ -5,7 +5,13 @@
 # - graphviz dot
 # - doxygen 1.8.15 or higher
 
-# Directories 
+FILE     := ./library.properties
+name	 := $(name < $(FILE))
+version	 := $(version < $(FILE))
+
+# Directories
+DOXY_NAME ?= $(name)
+DOXY_NUMBER ?= $(version)
 SRC_DIR ?= ../
 DOC_DIR ?= ./
 DOC_IMG_DIR ?= ./img
@@ -14,7 +20,7 @@ DOT_PATH ?= /usr/bin/dot
 # General settings
 DOXYFILE ?= doxyfile_html
 WORKING_DOXYFILE ?= temp_doxyfile
-PROJECT_LOGO ?=  ./img/ifx_logo.png
+PROJECT_LOGO ?=  https://raw.githubusercontent.com/Infineon/Assets/master/Pictures/ifx_logo.png
 DOXYGEN_WARNING ?= warn.log
 
 # Tools
@@ -31,7 +37,8 @@ html:
 	@$(COPY) $(DOXYFILE) $(WORKING_DOXYFILE)
 	@$(DOXYGEN_ECHO) >> $(WORKING_DOXYFILE)
 	@$(DOXYGEN_ECHO) INPUT=$(SRC_DIR) >> $(WORKING_DOXYFILE)
-	@$(DOXYGEN_ECHO) PROJECT_NAME="Tle5012b" >> $(WORKING_DOXYFILE)
+	@$(DOXYGEN_ECHO) PROJECT_NAME=$(DOXY_NAME) >> $(WORKING_DOXYFILE)
+	@$(DOXYGEN_ECHO) PROJECT_NUMBER=$(DOXY_NUMBER) >> $(WORKING_DOXYFILE)
 	@$(DOXYGEN_ECHO) OUTPUT_DIRECTORY = $(DOC_BUILD_DIR) >> $(WORKING_DOXYFILE)
 	@$(DOXYGEN_ECHO) PROJECT_LOGO = $(PROJECT_LOGO) >> $(WORKING_DOXYFILE)
 	@$(DOXYGEN_ECHO) IMAGE_PATH = $(DOC_IMG_DIR) >> $(WORKING_DOXYFILE)

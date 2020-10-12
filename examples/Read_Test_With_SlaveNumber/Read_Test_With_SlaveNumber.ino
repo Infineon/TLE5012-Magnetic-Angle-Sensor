@@ -15,7 +15,7 @@
  *  
  * This example also demonstrates how to handle more than on sensor in an array setup.
  * 
- * \attetntion Needs much memory which can be too much for the original Arduino/Genuino Uno
+ * \attention Needs much memory which can be too much for the original Arduino/Genuino Uno
  */
 
 #include <Tle5012b_reg.h>

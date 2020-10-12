@@ -13,22 +13,22 @@
  * Additional by removing the remarks on certain write functions, some sensor setups can
  * be set/unset or switched on/off.
  *
- * \attention This Scetch needs more memroy then the Arduino/Genuino UNO has so some
+ * \attention This Sketch needs more memroy then the Arduino/Genuino UNO has so some
  * routines are not available
  */
 
 #include <Tle5012b_reg.h>
 
-Tle5012b_reg Tle5012Sensor;
+Tle5012b_reg Tle5012Sensor = Tle5012b_reg();
 errorTypes checkError = NO_ERROR;
 
 void setup() {
   delay(2000);
   Serial.begin(115200);
   Serial.println("init done!");
-  checkError = Tle5012Sensor.begin();
+  checkError  = Tle5012Sensor.begin();
   Serial.print("checkerror: "); Serial.println(checkError, HEX);
-  checkError = Tle5012Sensor.resetFirmware();
+  //checkError = Tle5012Sensor.resetFirmware();
   Tle5012Sensor.writeSlaveNumber(Tle5012Sensor.TLE5012B_S0);
   /*
      Checkout one of these interface modes. Each Sensor2go board
@@ -187,11 +187,10 @@ void setup() {
 
 #endif
 
-  Serial.end();
+  //Serial.end();
 }
 
 void loop() {
-
 }
 
 /*!
