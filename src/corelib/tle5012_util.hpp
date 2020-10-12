@@ -85,4 +85,37 @@
 //!< Prints a binary number with leading zeros (Automatic Handling) with space
 #define PRINTBINS(Num) for (uint32_t t = (1UL<< (sizeof(Num)*8)-1); t; t >>= 1) Serial.write(Num  & t ? " 1 " : " 0 ");
 
+
+/*!
+ * Error types from safety word
+ */
+enum errorTypes
+{
+	NO_ERROR               = 0x00,  //!< NO_ERROR = Safety word was OK
+	SYSTEM_ERROR           = 0x01,  //!< SYSTEM_ERROR = over/under voltage, VDD negative, GND off, ROM defect
+	INTERFACE_ACCESS_ERROR = 0x02,  //!< INTERFACE_ACCESS_ERROR = wrong address or wrong lock
+	INVALID_ANGLE_ERROR    = 0x03,  //!< INVALID_ANGLE_ERROR = NO_GMR_A = 1 or NO_GMR_XY = 1
+	ANGLE_SPEED_ERROR      = 0x04,  //!< ANGLE_SPEED_ERROR = combined error, angular speed calculation wrong
+	CRC_ERROR              = 0xFF   //!< CRC_ERROR = Cyclic Redundancy Check (CRC), which includes the STAT and RESP bits wrong
+};
+
+/*!
+  * Set the UPDate bit high (read from update buffer) or low (read directly)
+  */
+enum updTypes
+{
+	UPD_low  = 0x0000,           //!< read normal registers
+	UPD_high = 0x0400,           //!< read update buffer registers
+};
+
+/*!
+  * Switch on/off safety word generation
+  */
+enum safetyTypes
+{
+	SAFE_low  = 0x0000,          //!< switch of safety word generation
+	SAFE_high = 0x0001,          //!< switch on safety word generation
+};
+
+
 #endif

@@ -21,51 +21,14 @@
 #include "../pal/spic.hpp"
 #include "tle5012_util.hpp"
 
-/*!
- * Error types from safety word
- */
-enum errorTypes
-{
-	NO_ERROR               = 0x00,  //!< NO_ERROR = Safety word was OK
-	SYSTEM_ERROR           = 0x01,  //!< SYSTEM_ERROR = over/under voltage, VDD negative, GND off, ROM defect
-	INTERFACE_ACCESS_ERROR = 0x02,  //!< INTERFACE_ACCESS_ERROR = wrong address or wrong lock
-	INVALID_ANGLE_ERROR    = 0x03,  //!< INVALID_ANGLE_ERROR = NO_GMR_A = 1 or NO_GMR_XY = 1
-	ANGLE_SPEED_ERROR      = 0x04,  //!< ANGLE_SPEED_ERROR = combined error, angular speed calculation wrong
-	CRC_ERROR              = 0xFF   //!< CRC_ERROR = Cyclic Redundancy Check (CRC), which includes the STAT and RESP bits wrong
-};
-
-/*!
-  * Set the UPDate bit high (read from update buffer) or low (read directly)
-  */
-enum updTypes
-{
-	UPD_low  = 0x0000,           //!< read normal registers
-	UPD_high = 0x0400,           //!< read update buffer registers
-};
-
-/*!
-  * Switch on/off safety word generation
-  */
-enum safetyTypes
-{
-	SAFE_low  = 0x0000,          //!< switch of safety word generation
-	SAFE_high = 0x0001,          //!< switch on safety word generation
-};
 
 class Tle5012b
 {
 	public:
 
-//xxxxxxxxxxxxxxxxx
-		Tle5012b_SPI* _spiConnection;        //!< SPI library for 3/4wire setup
-//xxxxxxxxxxxxxxxxx
-
 		SPIC     *sBus;      //<! \brief SPI cover class as representation of the SPI bus
 		GPIO     *en;        //<! \brief shield enable GPIO to switch sensor2go on/off
 		GPIO     *cs;        //<! \brief shield enable GPIO to switch chipselect on/off
-		GPIO     *mosi;      //<! \brief shield enable GPIO to switch mosi on/off
-		GPIO     *miso;      //<! \brief shield enable GPIO to switch miso on/off
-		GPIO     *sck;       //<! \brief shield enable GPIO to switch systemclock on/off
 		Timer    *timer;     //<! \brief timer for delay settings
 
 		/*!
@@ -130,39 +93,37 @@ class Tle5012b
 		//!< constructor for the Sensor
 		Tle5012b();
 
-		/*! \brief constructor with individual pin assignment
+		/*! \brief constructor with individual SPI assignment
 		 *
-		 * \param bus  a pointer to the object representing the SPI class
-		 * \param csPin  pin number of the CS pin
-		 * \param slave slave offset setting for the SNR register, default is TLE5012B_S0
+		 * \param bus    a pointer to the object representing the SPI class
 		 */
-		Tle5012b(void* bus, uint8_t csPin, slaveNum slave=TLE5012B_S0);
+		Tle5012b(void* bus);
+
+		/*! \brief constructor with individual SPI and pin assignment
+		 *
+		 * \param bus      a pointer to the object representing the SPI class
+		 * \param misoPin  MISO pin for the SPI/SSC interface
+		 * \param mosiPin  MOSI pin for the SPI/SSC interface
+		 * \param sckPin   system clock pin for external sensor clock setting
+		 */
+		Tle5012b(void* bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
 
 		//!< destructor stops the Sensor
 		~Tle5012b();
 
-		/**
-		 * All these functions cover the SPI interface and should be implemented
-		 * into XMC SPI wrapper.
-		 * In 3wire SPI mode miso and mosi are connected together, so read and
-		 * write operations are on the same line. In 4wire more read and write are
-		 * separated. The system clock SCK and the sensor enable EN line are used
-		 * for all slaves whereas the chip select line CS must we set unique for
-		 * each slave. A max of four slaves on one SPI interface are possible
-		 * @return CRC error type
-		 * @param [in] bus a SPIClass object
-		 * @param [in] miso MISO pin for the SPI/SSC interface
-		 * @param [in] mosi MOSI pin for the SPI/SSC interface
-		 * @param [in] sck system clock pin for external sensor clock setting
-		 * @param [in] cs chip select pin, must be unique for each slave
-		 * @param [in] slave slave offset setting for the SNR register, default is TLE5012B_S0
-		 */
+		//!< default begin with standard pin setting
 		errorTypes begin();
-		errorTypes begin(uint8_t cs, slaveNum slave=TLE5012B_S0 );
-		errorTypes begin(Tle5012b_SPI &bus, uint8_t cs, slaveNum slave=TLE5012B_S0 );
-		errorTypes begin(Tle5012b_SPI &bus, uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs,slaveNum slave=TLE5012B_S0);
 
-		void end();      //!< Switches the sensor off and ends the comunication
+		/*! \brief begin method with default assignments for the SPI bus
+		 * and the slave setting. Only the csPin is needed.
+		 *
+		 * \param csPin    pin number of the CS pin
+		 * \param slave    slave offset setting for the SNR register, default is TLE5012B_S0
+		 */
+		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0 );
+
+		//!< Ends the comunication and switches the sensor off, if possible (only Sensor2go kit)
+		void end(); 
 
 		/*!
 		* Triggers an update in the register buffer. This function
@@ -396,7 +357,13 @@ class Tle5012b
 		safetyWord safetyStatus;
 		uint16_t safetyWord;                     //!< the last fetched safety word
 
-		private:
+		/*!
+		* Function reset the Sensor to fuse defaults
+		* @return CRC error type
+		*/
+		errorTypes resetFirmware();
+
+	private:
 
 		uint16_t _command[2];                    //!< command write data [0] = command [1] = data to write
 		uint16_t _received[MAX_REGISTER_MEM];    //!< fetched data from sensor with last word = safety word
@@ -430,12 +397,6 @@ class Tle5012b
 		* called so that the error bit is reset to 1.
 		*/
 		void resetSafety();
-
-		/*!
-		* Function reset the Sensor to fuse defaults
-		* @return CRC error type
-		*/
-		errorTypes resetFirmware();
 
 };
 

@@ -1,7 +1,7 @@
 /**
  * @file        tle5012-conf.hpp
  * @brief       TLE5012 Library Configuration
- * @date        Oct 2020
+ * @date        October 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT

@@ -15,7 +15,7 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
-#include "../../../corelib/TLE5012.hpp"
+#include "../../../corelib/TLE5012b.hpp"
 
 /**
  * @addtogroup arduinoPal
@@ -30,6 +30,7 @@
 class GPIOIno: virtual public GPIO
 {
 private:
+	#define     UNUSED_PIN    0xFF  /**< Unused pin */
 	uint8_t     pin;
 	uint8_t     mode;
 	VLogic_t    logic;

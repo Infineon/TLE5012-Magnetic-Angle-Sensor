@@ -112,98 +112,83 @@ double calculateAngleSpeed(double angRange, int16_t rawAngleSpeed, uint16_t firM
 
 //-----------------------------------------------------------------------------
 
-//xxxxxxxxxxxxxxxxx
 Tle5012b::Tle5012b()
 {
 	sBus = NULL;
 	en = NULL;
 	cs = NULL;
-	miso = NULL;
-	mosi = NULL;
-	sck =NULL;
 	timer = NULL;
 	safetyWord = 0;
 	mSlave = TLE5012B_S0;
-
-	_spiConnection = &SPI;
-	mEN = PIN_SPI_EN;
-	mCS = SS;
-	mMISO = MISO;
-	mMOSI = MOSI;
-	mSCK = SCK;
 }
-//xxxxxxxxxxxxxxxxx
+
+Tle5012b::Tle5012b(void* bus)
+{
+	Tle5012b();
+}
+
+Tle5012b::Tle5012b(void* bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
+{
+	Tle5012b();
+}
 
 Tle5012b::~Tle5012b()
 {
 	end();
 	en = NULL;
 	cs = NULL;
-	miso = NULL;
-	mosi = NULL;
-	sck =NULL;
 	timer = NULL;
 	sBus = NULL;
 }
 
-Tle5012b::Tle5012b(void* bus, uint8_t csPin, slaveNum slave )
-{
-	Tle5012b();
-}
-
-errorTypes Tle5012b::begin()
-{
-	return (begin(*_spiConnection, mMISO, mMOSI, mSCK, mCS, mSlave));
-}
-errorTypes Tle5012b::begin(uint8_t cs, slaveNum slave)
-{
-	return (begin(*_spiConnection, mMISO, mMOSI, mSCK, cs, slave ));
-}
-errorTypes Tle5012b::begin(Tle5012b_SPI &bus, uint8_t cs, slaveNum slave)
-{
-	return (begin(bus, mMISO, mMOSI, mSCK, cs, slave ));
-}
-errorTypes Tle5012b::begin(Tle5012b_SPI &bus, uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs, slaveNum slave)
-{
-	mCS = cs;
-	mMISO = miso;
-	mMOSI = mosi;
-	mSCK = sck;
-	mSlave = slave;
-	_spiConnection = &bus;
-	_spiConnection->begin( miso, mosi, sck, cs);
-	enableSensor();
-	writeSlaveNumber(mSlave);
-	return (readBlockCRC());
-}
-
-void Tle5012b::end()
-{
-	disableSensor();
-}
+//errorTypes Tle5012b::begin()
+//{
+// return (begin(*_spiConnection, mMISO, mMOSI, mSCK, mCS, mSlave));
+//}
+// errorTypes Tle5012b::begin(uint8_t cs, slaveNum slave)
+// {
+// 	return (begin(*_spiConnection, mMISO, mMOSI, mSCK, cs, slave ));
+// }
+// errorTypes Tle5012b::begin(Tle5012b_SPI &bus, uint8_t cs, slaveNum slave)
+// {
+// 	return (begin(bus, mMISO, mMOSI, mSCK, cs, slave ));
+// }
+// errorTypes Tle5012b::begin(Tle5012b_SPI &bus, uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs, slaveNum slave)
+// {
+// 	mCS = cs;
+// 	mMISO = miso;
+// 	mMOSI = mosi;
+// 	mSCK = sck;
+// 	mSlave = slave;
+// 	_spiConnection = &bus;
+// 	_spiConnection->begin( miso, mosi, sck, cs);
+// 	enableSensor();
+// 	writeSlaveNumber(mSlave);
+// 	return (readBlockCRC());
+// }
 
 void Tle5012b::triggerUpdate()
 {
-	_spiConnection->setCSPin(mCS);
-	digitalWrite(mSCK, LOW);
-	digitalWrite(mMOSI, HIGH);
-	digitalWrite(mCS, LOW);
-	//grace period for register snapshot
-	delayMicroseconds(5);
-	digitalWrite(mCS, HIGH);
+	// _spiConnection->setCSPin(mCS);
+	// digitalWrite(mSCK, LOW);
+	// digitalWrite(mMOSI, HIGH);
+	// digitalWrite(mCS, LOW);
+	// //grace period for register snapshot
+	// delayMicroseconds(5);
+	// digitalWrite(mCS, HIGH);
 }
 
 void Tle5012b::enableSensor()
 {
-	pinMode(mEN, OUTPUT);
-	digitalWrite(mEN, HIGH);
-	pinMode(mCS, OUTPUT);
-	digitalWrite(mCS, HIGH);
+	// pinMode(mEN, OUTPUT);
+	// digitalWrite(mEN, HIGH);
+	// pinMode(mCS, OUTPUT);
+	// digitalWrite(mCS, HIGH);
 }
 
 void Tle5012b::disableSensor()
 {
-	digitalWrite(mEN, LOW);
+	// digitalWrite(mEN, LOW);
 }
 //xxxxxxxxxxxxxxxxx
 
@@ -217,8 +202,8 @@ errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data, updTypes u
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
 
 //xxxxxxxxxxxxxxxxx
-	_spiConnection->setCSPin(mCS);
-	_spiConnection->sendReceiveSpi(_command, 1, _received, 2);
+	// _spiConnection->setCSPin(mCS);
+	// _spiConnection->sendReceiveSpi(_command, 1, _received, 2);
 //xxxxxxxxxxxxxxxxx
 	data = _received[0];
 	if (safe == SAFE_high)
@@ -240,8 +225,8 @@ errorTypes Tle5012b::readMoreRegisters(uint16_t command, uint16_t data[], updTyp
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
 	uint16_t _recDataLength = (_command[0] & (0x000F)); // Number of registers to read
 //xxxxxxxxxxxxxxxxx
-	_spiConnection->setCSPin(mCS);
-	_spiConnection->sendReceiveSpi(_command, 1, _received, _recDataLength + safe);
+	// _spiConnection->setCSPin(mCS);
+	// _spiConnection->sendReceiveSpi(_command, 1, _received, _recDataLength + safe);
 //xxxxxxxxxxxxxxxxx
 	memcpy(data, _received, (_recDataLength)* sizeof(uint16_t));
 	if (safe == SAFE_high)
@@ -261,15 +246,14 @@ errorTypes Tle5012b::writeToSensor(uint16_t command, uint16_t dataToWrite, bool 
 	_command[0] = WRITE_SENSOR | command | SAFE_high;
 	_command[1] = dataToWrite;
 //xxxxxxxxxxxxxxxxx
-	_spiConnection->setCSPin(mCS);
-	_spiConnection->sendReceiveSpi(_command, 2, &safety, 1);
+	// _spiConnection->setCSPin(mCS);
+	// _spiConnection->sendReceiveSpi(_command, 2, &safety, 1);
 //xxxxxxxxxxxxxxxxx
 
 	errorTypes checkError = checkSafety(safety, _command[0], &_command[1], 1);
 	//if we write to a register, which changes the CRC.
 	if (changeCRC)
 	{
-	Serial.println("h45");
 		checkError = regularCrcUpdate();
 	}
 	return (checkError);
@@ -283,8 +267,8 @@ errorTypes Tle5012b::writeTempCoeffUpdate(uint16_t dataToWrite)
 	_command[0] = WRITE_SENSOR | REG_TCO_Y | SAFE_high;
 	_command[1] = dataToWrite;
 //xxxxxxxxxxxxxxxxx
-	_spiConnection->setCSPin(mCS);
-	_spiConnection->sendReceiveSpi(_command, 2, &safety, 1);
+	// _spiConnection->setCSPin(mCS);
+	// _spiConnection->sendReceiveSpi(_command, 2, &safety, 1);
 //xxxxxxxxxxxxxxxxx
 	errorTypes checkError = checkSafety(safety, _command[0], &_command[1], 1);
 	//
@@ -351,7 +335,7 @@ void Tle5012b::resetSafety()
 	uint16_t receive[4];
 	triggerUpdate();
 //xxxxxxxxxxxxxxxxx
-	_spiConnection->sendReceiveSpi(&command, 1, receive, 3);
+	// _spiConnection->sendReceiveSpi(&command, 1, receive, 3);
 //xxxxxxxxxxxxxxxxx
 }
 
@@ -545,7 +529,7 @@ errorTypes Tle5012b::getNumRevolutions(int16_t &numRev, updTypes upd, safetyType
 		return (status);
 	}
 	rawData = (rawData & (DELETE_7BITS));
-	//	//check if the value received is positive or negative
+	//check if the value received is positive or negative
 	if (rawData & CHECK_BIT_9)
 	{
 		rawData = rawData - CHANGE_UNIT_TO_INT_9;
@@ -562,7 +546,7 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed)
 errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, updTypes upd, safetyTypes safe)
 {
 	int8_t numOfData = 0x5;
-	uint16_t rawData[numOfData];
+	uint16_t rawData[numOfData] = {};
 
 	errorTypes status = readMoreRegisters(REG_ASPD + numOfData, rawData, upd, safe);
 	if (status != NO_ERROR)
@@ -573,7 +557,7 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, u
 	// Prepare raw speed
 	rawSpeed = rawData[0];
 	rawSpeed = (rawSpeed & (DELETE_BIT_15));
-	//check if the value received is positive or negative
+	// check if the value received is positive or negative
 	if (rawSpeed & CHECK_BIT_14)
 	{
 		rawSpeed = rawSpeed - CHANGE_UINT_TO_INT_15;
