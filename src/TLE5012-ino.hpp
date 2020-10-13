@@ -74,9 +74,6 @@ class Tle5012Ino: virtual public TLE5012Ino
 		 * \param slave    slave offset setting for the SNR register, default is TLE5012B_S0
 		 */
 		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
-
-		//! \brief deactivates all outputs and disables the TLE5012
-		void end(void);
 };
 /* @} */
 

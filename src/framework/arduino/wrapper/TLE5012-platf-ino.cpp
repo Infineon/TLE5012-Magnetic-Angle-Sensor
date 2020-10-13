@@ -15,9 +15,9 @@
  * @addtogroup tle5012inohw
  */
 
-sensType_t TLE5012_Sens2Go   =  {8};               /**< TLE5012 Sensor2Go Kit with XMC1100 */
-sensType_t TLE5012_breakOut  =  {UNUSED_PIN};      /**< TLE5012 breakout board removed from the Sensor2Go Kit */
-sensType_t TLE5012_bulk      =  {UNUSED_PIN};      /**< TLE5012 bulk chip (see manual on how to connect the 3wire SPI */
+sensType_t TLE5012_Sens2Go   =  {8,PIN_SPI_SS,PIN_SPI_MOSI,PIN_SPI_MOSI,PIN_SPI_SCK};          /**< TLE5012 Sensor2Go Kit with XMC1100 */
+sensType_t TLE5012_breakOut  =  {UNUSED_PIN,PIN_SPI_SS,PIN_SPI_MOSI,PIN_SPI_MOSI,PIN_SPI_SCK}; /**< TLE5012 breakout board removed from the Sensor2Go Kit */
+sensType_t TLE5012_bulk      =  {UNUSED_PIN,PIN_SPI_SS,PIN_SPI_MOSI,PIN_SPI_MOSI,PIN_SPI_SCK}; /**< TLE5012 bulk chip (see manual on how to connect the 3wire SPI */
 
 #endif /** TLE5012_FRAMEWORK **/
 /** @} */

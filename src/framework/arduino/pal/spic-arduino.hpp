@@ -16,6 +16,7 @@
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 #include "../../../pal/spic.hpp"
+#include "gpio-arduino.hpp"
 #include <Arduino.h>
 #include "SPI.h"
 
@@ -29,6 +30,14 @@
  * @brief Arduino SPIC class
  *
  */
+
+typedef struct {
+	uint32_t clock;
+	uint8_t  lsb;
+	uint8_t  mode;
+	uint8_t  divider;
+} spiset_t;
+
 class SPICIno: virtual public SPIC
 {
 	private:
@@ -37,9 +46,6 @@ class SPICIno: virtual public SPIC
 		uint8_t     mosiPin;
 		uint8_t     sckPin;
 		SPIClass    *spi;
-		uint8_t     lsb;
-		uint8_t     mode;
-		uint8_t     clock;
 
 	public:
 					SPICIno();
@@ -50,6 +56,18 @@ class SPICIno: virtual public SPIC
 		Error_t     deinit();
 		Error_t     transfer(uint8_t send, uint8_t &received);
 		Error_t     transfer16(uint16_t send, uint16_t &received);
+
+
+		GPIOIno    *miso;        //<! \brief shield enable GPIO for misoPin
+		GPIO       *mosi;        //<! \brief shield enable GPIO for mosiPin
+		GPIO       *sck;         //<! \brief shield enable GPIO for sckPin
+
+		spiset_t SPISet {
+			.clock   = ARDUINO_SPI_CLOCK,
+			.lsb     = MSBFIRST,
+			.mode    = SPI_MODE1,
+			.divider = SPI_CLOCK_DIV4,
+		};
 };
 /** @} */
 

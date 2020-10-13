@@ -26,14 +26,17 @@
 /**
  * @brief Arduino Hardware Platform Pins
  */
-typedef struct
-{
-	uint8_t power;      /**< Switch on/off power pin */
+typedef struct {
+	uint8_t power;      //!< Switch on/off power pin */
+	uint8_t csPin;      //!< chipselect pin for first sensor */
+	uint8_t mMOSI;      //!< Pin for SPI MOSI (pin 0.6 on test board);
+	uint8_t mMISO;      //!< Pin for SPI MISO (pin 0.7 on test board)
+	uint8_t mSCK;       //!< Pin for CLOCK (pin 0.8 on test board)
 }sensType_t;
 
-extern sensType_t TLE5012_Sens2Go;     /**< TLE5012 Sensor2Go Kit with XMC1100 */
-extern sensType_t TLE5012_breakOut;    /**< TLE5012 breakout board removed from the Sensor2Go Kit */
-extern sensType_t TLE5012_bulk;        /**< TLE5012 bulk chip (se manual on how to connect the 3wire SPI */
+extern sensType_t TLE5012_Sens2Go;     //!< TLE5012 Sensor2Go Kit with XMC1100 */
+extern sensType_t TLE5012_breakOut;    //!< TLE5012 breakout board removed from the Sensor2Go Kit */
+extern sensType_t TLE5012_bulk;        //!< TLE5012 bulk chip (se manual on how to connect the 3wire SPI */
 
 /** @} */
 

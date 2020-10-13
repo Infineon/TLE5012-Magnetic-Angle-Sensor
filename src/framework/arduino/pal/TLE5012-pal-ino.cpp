@@ -14,3 +14,50 @@
 
 #include "TLE5012-pal-ino.hpp"
 
+	void Tle5012b::triggerUpdate()
+	{
+		sBus->sck->disable();
+		sBus->mosi->enable();
+		cs->disable();
+		//grace period for register snapshot
+		timer->delayMicro(TRIGGER_DELAY);
+		cs->enable();
+	}
+
+	void Tle5012b::sendConfig()
+	{
+		pinMode(mMISO,INPUT);
+		pinMode(mMOSI,OUTPUT);
+	}
+
+	void Tle5012b::receiveConfig()
+	{
+		pinMode(mMISO,INPUT);
+		pinMode(mMOSI,INPUT);
+	}
+
+	void Tle5012b::sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data)
+	{
+		uint32_t data_index = 0;
+		//send via TX
+		sendConfig();
+		cs->disable();
+
+		sBus->init();
+		for(data_index = 0; data_index < size_of_sent_data; data_index++)
+		{
+			sBus->transfer16(sent_data[data_index],received_data[0]);
+		}
+		
+		// receive via RX
+		receiveConfig();
+		timer->delayMicro(TRIGGER_DELAY);
+
+		for(data_index = 0; data_index < size_of_received_data; data_index++)
+		{
+			sBus->transfer16(0x0000,received_data[data_index]);
+		}
+		sBus->deinit();
+
+		cs->enable();
+	}

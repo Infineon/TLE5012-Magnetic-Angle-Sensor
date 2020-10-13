@@ -141,56 +141,24 @@ Tle5012b::~Tle5012b()
 	sBus = NULL;
 }
 
-//errorTypes Tle5012b::begin()
-//{
-// return (begin(*_spiConnection, mMISO, mMOSI, mSCK, mCS, mSlave));
-//}
-// errorTypes Tle5012b::begin(uint8_t cs, slaveNum slave)
-// {
-// 	return (begin(*_spiConnection, mMISO, mMOSI, mSCK, cs, slave ));
-// }
-// errorTypes Tle5012b::begin(Tle5012b_SPI &bus, uint8_t cs, slaveNum slave)
-// {
-// 	return (begin(bus, mMISO, mMOSI, mSCK, cs, slave ));
-// }
-// errorTypes Tle5012b::begin(Tle5012b_SPI &bus, uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs, slaveNum slave)
-// {
-// 	mCS = cs;
-// 	mMISO = miso;
-// 	mMOSI = mosi;
-// 	mSCK = sck;
-// 	mSlave = slave;
-// 	_spiConnection = &bus;
-// 	_spiConnection->begin( miso, mosi, sck, cs);
-// 	enableSensor();
-// 	writeSlaveNumber(mSlave);
-// 	return (readBlockCRC());
-// }
-
-void Tle5012b::triggerUpdate()
+void Tle5012b::end(void)
 {
-	// _spiConnection->setCSPin(mCS);
-	// digitalWrite(mSCK, LOW);
-	// digitalWrite(mMOSI, HIGH);
-	// digitalWrite(mCS, LOW);
-	// //grace period for register snapshot
-	// delayMicroseconds(5);
-	// digitalWrite(mCS, HIGH);
+	mEnabled = false;
+	disableSensor();
+	timer->stop();
+	sBus->deinit();
 }
 
 void Tle5012b::enableSensor()
 {
-	// pinMode(mEN, OUTPUT);
-	// digitalWrite(mEN, HIGH);
-	// pinMode(mCS, OUTPUT);
-	// digitalWrite(mCS, HIGH);
+	en->enable();
 }
 
 void Tle5012b::disableSensor()
 {
-	// digitalWrite(mEN, LOW);
+	en->disable();
+	cs->disable();
 }
-//xxxxxxxxxxxxxxxxx
 
 //-----------------------------------------------------------------------------
 // begin generic data transfer functions
@@ -201,10 +169,7 @@ errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data, updTypes u
 	_command[0] = READ_SENSOR | command | upd | safe;
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
 
-//xxxxxxxxxxxxxxxxx
-	// _spiConnection->setCSPin(mCS);
-	// _spiConnection->sendReceiveSpi(_command, 1, _received, 2);
-//xxxxxxxxxxxxxxxxx
+	sendReceiveSpi(_command, 1, _received, 2);
 	data = _received[0];
 	if (safe == SAFE_high)
 	{
@@ -224,10 +189,7 @@ errorTypes Tle5012b::readMoreRegisters(uint16_t command, uint16_t data[], updTyp
 	_command[0] = READ_SENSOR | command | upd | safe;
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
 	uint16_t _recDataLength = (_command[0] & (0x000F)); // Number of registers to read
-//xxxxxxxxxxxxxxxxx
-	// _spiConnection->setCSPin(mCS);
-	// _spiConnection->sendReceiveSpi(_command, 1, _received, _recDataLength + safe);
-//xxxxxxxxxxxxxxxxx
+	sendReceiveSpi(_command, 1, _received, _recDataLength + safe);
 	memcpy(data, _received, (_recDataLength)* sizeof(uint16_t));
 	if (safe == SAFE_high)
 	{
@@ -245,10 +207,7 @@ errorTypes Tle5012b::writeToSensor(uint16_t command, uint16_t dataToWrite, bool 
 	uint16_t safety = 0;
 	_command[0] = WRITE_SENSOR | command | SAFE_high;
 	_command[1] = dataToWrite;
-//xxxxxxxxxxxxxxxxx
-	// _spiConnection->setCSPin(mCS);
-	// _spiConnection->sendReceiveSpi(_command, 2, &safety, 1);
-//xxxxxxxxxxxxxxxxx
+	sendReceiveSpi(_command, 2, &safety, 1);
 
 	errorTypes checkError = checkSafety(safety, _command[0], &_command[1], 1);
 	//if we write to a register, which changes the CRC.
@@ -266,10 +225,7 @@ errorTypes Tle5012b::writeTempCoeffUpdate(uint16_t dataToWrite)
 	triggerUpdate();
 	_command[0] = WRITE_SENSOR | REG_TCO_Y | SAFE_high;
 	_command[1] = dataToWrite;
-//xxxxxxxxxxxxxxxxx
-	// _spiConnection->setCSPin(mCS);
-	// _spiConnection->sendReceiveSpi(_command, 2, &safety, 1);
-//xxxxxxxxxxxxxxxxx
+	sendReceiveSpi(_command, 2, &safety, 1);
 	errorTypes checkError = checkSafety(safety, _command[0], &_command[1], 1);
 	//
 	checkError = readStatus(readreg);
@@ -334,12 +290,10 @@ void Tle5012b::resetSafety()
 	uint16_t command = READ_SENSOR + SAFE_high;
 	uint16_t receive[4];
 	triggerUpdate();
-//xxxxxxxxxxxxxxxxx
-	// _spiConnection->sendReceiveSpi(&command, 1, receive, 3);
-//xxxxxxxxxxxxxxxxx
+	sendReceiveSpi(&command, 1, receive, 3);
 }
 
-errorTypes Tle5012b_reg::resetFirmware()
+errorTypes Tle5012b::resetFirmware()
 {
 	uint16_t rawData = 0x401;
 	errorTypes status = writeActivationStatus(rawData);
@@ -372,10 +326,7 @@ errorTypes Tle5012b::readBlockCRC()
 {
 	_command[0] = READ_BLOCK_CRC;
 	uint16_t _registers[CRC_NUM_REGISTERS+1] = {0};  // Number of CRC Registers + 1 Register for Safety word
-//xxxxxxxxxxxxxxxxx
-	_spiConnection->setCSPin(mCS);
-	_spiConnection->sendReceiveSpi(_command, 1, _registers, CRC_NUM_REGISTERS+1);
-//xxxxxxxxxxxxxxxxx
+	sendReceiveSpi(_command, 1, _registers, CRC_NUM_REGISTERS+1);
 	errorTypes checkError = checkSafety(_registers[8], READ_BLOCK_CRC, _registers, 8);
 	resetSafety();
 	return (checkError);

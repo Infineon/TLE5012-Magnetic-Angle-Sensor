@@ -42,6 +42,29 @@
 class TLE5012Ino: virtual public Tle5012b
 {
 
+	public:
+
+		uint8_t mSpiNum;              //!< Number of used SPI channel
+
+		/*!
+		* Triggers an update in the register buffer. This function
+		* should be triggered once before UPD registers where read as
+		* it generates a snapshot of the UPD register values at trigger point
+		*/
+		void triggerUpdate();
+
+		/*!
+		* Main SPI three wire communication functions for sending and receiving data
+		* @param sent_data pointer two 2*unit16_t value for one command word and one data word if something should be written
+		* @param size_of_sent_data the size of the command word default 1 = only command 2 = command and data word
+		* @param received_data pointer to data structure buffer for the read data
+		* @param size_of_received_data size of data words to be read
+		*/
+		void sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
+
+		void sendConfig();            //!< set SPI to send mode
+		void receiveConfig();         //!< set SPI to receive mode
+
 };
 /**
  * @}

@@ -21,6 +21,9 @@
 #ifndef TLE5012B_REG.HPP
 #define TLE5012B_REG.HPP
 
+// Common macros
+#define TRIGGER_DELAY               5         //!< 5 microseconds trigger delay time
+
 // Sensor registers
 #define READ_SENSOR                 0x8000    //!< base command for read
 #define WRITE_SENSOR                0x5000    //!< base command for write

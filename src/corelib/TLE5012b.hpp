@@ -46,14 +46,7 @@ class Tle5012b
 		};
 
 		slaveNum mSlave;           //!< actual set slave number
-//xxxxxxxxxxxxxxxxx
-		uint8_t mEN;               //!< Pin to switch on/off the sensor
-		uint8_t mMOSI;             //!< Pin for SPI MOSI (pin 0.6 on test board);
-		uint8_t mMISO;             //!< Pin for SPI MISO (pin 0.7 on test board)
-		uint8_t mSCK;              //!< Pin for CLOCK (pin 0.8 on test board)
-		uint8_t mCS;               //!< Pin for chip select (pin 0.9 on test board)
-//xxxxxxxxxxxxxxxxx
-
+		bool mEnabled;             //!< flag which shows the switch on/off status of the sensor
 		typedef struct safetyWord {  //!< Safety word bit setting
 			bool STAT_RES;        //!< bits 15:15 Indication of chip reset or watchdog overflow
 			bool STAT_ERR;        //!< bits 14:14 System error
@@ -123,7 +116,7 @@ class Tle5012b
 		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0 );
 
 		//!< Ends the comunication and switches the sensor off, if possible (only Sensor2go kit)
-		void end(); 
+		void end();
 
 		/*!
 		* Triggers an update in the register buffer. This function
@@ -143,6 +136,18 @@ class Tle5012b
 		* Functions disables Sensor by switch off EN pin (only possible on Sensor2go shield)
 		*/
 		void disableSensor();
+
+		/*!
+		* Main SPI three wire communication functions for sending and receiving data
+		* @param sent_data pointer two 2*unit16_t value for one command word and one data word if something should be written
+		* @param size_of_sent_data the size of the command word default 1 = only command 2 = command and data word
+		* @param received_data pointer to data structure buffer for the read data
+		* @param size_of_received_data size of data words to be read
+		*/
+		void sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
+
+		void sendConfig();            //!< set SPI to send mode
+		void receiveConfig();         //!< set SPI to receive mode
 
 		/*!
 		* Reads the block of _registers from addresses 08 - 0F in order to figure out the CRC.
