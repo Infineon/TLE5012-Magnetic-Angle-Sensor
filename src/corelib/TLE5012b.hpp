@@ -14,6 +14,7 @@
 #ifndef TLE5012B_HPP
 #define TLE5012B_HPP
 
+#include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include "../pal/timer.hpp"
@@ -145,9 +146,6 @@ class Tle5012b
 		* @param size_of_received_data size of data words to be read
 		*/
 		void sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
-
-		void sendConfig();            //!< set SPI to send mode
-		void receiveConfig();         //!< set SPI to receive mode
 
 		/*!
 		* Reads the block of _registers from addresses 08 - 0F in order to figure out the CRC.

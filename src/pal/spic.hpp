@@ -8,6 +8,7 @@
  */
 
 #include <stdint.h>
+#include "gpio.hpp"
 
 #ifndef SPIC_HPP_
 #define SPIC_HPP_
@@ -20,6 +21,10 @@
 class SPIC
 {
 	public:
+
+		GPIO       *miso;        //<! \brief shield enable GPIO for misoPin
+		GPIO       *mosi;        //<! \brief shield enable GPIO for mosiPin
+		GPIO       *sck;         //<! \brief shield enable GPIO for sckPin
 
 		enum Error_t
 		{
@@ -65,6 +70,23 @@ class SPIC
 		 * @retval          INIT_ERROR if transfer fails
 		 */
 		virtual Error_t       transfer16(uint16_t send, uint16_t &received) = 0;
+
+		/**
+		 * @brief           set SPI to receive mode
+		 * @return          SPIC error code
+		 * @retval          OK if success
+		 * @retval          INIT_ERROR if transfer fails
+		 */
+		virtual Error_t       sendConfig() = 0;
+
+		/**
+		 * @brief           set SPI to receive mode
+		 * @return          SPIC error code
+		 * @retval          OK if success
+		 * @retval          INIT_ERROR if transfer fails
+		 */
+		virtual Error_t       receiveConfig() = 0;
+
 
 		Error_t checkErrorStatus();
 

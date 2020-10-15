@@ -59,6 +59,8 @@ class SPICWiced: virtual public SPIC
 		Error_t     deinit();
 		Error_t     transfer(uint8_t send, uint8_t &received);
 		Error_t     transfer16(uint16_t send, uint16_t &received);
+		Error_t     sendConfig();
+		Error_t     receiveConfig();
 
 };
 /** @} */

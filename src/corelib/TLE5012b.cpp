@@ -160,6 +160,16 @@ void Tle5012b::disableSensor()
 	cs->disable();
 }
 
+void Tle5012b::triggerUpdate()
+{
+	sBus->sck->disable();
+	sBus->mosi->enable();
+	cs->disable();
+	//grace period for register snapshot
+	timer->delayMicro(TRIGGER_DELAY);
+	cs->enable();
+}
+
 //-----------------------------------------------------------------------------
 // begin generic data transfer functions
 errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data, updTypes upd, safetyTypes safe)

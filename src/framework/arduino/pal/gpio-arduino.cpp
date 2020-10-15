@@ -51,6 +51,22 @@ GPIOIno::Error_t GPIOIno::init()
 }
 
 /**
+ * @brief Changes the GPIO mode
+ *
+ * This function changes the mode of the chosen pin.
+ *
+ * @return      GPIOIno::Error_t
+ */
+GPIOIno::Error_t GPIOIno::changeMode(uint8_t mode)
+{
+	this->mode = mode;
+	pinMode(this->pin, this->mode);
+	return OK;
+}
+
+
+
+/**
  * @brief Deinitialize the GPIO
  *
  * This function is deinitializing the chosen pin.

@@ -40,6 +40,7 @@ public:
 				GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic);
 				~GPIOIno();
 	Error_t     init();
+	Error_t     changeMode(uint8_t mode);
 	Error_t     deinit();
 	VLevel_t    read();
 	Error_t     write(VLevel_t level);

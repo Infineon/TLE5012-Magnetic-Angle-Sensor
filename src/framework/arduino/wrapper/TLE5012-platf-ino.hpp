@@ -19,6 +19,15 @@
 #define SENS_TYPE TLE5012_Sens2Go
 
 /**
+ * @class Tle5012Ino
+ *
+ * @brief represents the TLE5012 base class
+ *
+ * This class provides a simple API for connecting the TLE5012 via SSC interface,
+ * which is included into all flavours the TLE5012 sensor. This setup also
+ * works with the Sens2Kit (Sensor including XMC1100 mcu), breakout board (only the Sensor
+ * from the Sens2Kit) and bulk chip (read the section on who to connect the bulk chip via 3wire SPI).
+ *
  * @addtogroup tle5012inohw
  * @{
  */
@@ -37,6 +46,50 @@ typedef struct {
 extern sensType_t TLE5012_Sens2Go;     //!< TLE5012 Sensor2Go Kit with XMC1100 */
 extern sensType_t TLE5012_breakOut;    //!< TLE5012 breakout board removed from the Sensor2Go Kit */
 extern sensType_t TLE5012_bulk;        //!< TLE5012 bulk chip (se manual on how to connect the 3wire SPI */
+
+class Tle5012Ino: virtual public TLE5012Ino
+{
+
+	public:
+
+		uint8_t mSpiNum;              //!< Number of used SPI channel
+
+		//! \brief standard constructor with default SPI and pin assignment
+		Tle5012Ino(void);
+
+		/*!
+		 * \brief constructor with individual SPI assignment
+		 *
+		 * \param bus     void pointer to the object representing the SPI class
+		 */
+		Tle5012Ino(SPIClass &bus);
+
+		/*!
+		 * \brief constructor with individual SPI and pin assignment
+		 *
+		 * \param bus      void pointer to the object representing the SPI class
+		 * \param misoPin  MISO pin for the SPI/SSC interface
+		 * \param mosiPin  MOSI pin for the SPI/SSC interface
+		 * \param sckPin   system clock pin for external sensor clock setting
+		 */
+		Tle5012Ino(SPIClass &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
+
+		/*! \brief begin method with default assignments for the SPI bus
+		 * and pin setting.
+		 * Use this if you have Sensor2go Kit or only one sensor used with Arduino default SPI
+		 */
+		errorTypes begin();
+
+		/*! \brief begin method with individual cs and slave number assignment
+		 * Use this method if you connect up to four sensors on one SPI channel or
+		 * if you use a none standard cs (chipselect) pin.
+		 *
+		 * \param csPin    pin number of the CS pin
+		 * \param slave    slave offset setting for the SNR register, default is TLE5012B_S0
+		 */
+		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
+
+};
 
 /** @} */
 

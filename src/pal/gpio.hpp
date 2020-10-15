@@ -80,6 +80,15 @@ class GPIO
 		virtual Error_t       deinit      () = 0;
 
 		/**
+			 * @brief       Changes the IN/OUT mode
+			 * @param[in]   mode INPUT or OUTPUT mode of pin
+			 * @return      GPIO error code
+			 * @retval      OK if success
+			 * @retval      INIT_ERROR if deinitialization error
+		 */
+		virtual Error_t       changeMode  (uint8_t mode) = 0;
+
+		/**
 		 * @brief       Reads the GPIO voltage level
 		 * @return      GPIO voltage level
 		 * @retval      GPIO_LOW if voltage low
@@ -118,7 +127,7 @@ class GPIO
 
 		Error_t checkErrorStatus();
 
-		private:
+	private:
 		Error_t errorStatus;
 
 };

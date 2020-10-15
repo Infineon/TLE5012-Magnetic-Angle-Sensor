@@ -27,15 +27,17 @@ SPICIno::SPICIno()
  * 
  * This function sets some basic SPI modes for the default SPI port.
  * 
- * @param lsb    lowside (LSB) or highside (MSB) mode
- * @param mode   SPI mode
- * @param clock  SPI clock divider
+ * @param lsb       lowside (LSB) or highside (MSB) mode
+ * @param mode      SPI mode
+ * @param divider   SPI click divider
+ * @param clock     SPI clock rate
  */
-SPICIno::SPICIno(uint8_t lsb, uint8_t mode, uint8_t clock)
+SPICIno::SPICIno(uint8_t lsb, uint8_t mode, uint8_t divider, uint32_t clock)
 {
-	this->SPISet.lsb = lsb;
-	this->SPISet.mode = mode;
-	this->SPISet.clock = clock;
+	this->clock = clock;
+	this->lsb = lsb;
+	this->mode = mode;
+	this->divider = divider;
 	spi = &SPI;
 }
 
@@ -71,13 +73,16 @@ SPICIno::SPICIno(SPIClass &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin
 SPICIno::Error_t SPICIno::init()
 {
 	spi->begin();
-	spi->setClockDivider(this->SPISet.divider);
-	spi->setDataMode(this->SPISet.mode);
-	spi->setBitOrder(this->SPISet.lsb);
+	spi->setClockDivider(this->divider);
+	spi->setDataMode(this->mode);
+	spi->setBitOrder(this->lsb);
+	SPISet = SPISettings(this->clock,this->lsb,this->mode);
 
 	miso = new GPIOIno(this->misoPin, OUTPUT, GPIOIno::POSITIVE );
 	mosi = new GPIOIno(this->mosiPin, OUTPUT, GPIOIno::POSITIVE );
 	sck =  new GPIOIno(this->sckPin,  OUTPUT, GPIOIno::POSITIVE );
+
+	spi->beginTransaction(SPISet);
 	return OK;
 }
 
@@ -90,6 +95,7 @@ SPICIno::Error_t SPICIno::init()
  */
 SPICIno::Error_t SPICIno::deinit()
 {
+	spi->endTransaction();
 	spi->end();
 	return OK;
 }
@@ -99,6 +105,7 @@ SPICIno::Error_t SPICIno::deinit()
  *
  * @param send         address and/or command to send
  * @param received     received data from spi bus
+ * 
  * @return             SPICIno::Error_t
  */
 SPICIno::Error_t SPICIno::transfer(uint8_t send, uint8_t &received)
@@ -112,6 +119,7 @@ SPICIno::Error_t SPICIno::transfer(uint8_t send, uint8_t &received)
  *
  * @param send         address and/or command to send
  * @param received     received data from spi bus
+ * 
  * @return             SPICWiced::Error_t
  */
 SPICIno::Error_t SPICIno::transfer16(uint16_t send, uint16_t &received)
@@ -125,5 +133,28 @@ SPICIno::Error_t SPICIno::transfer16(uint16_t send, uint16_t &received)
 	received = (uint16_t)(((uint16_t)data_in_msb << 8) | (data_in_lsb));
 	return OK;
 }
+
+/**
+ * @brief set SPI to send mode
+ * 
+ * @return SPICIno::Error_t
+ */
+SPICIno::Error_t SPICIno::sendConfig()
+{
+	miso->changeMode(INPUT);
+	mosi->changeMode(OUTPUT);
+}
+
+/**
+ * @brief set SPI to receive mode
+ * 
+ * @return SPICIno::Error_t
+ */
+SPICIno::Error_t SPICIno::receiveConfig()
+{
+	miso->changeMode(INPUT);
+	mosi->changeMode(INPUT);
+}
+
 
 #endif /** TLE5012_FRAMEWORK **/
