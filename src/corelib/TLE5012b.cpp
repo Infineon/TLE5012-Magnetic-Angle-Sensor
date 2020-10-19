@@ -12,6 +12,7 @@
  */
 
 #include "TLE5012b.hpp"
+#include "Arduino.h"
 
 //-----------------------------------------------------------------------------
 // none_class functions
@@ -143,7 +144,6 @@ Tle5012b::~Tle5012b()
 
 void Tle5012b::end(void)
 {
-	mEnabled = false;
 	disableSensor();
 	timer->stop();
 	sBus->deinit();
@@ -151,23 +151,20 @@ void Tle5012b::end(void)
 
 void Tle5012b::enableSensor()
 {
-	en->enable();
+	cs->enable();
+	if (en != NULL) {
+		en->enable();
+	}
+	mEnabled = true;
 }
 
 void Tle5012b::disableSensor()
 {
-	en->disable();
 	cs->disable();
-}
-
-void Tle5012b::triggerUpdate()
-{
-	sBus->sck->disable();
-	sBus->mosi->enable();
-	cs->disable();
-	//grace period for register snapshot
-	timer->delayMicro(TRIGGER_DELAY);
-	cs->enable();
+	if (en != NULL) {
+		en->disable();
+	}
+	mEnabled = false;
 }
 
 //-----------------------------------------------------------------------------
@@ -179,7 +176,7 @@ errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data, updTypes u
 	_command[0] = READ_SENSOR | command | upd | safe;
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
 
-	sendReceiveSpi(_command, 1, _received, 2);
+	sBus->sendReceive(_command, 1, _received, 2);
 	data = _received[0];
 	if (safe == SAFE_high)
 	{
@@ -199,7 +196,7 @@ errorTypes Tle5012b::readMoreRegisters(uint16_t command, uint16_t data[], updTyp
 	_command[0] = READ_SENSOR | command | upd | safe;
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
 	uint16_t _recDataLength = (_command[0] & (0x000F)); // Number of registers to read
-	sendReceiveSpi(_command, 1, _received, _recDataLength + safe);
+	sBus->sendReceive(_command, 1, _received, _recDataLength + safe);
 	memcpy(data, _received, (_recDataLength)* sizeof(uint16_t));
 	if (safe == SAFE_high)
 	{
@@ -217,7 +214,7 @@ errorTypes Tle5012b::writeToSensor(uint16_t command, uint16_t dataToWrite, bool 
 	uint16_t safety = 0;
 	_command[0] = WRITE_SENSOR | command | SAFE_high;
 	_command[1] = dataToWrite;
-	sendReceiveSpi(_command, 2, &safety, 1);
+	sBus->sendReceive(_command, 2, &safety, 1);
 
 	errorTypes checkError = checkSafety(safety, _command[0], &_command[1], 1);
 	//if we write to a register, which changes the CRC.
@@ -232,10 +229,10 @@ errorTypes Tle5012b::writeTempCoeffUpdate(uint16_t dataToWrite)
 {
 	uint16_t safety = 0;
 	uint16_t readreg = 0;
-	triggerUpdate();
+	sBus->triggerUpdate();
 	_command[0] = WRITE_SENSOR | REG_TCO_Y | SAFE_high;
 	_command[1] = dataToWrite;
-	sendReceiveSpi(_command, 2, &safety, 1);
+	sBus->sendReceive(_command, 2, &safety, 1);
 	errorTypes checkError = checkSafety(safety, _command[0], &_command[1], 1);
 	//
 	checkError = readStatus(readreg);
@@ -299,8 +296,8 @@ void Tle5012b::resetSafety()
 {
 	uint16_t command = READ_SENSOR + SAFE_high;
 	uint16_t receive[4];
-	triggerUpdate();
-	sendReceiveSpi(&command, 1, receive, 3);
+	sBus->triggerUpdate();
+	sBus->sendReceive(&command, 1, receive, 3);
 }
 
 errorTypes Tle5012b::resetFirmware()
@@ -335,8 +332,8 @@ errorTypes Tle5012b::regularCrcUpdate()
 errorTypes Tle5012b::readBlockCRC()
 {
 	_command[0] = READ_BLOCK_CRC;
-	uint16_t _registers[CRC_NUM_REGISTERS+1] = {0};  // Number of CRC Registers + 1 Register for Safety word
-	sendReceiveSpi(_command, 1, _registers, CRC_NUM_REGISTERS+1);
+	_registers[CRC_NUM_REGISTERS+1] = {0};  // Number of CRC Registers + 1 Register for Safety word
+	sBus->sendReceive(_command, 1, _registers, CRC_NUM_REGISTERS+1);
 	errorTypes checkError = checkSafety(_registers[8], READ_BLOCK_CRC, _registers, 8);
 	resetSafety();
 	return (checkError);

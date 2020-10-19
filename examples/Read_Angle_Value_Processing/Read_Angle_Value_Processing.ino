@@ -12,9 +12,9 @@
  * we use fast serail output setting og 1000000 baud.
  */
 
-#include "Tle5012b_reg.h"
+#include <TLE5012-ino.hpp>
 
-Tle5012b_reg Tle5012Sensor;
+Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
 void setup() {

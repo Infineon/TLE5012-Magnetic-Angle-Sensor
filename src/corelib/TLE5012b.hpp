@@ -27,11 +27,6 @@ class Tle5012b
 {
 	public:
 
-		SPIC     *sBus;      //<! \brief SPI cover class as representation of the SPI bus
-		GPIO     *en;        //<! \brief shield enable GPIO to switch sensor2go on/off
-		GPIO     *cs;        //<! \brief shield enable GPIO to switch chipselect on/off
-		Timer    *timer;     //<! \brief timer for delay settings
-
 		/*!
 		* Offset for the slave number register to identify the
 		* right selected slave. Max 4 slaves with separated CSQ
@@ -46,13 +41,18 @@ class Tle5012b
 			TLE5012B_S3 = 0x6000   //!< TLE5012B_S3 fourth sensor and ditto
 		};
 
-		slaveNum mSlave;           //!< actual set slave number
-		bool mEnabled;             //!< flag which shows the switch on/off status of the sensor
+		SPIC     *sBus;              //<! \brief SPI cover class as representation of the SPI bus
+		GPIO     *en;                //<! \brief shield enable GPIO to switch sensor2go on/off
+		GPIO     *cs;                //<! \brief shield enable GPIO to switch chipselect on/off
+		Timer    *timer;             //<! \brief timer for delay settings
+		slaveNum mSlave;             //!< actual set slave number
+		bool     mEnabled = false;   //!< flag which shows the switch on/off status of the sensor
+
 		typedef struct safetyWord {  //!< Safety word bit setting
-			bool STAT_RES;        //!< bits 15:15 Indication of chip reset or watchdog overflow
-			bool STAT_ERR;        //!< bits 14:14 System error
-			bool STAT_ACC;        //!< bits 13:13 Interface access error
-			bool STAT_ANG;        //!< bits 12:12 Invalid angle value
+			bool STAT_RES;           //!< bits 15:15 Indication of chip reset or watchdog overflow
+			bool STAT_ERR;           //!< bits 14:14 System error
+			bool STAT_ACC;           //!< bits 13:13 Interface access error
+			bool STAT_ANG;           //!< bits 12:12 Invalid angle value
 			uint8_t RESP;            //!< bits 11:8 Sensor number response indicator
 			uint8_t CRC;             //!< bits 7:0 Status ADC Test
 
@@ -120,13 +120,6 @@ class Tle5012b
 		void end();
 
 		/*!
-		* Triggers an update in the register buffer. This function
-		* should be triggered once before UPD registers where read as
-		* it generates a snapshot of the UPD register values at trigger point
-		*/
-		void triggerUpdate();
-
-		/*!
 		* Function enables Sensor by switch on EN pin which is only possible
 		* on Sensor2go shields, but also sets chipselect high.
 		* So it is called always.
@@ -137,15 +130,6 @@ class Tle5012b
 		* Functions disables Sensor by switch off EN pin (only possible on Sensor2go shield)
 		*/
 		void disableSensor();
-
-		/*!
-		* Main SPI three wire communication functions for sending and receiving data
-		* @param sent_data pointer two 2*unit16_t value for one command word and one data word if something should be written
-		* @param size_of_sent_data the size of the command word default 1 = only command 2 = command and data word
-		* @param received_data pointer to data structure buffer for the read data
-		* @param size_of_received_data size of data words to be read
-		*/
-		void sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
 
 		/*!
 		* Reads the block of _registers from addresses 08 - 0F in order to figure out the CRC.
@@ -366,11 +350,11 @@ class Tle5012b
 		*/
 		errorTypes resetFirmware();
 
-	private:
+	protected:
 
 		uint16_t _command[2];                    //!< command write data [0] = command [1] = data to write
 		uint16_t _received[MAX_REGISTER_MEM];    //!< fetched data from sensor with last word = safety word
-		uint16_t _registers[CRC_NUM_REGISTERS];  //!< keeps track of the values stored in the 8 _registers, for which the CRC is calculated
+		uint16_t _registers[CRC_NUM_REGISTERS+1];  //!< keeps track of the values stored in the 8 _registers, for which the CRC is calculated
 
 		/*!
 		* This function is called each time any register in the

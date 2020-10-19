@@ -18,6 +18,10 @@
 #ifndef TLE5012_FRAMEWORK
 #error  'TLE5012 error framework undefined'    /**< TLE5012 framework must be defined in conf. or at compilation */
 #endif
+
+#ifndef TLE5012_SPIC_PAL
+#define TLE5012_SPIC_PAL TLE5012_SPIC_XMC
+#endif
 /** @} */
 
 #endif /** TLE5012_CONF_DFL_HPP_ **/

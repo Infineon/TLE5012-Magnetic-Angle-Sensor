@@ -21,11 +21,16 @@
  * @addtogroup arduinoPal
  * @{
  */
-
+#include <Arduino.h>
 #include "../../../corelib/TLE5012b.hpp"
 #include "gpio-arduino.hpp"
 #include "timer-arduino.hpp"
+
+#if defined(UC_FAMILY) && (UC_FAMILY == XMC1 || UC_FAMILY == XMC4)
+#include "spic-xmc.hpp"
+#else
 #include "spic-arduino.hpp"
+#endif
 
 /**
  * @brief represents a basic TLE5012
@@ -39,9 +44,8 @@
  */
 class TLE5012Ino: virtual public Tle5012b
 {
-	public:
-		void sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
 };
+
 /**
  * @}
  */

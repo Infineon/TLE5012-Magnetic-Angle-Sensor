@@ -39,7 +39,6 @@
 
 //class Tle5012Ino: virtual public TLE5012Ino
 //{
-// 	public:
 //};
 
 /* @} */
