@@ -182,7 +182,7 @@ SPICIno::Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent
 	{
 		transfer16(sent_data[data_index],received_data[0]);
 	}
-	
+
 	// receive via RX
 	receiveConfig();
 	delayMicroseconds(5);

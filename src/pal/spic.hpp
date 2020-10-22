@@ -8,7 +8,6 @@
  */
 
 #include <stdint.h>
-#include "gpio.hpp"
 
 #ifndef SPIC_HPP_
 #define SPIC_HPP_
@@ -21,10 +20,6 @@
 class SPIC
 {
 	public:
-
-		GPIO       *miso;        //<! \brief shield enable GPIO for misoPin
-		GPIO       *mosi;        //<! \brief shield enable GPIO for mosiPin
-		GPIO       *sck;         //<! \brief shield enable GPIO for sckPin
 
 		enum Error_t
 		{
@@ -57,7 +52,7 @@ class SPIC
 		 * @retval      OK if success
 		 * @retval      INIT_ERROR if deinitialization error
 		 */
-		virtual Error_t     triggerUpdate() = 0;
+		virtual Error_t       triggerUpdate() = 0;
 
 		/**
 		 * @brief           Send/receives data from SPI bus

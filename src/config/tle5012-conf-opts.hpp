@@ -15,11 +15,13 @@
 #ifndef TLE5012_CONF_OPTS_HPP_
 #define TLE5012_CONF_OPTS_HPP_
 
+//!< \brief List of available platforms
 #define TLE5012_FRMWK_ARDUINO   0x00U
 #define TLE5012_FRMWK_WICED     0x01U
 #define TLE5012_FRMWK_MTB       0x02U
 #define TLE5012_FRMWK_PSOCC     0x03U
 
+//<! List of special Arduino IDE based platforms
 #define TLE5012_SPIC_ARDUINO    0x00U
 #define TLE5012_SPIC_XMC        0x001
 

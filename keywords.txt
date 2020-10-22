@@ -7,6 +7,7 @@
 #######################################
 
 errorTypes	KEYWORD1
+safetyWord	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -74,7 +75,17 @@ getAngleRange	KEYWORD2
 # Instances (KEYWORD2)
 #######################################
 
-Tle5012	KEYWORD2
+Tle5012b	KEYWORD2
+
+disableSensor	KEYWORD2
+enableSensor	KEYWORD2
+end	KEYWORD2
+
+checkSafety	KEYWORD2
+resetSafety	KEYWORD2
+resetFirmware	KEYWORD2
+readBlockCRC	KEYWORD2
+regularCrcUpdate	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

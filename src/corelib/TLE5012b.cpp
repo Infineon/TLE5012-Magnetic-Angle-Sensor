@@ -123,16 +123,6 @@ Tle5012b::Tle5012b()
 	mSlave = TLE5012B_S0;
 }
 
-Tle5012b::Tle5012b(void* bus)
-{
-	Tle5012b();
-}
-
-Tle5012b::Tle5012b(void* bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
-{
-	Tle5012b();
-}
-
 Tle5012b::~Tle5012b()
 {
 	end();
@@ -152,18 +142,14 @@ void Tle5012b::end(void)
 void Tle5012b::enableSensor()
 {
 	cs->enable();
-	if (en != NULL) {
-		en->enable();
-	}
+	en->enable();
 	mEnabled = true;
 }
 
 void Tle5012b::disableSensor()
 {
 	cs->disable();
-	if (en != NULL) {
-		en->disable();
-	}
+	en->disable();
 	mEnabled = false;
 }
 
@@ -332,7 +318,7 @@ errorTypes Tle5012b::regularCrcUpdate()
 errorTypes Tle5012b::readBlockCRC()
 {
 	_command[0] = READ_BLOCK_CRC;
-	_registers[CRC_NUM_REGISTERS+1] = {0};  // Number of CRC Registers + 1 Register for Safety word
+	uint16_t _registers[CRC_NUM_REGISTERS+1] = {0};  // Number of CRC Registers + 1 Register for Safety word
 	sBus->sendReceive(_command, 1, _registers, CRC_NUM_REGISTERS+1);
 	errorTypes checkError = checkSafety(_registers[8], READ_BLOCK_CRC, _registers, 8);
 	resetSafety();
@@ -341,7 +327,7 @@ errorTypes Tle5012b::readBlockCRC()
 
 errorTypes Tle5012b::readStatus(uint16_t &data, updTypes upd, safetyTypes safe)
 {
-	return (readFromSensor(REG_STAT, data, UPD_low, SAFE_high));
+	return (readFromSensor(REG_STAT, data, upd, safe));
 }
 errorTypes Tle5012b::readActivationStatus(uint16_t &data, updTypes upd, safetyTypes safe)
 {

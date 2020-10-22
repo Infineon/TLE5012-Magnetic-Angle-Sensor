@@ -4,7 +4,7 @@
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
  * \ref         tle5012ino
- * \version     2.0.0
+ * \version     3.0.0
  * \brief       This is a Arduino platform file use Infineon's TLE5012B magnetic angular sensor
  *
  * SPDX-License-Identifier: MIT
@@ -30,16 +30,10 @@
  * @class Tle5012Ino
  *
  * @brief represents the TLE5012 base class
- *
- * This class provides a simple API for connecting the TLE5012 via SSC interface,
- * which is included into all flavours the TLE5012 sensor. This setup also
- * works with the Sens2Kit (Sensor including XMC1100 mcu), breakout board (only the Sensor
- * from the Sens2Kit) and bulk chip (read the section on who to connect the bulk chip via 3wire SPI).
+ * This file is only a startup wrapper for Arduino IDE so that the framework
+ * setup can be handeld without any special setup.
+ * 
  */
-
-//class Tle5012Ino: virtual public TLE5012Ino
-//{
-//};
 
 /* @} */
 

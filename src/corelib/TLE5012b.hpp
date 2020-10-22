@@ -35,29 +35,29 @@ class Tle5012b
 		*/
 		enum slaveNum
 		{
-			TLE5012B_S0 = 0x0000,  //!< TLE5012B_S0 default setting for only one sensor on the SPI
-			TLE5012B_S1 = 0x2000,  //!< TLE5012B_S1 second sensor needs also a second CSQ
-			TLE5012B_S2 = 0x4000,  //!< TLE5012B_S2 third sensor and ditto
-			TLE5012B_S3 = 0x6000   //!< TLE5012B_S3 fourth sensor and ditto
+			TLE5012B_S0 = 0x0000,    //!< \brief TLE5012B_S0 default setting for only one sensor on the SPI
+			TLE5012B_S1 = 0x2000,    //!< \brief TLE5012B_S1 second sensor needs also a second CSQ
+			TLE5012B_S2 = 0x4000,    //!< \brief TLE5012B_S2 third sensor and ditto
+			TLE5012B_S3 = 0x6000     //!< \brief TLE5012B_S3 fourth sensor and ditto
 		};
 
-		SPIC     *sBus;              //<! \brief SPI cover class as representation of the SPI bus
-		GPIO     *en;                //<! \brief shield enable GPIO to switch sensor2go on/off
-		GPIO     *cs;                //<! \brief shield enable GPIO to switch chipselect on/off
-		Timer    *timer;             //<! \brief timer for delay settings
-		slaveNum mSlave;             //!< actual set slave number
-		bool     mEnabled = false;   //!< flag which shows the switch on/off status of the sensor
+		SPIC     *sBus;              //!< \brief SPI cover class as representation of the SPI bus
+		GPIO     *en;                //!< \brief shield enable GPIO to switch sensor2go on/off
+		GPIO     *cs;                //!< \brief shield enable GPIO to switch chipselect on/off
+		Timer    *timer;             //!< \brief timer for delay settings
+		slaveNum mSlave;             //!< \brief actual set slave number
+		bool     mEnabled = false;   //!< \brief flag which shows the switch on/off status of the sensor
 
-		typedef struct safetyWord {  //!< Safety word bit setting
-			bool STAT_RES;           //!< bits 15:15 Indication of chip reset or watchdog overflow
-			bool STAT_ERR;           //!< bits 14:14 System error
-			bool STAT_ACC;           //!< bits 13:13 Interface access error
-			bool STAT_ANG;           //!< bits 12:12 Invalid angle value
-			uint8_t RESP;            //!< bits 11:8 Sensor number response indicator
-			uint8_t CRC;             //!< bits 7:0 Status ADC Test
+		typedef struct safetyWord {  //!< \brief Safety word bit setting
+			bool STAT_RES;           //!< \brief bits 15:15 Indication of chip reset or watchdog overflow
+			bool STAT_ERR;           //!< \brief bits 14:14 System error
+			bool STAT_ACC;           //!< \brief bits 13:13 Interface access error
+			bool STAT_ANG;           //!< \brief bits 12:12 Invalid angle value
+			uint8_t RESP;            //!< \brief bits 11:8 Sensor number response indicator
+			uint8_t CRC;             //!< \brief bits 7:0 Status ADC Test
 
 			/*!
-			* Returns the safety word slave number to identify the sensor
+			* \brief Returns the safety word slave number to identify the sensor
 			* @return slaveNum setting in safety word
 			*/
 			slaveNum responseSlave(){
@@ -68,7 +68,7 @@ class Tle5012b
 			}
 
 			/*!
-			* Function separates safety word bits
+			* \brief Function separates safety word bits
 			* @param [in,out] reg actual safety or last fetched as default
 			* @return safety word
 			*/
@@ -84,14 +84,8 @@ class Tle5012b
 			}
 		} safetyWord_t;
 
-		//!< constructor for the Sensor
+		//!< \brief constructor for the Sensor
 		Tle5012b();
-
-		/*! \brief constructor with individual SPI assignment
-		 *
-		 * \param bus    a pointer to the object representing the SPI class
-		 */
-		Tle5012b(void* bus);
 
 		/*! \brief constructor with individual SPI and pin assignment
 		 *
@@ -102,10 +96,10 @@ class Tle5012b
 		 */
 		Tle5012b(void* bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
 
-		//!< destructor stops the Sensor
+		//!< \brief destructor stops the Sensor
 		~Tle5012b();
 
-		//!< default begin with standard pin setting
+		//!< \brief default begin with standard pin setting
 		errorTypes begin();
 
 		/*! \brief begin method with default assignments for the SPI bus
@@ -116,7 +110,7 @@ class Tle5012b
 		 */
 		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0 );
 
-		//!< Ends the comunication and switches the sensor off, if possible (only Sensor2go kit)
+		//!< \brief Ends the comunication and switches the sensor off, if possible (only Sensor2go kit)
 		void end();
 
 		/*!
@@ -196,21 +190,21 @@ class Tle5012b
 		* @param [out] data where the data received from the _registers will be stored
 		* @return CRC error type
 		*/
-		errorTypes readActiveStatus(uint16_t &data);    //!< read register offset 0x01
-		errorTypes readIntMode1(uint16_t &data);        //!< read register offset 0x06
-		errorTypes readSIL(uint16_t &data);             //!< read register offset 0x07
-		errorTypes readIntMode2(uint16_t &data);        //!< read register offset 0x08
-		errorTypes readIntMode3(uint16_t &data);        //!< read register offset 0x09
-		errorTypes readOffsetX(uint16_t &data);         //!< read register offset 0x0A
-		errorTypes readOffsetY(uint16_t &data);         //!< read register offset 0x0B
-		errorTypes readSynch(uint16_t &data);           //!< read register offset 0x0C
-		errorTypes readIFAB(uint16_t &data);            //!< read register offset 0x0D
-		errorTypes readIntMode4(uint16_t &data);        //!< read register offset 0x0E
-		errorTypes readTempCoeff(uint16_t &data);       //!< read register offset 0x0F
-		errorTypes readTempDMag(uint16_t &data);        //!< read register offset 0x14
-		errorTypes readTempRaw(uint16_t &data);         //!< read register offset 0x15
-		errorTypes readTempIIFCnt(uint16_t &data);      //!< read register offset 0x20
-		errorTypes readTempT25(uint16_t &data);         //!< read register offset 0x30
+		errorTypes readActiveStatus(uint16_t &data);    //!< \brief read register offset 0x01
+		errorTypes readIntMode1(uint16_t &data);        //!< \brief read register offset 0x06
+		errorTypes readSIL(uint16_t &data);             //!< \brief read register offset 0x07
+		errorTypes readIntMode2(uint16_t &data);        //!< \brief read register offset 0x08
+		errorTypes readIntMode3(uint16_t &data);        //!< \brief read register offset 0x09
+		errorTypes readOffsetX(uint16_t &data);         //!< \brief read register offset 0x0A
+		errorTypes readOffsetY(uint16_t &data);         //!< \brief read register offset 0x0B
+		errorTypes readSynch(uint16_t &data);           //!< \brief read register offset 0x0C
+		errorTypes readIFAB(uint16_t &data);            //!< \brief read register offset 0x0D
+		errorTypes readIntMode4(uint16_t &data);        //!< \brief read register offset 0x0E
+		errorTypes readTempCoeff(uint16_t &data);       //!< \brief read register offset 0x0F
+		errorTypes readTempDMag(uint16_t &data);        //!< \brief read register offset 0x14
+		errorTypes readTempRaw(uint16_t &data);         //!< \brief read register offset 0x15
+		errorTypes readTempIIFCnt(uint16_t &data);      //!< \brief read register offset 0x20
+		errorTypes readTempT25(uint16_t &data);         //!< \brief read register offset 0x30
 
 		/*!
 		* The rawX value is signed 16 bit value
@@ -227,7 +221,7 @@ class Tle5012b
 		errorTypes readRawY(int16_t &data);
 
 		/*!
-		* returns the Angle Range
+		* Returns the Angle Range
 		* Angle Range is stored in bytes 14 - 4 of MOD_2.
 		* @param angleRange pointer to 16bit double value
 		* @return CRC error type
@@ -329,17 +323,17 @@ class Tle5012b
 		* @param [in] dataToWrite the new data that will be written to the register
 		* @return CRC error type
 		*/
-		errorTypes writeActivationStatus(uint16_t dataToWrite);    //!< write register offset 0x01
-		errorTypes writeIntMode1(uint16_t dataToWrite);            //!< write register offset 0x06
-		errorTypes writeSIL(uint16_t dataToWrite);                 //!< write register offset 0x07
-		errorTypes writeIntMode2(uint16_t dataToWrite);            //!< write register offset 0x08
-		errorTypes writeIntMode3(uint16_t dataToWrite);            //!< write register offset 0x09
-		errorTypes writeOffsetX(uint16_t dataToWrite);             //!< write register offset 0x0A
-		errorTypes writeOffsetY(uint16_t dataToWrite);             //!< write register offset 0x0B
-		errorTypes writeSynch(uint16_t dataToWrite);               //!< write register offset 0x0C
-		errorTypes writeIFAB(uint16_t dataToWrite);                //!< write register offset 0x0D
-		errorTypes writeIntMode4(uint16_t dataToWrite);            //!< write register offset 0x0E
-		errorTypes writeTempCoeff(uint16_t dataToWrite);           //!< write register offset 0x0F
+		errorTypes writeActivationStatus(uint16_t dataToWrite);    //!< \brief write register offset 0x01
+		errorTypes writeIntMode1(uint16_t dataToWrite);            //!< \brief write register offset 0x06
+		errorTypes writeSIL(uint16_t dataToWrite);                 //!< \brief write register offset 0x07
+		errorTypes writeIntMode2(uint16_t dataToWrite);            //!< \brief write register offset 0x08
+		errorTypes writeIntMode3(uint16_t dataToWrite);            //!< \brief write register offset 0x09
+		errorTypes writeOffsetX(uint16_t dataToWrite);             //!< \brief write register offset 0x0A
+		errorTypes writeOffsetY(uint16_t dataToWrite);             //!< \brief write register offset 0x0B
+		errorTypes writeSynch(uint16_t dataToWrite);               //!< \brief write register offset 0x0C
+		errorTypes writeIFAB(uint16_t dataToWrite);                //!< \brief write register offset 0x0D
+		errorTypes writeIntMode4(uint16_t dataToWrite);            //!< \brief write register offset 0x0E
+		errorTypes writeTempCoeff(uint16_t dataToWrite);           //!< \brief write register offset 0x0F
 
 		safetyWord safetyStatus;
 		uint16_t safetyWord;                     //!< the last fetched safety word
@@ -352,9 +346,9 @@ class Tle5012b
 
 	protected:
 
-		uint16_t _command[2];                    //!< command write data [0] = command [1] = data to write
-		uint16_t _received[MAX_REGISTER_MEM];    //!< fetched data from sensor with last word = safety word
-		uint16_t _registers[CRC_NUM_REGISTERS+1];  //!< keeps track of the values stored in the 8 _registers, for which the CRC is calculated
+		uint16_t _command[2];                      //!< \brief  command write data [0] = command [1] = data to write
+		uint16_t _received[MAX_REGISTER_MEM];      //!< \brief fetched data from sensor with last word = safety word
+		uint16_t _registers[CRC_NUM_REGISTERS+1];  //!< \brief keeps track of the values stored in the 8 _registers, for which the CRC is calculated
 
 		/*!
 		* This function is called each time any register in the

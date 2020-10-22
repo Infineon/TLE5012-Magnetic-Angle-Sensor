@@ -7,6 +7,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+#if (TLE5012_SPIC_PAL == TLE5012_SPIC_ARDUINO)
+
 
 #ifndef SPIC_ARDUINO_HPP_
 #define SPIC_ARDUINO_HPP_
@@ -14,7 +16,6 @@
 #include "../../../config/tle5012-conf.hpp"
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
-#if (TLE5012_SPIC_PAL == TLE5012_SPIC_ARDUINO)
 
 #include "../../../pal/spic.hpp"
 #include <Arduino.h>
@@ -28,8 +29,12 @@
 
 /**
  * @brief Arduino SPIC class
- *
+ * This class can be used for all Arduino/Genuino and compliant mcu if:
+ * - you use a breakout board with a 3wire SSC SPI interface
+ * - you use a bulk chip with a 3wire SSC SPI interface (see wiki page on how to connect)
  */
+
+#define EN_PIN    UNUSED_PIN  /*!< TLE5012 with any other PCB has no switch on/off */
 
 class SPICIno: virtual public SPIC
 {
@@ -45,7 +50,7 @@ class SPICIno: virtual public SPIC
 
 	public:
 					SPICIno();
-					SPICIno(SPIClass &port, uint8_t csPin, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
+					SPICIno(SPIClass &port, uint8_t csPin=PIN_SPI_SS, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
 					~SPICIno();
 		Error_t     init();
 		Error_t     deinit();
@@ -65,6 +70,7 @@ class SPICIno: virtual public SPIC
 
 /** @} */
 
-#endif /** TLE5012_SPIC_ARDUINO **/
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** SPIC_ARDUINO_HPP_ **/
+
+#endif /** TLE5012_SPIC_ARDUINO **/

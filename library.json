@@ -7,7 +7,7 @@
       "url":"https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor.git",
       "branch":"master"
    },
-   "version":"2.0.2",
+   "version":"3.0.0",
    "frameworks":"arduino",
    "platforms":[  
       "infineonxmc",

@@ -7,6 +7,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+#if (TLE5012_SPIC_PAL == TLE5012_SPIC_XMC)
 
 #ifndef SPIC_XMC_HPP_
 #define SPIC_XMC_HPP_
@@ -14,7 +15,6 @@
 #include "../../../config/tle5012-conf.hpp"
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
-#if (TLE5012_SPIC_PAL == TLE5012_SPIC_XMC)
 
 #include "../../../pal/spic.hpp"
 #include <Arduino.h>
@@ -29,8 +29,16 @@
 
 /**
  * @brief XMC SPIC class
- *
+ * This class extens the XMC for Arduino library to be used with the TLE5012B sensor and its SSC
+ * interface. Therefore we use original XMC library ports for setting up the specific SSC send/receive
+ * functionality for the XMC types:
+ * - Sensor2go kit which includes a XMC2go with a XMC1100 mcu
+ * - XMC2go and compatible boards with XMX110 mcu
+ * - XMC1100/XMC1300/XMC1400 boot kits (only the XMC1100 boot kit has Arduino compatible headers)
+ * - XMC4700 relax kit and specially for this the SPI channels 0(default),1 and 2
  */
+
+#define EN_PIN    8           /*!< TLE5012 Sensor2Go Kit has a switch on/off pin */
 
 class SPICIno: virtual public SPIC
 {
@@ -66,7 +74,7 @@ class SPICIno: virtual public SPIC
 
 	public:
 					SPICIno();
-					SPICIno(SPIClass &port, uint8_t csPin, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
+					SPICIno(SPIClass &port, uint8_t csPin=PIN_SPI_SS, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
 					~SPICIno();
 		Error_t     init();
 		Error_t     deinit();
@@ -85,6 +93,7 @@ class SPICIno: virtual public SPIC
 
 /** @} */
 
-#endif /** TLE5012_SPIC_XMC **/
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** SPIC_XMC_HPP_ **/
+
+#endif /** TLE5012_SPIC_XMC **/

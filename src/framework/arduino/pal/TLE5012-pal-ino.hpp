@@ -3,7 +3,7 @@
  * \name        TLE5012-pal-ino.hpp - Arduino Hardware Abstraction Layer
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     2.0.0
+ * \version     3.0.0
  * \ref         arduinoPal
  *
  * SPDX-License-Identifier: MIT
@@ -21,16 +21,13 @@
  * @addtogroup arduinoPal
  * @{
  */
-#include <Arduino.h>
+
+
 #include "../../../corelib/TLE5012b.hpp"
 #include "gpio-arduino.hpp"
 #include "timer-arduino.hpp"
-
-#if defined(UC_FAMILY) && (UC_FAMILY == XMC1 || UC_FAMILY == XMC4)
+//#include "spic-arduino.hpp"
 #include "spic-xmc.hpp"
-#else
-#include "spic-arduino.hpp"
-#endif
 
 /**
  * @brief represents a basic TLE5012
@@ -42,8 +39,21 @@
  *
  * @see Tle5012
  */
-class TLE5012Ino: virtual public Tle5012b
+
+#define PIN_SPI_EN    EN_PIN  /*!< Set switch on/off pin if we need one */
+
+class Tle5012Ino: virtual public Tle5012b
 {
+
+	public:
+
+		uint8_t mSpiNum = 0;          //!< Number of used SPI channel
+
+					Tle5012Ino();
+					Tle5012Ino(SPIClass &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
+		errorTypes  begin();
+		errorTypes  begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
+
 };
 
 /**
