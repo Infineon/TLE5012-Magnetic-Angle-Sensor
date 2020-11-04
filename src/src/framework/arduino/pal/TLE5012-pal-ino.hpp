@@ -22,12 +22,14 @@
  * @{
  */
 
-
 #include "../../../corelib/TLE5012b.hpp"
+#include <Arduino.h>
+#include "../wrapper/spi-platf-ino.hpp"
 #include "gpio-arduino.hpp"
-#include "timer-arduino.hpp"
-//#include "spic-arduino.hpp"
-#include "spic-xmc.hpp"
+#include "spic-arduino.hpp"
+
+//! Check for XMC mcu family */
+#define PIN_SPI_EN    UNUSED_PIN  /*!< TLE5012 with any other PCB has no switch on/off */
 
 /**
  * @brief represents a basic TLE5012
@@ -40,17 +42,15 @@
  * @see Tle5012
  */
 
-#define PIN_SPI_EN    EN_PIN  /*!< Set switch on/off pin if we need one */
-
 class Tle5012Ino: virtual public Tle5012b
 {
 
 	public:
 
-		uint8_t mSpiNum = 0;          //!< Number of used SPI channel
+		uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
 
 					Tle5012Ino();
-					Tle5012Ino(SPIClass &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
+					Tle5012Ino(Tle5012b_SPI &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
 		errorTypes  begin();
 		errorTypes  begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
 

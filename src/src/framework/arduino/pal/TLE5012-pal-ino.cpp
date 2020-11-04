@@ -24,11 +24,8 @@
  */
 Tle5012Ino::Tle5012Ino():Tle5012b()
 {
-	Tle5012b::timer = new TimerIno();
-	Tle5012b::en == NULL;
-	if (PIN_SPI_EN != UNUSED_PIN) {
-		Tle5012b::en = new GPIOIno(PIN_SPI_EN, OUTPUT, GPIOIno::POSITIVE);
-	}
+	mSlave = TLE5012B_S0;
+	Tle5012b::en = NULL;
 	Tle5012b::sBus = new SPICIno();
 }
 
@@ -43,13 +40,10 @@ Tle5012Ino::Tle5012Ino():Tle5012b()
  * @param mosiPin  MOSI pin for the SPI/SSC interface
  * @param sckPin   system clock pin for external sensor clock setting
  */
-Tle5012Ino::Tle5012Ino(SPIClass &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin):Tle5012b()
+Tle5012Ino::Tle5012Ino(Tle5012b_SPI &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin):Tle5012b()
 {
-	Tle5012b::timer = new TimerIno();
-	Tle5012b::en == NULL;
-	if (PIN_SPI_EN != UNUSED_PIN) {
-		Tle5012b::en = new GPIOIno(PIN_SPI_EN, OUTPUT, GPIOIno::POSITIVE);
-	}
+	mSlave = TLE5012B_S0;
+	Tle5012b::en = NULL;
 	Tle5012b::sBus = new SPICIno(bus,PIN_SPI_SS,misoPin,mosiPin,sckPin);
 }
 
@@ -75,22 +69,26 @@ errorTypes Tle5012Ino::begin(void)
  */
 errorTypes Tle5012Ino::begin(uint8_t csPin, slaveNum slave)
 {
+	#if defined(UC_FAMILY) && (UC_FAMILY == XMC1 || UC_FAMILY == XMC4)
+		#undef PIN_SPI_EN
+		#define PIN_SPI_EN    8           /*!< TLE5012 Sensor2Go Kit has a switch on/off pin */
+	#endif
+
 	mSlave = slave;
-	Tle5012b::cs = new GPIOIno(csPin, OUTPUT, GPIOIno::POSITIVE);
 	// init helper libs
-	if (PIN_SPI_EN != UNUSED_PIN) {
-		Tle5012b::en->init();
-	}
-	Tle5012b::timer->init();
-	Tle5012b::cs->init();
 	Tle5012b::sBus->init();
+	if (PIN_SPI_EN != UNUSED_PIN) {
+		Tle5012b::en = new GPIOIno(PIN_SPI_EN, OUTPUT, GPIOIno::POSITIVE);
+		Tle5012b::en->init();
+		delay(100);
+	}
 	// start sensor
 	enableSensor();
 	writeSlaveNumber(mSlave);
+
 	// initial CRC check, should be = 0
 	return (readBlockCRC());
 }
-
 
 #endif /** TLE5012_FRAMEWORK **/
 /** @} */

@@ -1,9 +1,9 @@
-/** 
+/**
  * @file        TLE5012-platf-ino.hpp
  * @brief       TLE5012 Arduino Hardware Platforms
  * @date        October 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -28,16 +28,7 @@
  * @{
  */
 
-//!< The Arduino.h must be loaded to get the UC_FAMILY macros */
-#include <Arduino.h>
-
-//! Check for XMC mcu family */
-#if defined(UC_FAMILY) && (UC_FAMILY == XMC1 || UC_FAMILY == XMC4)
-    #define TLE5012_SPIC_PAL   TLE5012_SPIC_XMC
-#endif
-
 #include "../pal/TLE5012-pal-ino.hpp"
-
 
 /** @} */
 

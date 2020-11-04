@@ -35,7 +35,7 @@ SPICIno::SPICIno()
  * @param mosiPin  mosi pin number
  * @param sckPin   systemclock pin number
  */
-SPICIno::SPICIno(SPIClass &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
+SPICIno::SPICIno(Tle5012b_SPI &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
 {
 	this->csPin = csPin;
 	this->misoPin = misoPin;
@@ -54,7 +54,9 @@ SPICIno::SPICIno(SPIClass &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin
  */
 SPICIno::Error_t SPICIno::init()
 {
-	enableSpi();
+	spi->begin( this->misoPin, this->mosiPin, this->sckPin, this->csPin);
+	pinMode(this->csPin, OUTPUT);
+	digitalWrite(this->csPin, HIGH);
 	return OK;
 }
 
@@ -102,23 +104,7 @@ SPICIno::Error_t SPICIno::transfer16(uint16_t send, uint16_t &received)
 	uint8_t data_in_msb = spi->transfer(data_out_msb);
 	uint8_t data_in_lsb = spi->transfer(data_out_lsb);
 
-	received = (uint16_t)(((uint16_t)data_in_msb << 8) | (data_in_lsb));
-	return OK;
-}
-
-/**
- * @brief Enables the arduino SPI settings
- * 
- * @return SPICIno::Error_t 
- */
-SPICIno::Error_t SPICIno::enableSpi()
-{
-	spi->begin();
-	spi->setClockDivider(this->divider);
-	spi->setDataMode(this->mode);
-	spi->setBitOrder(this->lsb);
-	SPISet = SPISettings(this->clock,this->lsb,this->mode);
-	spi->beginTransaction(SPISet);
+	received = (uint16_t)(((uint16_t)data_in_msb << 8) | (data_in_lsb)); 
 	return OK;
 }
 
@@ -141,28 +127,6 @@ SPICIno::Error_t SPICIno::triggerUpdate()
 	return OK;
 }
 
-/**
- * @brief set SPI to send mode
- * 
- * @return SPICIno::Error_t
- */
-SPICIno::Error_t SPICIno::sendConfig()
-{
-	pinMode(this->misoPin,INPUT);
-	pinMode(this->mosiPin,OUTPUT);
-}
-
-/**
- * @brief set SPI to receive mode
- * 
- * @return SPICIno::Error_t
- */
-SPICIno::Error_t SPICIno::receiveConfig()
-{
-	pinMode(this->misoPin,OUTPUT);
-	pinMode(this->mosiPin,INPUT);
-}
-
 /*!
 * Main SPI three wire communication functions for sending and receiving data
 * @param sent_data pointer two 2*unit16_t value for one command word and one data word if something should be written
@@ -172,28 +136,9 @@ SPICIno::Error_t SPICIno::receiveConfig()
 */
 SPICIno::Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data)
 {
-	uint32_t data_index = 0;
-	//send via TX
-	sendConfig();
-	digitalWrite(this->csPin, LOW);
-
-	spi->beginTransaction(SPISet);
-	for(data_index = 0; data_index < size_of_sent_data; data_index++)
-	{
-		transfer16(sent_data[data_index],received_data[0]);
-	}
-
-	// receive via RX
-	receiveConfig();
-	delayMicroseconds(5);
-
-	for(data_index = 0; data_index < size_of_received_data; data_index++)
-	{
-		transfer16(0x0000,received_data[data_index]);
-	}
-	spi->endTransaction();
-
-	digitalWrite(this->csPin, HIGH);
+	spi->setCSPin(this->csPin);
+	spi->sendReceiveSpi(sent_data,size_of_sent_data,received_data,size_of_received_data);
+	return OK;
 }
 
 #endif /** TLE5012_SPIC_ARDUINO **/
