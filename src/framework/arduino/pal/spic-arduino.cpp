@@ -10,17 +10,26 @@
 #include "spic-arduino.hpp"
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
-#if (TLE5012_SPIC_PAL == TLE5012_SPIC_ARDUINO)
 
 /**
- * @brief Constructor of the Arduino SPIC class
- *
- * This function is setting the basics for a SPIC and the default spi.
- *
+ * @addtogroup arduinoPal
+ * @{
  */
-SPICIno::SPICIno()
+
+/**
+ * @brief Construct a new SPICIno::SPICIno object
+ * 
+ * This function is setting the basics for a SPIC and the default spi.
+ * Use this call if:
+ * - you use the default SPI channel
+ * - if use the default SPI channel with up to four sensors
+ * 
+ * @param csPin optional chipselect pin. If not set it will be default PIN_SPI_SS
+ */
+SPICIno::SPICIno(uint8_t csPin)
 {
-	spi = &SPI;
+	this->csPin = csPin;
+	this->spi = &SPI;
 }
 
 /**
@@ -28,6 +37,9 @@ SPICIno::SPICIno()
  *
  * This function sets all pins for a given SPI port, allowing a free setting
  * of the SPI interface
+ * Use this call of:
+ * - you want to use a different than this default SPI channel
+ * - also with up to four sensors per channel
  *
  * @param port     SPI port if not default
  * @param csPin    chipselect pin for the SPI port
@@ -35,13 +47,13 @@ SPICIno::SPICIno()
  * @param mosiPin  mosi pin number
  * @param sckPin   systemclock pin number
  */
-SPICIno::SPICIno(Tle5012b_SPI &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
+SPICIno::SPICIno(SPIClass3W &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
 {
-	this->csPin = csPin;
+	this->csPin   = csPin;
 	this->misoPin = misoPin;
 	this->mosiPin = mosiPin;
-	this->sckPin = sckPin;
-	spi = &port;
+	this->sckPin  = sckPin;
+	this->spi = &port;
 }
 
 /**
@@ -54,9 +66,7 @@ SPICIno::SPICIno(Tle5012b_SPI &port, uint8_t csPin, uint8_t misoPin, uint8_t mos
  */
 SPICIno::Error_t SPICIno::init()
 {
-	spi->begin( this->misoPin, this->mosiPin, this->sckPin, this->csPin);
-	pinMode(this->csPin, OUTPUT);
-	digitalWrite(this->csPin, HIGH);
+	this->spi->begin(this->misoPin, this->mosiPin, this->sckPin, this->csPin);
 	return OK;
 }
 
@@ -69,8 +79,8 @@ SPICIno::Error_t SPICIno::init()
  */
 SPICIno::Error_t SPICIno::deinit()
 {
-	spi->endTransaction();
-	spi->end();
+	this->spi->endTransaction();
+	this->spi->end();
 	return OK;
 }
 
@@ -84,7 +94,7 @@ SPICIno::Error_t SPICIno::deinit()
  */
 SPICIno::Error_t SPICIno::transfer(uint8_t send, uint8_t &received)
 {
-	received = spi->transfer(send);
+	received = this->spi->transfer(send);
 	return OK;
 }
 
@@ -136,10 +146,11 @@ SPICIno::Error_t SPICIno::triggerUpdate()
 */
 SPICIno::Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data)
 {
-	spi->setCSPin(this->csPin);
-	spi->sendReceiveSpi(sent_data,size_of_sent_data,received_data,size_of_received_data);
+	this->spi->setCSPin(this->csPin);
+	this->spi->sendReceiveSpi(sent_data,size_of_sent_data,received_data,size_of_received_data);
 	return OK;
 }
 
-#endif /** TLE5012_SPIC_ARDUINO **/
+/** @} */
+
 #endif /** TLE5012_FRAMEWORK **/

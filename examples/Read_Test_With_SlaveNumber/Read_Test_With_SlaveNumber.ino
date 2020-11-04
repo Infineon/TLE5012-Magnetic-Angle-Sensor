@@ -1,11 +1,10 @@
 /*!
  * \name        Read_Test_With_SlaveNumber
- * \author      Infineon Technologies AG (Dr.Olaf Filies)
- * \copyright   2019 Infineon Technologies AG
+ * \author      Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1
- * \brief
- * This example allows the control of multiple sensors on one SPI channel
- * \detail
+ * \brief       Testscript for using up to four sensors on one SPI channel.
+ * \details
  * This example program starts one to four sensors on one SPI line with different CS pins
  * and returns the angle value together with the safety word and the status register SNR.
  * Due to the selected slave number the SNR will be set to 0x00, 0x01, 0x10 or 0x11. When
@@ -16,25 +15,28 @@
  * This example also demonstrates how to handle more than on sensor in an array setup.
  * 
  * \attention Needs much memory which can be too much for the original Arduino/Genuino Uno
+ * 
+ * SPDX-License-Identifier: MIT
+ *
  */
 
-#include <Tle5012b_reg.h>
+#include <TLE5012-ino.hpp>
 
 //! number of connected sensors
 #define SENSOR_NUM 1
 
 //! define more unique chipselect pins for more connected Sensors
-#define CS_PIN_SENSOR_1   10  //!< This is a setup for the default Arduino, use 3 for the Xensor2Go kit
-#define CS_PIN_SENSOR_2   5   //!< This is also a setup for the Sens2Go board but with a second sensor attached
+#define CS_PIN_SENSOR_1   10  //!< This is a setup for the default Arduino, use 3 for the Sensor2Go kit
+#define CS_PIN_SENSOR_2   5   //!< This is also a setup for the Sensor2Go kit but with a second sensor attached
 //#define CS_PIN_SENSOR_3   x
 //#define CS_PIN_SENSOR_4   x
 
 //! Tle5012b Object, set/remove depending on the number of connected sensors
-Tle5012b_reg sensor[SENSOR_NUM] = {
-  (Tle5012b_reg()),
-//  (Tle5012b_reg()),
-//  (Tle5012b_reg()),
-//  (Tle5012b_reg()),
+Tle5012Ino sensor[SENSOR_NUM] = {
+  (Tle5012Ino(CS_PIN_SENSOR_1,sensor[1].TLE5012B_S0)),
+//  (Tle5012Ino(CS_PIN_SENSOR_2,sensor[1].TLE5012B_S1)),
+//  (Tle5012Ino(CS_PIN_SENSOR_3,sensor[1].TLE5012B_S2)),
+//  (Tle5012Ino(CS_PIN_SENSOR_4,sensor[1].TLE5012B_S3)),
 };
 
 //! Sensor IFX SIL(TM) errorCheck
@@ -47,13 +49,14 @@ int16_t r[4] = {0, 0, 0, 0};
 void setup() {
   delay(2000);
   Serial.begin(115200);
- 
+  while (!Serial) {};
+   
   // Remove remark if you have more than one sensor,
   // or change the Tle5012Sensor.TLE5012B_S0 to S1-S3 to demonstrate the effect
-  checkError = sensor[0].begin(CS_PIN_SENSOR_1,sensor[1].TLE5012B_S0);
-  //checkError = sensor[1].begin(CS_PIN_SENSOR_2,sensor[1].TLE5012B_S1);
-  //checkError = sensor[2].begin(CS_PIN_SENSOR_3,sensor[2].TLE5012B_S2);
-  //checkError = sensor[3].begin(CS_PIN_SENSOR_4,sensor[3].TLE5012B_S3);
+  for (int8_t i=0;i<SENSOR_NUM;i++)
+  {
+    checkError = sensor[i].begin();
+  }
   Serial.print("init done! with checkError ");
   Serial.println(checkError);
   Serial.println("");
@@ -61,7 +64,8 @@ void setup() {
   uint16_t stat;
   uint8_t resp;
   double a = 0.0;
-  for (int8_t i=0;i<SENSOR_NUM;i++){
+  for (int8_t i=0;i<SENSOR_NUM;i++)
+  {
     sensor[i].readStatus(stat);
     sensor[i].sensorRegister.stat.fetch_SNR(stat);
     sensor[i].getAngleValue(a);
@@ -89,7 +93,7 @@ void setup() {
         break;
     }
     Serial.println();
-   }
+  }
   delay(1000);
   Serial.println();
 }

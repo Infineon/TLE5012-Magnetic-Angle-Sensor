@@ -24,9 +24,24 @@
  */
 Tle5012Ino::Tle5012Ino():Tle5012b()
 {
-	mSlave = TLE5012B_S0;
+	Tle5012b::mSlave = TLE5012B_S0;
 	Tle5012b::en = NULL;
 	Tle5012b::sBus = new SPICIno();
+}
+
+/**
+ * @brief Construct a new Tle5012Ino::Tle5012Ino object with chipselect and sensor slave
+ * Use this constructor if:
+ * - you use more than one sensor with one SPI channel (up to four are possible)
+ * 
+ * @param csPin    pin number of the CS pin
+ * @param slave    optional sensor slave setting
+ */
+Tle5012Ino::Tle5012Ino(uint8_t csPin, slaveNum slave):Tle5012b()
+{
+	Tle5012b::mSlave = slave;
+	Tle5012b::en = NULL;
+	Tle5012b::sBus = new SPICIno(csPin);
 }
 
 /**
@@ -36,45 +51,34 @@ Tle5012Ino::Tle5012Ino():Tle5012b()
  * - you use a software SPI with different pin settings than default
  * 
  * @param bus      void pointer to the object representing the SPI class
+ * @param csPin    pin number of the CS pin
  * @param misoPin  MISO pin for the SPI/SSC interface
  * @param mosiPin  MOSI pin for the SPI/SSC interface
  * @param sckPin   system clock pin for external sensor clock setting
+ * @param slave    optional sensor slave setting
  */
-Tle5012Ino::Tle5012Ino(Tle5012b_SPI &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin):Tle5012b()
+Tle5012Ino::Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave):Tle5012b()
 {
-	mSlave = TLE5012B_S0;
+	Tle5012b::mSlave = slave;
 	Tle5012b::en = NULL;
-	Tle5012b::sBus = new SPICIno(bus,PIN_SPI_SS,misoPin,mosiPin,sckPin);
+	Tle5012b::sBus = new SPICIno(bus,csPin,misoPin,mosiPin,sckPin);
 }
 
 /**
  * @brief begin method with default assignments for the SPI bus
  * and pin setting.
- * Use this if you have Sensor2go Kit or only one sensor used with Arduino default SPI
+ * The EN pin is only available for the Sensor2go kit, therefore we only
+ * set it in that case, otherwise it will be NULL.
+ * 
  * @return errorTypes 
  */
 errorTypes Tle5012Ino::begin(void)
 {
-	return begin(PIN_SPI_SS,TLE5012B_S0);
-}
-
-/**
- * @brief begin method with individual cs and slave number assignment
- * Use this method if you connect up to four sensors on one SPI channel or
- * if you use a none standard cs (chipselect) pin
- * 
- * @param csPin    pin number of the CS pin
- * @param slave    slave offset setting for the SNR register, default is TLE5012B_S0
- * @return errorTypes 
- */
-errorTypes Tle5012Ino::begin(uint8_t csPin, slaveNum slave)
-{
-	#if defined(UC_FAMILY) && (UC_FAMILY == XMC1 || UC_FAMILY == XMC4)
+	#if defined(XMC1100_XMC2GO) || defined(XMC1100_H_BRIDGE2GO)
 		#undef PIN_SPI_EN
 		#define PIN_SPI_EN    8           /*!< TLE5012 Sensor2Go Kit has a switch on/off pin */
 	#endif
 
-	mSlave = slave;
 	// init helper libs
 	Tle5012b::sBus->init();
 	if (PIN_SPI_EN != UNUSED_PIN) {
@@ -84,7 +88,7 @@ errorTypes Tle5012Ino::begin(uint8_t csPin, slaveNum slave)
 	}
 	// start sensor
 	enableSensor();
-	writeSlaveNumber(mSlave);
+	writeSlaveNumber(Tle5012b::mSlave);
 
 	// initial CRC check, should be = 0
 	return (readBlockCRC());

@@ -1,9 +1,10 @@
 /*!
- * \name        Read_Test_With_SlaveNumber
- * \author      Infineon Technologies AG (Dr.Olaf Filies)
- * \copyright   2019 Infineon Technologies AG
+ * \name        Read_Sensor_Registers
+ * \author      Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1
- * \brief
+ * \brief       Reads all registers and reports there status
+ * \details
  * This example program will read and all documented registers from the sensor and
  * fill the sensorRegister structure with it and writes this to the serial port
  * with remark info for each register. Please have look to the sensor manual for 
@@ -14,13 +15,21 @@
  * own library Tle5012b_reg which resides on top of the normal Tle5012b library.
  * Therefore it should only be used if extensive register operations are needed.
  * 
- * \attention This Sketch needs ca. 35kB of  memory and does not compile on the original Arduino/Genuino Uno
+ * \attention This Sketch needs ca. 35kB of  memory and does not compile on the original
+ * Arduino/Genuino Uno. Use the Read_Sensor_Type.ino instead
+ * 
+ * SPDX-License-Identifier: MIT
+ *
  */
+
 #if defined(__AVR_ATmega328P__) 
 // Needs more memory than the Arduino/Genuino UNO has
 void setup()
 {
-
+  delay(1000);
+  Serial.begin(115200);
+  while (!Serial) {};
+  Serial.println("STOP: this scetch needs more momory than available");
 }
 
 void loop()
@@ -30,14 +39,15 @@ void loop()
 
 #else
 
-#include <Tle5012b_reg.h>
+#include <TLE5012-ino.hpp>
 
-Tle5012b_reg Tle5012Sensor;
+Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
 void setup() {
-  delay(2000);
+  delay(1000);
   Serial.begin(115200);
+  while (!Serial) {};
   checkError = Tle5012Sensor.begin();
   Serial.println("init done!");
   Serial.print("checkerror: "); Serial.println(checkError,HEX);

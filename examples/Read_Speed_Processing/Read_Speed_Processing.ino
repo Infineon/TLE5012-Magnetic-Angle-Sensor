@@ -1,22 +1,29 @@
 /*!
- * \name        ReadSpeedProcessing
+ * \name        Read_Speed_Processing
  * \author      Infineon Technologies AG
- * \copyright   2019 Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1
- * \brief
+ * \brief       This example can be used for a first fast test if the sensors works
+ * \details
  * Demonstrates the fast readout of the angle speed.
  * Depending on the microcontroller you use more or less
  * speed on the serial port is possible.
+ * 
+ * \attention Use this sketch together with the processing script examples
+ * 
+ * SPDX-License-Identifier: MIT
+ *
  */
 
 #include <TLE5012-ino.hpp>
 
-Tle5012Ino Tle5012MagneticAngleSensor = Tle5012Ino());
+Tle5012Ino Tle5012MagneticAngleSensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
 void setup() {
-  delay(2000);
+  delay(1000);
   Serial.begin(1000000);
+  while (!Serial) {};
   checkError = Tle5012MagneticAngleSensor.begin();
   Serial.print("checkerror: ");
   Serial.println(checkError, HEX);

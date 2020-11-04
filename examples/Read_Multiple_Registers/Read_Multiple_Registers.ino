@@ -1,9 +1,10 @@
 /*!
- * \name        ReadMultipleRegisters
+ * \name        Read_Multiple_Registers
  * \author      Infineon Technologies AG
- * \copyright   2019 Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1
- * \brief
+ * \brief       Demostrates how to read multiple registers
+ * \details
  * This example demonstrates how to read multiple raw registers at once.
  * In this case you have to recalculate values like angle, angle speed etc.
  * be your self.
@@ -15,10 +16,15 @@
  * be done by adding the length and the command values.
  * A max of 15 value can read at once, one additional value is reserved for
  * the safety bit.
+ * 
+ * SPDX-License-Identifier: MIT
+ *
  */
-#include "Tle5012b_reg.h"
 
-Tle5012b_reg Tle5012Sensor;
+
+#include <TLE5012-ino.hpp>
+
+Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
 uint16_t command = 0x0050; //!< read register beginning with REG_FSYNC
@@ -26,8 +32,9 @@ uint8_t leng = 5;          //!< and the next four registers REG_MOD_1, REG_SIL, 
 bool s = true;
 
 void setup() {
-  delay(2000);
+  delay(1000);
   Serial.begin(9600);
+  while (!Serial) {};
   checkError = Tle5012Sensor.begin();
   Serial.print("checkerror: ");
   Serial.println(checkError, HEX);

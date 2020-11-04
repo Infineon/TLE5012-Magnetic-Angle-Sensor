@@ -17,7 +17,7 @@
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 #include "../../../pal/spic.hpp"
-#include "../wrapper//spi-platf-ino.hpp"
+#include "spi3w-ino.hpp"
 
 /**
  * @addtogroup arduinoPal
@@ -26,9 +26,7 @@
 
 /**
  * @brief Arduino SPIC class
- * This class can be used for all Arduino/Genuino and compliant mcu if:
- * - you use a breakout board with a 3wire SSC SPI interface
- * - you use a bulk chip with a 3wire SSC SPI interface (see wiki page on how to connect)
+ * This function is setting the basics for a SPIC and the default spi.
  */
 
 class SPICIno: virtual public SPIC
@@ -39,11 +37,11 @@ class SPICIno: virtual public SPIC
 		uint8_t       misoPin = PIN_SPI_MISO;        //<! \brief SPI miso pin
 		uint8_t       mosiPin = PIN_SPI_MOSI;        //<! \brief SPI mosi pin
 		uint8_t       sckPin  = PIN_SPI_SCK;         //<! \brief SPI system clock pin
-		Tle5012b_SPI  *spi;                          //<! \brief extended SPI class pointer
+		SPIClass3W    *spi;                          //<! \brief extended SPI class pointer
 
 	public:
-					SPICIno();
-					SPICIno(Tle5012b_SPI &port, uint8_t csPin=PIN_SPI_SS, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
+					SPICIno(uint8_t csPin=PIN_SPI_SS);
+					SPICIno(SPIClass3W &port, uint8_t csPin=PIN_SPI_SS, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
 					~SPICIno();
 		Error_t     init();
 		Error_t     deinit();

@@ -24,7 +24,7 @@
 
 #include "../../../corelib/TLE5012b.hpp"
 #include <Arduino.h>
-#include "../wrapper/spi-platf-ino.hpp"
+#include "spic-arduino.hpp"
 #include "gpio-arduino.hpp"
 #include "spic-arduino.hpp"
 
@@ -32,12 +32,11 @@
 #define PIN_SPI_EN    UNUSED_PIN  /*!< TLE5012 with any other PCB has no switch on/off */
 
 /**
- * @brief represents a basic TLE5012
+ * @brief represents a basic TLE5012b Arduino class.
  *
- * This class provides a simple API for connecting and controlling motors.
- * Each motor is assigned to a Tle5012 which acts as output driver. Calls to
- * Tle5012Motor instances are mapped to calls to Tle5012. Therefore, this
- * class does not bring new features, it does only provide further abstraction.
+ * This class provides a simple API for connecting Arduino/Genuio and compatible
+ * MCUs. As the default interface for the sensor is the 3wire SSC SPI interface,
+ * the default SPIClass is extended by the SPIclass3W.
  *
  * @see Tle5012
  */
@@ -50,9 +49,9 @@ class Tle5012Ino: virtual public Tle5012b
 		uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
 
 					Tle5012Ino();
-					Tle5012Ino(Tle5012b_SPI &bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
+					Tle5012Ino(uint8_t csPin, slaveNum slave=TLE5012B_S0);
+					Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
 		errorTypes  begin();
-		errorTypes  begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
 
 };
 

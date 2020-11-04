@@ -1,16 +1,19 @@
 /*!
- * \name        ReadAngleSpeedRevolutions
+ * \name        Read_Angle_Speed_Revolutions
  * \author      Infineon Technologies AG
- * \copyright   2019 Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1
- * \brief
+ * \brief       Reads rotation speed
+ * \details
  * This is a fast running example to demonstrate the possible readout
  * speed of the sensor for the angle, angle speed and number of revolutions
  * at once.
  * For reconfiguring of the SPI interface, have a look at the documentation.
  * 
- * \attention
- * we use fast serail output setting og 1000000 baud.
+ * \attention Use together with the speed.pde processing script
+ * 
+ * SPDX-License-Identifier: MIT
+ *
  */
 
 #include <TLE5012-ino.hpp>
@@ -22,7 +25,8 @@ errorTypes checkError = NO_ERROR;
 
 void setup() {
   delay(2000);
-  Serial.begin(1000000);
+  Serial.begin(115200);
+  while (!Serial) {};
   checkError = Tle5012MagneticAngleSensor.begin();
   Serial.println("init done!");
   Serial.println("AngleSpeed\tAngleValue\trevolutions\tAngleRange");
@@ -47,7 +51,8 @@ void loop() {
     
     Serial.print("\t\t");
     Tle5012MagneticAngleSensor.getAngleRange(d);
-    Serial.println(d);
+    Serial.print(d);
+    Serial.print("\n");
   }
-  delay(30); //can be removed
+  delay(100); //can be removed
 }

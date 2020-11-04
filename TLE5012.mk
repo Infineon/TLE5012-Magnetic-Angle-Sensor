@@ -15,10 +15,11 @@ GLOBAL_INCLUDES  := src/config \
 					src/framework/wiced-43xxx/pal \
 					src/framework/wiced-43xxx/wrapper
 
-$(NAME)_SOURCES  := src/corelib/TLE5012.cpp \
-					src/corelib/TLE5012_reg.cpp \
+$(NAME)_SOURCES  := src/corelib/TLE5012b.cpp \
+					src/corelib/tle5012b_util.cpp \
 					src/pal/gpio.cpp \
 					src/pal/spic.cpp \
+					src/pal/timer.cpp \
 					src/framework/wiced-43xxx/pal/gpio-wiced.cpp \
 					src/framework/wiced-43xxx/pal/timer-wiced.cpp \
 					src/framework/wiced-43xxx/pal/spic-wiced.cpp \

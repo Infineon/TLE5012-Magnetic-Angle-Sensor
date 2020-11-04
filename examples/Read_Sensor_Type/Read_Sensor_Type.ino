@@ -1,9 +1,10 @@
 /*!
  * \name        Read_Sensor_Type
- * \author      Infineon Technologies AG (Dr.Olaf Filies)
- * \copyright   2019 Infineon Technologies AG
+ * \author      Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1
- * \brief
+ * \brief       Reads all registers and reports the type of the sensor and its interface
+ * \details
  * This example program reads all documented registers and print out the binary
  * register map. From special registers MOD1,2,3,4 and IFAB the explicit sensor
  * interface set and the PCB board will be identified. See the Sensor manual for further
@@ -15,16 +16,20 @@
  *
  * \attention This Sketch needs more memroy then the Arduino/Genuino UNO has so some
  * routines are not available
+ * 
+ * SPDX-License-Identifier: MIT
+ *
  */
 
-#include <Tle5012b_reg.h>
+#include <TLE5012-ino.hpp>
 
-Tle5012b_reg Tle5012Sensor = Tle5012b_reg();
+Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
 void setup() {
-  delay(2000);
+  delay(1000);
   Serial.begin(115200);
+  while (!Serial) {};
   Serial.println("init done!");
   checkError  = Tle5012Sensor.begin();
   Serial.print("checkerror: "); Serial.println(checkError, HEX);

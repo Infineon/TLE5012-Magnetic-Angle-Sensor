@@ -21,10 +21,6 @@
 #define TLE5012_FRAMEWORK    TLE5012_FRMWK_ARDUINO
 #endif
 
-#ifndef TLE5012_SPIC_PAL
-#define TLE5012_SPIC_PAL     TLE5012_SPIC_XMC
-#endif
-
 #include "tle5012-conf-dfl.hpp"
 /** @} */
 

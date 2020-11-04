@@ -15,15 +15,11 @@
 #define TLE5012B_HPP
 
 #include <string.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include "../pal/timer.hpp"
 #include "../pal/gpio.hpp"
 #include "../pal/spic.hpp"
-#include "tle5012_util.hpp"
+#include "tle5012b_util.hpp"
 
-
-class Tle5012b
+class Tle5012b: public tle5012b
 {
 	public:
 
@@ -43,12 +39,9 @@ class Tle5012b
 
 		SPIC     *sBus;              //!< \brief SPI cover class as representation of the SPI bus
 		GPIO     *en;                //!< \brief shield enable GPIO to switch sensor2go on/off
-		GPIO     *cs;                //!< \brief shield enable GPIO to switch chipselect on/off
-		Timer    *timer;             //!< \brief timer for delay settings
 		slaveNum mSlave;             //!< \brief actual set slave number
-		bool     mEnabled = false;   //!< \brief flag which shows the switch on/off status of the sensor
 
-		typedef struct safetyWord {  //!< \brief Safety word bit setting
+		struct safetyWord {  //!< \brief Safety word bit setting
 			bool STAT_RES;           //!< \brief bits 15:15 Indication of chip reset or watchdog overflow
 			bool STAT_ERR;           //!< \brief bits 14:14 System error
 			bool STAT_ACC;           //!< \brief bits 13:13 Interface access error
@@ -86,15 +79,6 @@ class Tle5012b
 
 		//!< \brief constructor for the Sensor
 		Tle5012b();
-
-		/*! \brief constructor with individual SPI and pin assignment
-		 *
-		 * \param bus      a pointer to the object representing the SPI class
-		 * \param misoPin  MISO pin for the SPI/SSC interface
-		 * \param mosiPin  MOSI pin for the SPI/SSC interface
-		 * \param sckPin   system clock pin for external sensor clock setting
-		 */
-		Tle5012b(void* bus, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin);
 
 		//!< \brief destructor stops the Sensor
 		~Tle5012b();
@@ -344,6 +328,42 @@ class Tle5012b
 		*/
 		errorTypes resetFirmware();
 
+		/*!
+		* Function reads all readable sensor registers
+		* and separates the information fields. This function
+		* is needed for finding the selected interface type.
+		* @param [in,out] sensorRegister point to the sensor register structure
+		* @return CRC error type
+		*/
+		errorTypes readSensorType();
+
+		/*!
+		* Function identifies the current set interface type
+		* according some characteristic register settings
+		* @return CRC error type
+		*/
+		errorTypes identifyInterfaceType();
+
+		/*!
+		* Functions switches between all possible interface types.
+		* ATTENTION: The different interfaces support not always all
+		* values, see documentation for the ability of each interface.
+		* If you want to be save, than choose the default SSC interface
+		* which always supports all possible parameter.
+		* @param iface type of interface to switch to
+		* @return CRC error type
+		*/
+		errorTypes writeInterfaceType(interfaceType iface);
+
+		/*!
+		* Function set the sensors calibration mode. Keep in mind,
+		* not all Sensor interface setups have the autocalibration
+		* switched on, so maybe you have to set it explicitly.
+		* @param [in] calibrationMode the auto calibration mode to set
+		* @return CRC error type
+		*/
+		errorTypes setCalibration(calibrationMode calMode);
+
 	protected:
 
 		uint16_t _command[2];                      //!< \brief  command write data [0] = command [1] = data to write
@@ -378,6 +398,11 @@ class Tle5012b
 		* called so that the error bit is reset to 1.
 		*/
 		void resetSafety();
+
+		/*!
+		* Identify the sensor interface and PCB board
+		*/
+		void identify();
 
 };
 
