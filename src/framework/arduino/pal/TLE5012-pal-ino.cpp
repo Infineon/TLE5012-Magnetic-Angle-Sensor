@@ -25,7 +25,6 @@
 Tle5012Ino::Tle5012Ino():Tle5012b()
 {
 	Tle5012b::mSlave = TLE5012B_S0;
-	Tle5012b::en = NULL;
 	Tle5012b::sBus = new SPICIno();
 }
 
@@ -40,7 +39,6 @@ Tle5012Ino::Tle5012Ino():Tle5012b()
 Tle5012Ino::Tle5012Ino(uint8_t csPin, slaveNum slave):Tle5012b()
 {
 	Tle5012b::mSlave = slave;
-	Tle5012b::en = NULL;
 	Tle5012b::sBus = new SPICIno(csPin);
 }
 
@@ -60,8 +58,7 @@ Tle5012Ino::Tle5012Ino(uint8_t csPin, slaveNum slave):Tle5012b()
 Tle5012Ino::Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave):Tle5012b()
 {
 	Tle5012b::mSlave = slave;
-	Tle5012b::en = NULL;
-	Tle5012b::sBus = new SPICIno(bus,csPin,misoPin,mosiPin,sckPin);
+	//Tle5012b::sBus = new SPICIno(bus,csPin,misoPin,mosiPin,sckPin);
 }
 
 /**
@@ -80,16 +77,16 @@ errorTypes Tle5012Ino::begin(void)
 	#endif
 
 	// init helper libs
-	Tle5012b::sBus->init();
+	sBus->init();
 	if (PIN_SPI_EN != UNUSED_PIN) {
 		Tle5012b::en = new GPIOIno(PIN_SPI_EN, OUTPUT, GPIOIno::POSITIVE);
 		Tle5012b::en->init();
-		delay(100);
+	}else{
+		Tle5012b::en = NULL;
 	}
 	// start sensor
 	enableSensor();
 	writeSlaveNumber(Tle5012b::mSlave);
-
 	// initial CRC check, should be = 0
 	return (readBlockCRC());
 }

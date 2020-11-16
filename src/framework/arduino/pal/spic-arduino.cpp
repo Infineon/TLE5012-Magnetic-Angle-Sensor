@@ -29,7 +29,9 @@
 SPICIno::SPICIno(uint8_t csPin)
 {
 	this->csPin = csPin;
-	this->spi = &SPI;
+	#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
+		this->spi =&SPI;
+	#endif
 }
 
 /**
@@ -53,7 +55,7 @@ SPICIno::SPICIno(SPIClass3W &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiP
 	this->misoPin = misoPin;
 	this->mosiPin = mosiPin;
 	this->sckPin  = sckPin;
-	this->spi = &port;
+	this->spi     = &port;
 }
 
 /**
@@ -81,40 +83,6 @@ SPICIno::Error_t SPICIno::deinit()
 {
 	this->spi->endTransaction();
 	this->spi->end();
-	return OK;
-}
-
-/**
- * @brief transfers a data package via the spi bus
- *
- * @param send         address and/or command to send
- * @param received     received data from spi bus
- * 
- * @return             SPICIno::Error_t
- */
-SPICIno::Error_t SPICIno::transfer(uint8_t send, uint8_t &received)
-{
-	received = this->spi->transfer(send);
-	return OK;
-}
-
-/**
- * @brief transfers a data package via the spi bus with 16 bit length
- *
- * @param send         address and/or command to send
- * @param received     received data from spi bus
- * 
- * @return             SPICWiced::Error_t
- */
-SPICIno::Error_t SPICIno::transfer16(uint16_t send, uint16_t &received)
-{
-	uint8_t data_out_msb = (uint8_t)((send >> 8) & 0xFF);
-	uint8_t data_out_lsb = (uint8_t)(send & 0xFF);
-
-	uint8_t data_in_msb = spi->transfer(data_out_msb);
-	uint8_t data_in_lsb = spi->transfer(data_out_lsb);
-
-	received = (uint16_t)(((uint16_t)data_in_msb << 8) | (data_in_lsb)); 
 	return OK;
 }
 

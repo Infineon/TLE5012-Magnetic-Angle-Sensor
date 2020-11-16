@@ -12,6 +12,7 @@
 
 #include "Arduino.h"
 #include "SPI.h"
+#include "Wire.h"
 
 /**
  * @addtogroup arduinoPal
@@ -35,8 +36,8 @@
 #define SPI3W_ARD     1
 #define SPI3W_XMC     2
 
-#define SPEED            1000000U       //!< default speed of SPI transfer
 #define MAX_SLAVE_NUM    4              //!< Maximum numbers of slaves on one SPI bus
+#define SPEED            1000000U       //!< default speed of SPI transfer
 
 class SPIClass3W : public SPIClass
 {
@@ -49,8 +50,8 @@ class SPIClass3W : public SPIClass
 		#endif
 
 
-		uint8_t mCS;                     //!< Pin for chip select
-		uint8_t mSpiNum;                 //!< Number of used SPI channel
+		uint8_t     mCS;                //!< Pin for chip select
+		uint8_t     mSpiNum;            //!< Number of used SPI channel
 
 				SPIClass3W();
 				~SPIClass3W();
@@ -62,8 +63,8 @@ class SPIClass3W : public SPIClass
 
 		uint8_t     mMOSI;               //!< Pin for SPI MOSI
 		uint8_t     mMISO;               //!< Pin for SPI MISO
-		uint8_t     mSCK;                //!< Pin for CLOCK
-		SPISettings mSPISetting;         //!< We need the original SPI class setting in case none XMC microcontroller
+		uint8_t     mSCK;                //!< Pin for SPI System Clock
+
 
 		#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
 			/*!

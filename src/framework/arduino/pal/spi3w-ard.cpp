@@ -24,14 +24,13 @@
  * @brief Construct a new SPIClass3W::SPIClass3W object
  * 
  */
-SPIClass3W::SPIClass3W()
+SPIClass3W::SPIClass3W():SPIClass()
 {
 	this->mCS = PIN_SPI_SS;
 	this->mMISO = PIN_SPI_MISO;
 	this->mMOSI = PIN_SPI_MOSI;
 	this->mSCK = PIN_SPI_SCK;
 	this->mSpiNum = 0;
-	this->mSPISetting = SPISettings(SPEED,MSBFIRST,SPI_MODE1);
 }
 
 /**
@@ -56,11 +55,9 @@ void SPIClass3W::begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs)
 	this->mMOSI = mosi;
 	this->mMISO = miso;
 	this->mSCK = sck;
-	mSPISetting = SPISettings(SPEED,MSBFIRST,SPI_MODE1);
-	SPIClass::begin();
-	pinMode(this->mCS, OUTPUT);
+	pinMode(this->mCS,OUTPUT);
 	digitalWrite(this->mCS, HIGH);
-	//SPI.setClockDivider(SPI_CLOCK_DIV4);
+	SPIClass::begin();
 }
 
 /*!
@@ -86,19 +83,19 @@ void SPIClass3W::sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data,
 {
 	uint32_t data_index = 0;
 	//send via TX
-	pinMode(mMISO,INPUT);
-	pinMode(mMOSI,OUTPUT);
-	digitalWrite(mCS, LOW);
+	pinMode(this->mMISO,INPUT);
+	pinMode(this->mMOSI,OUTPUT);
+	digitalWrite(this->mCS, LOW);
+	beginTransaction(SPISettings(SPEED,MSBFIRST,SPI_MODE1));
 
-	beginTransaction(mSPISetting);
 	for(data_index = 0; data_index < size_of_sent_data; data_index++)
 	{
-		received_data[0] = transfer16(sent_data[data_index] );
+		received_data[0] = transfer16(sent_data[data_index]);
 	}
-	
+
 	// receive via RX
-	pinMode(mMISO,OUTPUT);
-	pinMode(mMOSI,INPUT);
+	pinMode(this->mMISO,OUTPUT);
+	pinMode(this->mMOSI,INPUT);
 	delayMicroseconds(5);
 
 	for(data_index = 0; data_index < size_of_received_data; data_index++)
@@ -106,8 +103,7 @@ void SPIClass3W::sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data,
 		received_data[data_index] = transfer16(0x0000);
 	}
 	endTransaction();
-
-	digitalWrite(mCS, HIGH);
+	digitalWrite(this->mCS, HIGH);
 }
 
 /** @} */

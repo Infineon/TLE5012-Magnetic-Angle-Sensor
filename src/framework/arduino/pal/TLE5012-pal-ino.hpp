@@ -22,8 +22,8 @@
  * @{
  */
 
-#include "../../../corelib/TLE5012b.hpp"
 #include <Arduino.h>
+#include "../../../corelib/TLE5012b.hpp"
 #include "spic-arduino.hpp"
 #include "gpio-arduino.hpp"
 #include "spic-arduino.hpp"

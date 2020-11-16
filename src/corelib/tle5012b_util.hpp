@@ -18,8 +18,8 @@
  */
 
 
-#ifndef TLE5012B_REG_HPP
-#define TLE5012B_REG_HPP
+#ifndef TLE5012B_UTIL_HPP
+#define TLE5012B_UTIL_HPP
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -60,38 +60,15 @@
 #define TEMP_OFFSET                 152.0     //!< \brief values used to calculate the temperature
 #define TEMP_DIV                    2.776
 
-// Register address offsets
-#define REG_STAT                    0x0000    //!< \brief STAT status register
-#define REG_ACSTAT                  0x0010    //!< \brief ACSTAT activation status register
-#define REG_AVAL                    0x0020    //!< \brief AVAL angle value register
-#define REG_ASPD                    0x0030    //!< \brief ASPD angle speed register
-#define REG_AREV                    0x0040    //!< \brief AREV angle revolution register
-#define REG_FSYNC                   0x0050    //!< \brief FSYNC frame synchronization register
-#define REG_MOD_1                   0x0060    //!< \brief MOD_1 interface mode1 register
-#define REG_SIL                     0x0070    //!< \brief SIL register
-#define REG_MOD_2                   0x0080    //!< \brief MOD_2 interface mode2 register
-#define REG_MOD_3                   0x0090    //!< \brief MOD_3 interface mode3 register
-#define REG_OFFX                    0x00A0    //!< \brief OFFX offset x
-#define REG_OFFY                    0x00B0    //!< \brief OFFY offset y
-#define REG_SYNCH                   0x00C0    //!< \brief SYNCH synchronicity
-#define REG_IFAB                    0x00D0    //!< \brief IFAB register
-#define REG_MOD_4                   0x00E0    //!< \brief MOD_4 interface mode4 register
-#define REG_TCO_Y                   0x00F0    //!< \brief TCO_Y temperature coefficient register
-#define REG_ADC_X                   0x0100    //!< \brief ADC_X ADC X-raw value
-#define REG_ADC_Y                   0x0110    //!< \brief ADC_Y ADC Y-raw value
-#define REG_D_MAG                   0x0140    //!< \brief D_MAG angle vector magnitude
-#define REG_T_RAW                   0x0150    //!< \brief T_RAW temperature sensor raw-value
-#define REG_IIF_CNT                 0x0200    //!< \brief IIF_CNT IIF counter value
-#define REG_T25O                    0x0300    //!< \brief T25O temperature 25°c offset value
-
 // Support macros
 //!< \brief Prints a binary number with leading zeros (Automatic Handling)
 #define PRINTBIN(Num) for (uint32_t t = (1UL<< (sizeof(Num)*8)-1); t; t >>= 1) Serial.write(Num  & t ? '1' : '0');
 //!< \brief Prints a binary number with leading zeros (Automatic Handling) with space
 #define PRINTBINS(Num) for (uint32_t t = (1UL<< (sizeof(Num)*8)-1); t; t >>= 1) Serial.write(Num  & t ? " 1 " : " 0 ");
 
-
-// Error types from safety word
+/**
+ * @brief Error types from safety word
+ */
 enum errorTypes
 {
 	NO_ERROR               = 0x00,  //!< \brief NO_ERROR = Safety word was OK
@@ -102,26 +79,25 @@ enum errorTypes
 	CRC_ERROR              = 0xFF   //!< \brief CRC_ERROR = Cyclic Redundancy Check (CRC), which includes the STAT and RESP bits wrong
 };
 
-// Set the UPDate bit high (read from update buffer) or low (read directly)
+//!< \brief Set the UPDate bit high (read from update buffer) or low (read directly)
 enum updTypes
 {
 	UPD_low  = 0x0000,           //!< \brief read normal registers
 	UPD_high = 0x0400,           //!< \brief read update buffer registers
 };
 
-// Switch on/off safety word generation
+//!< \brief Switch on/off safety word generation
 enum safetyTypes
 {
 	SAFE_low  = 0x0000,          //!< \brief switch of safety word generation
 	SAFE_high = 0x0001,          //!< \brief switch on safety word generation
 };
 
-
 /*!
-	* Automatic calibration of offset and amplitude synchronicity for applications
-	* with full-turn. Only 1 LSB corrected at each update. CRC check of calibration
-	* registers is automatically disabled if AUTOCAL activated.
-	*/
+ * \brief Automatic calibration of offset and amplitude synchronicity for applications
+ * with full-turn. Only 1 LSB corrected at each update. CRC check of calibration
+ * registers is automatically disabled if AUTOCAL activated.
+ */
 enum calibrationMode
 {
 	noAutoCal = 0x0,//!< noAutoCal = no auto-calibration
@@ -131,10 +107,9 @@ enum calibrationMode
 };
 
 /*!
-	* List of possible interface types
-	* witch are preset by fuses and can
-	* be changed into each other
-	*/
+ * \brief List of possible interface types witch are preset by fuses and can
+ * be changed into each other
+ */
 enum interfaceType
 {
 	IIF = 0,  //!< IIF Incremental Interface (IIF)
@@ -144,10 +119,7 @@ enum interfaceType
 	SSC       //!< SSC Synchronous Serial Communication (SSC)
 };
 
-/*!
-	* List of possible Sensor types and PCB variants
-	* with and without attached XMC2Go
-	*/
+//!< \brief List of possible Sensor types and PCB variants with and without attached XMC2Go
 enum sensorType
 {
 	TLE5012B_E1000= 0x0,//!< TLE5012B_E1000 Sensor2Go variant
@@ -157,7 +129,7 @@ enum sensorType
 	TLE5012B_E9000,     //!< TLE5012B_E9000 Sensor2Go variant
 };
 
-class tle5012b
+class Tle5012b_util
 {
 	public:
 
@@ -550,4 +522,4 @@ class tle5012b
 
 };
 
-#endif
+#endif /* TLE5012B_UTIL_HPP */

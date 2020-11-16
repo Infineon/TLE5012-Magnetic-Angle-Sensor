@@ -21,8 +21,6 @@
  * also on other than the default SPI channel in case of the XMC4xxx boards
  */
 
-#include "Wire.h"
-
 /**
  * @brief Construct a new SPIClass3W::SPIClass3W object
  * 
@@ -34,7 +32,6 @@ SPIClass3W::SPIClass3W()
 	this->mMOSI = PIN_SPI_MOSI;
 	this->mSCK = PIN_SPI_SCK;
 	this->mSpiNum = 0;
-	this->mSPISetting = SPISettings(SPEED,MSBFIRST,SPI_MODE1);
 }
 
 /**

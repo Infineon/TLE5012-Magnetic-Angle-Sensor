@@ -16,6 +16,7 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
+#include "Arduino.h"
 #include "../../../pal/spic.hpp"
 #include "spi3w-ino.hpp"
 
@@ -46,8 +47,6 @@ class SPICIno: virtual public SPIC
 		Error_t     init();
 		Error_t     deinit();
 		Error_t     triggerUpdate();
-		Error_t     transfer(uint8_t send, uint8_t &received);
-		Error_t     transfer16(uint16_t send, uint16_t &received);
 		Error_t     sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
 
 };

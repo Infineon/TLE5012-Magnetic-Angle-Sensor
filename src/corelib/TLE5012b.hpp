@@ -18,8 +18,9 @@
 #include "../pal/gpio.hpp"
 #include "../pal/spic.hpp"
 #include "tle5012b_util.hpp"
+#include "tle5012b_reg.hpp"
 
-class Tle5012b: public tle5012b
+class Tle5012b: public Tle5012b_util
 {
 	public:
 
@@ -39,6 +40,7 @@ class Tle5012b: public tle5012b
 
 		SPIC     *sBus;              //!< \brief SPI cover class as representation of the SPI bus
 		GPIO     *en;                //!< \brief shield enable GPIO to switch sensor2go on/off
+		Reg      reg;                //!< \brief Register map
 		slaveNum mSlave;             //!< \brief actual set slave number
 
 		struct safetyWord {  //!< \brief Safety word bit setting
@@ -92,7 +94,7 @@ class Tle5012b: public tle5012b
 		 * \param csPin    pin number of the CS pin
 		 * \param slave    slave offset setting for the SNR register, default is TLE5012B_S0
 		 */
-		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0 );
+		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
 
 		//!< \brief Ends the comunication and switches the sensor off, if possible (only Sensor2go kit)
 		void end();
@@ -327,6 +329,15 @@ class Tle5012b: public tle5012b
 		* @return CRC error type
 		*/
 		errorTypes resetFirmware();
+
+		/*!
+		* Function reads all readable sensor registers
+		* and separates the information fields. This function
+		* is needed for finding the selected interface type.
+		* @param [out] reg.regMap point to the sensor register structure
+		* @return CRC error type
+		*/
+		errorTypes readRegMap();
 
 		/*!
 		* Function reads all readable sensor registers

@@ -55,26 +55,6 @@ class SPIC
 		virtual Error_t       triggerUpdate() = 0;
 
 		/**
-		 * @brief           Send/receives data from SPI bus
-		 * @param send      address or command to send 
-		 * @param received  data from SPI bus
-		 * @return          SPIC error code
-		 * @retval          OK if success
-		 * @retval          INIT_ERROR if transfer fails
-		 */
-		virtual Error_t       transfer(uint8_t send, uint8_t &received) = 0;
-
-		/**
-		 * @brief           Send/receives data from SPI bus
-		 * @param send      address or command to send 
-		 * @param received  data from SPI bus
-		 * @return          SPIC error code
-		 * @retval          OK if success
-		 * @retval          INIT_ERROR if transfer fails
-		 */
-		virtual Error_t       transfer16(uint16_t send, uint16_t &received) = 0;
-
-		/**
 		 * @brief           Function which allows 3wire SPI (SSC) by sending and receiving data in the same function
 		 * 
 		 * @param sent_data              pointer two 2*unit16_t value for one command word and one data word if something should be written
