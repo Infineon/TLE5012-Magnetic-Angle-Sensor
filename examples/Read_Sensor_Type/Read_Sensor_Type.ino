@@ -1,8 +1,8 @@
 /*!
  * \name        Read_Sensor_Type
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
- * \copyright   2019 Infineon Technologies AG
- * \version     2.0.1
+ * \copyright   2020 Infineon Technologies AG
+ * \version     3.0.1
  * \brief
  * This example program reads all documented registers and print out the binary
  * register map. From special registers MOD1,2,3,4 and IFAB the explicit sensor
@@ -18,6 +18,7 @@
  */
 
 #include <TLE5012-ino.hpp>
+#include "const.h"
 
 Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
@@ -26,11 +27,22 @@ void setup() {
   delay(1000);
   Serial.begin(115200);
   while (!Serial) {};
-  Serial.println("init done!");
   checkError  = Tle5012Sensor.begin();
-  Serial.print("checkerror: "); Serial.println(checkError, HEX);
+  Serial.print("\n\ncheckerror: ");
+  Serial.println(checkError, HEX);
+
+  /**
+   * @brief You can use resetFirmware to set all register settings
+   * back to factory defaults
+   */
   //checkError = Tle5012Sensor.resetFirmware();
+
+  /**
+   * @brief You can set the sensor slave number to one of
+   * four possible settings
+   */
   Tle5012Sensor.writeSlaveNumber(Tle5012Sensor.TLE5012B_S0);
+
   /*
      Checkout one of these interface modes. Each Sensor2go board
      comes with a predefined interface, but this can be changed
@@ -54,153 +66,31 @@ void setup() {
   //checkError = Tle5012Sensor.setCalibration(Tle5012Sensor.mode3);
 
   // read all registers
-  //checkError = Tle5012Sensor.identifyInterfaceType();
-
   checkError = Tle5012Sensor.readRegMap();
-  Serial.print("checkerror: "); Serial.println(checkError, HEX);
-
-  // printout register binary values
+  // printout register binary values and sensor identity
   show_bin();
-
-//  /*
-//     Prints the sensor board type, interface and slave number
-//  */
-//  Serial.println("----------------------------------------------------------------------------------------------------------------");
-//  Serial.print("Identified Sensor PCB: " );
-//  Serial.print(Tle5012Sensor.sensorRegister.sensorBoard);
-//  Serial.print(" = ");
-//  Serial.print(Tle5012Sensor.sensorRegister.sensorName);
-//  Serial.println("");
-//
-//  Serial.print("Identified Interface:  ");
-//  Serial.print(Tle5012Sensor.sensorRegister.interface);
-//  Serial.print(" = ");
-//  Serial.print(Tle5012Sensor.sensorRegister.interfaceName);
-//  Serial.println("");
-//
-//  Serial.print("Identified Slave:      ");
-//  Serial.print(Tle5012Sensor.sensorRegister.stat.SNR, BIN);
-//  Serial.print(" = TLE5012_S");
-//  Serial.print(Tle5012Sensor.sensorRegister.stat.SNR);
-//  Serial.println("");
-//
-//  /*
-//     This part fetches additional interface dependent
-//     data and prints them.
-//     This part can not be used on the original Arduino/Genuino Uno due to memory limitations
-//  */
-//#if !defined(__AVR_ATmega328P__) 
-//  uint16_t val = 0;
-//  uint16_t mod1 = Tle5012Sensor.sensorRegister.mod1.reg;
-//  uint16_t mod4 = Tle5012Sensor.sensorRegister.mod4.reg;
-//  uint16_t ifab = Tle5012Sensor.sensorRegister.ifab.reg;
-//  switch (Tle5012Sensor.sensorRegister.interface) {
-//    case 0:
-//      Serial.print("\nIIF Interface settings\n");
-//
-//      val = Tle5012Sensor.sensorRegister.mod1.fetch_IIFMOD(mod1);
-//      Serial.print("\nMOD1 IIF Mode:          \t");
-//      Serial.print(val == 0
-//                   ? "disabled"
-//                   : (val == 1
-//                      ? "A/B operation with Index on IFC pin"
-//                      : (val == 2
-//                         ? "Step/Direction operation with Index on IFC pin"
-//                         : "not allowed")));
-//
-//
-//      val = Tle5012Sensor.sensorRegister.mod4.fetch_IFABRES(mod4);
-//      Serial.print("\nMOD4 Resolution:        \t");
-//      Serial.print(val == 0 ? "0.088° step" : (val == 1 ? "0.176° step" : (val == 2 ? "0.352° step" : "0.703° step")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFADHYST(ifab);
-//      Serial.print("\nIFAB Hysteresis:        \t");
-//      Serial.print(val == 0 ? "HSM: 0°" : (val == 1 ? "HSM: 0.175°" : (val == 2 ? "HSM: 0.35°" : "HSM: 0.70°")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_FIRUDR(ifab);
-//      Serial.print("\nIFAB Filter update time:\t");
-//      Serial.print(val ? "85.3 μs" : "42.7 μs");
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFABOD(ifab);
-//      Serial.print("\nIFAB IFA pin:           \t");
-//      Serial.print(val ? "Open Drain" : "Push-Pull");
-//
-//      break;
-//    case 1:
-//      Serial.print("\nPWM Interface settings\n");
-// 
-//      val = Tle5012Sensor.sensorRegister.mod4.fetch_IFABRES(mod4);
-//      Serial.print("\nMOD4 Frequnecy:         \t");
-//      Serial.print(val == 0 ? "244 Hz" : (val == 1 ? "488 Hz" : (val == 2 ? "977 Hz" : "1953 Hz")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFADHYST(ifab);
-//      Serial.print("\nIFAB Unit time:         \t");
-//      Serial.print(val == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_FIRUDR(ifab);
-//      Serial.print("\nIFAB Filter update time:\t");
-//      Serial.print(val ? "85.3 μs" : "42.7 μs");
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFABOD(ifab);
-//      Serial.print("\nIFAB IFA pin:           \t");
-//      Serial.print(val ? "Open Drain" : "Push-Pull");
-//
-//      break;
-//    case 2:
-//      Serial.print("\nHSM Interface settings\n");
-//
-//      val = Tle5012Sensor.sensorRegister.mod4.fetch_IFABRES(mod4);
-//      Serial.print("\nMOD4 Frame config:      \t");
-//      Serial.print(val == 0 ? "12bit angle" : (val == 1 ? "16bit angle" : (val == 2 ? "12bit angle + 8bit temperature" : "16bit angle + 8bit temperature")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFADHYST(ifab);
-//      Serial.print("\nIFAB Hysteresis:        \t");
-//      Serial.print(val == 0 ? "0°" : (val == 1 ? "0.175°" : (val == 2 ? "0.35°" : "0.70°")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_FIRUDR(ifab);
-//      Serial.print("\nIFAB Filter update time:\t");
-//      Serial.print(val ? "85.3 μs" : "42.7 μs");
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFABOD(ifab);
-//      Serial.print("\nIFAB IFA pin:           \t");
-//      Serial.print(val ? "Open Drain" : "Push-Pull");
-//      break;
-//    case 3:
-//      Serial.print("\nSPC Interface settings\n");
-//
-//      val = Tle5012Sensor.sensorRegister.mod4.fetch_IFABRES(mod4);
-//      Serial.print("\nMOD4 Frame config:      \t");
-//      Serial.print(val == 0 ? "12bit angle" : (val == 1 ? "16bit angle" : (val == 2 ? "12bit angle + 8bit temperature" : "16bit angle + 8bit temperature")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFADHYST(ifab);
-//      Serial.print("\nIFAB Unit time:         \t");
-//      Serial.print(val == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_FIRUDR(ifab);
-//      Serial.print("\nIFAB Filter update time:\t");
-//      Serial.print(val ? "85.3 μs" : "42.7 μs");
-//
-//      val = Tle5012Sensor.sensorRegister.ifab.fetch_IFABOD(ifab);
-//      Serial.print("\nIFAB IFA pin:           \t");
-//      Serial.print(val ? "Open Drain" : "Push-Pull");
-//      break;
-//  }
-//  mod2(Tle5012Sensor.sensorRegister.mod2.reg);
-//  mod3(Tle5012Sensor.sensorRegister.mod3.reg);
-//
-//#endif
-//
-//  //Serial.end();
+  show_identity();
+  show_additional();
 }
 
 void loop() {
 }
 
-/*!
-   Function prints the binary code of each documented register
-*/
+
+/**
+ * @brief Function prints the binary code of each documented register
+ * 
+ */
 void show_bin()
 {
+  char nameOfRegister[MAX_NUM_REG][10] = {
+    "STAT  ","ACSTAT","AVAL  ","ASPD  ","AREV  ",
+    "FSYNC ","MOD1  ","SIL   ","MOD2  ","MOD3  ",
+    "OFFX  ","OFFY  ","SYNCH ","IFAB  ","MOD4  ",
+    "TCOY  ","ADCX  ","ADCY  ","DMAG  ","TRAW  ",
+    "IIFCNT","T250  "
+  };
+
   Serial.print("\t\t");
   for (int8_t i = 15; i > -1; i--)
   {
@@ -211,56 +101,219 @@ void show_bin()
   Serial.println("\n\t\t------------------------------------------------");
   for (int8_t i = 0; i < MAX_NUM_REG; i++)
   {
-    Serial.print(i);                                              Serial.print("\t");
-    Serial.print(Tle5012Sensor.sensorRegister.nameOfRegister[i]); Serial.print("\t");
-    PRINTBINS(Tle5012Sensor.reg.regMap[i]);                       Serial.println("");
+    Serial.print(i);                         Serial.print("\t");
+    Serial.print(nameOfRegister[i]);         Serial.print("\t");
+    PRINTBINS(Tle5012Sensor.reg.regMap[i]);  Serial.println("");
+  }
+  Serial.flush();
+}
+
+/**
+ * @brief This function prints the identity of the sensor which
+ * is set as factory default inside the sensor fuses.
+ * 
+ */
+void show_identity()
+{
+  uint8_t interface = Tle5012Sensor.reg.getInterfaceMode();
+  uint8_t slavenum  = Tle5012Sensor.reg.getSlaveNumber();
+  
+  Serial.println("----------------------------------------------------------------");
+  Serial.print(sc_slave);
+  Serial.print(slavenum, BIN);
+  Serial.print(sc_slavename);
+  Serial.print(slavenum);
+  Serial.println("");
+  Serial.print(sc_Interface);
+  Serial.print(interface);
+ 
+  switch (interface)
+  {
+    case Tle5012Sensor.reg.IIF:
+      Serial.println(sc_IIF);
+      iifInterface();
+      break;
+    case Tle5012Sensor.reg.PWM:
+      Serial.println(sc_PWM);
+      pwmInterface();
+      break;
+    case Tle5012Sensor.reg.HSM:
+      Serial.println(sc_HSM);
+      hsmInterface();
+      break;
+    case Tle5012Sensor.reg.SPC:
+      Serial.println(sc_SPC);
+      spcInterface();
+      break;
   }
 }
 
-///*!
-//   Function prints register mod2
-//*/
-//void mod2(uint16_t reg)
-//{
-//  uint16_t val = 0;
-//  Serial.println();
-//  val = Tle5012Sensor.sensorRegister.mod2.fetch_AUTOCAL(reg);
-//  Serial.print("\nMOD2 Autocalibration:   \t");
-//  Serial.print(val == 0
-//               ? "no auto-calibration"
-//               : (val == 1
-//                  ? "auto-cal. mode 1: update every angle update cycle"
-//                  : (val == 2
-//                     ? "auto-cal. mode 2: update every 1.5 revolutions"
-//                     : "auto-cal. mode 3: update every 11.25°")));
-//
-//  val = Tle5012Sensor.sensorRegister.mod2.fetch_PREDICT(reg);
-//  Serial.print("\nMOD2 Prediction:        \t");
-//  Serial.print(val ? "enabled" : "disabled");
-//}
-//
-///*!
-//   Function prints register mod3
-//*/
-//void mod3(uint16_t reg)
-//{
-//  uint16_t val = 0;
-//  Serial.println();
-//  val = Tle5012Sensor.sensorRegister.mod3.fetch_PADDRV(reg);
-//  Serial.print("\nMOD3 IFA/B/C pin set:   \t");
-//  Serial.print(val == 0
-//               ? "strong driver, DATA: strong driver, fast edge"
-//               : (val == 1
-//                  ? "strong driver, DATA: strong driver, slow edge"
-//                  : (val == 2
-//                     ? "weak driver, DATA: medium driver, fast edge"
-//                     : "weak driver, DATA: weak driver, slow edge")));
-//
-//  val = Tle5012Sensor.sensorRegister.mod3.fetch_SSCOD(reg);
-//  Serial.print("\nMOD3 SSC interface:     \t");
-//  Serial.print(val ? "Push-Pull" : "Open Drain");
-//
-//  val = Tle5012Sensor.sensorRegister.mod3.fetch_SPIKEF(reg);
-//  Serial.print("\nMOD3 Voltage filter:    \t");
-//  Serial.print(val ? "spike filter enabled" : "spike filter disabled");
-//}
+/**
+ * @brief Sensor is set with PWM interface with the following settings
+ * 
+ */
+void pwmInterface()
+{
+  uint8_t val = 0;
+  uint8_t firupdate = Tle5012Sensor.reg.getFIRUpdateRate();
+  bool ifabout      = Tle5012Sensor.reg.isIFABOutputMode();
+
+  Serial.print(sc_PCB);
+  if (firupdate == 0x0 && ifabout )
+  {
+    Serial.print(Tle5012Sensor.reg.TLE5012B_E5000);
+    Serial.println(sc_E5000);
+  }else{
+    Serial.print(Tle5012Sensor.reg.TLE5012B_E5020);
+    Serial.println(sc_E5020);
+  }
+  Serial.print(sc_ifsetPWM);
+
+  val = Tle5012Sensor.reg.getIFABres();
+  Serial.print(sc_PWMfreq);
+  Serial.print(val == 0 ? "244 Hz" : (val == 1 ? "488 Hz" : (val == 2 ? "977 Hz" : "1953 Hz")));
+
+  val = Tle5012Sensor.reg.getHysteresisMode();
+  Serial.print(sc_PWMtime);
+  Serial.print(val == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
+
+  Serial.print(sc_PWMfilter);
+  Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() ? "85.3 μs" : "42.7 μs");
+
+  Serial.print(sc_PWMpin);
+  Serial.print(ifabout ? sc_OpenDrain : sc_PushPull);
+}
+
+/**
+ * @brief Sensor is set with IIF interface with the following settings
+ * 
+ */
+void iifInterface()
+{
+  uint8_t val = 0;
+
+  Serial.print(sc_PCB);
+  Serial.print(Tle5012Sensor.reg.TLE5012B_E1000);
+  Serial.println(sc_E1000);
+
+  Serial.print(sc_ifsetIIF);
+
+  val = Tle5012Sensor.reg.getIIFMod();
+  Serial.print(sc_IIFmod);
+  Serial.print(val == 0
+               ? sc_disable
+               : (val == 1
+                  ? sc_IIFab
+                  : (val == 2
+                    ? sc_IIFdirection
+                    : sc_NotAllowed)));
+
+  val = Tle5012Sensor.reg.getIFABres();
+  Serial.print(sc_IIFres);
+  Serial.print(val == 0 ? "0.088° step" : (val == 1 ? "0.176° step" : (val == 2 ? "0.352° step" : "0.703° step")));
+
+  val = Tle5012Sensor.reg.getHysteresisMode();
+  Serial.print(sc_IIFhyster);
+  Serial.print(val == 0 ? "HSM: 0°" : (val == 1 ? "HSM: 0.175°" : (val == 2 ? "HSM: 0.35°" : "HSM: 0.70°")));
+
+  Serial.print(sc_IIFfilter);
+  Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() ? "85.3 μs" : "42.7 μs");
+
+  Serial.print(sc_IIFpin);
+  Serial.print(Tle5012Sensor.reg.isIFABOutputMode() ? sc_OpenDrain : sc_PushPull);
+}
+
+/**
+ * @brief Sensor is set with IIF interface with the following settings
+ * 
+ */
+void hsmInterface()
+{
+  uint8_t val = 0;
+
+  Serial.print(sc_PCB);
+  Serial.print(Tle5012Sensor.reg.TLE5012B_E3005);
+  Serial.println(sc_E3005);
+
+  Serial.print(sc_ifsetHSM);
+
+  val = Tle5012Sensor.reg.getIFABres();
+  Serial.print(sc_HSMframe);
+  Serial.print(val == 0 ? sc_Angle12 : (val == 1 ? sc_Angle16 : (val == 2 ? sc_Angle12Temp : sc_Angle16Temp)));
+
+  val = Tle5012Sensor.reg.getHysteresisMode();
+  Serial.print(sc_HSMhyster);
+  Serial.print(val == 0 ? "0°" : (val == 1 ? "0.175°" : (val == 2 ? "0.35°" : "0.70°")));
+
+  Serial.print(sc_HSMfilter);
+  Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() ? "85.3 μs" : "42.7 μs");
+
+  Serial.print(sc_HSMpin);
+  Serial.print(Tle5012Sensor.reg.isIFABOutputMode() ? sc_OpenDrain : sc_PushPull);
+}
+
+/**
+ * @brief Sensor is set with SPC interface with the following settings
+ * 
+ */
+void spcInterface()
+{
+  uint8_t val = 0;
+
+  Serial.print(sc_PCB);
+  Serial.print(Tle5012Sensor.reg.TLE5012B_E9000);
+  Serial.println(sc_E9000);
+
+  Serial.print(sc_ifsetSPC);
+
+  val = Tle5012Sensor.reg.getIFABres();
+  Serial.print(sc_SPCframe);
+  Serial.print(val == 0 ? sc_Angle12 : (val == 1 ? sc_Angle16 : (val == 2 ? sc_Angle12Temp : sc_Angle16Temp)));
+
+  val = Tle5012Sensor.reg.getHysteresisMode();
+  Serial.print(sc_SPCtime);
+  Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
+
+  Serial.print(sc_SPCpin);
+  Serial.print(Tle5012Sensor.reg.isIFABOutputMode() ? sc_OpenDrain : sc_PushPull);
+}
+
+/**
+ * @brief Shows additional information for each sensor type
+ * from the additional registers MOD2 and MOD3
+ * 
+ */
+void show_additional()
+{
+  uint8_t val = 0;
+
+  Serial.println();
+  val = Tle5012Sensor.reg.getCalibrationMode();
+  Serial.print(sc_MOD2cal);
+  Serial.print(val == 0
+              ? sc_Cal1
+              : (val == 1
+                 ? sc_Cal1
+                 : (val == 2
+                    ? sc_Cal2
+                    : sc_Cal3)));
+
+  Serial.print(sc_MOD2predict);
+  Serial.print(Tle5012Sensor.reg.isPrediction() ? sc_enable : sc_disable);
+
+  val = Tle5012Sensor.reg.getPadDriver();
+  Serial.print(sc_MODpin);
+  Serial.print(val == 0
+              ? sc_MODstrongfast
+              : (val == 1
+                 ? sc_MODstrongslow
+                 : (val == 2
+                    ? sc_MODweakfast
+                    : sc_MODweakslow)));
+
+  Serial.print(sc_MODssc);
+  Serial.print(Tle5012Sensor.reg.isSSCOutputMode() ? sc_PushPull : sc_OpenDrain);
+
+  Serial.print(sc_MODvoltage);
+  Serial.print(Tle5012Sensor.reg.isSpikeFilter() ? sc_Spikeenable : sc_Spikedisbale);
+}

@@ -29,6 +29,90 @@ class Reg
 {
 	public:
 
+		void *p;
+
+		/*!
+		* \brief Automatic calibration of offset and amplitude synchronicity for applications
+		* with full-turn. Only 1 LSB corrected at each update. CRC check of calibration
+		* registers is automatically disabled if AUTOCAL activated.
+		*/
+		enum calibrationMode_t
+		{
+			noAutoCal = 0x0,//!< noAutoCal = no auto-calibration
+			mode1,          //!< mode1 update every angle update cycle (FIR_MD setting)
+			mode2,          //!< mode2 update every 1.5 revolutions
+			mode3           //!< mode3 update every 11.25°
+		};
+
+		enum angleRange_t
+		{
+			factor1 = 0x080, //!< magnetic angle from -180° to +180°, mapped values from -16384 to 16384
+			factor4 = 0x200, //!< magnetic angle from -45° to +45°, mapped values from -16384 to 16384
+			factor5 = 0x040  //!< magnetic angle from -180° to +180°, mapped values from -8192 to 8192
+		};
+
+		/*!
+		* \brief List of possible interface types witch are preset by fuses and can
+		* be changed into each other
+		*/
+		enum interfaceType_t
+		{
+			IIF = 0,  //!< IIF Incremental Interface (IIF)
+			PWM,      //!< PWM Pulse-Width-Modulation (PWM)
+			HSM,      //!< HSM Hall Switch Mode (HSM)
+			SPC,      //!< SPC Short-PWM-Code (SPC)
+			SSC       //!< SSC Synchronous Serial Communication (SSC)
+		};
+
+		//!< \brief List of possible Sensor types and PCB variants with and without attached XMC2Go
+		enum sensorType_t
+		{
+			TLE5012B_E1000= 0x0,  //!< TLE5012B_E1000 Sensor2Go variant
+			TLE5012B_E3005,       //!< TLE5012B_E3005
+			TLE5012B_E5000,       //!< TLE5012B_E5000 Sensor2Go variant
+			TLE5012B_E5020,       //!< TLE5012B_E5020
+			TLE5012B_E9000,       //!< TLE5012B_E9000 Sensor2Go variant
+		};
+
+		/**
+		 * \brief Register access type
+		 */
+		enum Access_t
+		{
+			REG_ACCESS_R    = (0x01U),      //!< \brief Read access register */
+			REG_ACCESS_W    = (0x02U),      //!< \brief Write access register */
+			REG_ACCESS_RW   = (0x03U),      //!< \brief Read & write access register */
+			REG_ACCESS_U    = (0x04U),      //!< \brief Update register */
+			REG_ACCESS_RU   = (0x05U),      //!< \brief Read & update register */
+			REG_ACCESS_RWU  = (0x07U),      //!< \brief Read & write & update register */
+			REG_ACCESS_RES  = (0x10U)       //!< \brief Reserved access register */
+		};
+
+		/**
+		 * \brief Bit field parameters
+		 */
+		typedef struct
+		{
+			uint8_t regAccess;              //!< \brief Bitfield register access */
+			uint8_t regAddress;             //!< \brief Bitfiled register address */
+			uint8_t mask;                   //!< \brief Bitfield mask */
+			uint8_t position;               //!< \brief Bitfiled position */
+			uint8_t resetValue;             //!< \brief Bitfield register reset value */
+			uint8_t posMap;                 //!< \brief Bitfield position of register in regMap */
+		}BitField_t;
+
+		/**
+		 * @brief Register address field
+		 * 
+		 */
+		typedef struct
+		{
+			uint16_t regAddress;            //!< \brief Addressfield register address */
+			uint8_t  posMap;                //!< \brief Addressfield register regMap position */
+		}AddressField_t;
+
+		static const AddressField_t addrFields[];    //!< \brief Registers bitfields
+
 		/**
 		 * \brief register address enumeration for all sensor registers
 		 *
@@ -59,68 +143,170 @@ class Reg
 			REG_T25O         = (0x0300)     //!< \brief T25O temperature 25°c offset value
 		};
 
-		int regAddrItems[MAX_NUM_REG] = {
-			REG_STAT,
-			REG_ACSTAT,
-			REG_AVAL,
-			REG_ASPD,
-			REG_AREV,
-			REG_FSYNC,
-			REG_MOD_1,
-			REG_SIL,
-			REG_MOD_2,
-			REG_MOD_3,
-			REG_OFFX,
-			REG_OFFY,
-			REG_SYNCH,
-			REG_IFAB,
-			REG_MOD_4,
-			REG_TCO_Y,
-			REG_ADC_X,
-			REG_ADC_Y,
-			REG_D_MAG,
-			REG_T_RAW,
-			REG_IIF_CNT,
-			REG_T25O
-		};
-
 		uint16_t regMap[MAX_NUM_REG];              //!< Register map */
 
 		Reg();
 		~Reg();
 
+		bool isStatusReset(void);
+		bool isStatusWatchDog(void);
+		bool isStatusVoltage(void);
+		bool isStatusFuse(void);
+		bool isStatusDSPU(void);
+		bool isStatusOverflow(void);
+		bool isStatusXYOutOfLimit(void);
+		bool isStatusMagnitideOutOfLimit(void);
+		bool isStatusADC(void);
+		bool isStatusROM(void);
+		bool isStatusGMRXY(void);
+		bool isStatusGMRA(void);
+		bool isStatusRead(void);
+		uint8_t getSlaveNumber(void);
+		void setSlaveNumber(const uint8_t snr);
 
+		bool isActivationReset(void);
+		void setActivationReset(void);
+		void enableWatchdog(void);
+		void disableWatchdog(void);
+		bool isWatchdog(void);
+		void enableVoltageCheck(void);
+		void disableVoltageCheck(void);
+		bool isVoltageCheck(void);
+		void enableFuseCRC(void);
+		void disableFuseCRC(void);
+		bool isFuseCRC(void);
+		void enableDSPUbist(void);
+		void disableDSPUbist(void);
+		bool isDSPUbist(void);
+		void enableDSPUoverflow(void);
+		void disableDSPUoverflow(void);
+		bool isDSPUoverflow(void);
+		void enableXYCheck(void);
+		void disableXYCheck(void);
+		bool isXYCheck(void);
+		void enableGMRCheck(void);
+		void disableGMRCheck(void);
+		bool isGMRCheck(void);
+		void enableADCCheck(void);
+		void disableADCCheck(void);
+		bool isADCCheck(void);
+		void activateFirmwareReset(void);
+		bool isFirmwareReset(void);
 
-		/**
-		 * \brief Register access type
-		 */
-		enum Access_t
-		{
-			REG_ACCESS_R    = (0x01U),      //!< \brief Read access register */
-			REG_ACCESS_W    = (0x02U),      //!< \brief Write access register */
-			REG_ACCESS_RW   = (0x03U),      //!< \brief Read & write access register */
-			REG_ACCESS_RH   = (0x05U),      //!< \brief Read & internal hardware/firmware access register */
-			REG_ACCESS_RWH  = (0x07U),      //!< \brief Read & write & hardware/firmware access register */
-			REG_ACCESS_S    = (0x08U),      //!< \brief Sticky access register */
-			REG_ACCESS_RHS  = (0x0DU),      //!< \brief Read & internal sticky hardware/firmware access register */
-			REG_ACCESS_RES  = (0x10U)       //!< \brief Reserved access register */
-		};
+		bool isAngleValueNew(void);
+		uint16_t getAngleValue(void);
 
-		/**
-		 * \brief Bit field parameters
-		 */
-		typedef struct
-		{
-			uint8_t regAccess;              //!< \brief Bitfield register access */
-			uint8_t regAddress;             //!< \brief Bitfiled register address */
-			uint8_t mask;                   //!< \brief Bitfield mask */
-			uint8_t position;               //!< \brief Bitfiled position */
-			uint8_t resetValue;             //!< \brief Bitfield register reset value */
-		}BitField_t;
+		bool isSpeedValueNew(void);
+		uint16_t getSpeedValue(void);
+
+		bool isNumberOfRevolutionsNew(void);
+		uint16_t getNumberOfRevolutions(void);
+		uint16_t getFrameCounter(void);
+		void setFrameCounter(uint16_t fcnt);
+
+		uint16_t getFrameSyncCounter(void);
+		void setFrameSyncCounter(uint16_t fsync);
+		uint16_t getTemperatureValue(void);
+
+		void setFilterDecimation(uint8_t firmd);
+		uint8_t getFilterDecimation(void);
+		void setIIFMod(uint8_t iifmod);
+		uint8_t getIIFMod(void);
+		void holdDSPU(void);
+		void releaseDSPU(void);
+		bool isDSPUhold(void);
+		void setInternalClock(void);
+		void setExternalClock(void);
+		bool statusClockSource(void);
+
+		void enableFilterParallel(void);
+		void disableFilterParallel(void);
+		bool isFilterParallel(void);
+		void enableFilterInverted(void);
+		void disableFilterInverted(void);
+		bool isFilterInverted(void);
+		void enableADCTestVector(void);
+		void disableADCTestVector(void);
+		bool isADCTestVector(void);
+		void setFuseReload(void);
+		bool getFulseReload(void);
+		void setTestVectorX(uint8_t adctvx);
+		uint8_t getTestVectorX(void);
+		void setTestVectorY(uint8_t adctvs);
+		uint8_t getTestVectorY(void);
+
+		void directionClockwise(void);
+		void directionConterClockwise(void);
+		bool isAngleDirection(void);
+		void enablePrediction(void);
+		void disablePrediction(void);
+		bool isPrediction(void);
+		void setAngleRange(angleRange_t range);
+		angleRange_t getAngleRange(void);
+		void setCalibrationMode(calibrationMode_t autocal);
+		calibrationMode_t getCalibrationMode(void);
+
+		void enableSpikeFilter(void);
+		void disableSpikeFilter(void);
+		bool isSpikeFilter(void);
+		void enableSSCOpenDrain(void);
+		void enableSSCPushPull(void);
+		bool isSSCOutputMode(void);
+		void setAngleBase(uint16_t base);
+		uint16_t getAngleBase(void);
+		void setPadDriver(uint8_t pad);
+		uint8_t getPadDriver(void);
+
+		int16_t getOffsetX(void);
+		void setOffsetX(int16_t offx);
+
+		int16_t getOffsetY(void);
+		void setOffsetY(int16_t offy);
+
+		void setAmplitudeSynch(int16_t synch);
+		int16_t getAmplitudeSynch(void);
+
+		void setFIRUpdateRate(bool fir);
+		uint8_t getFIRUpdateRate(void);
+		void enableIFABOpenDrain(void);
+		void enableIFABPushPull(void);
+		bool isIFABOutputMode(void);
+		void setOrthogonality(int16_t ortho);
+		int16_t getOrthogonality(void);
+		void setHysteresisMode(uint8_t hyst);
+		uint8_t getHysteresisMode(void);
+
+		void setInterfaceMode(interfaceType_t ifmd);
+		interfaceType_t getInterfaceMode(void);
+		void setIFABres(uint8_t res);
+		uint8_t getIFABres(void);
+		void setHSMplp(uint8_t plp);
+		uint8_t getHSMplp(void);
+		void setOffsetTemperatureX(int8_t tcox);
+		int8_t getOffsetTemperatureX(void);
+		
+		void setOffsetTemperatureY(int8_t tcoy);
+		int8_t getOffsetTemperatureY(void);
+
+		void enableStartupBist(void);
+		void disableStartupBist(void);
+		bool isStartupBist(void);
+		void setCRCpar(uint16_t crc);
+		uint16_t getCRCpar(void);
+
+		uint16_t getADCx(void);
+		uint16_t getADCy(void);
+
+		uint16_t getVectorMagnitude(void);
+		uint16_t getTemperatureRAW(void);
+		bool isTemperatureToggle(void);
+
+		uint16_t getCounterIncrements(void);
+		uint16_t getT25Offset(void);
 
 	private:
 
-		static const BitField_t bitFields[];    //!< \brief Registers bitfields
+		static const BitField_t     bitFields[];        //!< \brief Registers bitfields
 
 		/**
 		 * \brief Bit fields
@@ -238,9 +424,9 @@ class Reg
 			REG_T25O_RESERVED1,
 		};
 
-		
-		bool getBitField (BitField_t bitField, uint8_t & bitFValue);
-		bool setBitField (BitField_t bitField, uint8_t bitFNewValue);
+
+		bool getBitField (BitField_t bitField, uint16_t & bitFValue);
+		bool setBitField (BitField_t bitField, uint16_t bitFNewValue);
 
 
 };

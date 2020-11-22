@@ -20,7 +20,7 @@
 #include "tle5012b_util.hpp"
 #include "tle5012b_reg.hpp"
 
-class Tle5012b: public Tle5012b_util
+class Tle5012b
 {
 	public:
 
@@ -322,7 +322,7 @@ class Tle5012b: public Tle5012b_util
 		errorTypes writeTempCoeff(uint16_t dataToWrite);           //!< \brief write register offset 0x0F
 
 		safetyWord safetyStatus;
-		uint16_t safetyWord;                     //!< the last fetched safety word
+		uint16_t safetyWord;                                       //!< the last fetched safety word
 
 		/*!
 		* Function reset the Sensor to fuse defaults
@@ -340,22 +340,6 @@ class Tle5012b: public Tle5012b_util
 		errorTypes readRegMap();
 
 		/*!
-		* Function reads all readable sensor registers
-		* and separates the information fields. This function
-		* is needed for finding the selected interface type.
-		* @param [in,out] sensorRegister point to the sensor register structure
-		* @return CRC error type
-		*/
-		errorTypes readSensorType();
-
-		/*!
-		* Function identifies the current set interface type
-		* according some characteristic register settings
-		* @return CRC error type
-		*/
-		errorTypes identifyInterfaceType();
-
-		/*!
 		* Functions switches between all possible interface types.
 		* ATTENTION: The different interfaces support not always all
 		* values, see documentation for the ability of each interface.
@@ -364,7 +348,7 @@ class Tle5012b: public Tle5012b_util
 		* @param iface type of interface to switch to
 		* @return CRC error type
 		*/
-		errorTypes writeInterfaceType(interfaceType iface);
+		errorTypes writeInterfaceType(Reg::interfaceType_t iface);
 
 		/*!
 		* Function set the sensors calibration mode. Keep in mind,
@@ -373,7 +357,7 @@ class Tle5012b: public Tle5012b_util
 		* @param [in] calibrationMode the auto calibration mode to set
 		* @return CRC error type
 		*/
-		errorTypes setCalibration(calibrationMode calMode);
+		errorTypes setCalibration(Reg::calibrationMode_t calMode);
 
 	protected:
 
@@ -409,11 +393,6 @@ class Tle5012b: public Tle5012b_util
 		* called so that the error bit is reset to 1.
 		*/
 		void resetSafety();
-
-		/*!
-		* Identify the sensor interface and PCB board
-		*/
-		void identify();
 
 };
 

@@ -13,8 +13,6 @@
 
 #include "TLE5012b.hpp"
 
-#include "Arduino.h"
-
 //-----------------------------------------------------------------------------
 // none_class functions
 
@@ -157,7 +155,6 @@ errorTypes Tle5012b::readFromSensor(uint16_t command, uint16_t &data, updTypes u
 
 	_command[0] = READ_SENSOR | command | upd | safe;
 	uint16_t _received[MAX_REGISTER_MEM] = {0};
-
 	sBus->sendReceive(_command, 1, _received, 2);
 	data = _received[0];
 	if (safe == SAFE_high)
@@ -598,8 +595,6 @@ errorTypes Tle5012b::writeSlaveNumber(uint16_t dataToWrite)
 }
 // end write functions
 
-
-
 errorTypes Tle5012b::readRegMap()
 {
 	errorTypes status;
@@ -607,144 +602,13 @@ errorTypes Tle5012b::readRegMap()
 	sBus->triggerUpdate();
 	for (int8_t i = 0; i < MAX_NUM_REG; i++)
 	{
-		status = readFromSensor(reg.regAddrItems[i], reg.regMap[i], UPD_low, SAFE_high);
+		status = readFromSensor(reg.addrFields[i].regAddress, reg.regMap[i], UPD_low, SAFE_high);
 	}
 
 	return (status);
 }
 
-
-
-
-
-//-----------------------------------------------------------------------------
-// begin register functions
-errorTypes Tle5012b::readSensorType()
-{
-	errorTypes status;
-	uint16_t rawData[3] = {0};
-
-	sBus->triggerUpdate();
-
-	status = readMoreRegisters(0xE, sensorRegister.registers , UPD_low, SAFE_high);
-
-	status = readMoreRegisters(reg.REG_TCO_Y + 0x3, rawData , UPD_low, SAFE_high);
-	sensorRegister.registers[15] = rawData[0];
-	sensorRegister.registers[16] = rawData[1];
-	sensorRegister.registers[17] = rawData[2];
-
-	status = readMoreRegisters(reg.REG_D_MAG + 0x2, rawData , UPD_low, SAFE_high);
-	sensorRegister.registers[18] = rawData[0];
-	sensorRegister.registers[19] = rawData[1];
-
-	status = readTempIIFCnt(rawData[0]);
-	sensorRegister.registers[20] = rawData[0];
-
-	status = readTempT25(rawData[0]);
-	sensorRegister.registers[21] = rawData[0];
-
-	sensorRegister.stat.reg   = sensorRegister.registers[0];
-	sensorRegister.acstat.reg = sensorRegister.registers[1];
-	sensorRegister.aval.reg   = sensorRegister.registers[2];
-	sensorRegister.aspd.reg   = sensorRegister.registers[3];
-	sensorRegister.arev.reg   = sensorRegister.registers[4];
-	sensorRegister.fsync.reg  = sensorRegister.registers[5];
-	sensorRegister.mod1.reg   = sensorRegister.registers[6];
-	sensorRegister.sil.reg    = sensorRegister.registers[7];
-	sensorRegister.mod2.reg   = sensorRegister.registers[8];
-	sensorRegister.mod3.reg   = sensorRegister.registers[9];
-	sensorRegister.offx.reg   = sensorRegister.registers[10];
-	sensorRegister.offy.reg   = sensorRegister.registers[11];
-	sensorRegister.synch.reg  = sensorRegister.registers[12];
-	sensorRegister.ifab.reg   = sensorRegister.registers[13];
-	sensorRegister.mod4.reg   = sensorRegister.registers[14];
-	sensorRegister.tcoy.reg   = sensorRegister.registers[15];
-	sensorRegister.adc.ADCX   = sensorRegister.registers[16];
-	sensorRegister.adc.ADCY   = sensorRegister.registers[17];
-	sensorRegister.dmag.reg   = sensorRegister.registers[18];
-	sensorRegister.traw.reg   = sensorRegister.registers[19];
-	sensorRegister.iifcnt.reg = sensorRegister.registers[20];
-	sensorRegister.t250.reg   = sensorRegister.registers[21];
-
-	return (status);
-}
-
-errorTypes Tle5012b::identifyInterfaceType()
-{
-	errorTypes status = readSensorType();
-	if (status != NO_ERROR) {
-		return (status);
-	}
-
-	sensorRegister.stat.fetch_SNR(sensorRegister.stat.reg);
-
-	sensorRegister.mod1.fetch_IIFMOD(sensorRegister.mod1.reg);
-	sensorRegister.mod1.fetch_DSPUHOLD(sensorRegister.mod1.reg);
-	sensorRegister.mod1.fetch_CLKSEL(sensorRegister.mod1.reg);
-	sensorRegister.mod1.fetch_FIRMD(sensorRegister.mod1.reg);
-
-	sensorRegister.mod2.fetch_AUTOCAL(sensorRegister.mod2.reg);
-	sensorRegister.mod2.fetch_PREDICT(sensorRegister.mod2.reg);
-	sensorRegister.mod2.fetch_ANGDIR(sensorRegister.mod2.reg);
-	sensorRegister.mod2.fetch_ANGRANGE(sensorRegister.mod2.reg);
-
-	sensorRegister.mod3.fetch_PADDRV(sensorRegister.mod3.reg);
-	sensorRegister.mod3.fetch_SSCOD(sensorRegister.mod3.reg);
-	sensorRegister.mod3.fetch_SPIKEF(sensorRegister.mod3.reg);
-
-	sensorRegister.ifab.fetch_IFADHYST(sensorRegister.ifab.reg);
-	sensorRegister.ifab.fetch_IFABOD(sensorRegister.ifab.reg);
-	sensorRegister.ifab.fetch_FIRUDR(sensorRegister.ifab.reg);
-
-	sensorRegister.tcoy.fetch_SBIST(sensorRegister.tcoy.reg);
-
-	sensorRegister.mod4.fetch_IFMD(sensorRegister.mod4.reg);
-	sensorRegister.mod4.fetch_IFABRES(sensorRegister.mod4.reg);
-	sensorRegister.mod4.fetch_HSMPLP(sensorRegister.mod4.reg);
-
-	identify();
-
-	return (status);
-}
-
-void Tle5012b::identify(){
-
-	switch (sensorRegister.mod4.IFMD)
-	{
-		case IIF:
-			sensorRegister.interface = IIF;
-			sensorRegister.sensorBoard = TLE5012B_E1000;
-			memcpy(sensorRegister.interfaceName,"IIF",sizeof("IIF"));
-			memcpy(sensorRegister.sensorName,"TLE5012B_E1000",sizeof("TLE5012B_E1000"));
-			break;
-		case PWM:
-			sensorRegister.interface = PWM;
-			memcpy(sensorRegister.interfaceName,"PWM",sizeof("PWM"));
-			if (sensorRegister.ifab.FIRUDR == 0x0 && sensorRegister.ifab.IFABOD == 0x0 )
-			{
-				sensorRegister.sensorBoard = TLE5012B_E5000;
-				memcpy(sensorRegister.sensorName,"TLE5012B_E5000",sizeof("TLE5012B_E5000"));
-			}else{
-				sensorRegister.sensorBoard = TLE5012B_E5020;
-				memcpy(sensorRegister.sensorName,"TLE5012B_E5020",sizeof("TLE5012B_E5020"));
-			}
-			break;
-		case HSM:
-			sensorRegister.interface = HSM;
-			sensorRegister.sensorBoard = TLE5012B_E3005;
-			memcpy(sensorRegister.interfaceName,"HSM",sizeof("HSM"));
-			memcpy(sensorRegister.sensorName,"TLE5012B_E3005",sizeof("TLE5012B_E3005"));
-			break;
-		case SPC:
-			sensorRegister.interface = SPC;
-			sensorRegister.sensorBoard = TLE5012B_E9000;
-			memcpy(sensorRegister.interfaceName,"SPC",sizeof("SPC"));
-			memcpy(sensorRegister.sensorName,"TLE5012B_E9000",sizeof("TLE5012B_E9000"));
-			break;
-	}
-}
-
-errorTypes Tle5012b::writeInterfaceType(interfaceType iface)
+errorTypes Tle5012b::writeInterfaceType(Reg::interfaceType_t iface)
 {
 	uint16_t rawData = 0;
 
@@ -761,7 +625,7 @@ errorTypes Tle5012b::writeInterfaceType(interfaceType iface)
 	return (status);
 }
 
-errorTypes Tle5012b::setCalibration(calibrationMode calMode)
+errorTypes Tle5012b::setCalibration(Reg::calibrationMode_t calMode)
 {
 	uint16_t rawData = 0;
 
