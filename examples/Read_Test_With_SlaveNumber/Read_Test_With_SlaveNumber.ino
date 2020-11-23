@@ -58,8 +58,8 @@ void setup() {
     checkError = sensor[i].begin();
   }
   Serial.print("init done! with checkError ");
-  Serial.println(checkError);
-  Serial.println("");
+  Serial.print("\n\ncheckerror: ");
+  Serial.println(checkError, HEX);
 
   uint16_t stat;
   uint8_t resp;
@@ -67,7 +67,7 @@ void setup() {
   for (int8_t i=0;i<SENSOR_NUM;i++)
   {
     sensor[i].readStatus(stat);
-    sensor[i].sensorRegister.stat.fetch_SNR(stat);
+    sensor[i].reg.getSlaveNumber();
     sensor[i].getAngleValue(a);
     sensor[i].safetyStatus.fetch_Safety(sensor[i].safetyWord);
   
@@ -75,7 +75,7 @@ void setup() {
     Serial.print("\tangle: ");
     Serial.print(a);
     Serial.print("\tSTAT SNR: ");
-    Serial.print(sensor[i].sensorRegister.stat.SNR);
+    Serial.print(sensor[i].reg.getSlaveNumber());
     Serial.print("\tRESP: ");
   
     switch (sensor[i].safetyStatus.responseSlave()) {

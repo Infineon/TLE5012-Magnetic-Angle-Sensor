@@ -112,7 +112,7 @@ double calculateAngleSpeed(double angRange, int16_t rawAngleSpeed, uint16_t firM
 
 //-----------------------------------------------------------------------------
 
-Tle5012b::Tle5012b():reg()
+Tle5012b::Tle5012b():reg(this)
 {
 	sBus = NULL;
 	en = NULL;

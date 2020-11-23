@@ -1,3 +1,4 @@
+
 /*!
  * \name        const
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
@@ -6,7 +7,7 @@
  * \brief       macros and other const variables
  *
  * \attention
- * Ths setup reduces variable memory so that the Read_Sensor_Type can run on MCUs
+ * Ths setup reduces variable memory so that the Read_Sensor_Registers can run on MCUs
  * with low memory by shifting global variable memory to main programm memory.
  */
 
@@ -80,4 +81,3 @@
 #define sc_Cal1           F("auto-cal. mode 1: update every angle update cycle")
 #define sc_Cal2           F("auto-cal. mode 2: update every 1.5 revolutions")
 #define sc_Cal3           F("auto-cal. mode 3: update every 11.25°")
-

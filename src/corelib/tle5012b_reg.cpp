@@ -162,8 +162,9 @@ const Reg::BitField_t Reg::bitFields[] =
 /**
  * @brief Construct a new Reg::Reg object
  * 
+ * @param p nested pointer to parent
  */
-Reg::Reg() : regMap()
+Reg::Reg(void * p): regMap(), parent_(p)
 {
 }
 
@@ -189,14 +190,14 @@ bool Reg::getBitField(BitField_t bitField, uint16_t &bitFValue)
 	bool err = false;
 	if ((REG_ACCESS_R & bitField.regAccess) == REG_ACCESS_R)
 	{
-		errorTypes status;
+		Tle5012b *p = static_cast<Tle5012b*>(parent_);
 		if ((REG_ACCESS_U & bitField.regAccess) == REG_ACCESS_U)
 		{
-			//sBus->triggerUpdate();
+			p->sBus->triggerUpdate();
 		}
-		//status = readFromSensor(bitField.regAddress, regMap[bitField.posMap], UPD_low, SAFE_high);
-
+		p->readFromSensor(bitField.regAddress, regMap[bitField.posMap], UPD_low, SAFE_high);
 		bitFValue = (( regMap[bitField.posMap] & bitField.mask) >> bitField.position);
+
 		err = true;
 	}
 
@@ -218,7 +219,10 @@ bool Reg::setBitField(BitField_t bitField, uint16_t bitFNewValue)
 
 	if ((REG_ACCESS_W & bitField.regAccess) == REG_ACCESS_W)
 	{
+		Tle5012b *p = static_cast<Tle5012b*>(parent_);
 		regMap[bitField.posMap] = (regMap[bitField.posMap] & ~bitField.mask) | ((bitFNewValue << bitField.position) & bitField.mask);
+		p->writeToSensor(bitField.regAddress, regMap[bitField.posMap], true);
+
 		err = true;
 	}
 

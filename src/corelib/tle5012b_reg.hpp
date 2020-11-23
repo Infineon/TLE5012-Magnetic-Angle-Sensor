@@ -145,7 +145,7 @@ class Reg
 
 		uint16_t regMap[MAX_NUM_REG];              //!< Register map */
 
-		Reg();
+		Reg(void* p);
 		~Reg();
 
 		bool isStatusReset(void);
@@ -428,6 +428,7 @@ class Reg
 		bool getBitField (BitField_t bitField, uint16_t & bitFValue);
 		bool setBitField (BitField_t bitField, uint16_t bitFNewValue);
 
+		void* parent_;
 
 };
 
