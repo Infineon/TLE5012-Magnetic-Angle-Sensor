@@ -76,7 +76,6 @@ void setup() {
 void loop() {
 }
 
-
 /**
  * @brief Function prints the binary code of each documented register
  * 

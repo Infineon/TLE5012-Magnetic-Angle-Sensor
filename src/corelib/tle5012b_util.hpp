@@ -25,6 +25,12 @@
 #include <stdlib.h>
 #include "TLE5012b.hpp"
 
+/**
+ * @addtogroup tle5012util
+ * 
+ * @{
+ */
+
 // Common macros
 #define TRIGGER_DELAY               5         //!< \brief 5 microseconds trigger delay time
 
@@ -92,5 +98,8 @@ enum safetyTypes
 	SAFE_low  = 0x0000,             //!< \brief switch of safety word generation
 	SAFE_high = 0x0001,             //!< \brief switch on safety word generation
 };
+/**
+ * @}
+ */
 
 #endif /* TLE5012B_UTIL_HPP */

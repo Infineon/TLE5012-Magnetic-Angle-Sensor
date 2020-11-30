@@ -195,9 +195,8 @@ bool Reg::getBitField(BitField_t bitField, uint16_t &bitFValue)
 		{
 			p->sBus->triggerUpdate();
 		}
-		p->readFromSensor(bitField.regAddress, regMap[bitField.posMap], UPD_low, SAFE_high);
+		p->readFromSensor(addrFields[bitField.posMap].regAddress, regMap[bitField.posMap], UPD_low, SAFE_high);
 		bitFValue = (( regMap[bitField.posMap] & bitField.mask) >> bitField.position);
-
 		err = true;
 	}
 
@@ -221,8 +220,7 @@ bool Reg::setBitField(BitField_t bitField, uint16_t bitFNewValue)
 	{
 		Tle5012b *p = static_cast<Tle5012b*>(parent_);
 		regMap[bitField.posMap] = (regMap[bitField.posMap] & ~bitField.mask) | ((bitFNewValue << bitField.position) & bitField.mask);
-		p->writeToSensor(bitField.regAddress, regMap[bitField.posMap], true);
-
+		p->writeToSensor(addrFields[bitField.posMap].regAddress, regMap[bitField.posMap], true);
 		err = true;
 	}
 
@@ -1527,6 +1525,27 @@ void Reg::setIFABres(uint8_t res)
 uint8_t Reg::getIFABres(void)
 {
 	uint16_t bitf = 0x00;
+	getBitField(bitFields[REG_MOD_4_HSMPLP], bitf);
+	return bitf;
+}
+
+/**
+ * @brief Set multipurpose register,
+ * 
+ */
+void Reg::setHSMplp(uint8_t plp)
+{
+	setBitField(bitFields[REG_MOD_4_HSMPLP], plp);
+}
+
+/**
+ * @brief Get multipurpose register
+ * 
+ * @return uint8_t multipurpose, PWM frequency, IIF resolution, SPC frame configuration
+ */
+uint8_t Reg::getHSMplp(void)
+{
+	uint16_t bitf = 0x00;
 	getBitField(bitFields[REG_MOD_4_IFABRES], bitf);
 	return bitf;
 }
@@ -1573,12 +1592,12 @@ void Reg::setOffsetTemperatureY(int8_t tcoy)
 int8_t Reg::getOffsetTemperatureY(void)
 {
 	uint16_t bitf = 0x00;
-	getBitField(bitFields[REG_MOD_4_TCOXT], bitf);
+	getBitField(bitFields[REG_TCO_Y_TCOYT], bitf);
 	if (bitf & 0x8000)
 	{
 		bitf = bitf * -1;
 	}
-	return bitf;
+	return (int8_t)bitf;
 }
 
 /**
@@ -1638,11 +1657,11 @@ uint16_t Reg::getCRCpar(void)
  * 
  * @return uint16_t ADC x
  */
-uint16_t Reg::getADCx(void)
+int16_t Reg::getADCx(void)
 {
 	uint16_t bitf = 0x00;
 	getBitField(bitFields[REG_ADC_X_ADCX], bitf);
-	return bitf;
+	return (int16_t)bitf;
 }
 
 /**
@@ -1650,11 +1669,11 @@ uint16_t Reg::getADCx(void)
  * 
  * @return uint16_t ADC y
  */
-uint16_t Reg::getADCy(void)
+int16_t Reg::getADCy(void)
 {
 	uint16_t bitf = 0x00;
-	getBitField(bitFields[REG_ADC_X_ADCX], bitf);
-	return bitf;
+	getBitField(bitFields[REG_ADC_Y_ADCY], bitf);
+	return (int16_t)bitf;
 }
 
 /**

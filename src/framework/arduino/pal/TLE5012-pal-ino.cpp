@@ -12,7 +12,7 @@
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 /**
- * @addtogroup tle5012inohw
+ * @addtogroup arduinoPal
  */
 
 /**

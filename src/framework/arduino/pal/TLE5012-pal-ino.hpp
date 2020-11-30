@@ -19,6 +19,7 @@
 
 /**
  * @addtogroup arduinoPal
+ *
  * @{
  */
 

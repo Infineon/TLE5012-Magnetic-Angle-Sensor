@@ -20,6 +20,12 @@
 #include "tle5012b_util.hpp"
 #include "tle5012b_reg.hpp"
 
+/**
+ * @addtogroup tle5012api
+ * 
+ * @{
+ */
+
 class Tle5012b
 {
 	public:
@@ -334,7 +340,6 @@ class Tle5012b
 		* Function reads all readable sensor registers
 		* and separates the information fields. This function
 		* is needed for finding the selected interface type.
-		* @param [out] reg.regMap point to the sensor register structure
 		* @return CRC error type
 		*/
 		errorTypes readRegMap();
@@ -354,7 +359,7 @@ class Tle5012b
 		* Function set the sensors calibration mode. Keep in mind,
 		* not all Sensor interface setups have the autocalibration
 		* switched on, so maybe you have to set it explicitly.
-		* @param [in] calibrationMode the auto calibration mode to set
+		* @param [in] calMode the auto calibration mode to set
 		* @return CRC error type
 		*/
 		errorTypes setCalibration(Reg::calibrationMode_t calMode);
@@ -396,4 +401,8 @@ class Tle5012b
 
 };
 
-#endif
+/**
+ * @}
+ */
+
+#endif /* TLE5012B_HPP */

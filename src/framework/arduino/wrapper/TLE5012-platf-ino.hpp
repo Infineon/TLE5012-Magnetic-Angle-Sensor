@@ -24,7 +24,7 @@
  * works with the Sens2Kit (Sensor including XMC1100 mcu), breakout board (only the Sensor
  * from the Sens2Kit) and bulk chip (read the section on how to connect the bulk chip via 3wire SPI).
  *
- * @addtogroup tle5012inohw
+ * @addtogroup platfIno
  * @{
  */
 

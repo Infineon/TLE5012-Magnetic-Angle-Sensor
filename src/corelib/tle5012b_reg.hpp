@@ -25,6 +25,12 @@
 #include <stdlib.h>
 #include "TLE5012b.hpp"
 
+/**
+ * @addtogroup tle5012reg
+ * 
+ * @{
+ */
+
 class Reg
 {
 	public:
@@ -148,6 +154,7 @@ class Reg
 		Reg(void* p);
 		~Reg();
 
+		// REG_STAT
 		bool isStatusReset(void);
 		bool isStatusWatchDog(void);
 		bool isStatusVoltage(void);
@@ -164,6 +171,7 @@ class Reg
 		uint8_t getSlaveNumber(void);
 		void setSlaveNumber(const uint8_t snr);
 
+		// REG_ACSTAT
 		bool isActivationReset(void);
 		void setActivationReset(void);
 		void enableWatchdog(void);
@@ -193,21 +201,26 @@ class Reg
 		void activateFirmwareReset(void);
 		bool isFirmwareReset(void);
 
+		// REG_AVAL
 		bool isAngleValueNew(void);
 		uint16_t getAngleValue(void);
 
+		// REG_ASPD
 		bool isSpeedValueNew(void);
 		uint16_t getSpeedValue(void);
 
+		// REG_AREV
 		bool isNumberOfRevolutionsNew(void);
 		uint16_t getNumberOfRevolutions(void);
 		uint16_t getFrameCounter(void);
 		void setFrameCounter(uint16_t fcnt);
 
+		// REG_FSYNC
 		uint16_t getFrameSyncCounter(void);
 		void setFrameSyncCounter(uint16_t fsync);
 		uint16_t getTemperatureValue(void);
 
+		// REG_MOD_1
 		void setFilterDecimation(uint8_t firmd);
 		uint8_t getFilterDecimation(void);
 		void setIIFMod(uint8_t iifmod);
@@ -219,6 +232,7 @@ class Reg
 		void setExternalClock(void);
 		bool statusClockSource(void);
 
+		// REG_SIL
 		void enableFilterParallel(void);
 		void disableFilterParallel(void);
 		bool isFilterParallel(void);
@@ -235,6 +249,7 @@ class Reg
 		void setTestVectorY(uint8_t adctvs);
 		uint8_t getTestVectorY(void);
 
+		// REG_MOD_2
 		void directionClockwise(void);
 		void directionConterClockwise(void);
 		bool isAngleDirection(void);
@@ -246,6 +261,7 @@ class Reg
 		void setCalibrationMode(calibrationMode_t autocal);
 		calibrationMode_t getCalibrationMode(void);
 
+		// REG_MOD_3
 		void enableSpikeFilter(void);
 		void disableSpikeFilter(void);
 		bool isSpikeFilter(void);
@@ -257,15 +273,19 @@ class Reg
 		void setPadDriver(uint8_t pad);
 		uint8_t getPadDriver(void);
 
+		// REG_OFFX
 		int16_t getOffsetX(void);
 		void setOffsetX(int16_t offx);
 
+		// REG_OFFY
 		int16_t getOffsetY(void);
 		void setOffsetY(int16_t offy);
 
+		// REG_SYNCH
 		void setAmplitudeSynch(int16_t synch);
 		int16_t getAmplitudeSynch(void);
 
+		// REG_IFAB
 		void setFIRUpdateRate(bool fir);
 		uint8_t getFIRUpdateRate(void);
 		void enableIFABOpenDrain(void);
@@ -276,6 +296,7 @@ class Reg
 		void setHysteresisMode(uint8_t hyst);
 		uint8_t getHysteresisMode(void);
 
+		// REG_MOD_4
 		void setInterfaceMode(interfaceType_t ifmd);
 		interfaceType_t getInterfaceMode(void);
 		void setIFABres(uint8_t res);
@@ -284,23 +305,26 @@ class Reg
 		uint8_t getHSMplp(void);
 		void setOffsetTemperatureX(int8_t tcox);
 		int8_t getOffsetTemperatureX(void);
-		
+
+		// REG_TCO_Y
 		void setOffsetTemperatureY(int8_t tcoy);
 		int8_t getOffsetTemperatureY(void);
-
 		void enableStartupBist(void);
 		void disableStartupBist(void);
 		bool isStartupBist(void);
 		void setCRCpar(uint16_t crc);
 		uint16_t getCRCpar(void);
 
-		uint16_t getADCx(void);
-		uint16_t getADCy(void);
+		// REG_ADC_X REG_ADC_Y
+		int16_t getADCx(void);
+		int16_t getADCy(void);
 
+		// REG_D_MAG
 		uint16_t getVectorMagnitude(void);
 		uint16_t getTemperatureRAW(void);
 		bool isTemperatureToggle(void);
 
+		// REG_T25O
 		uint16_t getCounterIncrements(void);
 		uint16_t getT25Offset(void);
 
@@ -431,5 +455,9 @@ class Reg
 		void* parent_;
 
 };
+
+/**
+ * @}
+ */
 
 #endif /* TLE5012B_REG_HPP */
