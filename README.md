@@ -1,6 +1,6 @@
 # TLE5012B-Angle-Sensor
 
-| <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE_5012B_DSO-8-16_plain.jpg" width=200 style="background:white"> | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE5012B_breakout.png" width=200 style="background:white"> | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE5012B_horizontal.png" width=400 style="background:white"> |
+| <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE_5012B_DSO-8-16_plain.jpg" width=200 style="background:white"> | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE5012B_breakout.png" width=150 style="background:white"> | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE5012B_horizontal.png" width=400 style="background:white"> |
 |:--:|:--:|:--:|
 | *bulk sensor* | *breakout board* | *Sensor2Go kit* 
 
@@ -53,7 +53,7 @@ Please have a look at the [wiki](https://github.com/infineon/TLE5012-Magnetic-An
 * [GUI for Angle Sensor 2GO](https://www.infineon.com/dgdl/Infineon-Software-Magnetic-Angle-Sensor-2Go-SW-v01_01-SW-v01_01-EN.zip?fileId=5546d462675a69720167799771c5519e)
 * [XMC-for-Arduino](https://github.com/Infineon/XMC-for-Arduino)
 
-[//]: # (* [WICED Studio](https://community.cypress.com/community/software-forums/wiced-wifi/wiced-wifi-documentation)* [Cypress Evaluation Kit CYW43907AEVAL1F](https://www.cypress.com/CYW943907AEVAL1F))
+<!--- * [WICED Studio](https://community.cypress.com/community/software-forums/wiced-wifi/wiced-wifi-documentation)* [Cypress Evaluation Kit CYW43907AEVAL1F](https://www.cypress.com/CYW943907AEVAL1F)) --->
 
 ### License
 

@@ -78,7 +78,7 @@ void loop() {
 
 void printval(uint16_t regValue, String regType)
 {
-  Serial.print("\t0x");
+  Serial.print("0x");
   Serial.print(regValue,HEX);
   Serial.print("\t");
 
@@ -147,7 +147,7 @@ void show_STAT()
   Serial.println(valb ? sc_NOGMRXY0 : sc_NOGMRXY1);
 
   valb = Tle5012Sensor.reg.isStatusROM();
-  Serial.print(sc_nogmrxy);
+  Serial.print(sc_srom);
   printval(valb,"1,  boolean\tr\t10    ");
   Serial.println(valb ? sc_SROM0 : sc_SROM1);
 
@@ -435,7 +435,7 @@ void show_MOD2()
 
   val = Tle5012Sensor.reg.getAngleRange();
   Serial.print(sc_angrange);
-  printval(val,"1, boolean \tr w\t11:14");
+  printval(val,"1, boolean \trw\t11:14");
   Serial.println(
                 val == 0x080
                   ? sc_arng0
@@ -445,12 +445,12 @@ void show_MOD2()
 
   valb = Tle5012Sensor.reg.isAngleDirection();
   Serial.print(sc_angdir);
-  printval(valb,"1, boolean \tr w\t10  ");
+  printval(valb,"1, boolean \trw\t10  ");
   Serial.println(valb ? sc_adir0 :sc_adir1);
 
   valb = Tle5012Sensor.reg.isPrediction();
   Serial.print(sc_predict);
-  printval(valb,"1, boolean \tr w\t2   ");
+  printval(valb,"1, boolean \trw\t2   ");
   Serial.println(valb ? sc_pred0 :sc_pred1);
 
   val = Tle5012Sensor.reg.getCalibrationMode();
@@ -476,7 +476,8 @@ void show_MOD3()
 
   val = Tle5012Sensor.reg.getAngleBase();
   Serial.print(sc_angbase);
-  printval(val,"12,uint16_t\tr w\t4:15 Angle Base sets the 0° angle position: ");
+  printval(val,"12,uint16_t \trw\t4:15");
+  Serial.print("Angle Base at 0°: ");
   Serial.println(
                 val == 0x800
                   ? sc_angb0
@@ -486,7 +487,8 @@ void show_MOD3()
 
   val = Tle5012Sensor.reg.getPadDriver();
   Serial.print(sc_paddrv);
-  printval(val,"2, uint8_t \trw\t0:1  Configuration of Pad-Driver: ");
+  printval(val,"2,  uint8_t      rw \t0:1");
+  Serial.print("Config of Pad-Driver: ");
   Serial.println(
                 val == 0
                   ? sc_pad0
@@ -498,12 +500,12 @@ void show_MOD3()
 
   valb = Tle5012Sensor.reg.isSSCOutputMode();
   Serial.print(sc_sscod);
-  printval(valb,"1, boolean \tr w\t2   ");
+  printval(valb,"1, boolean \trw\t2   ");
   Serial.println(valb ? sc_ssco0 :sc_ssco1);
 
   valb = Tle5012Sensor.reg.isSpikeFilter();
   Serial.print(sc_spikef);
-  printval(valb,"1, boolean \tr w\t3   ");
+  printval(valb,"1, boolean \trw\t3   ");
   Serial.println(valb ? sc_spik0 :sc_spik1);
 }
 
@@ -538,12 +540,12 @@ void show_IFAB()
   Serial.println(Tle5012Sensor.reg.REG_IFAB,HEX);
 
   Serial.print(sc_ortho);
-  printval(Tle5012Sensor.reg.getOrthogonality(),"3,uint16_t\tr w\t4:15 ");
+  printval(Tle5012Sensor.reg.getOrthogonality(),"3, uint16_t\trw\t4:15 ");
   Serial.println(sc_ORTH);
 
   val = Tle5012Sensor.reg.getHysteresisMode();
   Serial.print(sc_hyst);
-  printval(val,"2, uint8_t \trw\t0:1  HSM and IIF Mode:");
+  printval(val,"2, uint8_t \trw\t0:1  \tHSM and IIF Mode:");
   Serial.println(
               (iface == 0 || iface == 2
                 ? (val == 0
@@ -567,12 +569,12 @@ void show_IFAB()
 
   val = Tle5012Sensor.reg.getFIRUpdateRate();
   Serial.print(sc_fir);
-  printval(val,"1, boolean \tr w\t2   ");
+  printval(val,"1, boolean \trw\t2   ");
   Serial.println(valb ? sc_fir0 : sc_fir1);
 
   val = Tle5012Sensor.reg.isIFABOutputMode();
   Serial.print(sc_ifabod);
-  printval(val,"1, boolean \tr w\t2   ");
+  printval(val,"1, boolean \trw\t2   ");
   Serial.println(valb ? sc_PushPull : sc_PushPull);
 }
 
@@ -586,12 +588,12 @@ void show_MOD4()
   Serial.println(Tle5012Sensor.reg.REG_MOD_4,HEX);
 
   Serial.print(sc_tcoxt);
-  printval(Tle5012Sensor.reg.getOffsetTemperatureX(),"7,  int8_t\trw\t9:15  ");
+  printval(Tle5012Sensor.reg.getOffsetTemperatureX(),"7,  int8_t\t\trw\t9:15  ");
   Serial.println(sc_TCOXT);
 
   val = Tle5012Sensor.reg.getHSMplp();
   Serial.print(sc_hsmplp);
-  printval(val,"2, uint8_t \t   \t5:8  ");
+  printval(val,"2,  uint8_t\trw\t5:8  ");
   Serial.println(
     (iface == 0
       ? sc_hsm0
@@ -605,7 +607,7 @@ void show_MOD4()
 
   val = Tle5012Sensor.reg.getIFABres();
   Serial.print(sc_ifabres);
-  printval(val,"2, uint8_t \t   \t3:4  ");
+  printval(val,"2,  uint8_t\trw\t3:4  ");
   Serial.println(
           (iface == 1
             ? (val == 0
@@ -636,7 +638,8 @@ void show_MOD4()
 
   Serial.print(sc_ifmd);
   printval(Tle5012Sensor.reg.getInterfaceMode(),"2,  uint8_t\trw\t0:1  ");
-  Serial.println(sc_IFDM);
+  Serial.print(sc_IFDM0);
+  Serial.println(Tle5012Sensor.reg.getInterfaceMode());
 }
 
 void show_TCOTY()
@@ -648,7 +651,7 @@ void show_TCOTY()
   Serial.println(Tle5012Sensor.reg.REG_TCO_Y,HEX);
 
   Serial.print(sc_tcoyt);
-  printval(Tle5012Sensor.reg.getOffsetTemperatureY(),"7,  int8_t \tr\t9:15  ");
+  printval(Tle5012Sensor.reg.getOffsetTemperatureY(),"7, int8_t  \tr\t9:15  ");
   Serial.println(sc_TCOYT);
 
   valb = Tle5012Sensor.reg.isStartupBist();
@@ -657,7 +660,7 @@ void show_TCOTY()
   Serial.println(valb ? sc_BISTenable : sc_BISTdisable);
 
   Serial.print(sc_crcpar);
-  printval(Tle5012Sensor.reg.getCRCpar(),"7,  int8_t\trw\t0:7   ");
+  printval(Tle5012Sensor.reg.getCRCpar(),"7,  int8_t\t\trw\t0:7   ");
   Serial.println(sc_CPAR);
 }
 
@@ -690,7 +693,7 @@ void show_ADC()
   Serial.print("\nRegister:\tIIFCNT\tOffset: 0x");
   Serial.println(Tle5012Sensor.reg.REG_IIF_CNT,HEX);
   Serial.print(sc_iifcnt);
-  printval(Tle5012Sensor.reg.getCounterIncrements(),"13, uint16_t\tr\t0:13 ");
+  printval(Tle5012Sensor.reg.getCounterIncrements(),"13, uint16_t    r   \t0:13 ");
   Serial.println(sc_TRAWIIFCNT);
 
   Serial.print("\nRegister:\tT250\tOffset: 0x");

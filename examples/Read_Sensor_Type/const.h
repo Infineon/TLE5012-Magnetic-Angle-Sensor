@@ -57,7 +57,8 @@
 #define sc_SPC          F(" = SPC")
 #define sc_ifsetSPC     F("\nSPC Interface settings\n")
 #define sc_SPCframe     F("\nMOD4 Frame config:      \t")
-#define sc_SPCtime      F("\nIFAB Unit time:         \t")
+#define sc_SPCtime      F("\nSPC Unit time:          \t")
+#define sc_SPCtrigger   F("\nSPC Trigger time:       \t")
 #define sc_SPCpin       F("\nIFAB IFA pin:           \t")
 
 // additional
@@ -80,4 +81,3 @@
 #define sc_Cal1           F("auto-cal. mode 1: update every angle update cycle")
 #define sc_Cal2           F("auto-cal. mode 2: update every 1.5 revolutions")
 #define sc_Cal3           F("auto-cal. mode 3: update every 11.25°")
-

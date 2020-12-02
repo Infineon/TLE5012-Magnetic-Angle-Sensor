@@ -271,8 +271,13 @@ void spcInterface()
 
   val = Tle5012Sensor.reg.getHysteresisMode();
   Serial.print(sc_SPCtime);
-  Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
+  Serial.print(val == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
 
+  val = Tle5012Sensor.reg.getHSMplp();
+  Serial.print(sc_SPCtrigger);
+  Serial.print(val == 0 ? "90 μs" : "t_mlow * 12 UT");
+
+ 
   Serial.print(sc_SPCpin);
   Serial.print(Tle5012Sensor.reg.isIFABOutputMode() ? sc_OpenDrain : sc_PushPull);
 }

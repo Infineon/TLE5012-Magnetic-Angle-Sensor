@@ -300,7 +300,7 @@
 #define sc_hsmplp         F("HSMPLP    ")
 #define sc_ifabres        F("IFABRES   ")
 #define sc_tcoxt          F("TCOXT     ")
-
+#define sc_IFDM0          F("Interface Mode on IFA,IFB,IFC: ")
 #define sc_tcoyt          F("TCOYT     ")
 #define sc_hsm0           F("IIF Absolute Count, x0xxb enabled, x1xxb disabled")
 #define sc_hsm1           F("PWM Error Indication, xx0xb enabled, xx1xb disabled")
@@ -317,5 +317,3 @@
 #define sc_ttgl           F("TTGL      ")
 #define sc_iifcnt         F("IIFCNT    ")
 #define sc_t250           F("T250      ")
-
-
