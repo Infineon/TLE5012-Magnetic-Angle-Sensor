@@ -275,9 +275,8 @@ void spcInterface()
 
   val = Tle5012Sensor.reg.getHSMplp();
   Serial.print(sc_SPCtrigger);
-  Serial.print(val == 0 ? "90 μs" : "t_mlow * 12 UT");
+  Serial.print(val == 0 ? "90 μs" : "t_mlow + 12 UT");
 
- 
   Serial.print(sc_SPCpin);
   Serial.print(Tle5012Sensor.reg.isIFABOutputMode() ? sc_OpenDrain : sc_PushPull);
 }

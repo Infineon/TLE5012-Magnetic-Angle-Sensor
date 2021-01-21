@@ -1,8 +1,13 @@
 /**
  * Run Arduino file Read_Angle_Value_Processing before running this file.
- * This is a an example of using the Angle Value that we get from the TLE5012, to show the angle that is measured in a unit circle.
- * If angle measured is greater than 180° then it is represented as a negative degree. For example 210° will be represented as -150°.
- * Using the visual, you can set the angle of the magnetic sensor to (more or less) exactly the value you want.
+ * This is a an example of using the Angle Value that we get from the TLE5012,
+ * to show the angle that is measured in a unit circle.
+ * If angle measured is greater than 180° then it is represented as a negative degree.
+ * For example 210° will be represented as -150°.
+ * Using the visual, you can set the angle of the magnetic sensor to (more or less)
+ * exactly the value you want.
+ *
+ * needs: Read_Angle_Value_Processing.ino
  */
 import processing.serial.*;
 

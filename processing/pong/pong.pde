@@ -1,5 +1,8 @@
 /**
- * Run Read_Angle_Value_Processing before running this. This program runs the game Pong. You can control your paddle with the TLE5012.
+ * Run Read_Angle_Value_Processing before running this. This program runs the game Pong.
+ * You can control your paddle with the TLE5012.
+ *
+ * needs: Read_Angle_Value_Processing.ino
  */
 
 import processing.serial.*;
