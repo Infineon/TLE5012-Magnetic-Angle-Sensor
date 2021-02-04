@@ -1,9 +1,9 @@
 /**
  * You can play snake use the TLE5012 Magnet Sensor. In order to play,
  * please change the delay(10) to delay(100) 
- * in the Read_Angle_Value_Processing and run it.
+ * in the readAngleValueProcessing and run it.
  *
- * needs: Read_Angle_Value_Processing.ino
+ * needs: readAngleValueProcessing.ino
  */
 
 import processing.serial.*;

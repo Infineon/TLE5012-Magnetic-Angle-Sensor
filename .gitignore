@@ -28,6 +28,8 @@
 /build/
 /downloads/
 /packages/
+docs/doxygen/doxyfile_auto
+docs/doxygen/build/doxygen-log.txt
 
 package_adafruit_index.json
 package_index.json

@@ -27,7 +27,7 @@
 
 /**
  * @addtogroup tle5012reg
- * 
+ *
  * @{
  */
 
@@ -99,17 +99,17 @@ class Reg
 		 */
 		typedef struct
 		{
-			uint8_t regAccess;              //!< \brief Bitfield register access */
-			uint8_t regAddress;             //!< \brief Bitfiled register address */
-			uint8_t mask;                   //!< \brief Bitfield mask */
-			uint8_t position;               //!< \brief Bitfiled position */
-			uint8_t resetValue;             //!< \brief Bitfield register reset value */
-			uint8_t posMap;                 //!< \brief Bitfield position of register in regMap */
+			uint8_t  regAccess;              //!< \brief Bitfield register access */
+			uint16_t regAddress;             //!< \brief Bitfiled register address */
+			uint16_t mask;                   //!< \brief Bitfield mask */
+			uint8_t  position;               //!< \brief Bitfiled position */
+			uint8_t  resetValue;             //!< \brief Bitfield register reset value */
+			uint8_t  posMap;                 //!< \brief Bitfield position of register in regMap */
 		}BitField_t;
 
 		/**
 		 * @brief Register address field
-		 * 
+		 *
 		 */
 		typedef struct
 		{
@@ -125,28 +125,28 @@ class Reg
 		 */
 		enum Addr_t
 		{
-			REG_STAT         = (0x0000),    //!< \brief STAT status register
-			REG_ACSTAT       = (0x0010),    //!< \brief ACSTAT activation status register
-			REG_AVAL         = (0x0020),    //!< \brief AVAL angle value register
-			REG_ASPD         = (0x0030),    //!< \brief ASPD angle speed register
-			REG_AREV         = (0x0040),    //!< \brief AREV angle revolution register
-			REG_FSYNC        = (0x0050),    //!< \brief FSYNC frame synchronization register
-			REG_MOD_1        = (0x0060),    //!< \brief MOD_1 interface mode1 register
-			REG_SIL          = (0x0070),    //!< \brief SIL register
-			REG_MOD_2        = (0x0080),    //!< \brief MOD_2 interface mode2 register
-			REG_MOD_3        = (0x0090),    //!< \brief MOD_3 interface mode3 register
-			REG_OFFX         = (0x00A0),    //!< \brief OFFX offset x
-			REG_OFFY         = (0x00B0),    //!< \brief OFFY offset y
-			REG_SYNCH        = (0x00C0),    //!< \brief SYNCH synchronicity
-			REG_IFAB         = (0x00D0),    //!< \brief IFAB register
-			REG_MOD_4        = (0x00E0),    //!< \brief MOD_4 interface mode4 register
-			REG_TCO_Y        = (0x00F0),    //!< \brief TCO_Y temperature coefficient register
-			REG_ADC_X        = (0x0100),    //!< \brief ADC_X ADC X-raw value
-			REG_ADC_Y        = (0x0110),    //!< \brief ADC_Y ADC Y-raw value
-			REG_D_MAG        = (0x0140),    //!< \brief D_MAG angle vector magnitude
-			REG_T_RAW        = (0x0150),    //!< \brief T_RAW temperature sensor raw-value
-			REG_IIF_CNT      = (0x0200),    //!< \brief IIF_CNT IIF counter value
-			REG_T25O         = (0x0300)     //!< \brief T25O temperature 25°c offset value
+			REG_STAT         = (0x0000U),    //!< \brief STAT status register
+			REG_ACSTAT       = (0x0010U),    //!< \brief ACSTAT activation status register
+			REG_AVAL         = (0x0020U),    //!< \brief AVAL angle value register
+			REG_ASPD         = (0x0030U),    //!< \brief ASPD angle speed register
+			REG_AREV         = (0x0040U),    //!< \brief AREV angle revolution register
+			REG_FSYNC        = (0x0050U),    //!< \brief FSYNC frame synchronization register
+			REG_MOD_1        = (0x0060U),    //!< \brief MOD_1 interface mode1 register
+			REG_SIL          = (0x0070U),    //!< \brief SIL register
+			REG_MOD_2        = (0x0080U),    //!< \brief MOD_2 interface mode2 register
+			REG_MOD_3        = (0x0090U),    //!< \brief MOD_3 interface mode3 register
+			REG_OFFX         = (0x00A0U),    //!< \brief OFFX offset x
+			REG_OFFY         = (0x00B0U),    //!< \brief OFFY offset y
+			REG_SYNCH        = (0x00C0U),    //!< \brief SYNCH synchronicity
+			REG_IFAB         = (0x00D0U),    //!< \brief IFAB register
+			REG_MOD_4        = (0x00E0U),    //!< \brief MOD_4 interface mode4 register
+			REG_TCO_Y        = (0x00F0U),    //!< \brief TCO_Y temperature coefficient register
+			REG_ADC_X        = (0x0100U),    //!< \brief ADC_X ADC X-raw value
+			REG_ADC_Y        = (0x0110U),    //!< \brief ADC_Y ADC Y-raw value
+			REG_D_MAG        = (0x0140U),    //!< \brief D_MAG angle vector magnitude
+			REG_T_RAW        = (0x0150U),    //!< \brief T_RAW temperature sensor raw-value
+			REG_IIF_CNT      = (0x0200U),    //!< \brief IIF_CNT IIF counter value
+			REG_T25O         = (0x0300U)     //!< \brief T25O temperature 25°c offset value
 		};
 
 		uint16_t regMap[MAX_NUM_REG];              //!< Register map */
@@ -447,7 +447,6 @@ class Reg
 			REG_T25O_T250,
 			REG_T25O_RESERVED1,
 		};
-
 
 		bool getBitField (BitField_t bitField, uint16_t & bitFValue);
 		bool setBitField (BitField_t bitField, uint16_t bitFNewValue);

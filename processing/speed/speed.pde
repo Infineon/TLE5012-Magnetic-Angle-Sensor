@@ -1,10 +1,10 @@
 /** //<>// //<>// //<>// //<>// //<>//
- * Run Arduino file Read_Speed_Processing before running this file.
+ * Run Arduino file readSpeedProcessing before running this file.
  * This program gives a visual of the angle speed of the magnet sensor as a speedometer.
  * Every time you get to the target speed, you click on the screen or press any button
  * to start again with a higher target speed.
  *
- * needs: Read_Speed_Processing.ino
+ * needs: readSpeedProcessing.ino
  */
 import processing.serial.*;
 

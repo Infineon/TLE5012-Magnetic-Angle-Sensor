@@ -1,5 +1,5 @@
 /*!
- * \name        Read_Angle_Test
+ * \name        readAngleTest
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
  * \version     2.0.1

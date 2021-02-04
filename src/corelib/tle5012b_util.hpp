@@ -66,12 +66,6 @@
 #define TEMP_OFFSET                 152.0     //!< \brief values used to calculate the temperature
 #define TEMP_DIV                    2.776
 
-// Support macros
-//!< \brief Prints a binary number with leading zeros (Automatic Handling)
-#define PRINTBIN(Num) for (uint32_t t = (1UL<< (sizeof(Num)*8)-1); t; t >>= 1) Serial.write(Num  & t ? '1' : '0');
-//!< \brief Prints a binary number with leading zeros (Automatic Handling) with space
-#define PRINTBINS(Num) for (uint32_t t = (1UL<< (sizeof(Num)*8)-1); t; t >>= 1) Serial.write(Num  & t ? " 1 " : " 0 ");
-
 /**
  * @brief Error types from safety word
  */

@@ -10,17 +10,17 @@ Library of Infineon's highly sensitive [TLE5012B](https://www.infineon.com/cms/e
 <table>
     <tr>
         <td><img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/arduino-logo.png" width=200></td>
-    <!---    <td><img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/wiced-logo.png" width=200></td> --->
+        <td><img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/wiced-logo.png" width=200></td>
         <td><img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/cross-platform.png" width=200></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/Arduino-API">Arduino API</a></td>
-    <!---    <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/WICED-API">WICED API</a></td> --->
+        <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/WICED-API">WICED API</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/TLE5012B-API/">TLE5012B API</a><br><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/TLE5012BMotor-API">TLE5012B Register API</a></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/Ino-Getting-Started">Getting Started</a></td>
-    <!---    <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/CW-Getting-Started">Getting Started</a></td> --->
+        <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/CW-Getting-Started">Getting Started</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/Porting-Guide">Porting Guide</a></td>
     </tr>
 </table>
@@ -52,8 +52,8 @@ Please have a look at the [wiki](https://github.com/infineon/TLE5012-Magnetic-An
 * [TLE5012B manual](https://www.infineon.com/dgdl/Infineon-Angle_Sensor_TLE5012B-UM-v01_02-en-UM-v01_02-EN.pdf?fileId=5546d46146d18cb40146ec2eeae4633b)
 * [GUI for Angle Sensor 2GO](https://www.infineon.com/dgdl/Infineon-Software-Magnetic-Angle-Sensor-2Go-SW-v01_01-SW-v01_01-EN.zip?fileId=5546d462675a69720167799771c5519e)
 * [XMC-for-Arduino](https://github.com/Infineon/XMC-for-Arduino)
-
-<!--- * [WICED Studio](https://community.cypress.com/community/software-forums/wiced-wifi/wiced-wifi-documentation)* [Cypress Evaluation Kit CYW43907AEVAL1F](https://www.cypress.com/CYW943907AEVAL1F)) --->
+* [WICED Studio](https://community.cypress.com/community/software-forums/wiced-wifi/wiced-wifi-documentation)
+* [Cypress Evaluation Kit CYW43907AEVAL1F](https://www.cypress.com/CYW943907AEVAL1F)
 
 ### License
 

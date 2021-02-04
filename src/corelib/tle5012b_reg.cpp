@@ -157,11 +157,11 @@ const Reg::BitField_t Reg::bitFields[] =
 
 	{REG_ACCESS_R,   REG_T25O,    0x1FFF, 0,  0x00, 21},       //!< 86 bit 8:0 T250 Signed offset value at 25°C temperature; 1dig=0.36°C
 	{REG_ACCESS_RES, REG_T25O,    0xFE00, 9,  0x00, 21},       //!< 87 bits 15:9 Reserved1
- };
+};
 
 /**
  * @brief Construct a new Reg::Reg object
- * 
+ *
  * @param p nested pointer to parent
  */
 Reg::Reg(void * p): regMap(), parent_(p)
@@ -170,15 +170,15 @@ Reg::Reg(void * p): regMap(), parent_(p)
 
 /**
  * @brief Destroy the Reg::Reg object
- * 
+ *
  */
 Reg::~Reg()
 {
 }
 
 /**
- * @brief       Gets the bit field value 
- * 
+ * @brief       Gets the bit field value
+ *
  * @param[in]   bitField    Bit field parameters structure
  * @param[out]  bitFValue   Value of the bit field
  * @retval      TRUE if success
@@ -204,8 +204,8 @@ bool Reg::getBitField(BitField_t bitField, uint16_t &bitFValue)
 }
 
 /**
- * @brief       Sets the bit field value 
- * 
+ * @brief       Sets the bit field value
+ *
  * @param[in]   bitField        Bit field parameters structure
  * @param[in]   bitFNewValue    Value of the bit field
  * @retval      TRUE if success
@@ -229,7 +229,7 @@ bool Reg::setBitField(BitField_t bitField, uint16_t bitFNewValue)
 
 /**
  * @brief Indication that there was a reset state
- * 
+ *
  * @return true  indication of reset, power up power break firmware or active reset
  * @return false no reset since last readout
  */
@@ -242,7 +242,7 @@ bool Reg::isStatusReset(void)
 
 /**
  * @brief Permanent check of watchdog
- * 
+ *
  * @return true  watchdog counter expired, ASRST must be activated
  * @return false normal operation
  */
@@ -255,7 +255,7 @@ bool Reg::isStatusWatchDog(void)
 
 /**
  * @brief Permanent check of internal and external supply voltages
- * 
+ *
  * @return true  over voltage, GND off
  * @return false voltages ok
  */
@@ -268,7 +268,7 @@ bool Reg::isStatusVoltage(void)
 
 /**
  * @brief Cyclic CRC check of configuration registers and startup CRC
- * 
+ *
  * @return true  CRC fail
  * @return false CRC ok
  */
@@ -281,7 +281,7 @@ bool Reg::isStatusFuse(void)
 
 /**
  * @brief Check DSPU, CORDIC and CAPCOM at startup
- * 
+ *
  * @return true  DSPU self-test not ok or still running
  * @return false DSPU self-test ok
  */
@@ -294,7 +294,7 @@ bool Reg::isStatusDSPU(void)
 
 /**
  * @brief Cyclic scheck of DSPU (Digital Signal Processing Unit) overflow
- * 
+ *
  * @return true  DSPU overflow occurred
  * @return false No DSPU overflow occurred
  */
@@ -307,7 +307,7 @@ bool Reg::isStatusOverflow(void)
 
 /**
  * @brief Cyclic check of X and > raw values
- * 
+ *
  * @return true  X,Y data out of limit
  * @return false X,Y data ok
  */
@@ -320,7 +320,7 @@ bool Reg::isStatusXYOutOfLimit(void)
 
 /**
  * @brief Vector lengths cyclic check of X,Y values after error compensation
- * 
+ *
  * @return true  GMR-magnitude out of limit
  * @return false GMR magnitude ok
  */
@@ -333,7 +333,7 @@ bool Reg::isStatusMagnitideOutOfLimit(void)
 
 /**
  * @brief Check signal path with test vectors
- * 
+ *
  * @return true  Test vetors out of limit
  * @return false Test vectors ok
  */
@@ -346,7 +346,7 @@ bool Reg::isStatusADC(void)
 
 /**
  * @brief Check of ROM-CRC at statup
- * 
+ *
  * @return true  CRC fail or running
  * @return false CRC ok
  */
@@ -359,7 +359,7 @@ bool Reg::isStatusROM(void)
 
 /**
  * @brief No valid GMR X,Y values, cyclic check of ADC input
- * 
+ *
  * @return true  no valid GMR X,Y values
  * @return false valid GMR X,Y value
  */
@@ -372,7 +372,7 @@ bool Reg::isStatusGMRXY(void)
 
 /**
  * @brief No value GMR angle value, cyclic check of DSPU output
- * 
+ *
  * @return true  no valid GMR angle values on the interface
  * @return false valid GMR angle values
  */
@@ -385,7 +385,7 @@ bool Reg::isStatusGMRA(void)
 
 /**
  * @brief Read status, checks if any status register changed since last readout
- * 
+ *
  * @return true  status values changed since last readout
  * @return false status values not changed
  */
@@ -399,7 +399,7 @@ bool Reg::isStatusRead(void)
 /**
  * @brief Get the actual slave number of the sensor. Up to
  * four sensors can be selected via this register field.
- * @return uint8_t 
+ * @return uint8_t
  */
 uint8_t Reg::getSlaveNumber(void)
 {
@@ -420,7 +420,7 @@ void Reg::setSlaveNumber(uint8_t snr)
 
 /**
  * @brief Hardware reset, will be performed after chip select returns to high.
- * 
+ *
  * @return true  activation of harware reset
  * @return false after reset, thus always returns false
  */
@@ -442,7 +442,7 @@ void Reg::setActivationReset(void)
 
 /**
  * @brief Enable the DSPU watchdog
- * 
+ *
  */
 void Reg::enableWatchdog(void)
 {
@@ -451,7 +451,7 @@ void Reg::enableWatchdog(void)
 
 /**
  * @brief disable the DSPU watchdog
- * 
+ *
  */
 void Reg::disableWatchdog(void)
 {
@@ -460,7 +460,7 @@ void Reg::disableWatchdog(void)
 
 /**
  * @brief Get the status of the DSPU watchdog
- * 
+ *
  * @return true  DSPU watchdog is enabled
  * @return false DSPU watchdog is disabled
  */
@@ -473,7 +473,7 @@ bool Reg::isWatchdog(void)
 
 /**
  * @brief Enable the voltage regulator check
- * 
+ *
  */
 void Reg::enableVoltageCheck(void)
 {
@@ -482,7 +482,7 @@ void Reg::enableVoltageCheck(void)
 
 /**
  * @brief disable the voltage regulator check
- * 
+ *
  */
 void Reg::disableVoltageCheck(void)
 {
@@ -491,7 +491,7 @@ void Reg::disableVoltageCheck(void)
 
 /**
  * @brief Get the status of the voltage regulator check
- * 
+ *
  * @return true  voltage regulator check is enabled
  * @return false voltage regulator check is disabled
  */
@@ -504,7 +504,7 @@ bool Reg::isVoltageCheck(void)
 
 /**
  * @brief Enable the fuse CRC check
- * 
+ *
  */
 void Reg::enableFuseCRC(void)
 {
@@ -513,7 +513,7 @@ void Reg::enableFuseCRC(void)
 
 /**
  * @brief disable the fuse CRC check
- * 
+ *
  */
 void Reg::disableFuseCRC(void)
 {
@@ -522,7 +522,7 @@ void Reg::disableFuseCRC(void)
 
 /**
  * @brief Get the status of the fuse CRC check
- * 
+ *
  * @return true  fuse CRC check is enabled
  * @return false fuse CRC check is disabled
  */
@@ -535,7 +535,7 @@ bool Reg::isFuseCRC(void)
 
 /**
  * @brief Enable the DSPU bist check
- * 
+ *
  */
 void Reg::enableDSPUbist(void)
 {
@@ -544,7 +544,7 @@ void Reg::enableDSPUbist(void)
 
 /**
  * @brief disable the DSPU bist check
- * 
+ *
  */
 void Reg::disableDSPUbist(void)
 {
@@ -553,7 +553,7 @@ void Reg::disableDSPUbist(void)
 
 /**
  * @brief Get the status of the DSPU bist check
- * 
+ *
  * @return true  DSPU bist check is enabled
  * @return false DSPU bist check is disabled
  */
@@ -566,7 +566,7 @@ bool Reg::isDSPUbist(void)
 
 /**
  * @brief Enable the DSPU overflow check
- * 
+ *
  */
 void Reg::enableDSPUoverflow(void)
 {
@@ -575,7 +575,7 @@ void Reg::enableDSPUoverflow(void)
 
 /**
  * @brief disable the DSPU overflow check
- * 
+ *
  */
 void Reg::disableDSPUoverflow(void)
 {
@@ -584,7 +584,7 @@ void Reg::disableDSPUoverflow(void)
 
 /**
  * @brief Get the status of the DSPU overflow check
- * 
+ *
  * @return true  DSPU overflow check is enabled
  * @return false DSPU overflow check is disabled
  */
@@ -597,7 +597,7 @@ bool Reg::isDSPUoverflow(void)
 
 /**
  * @brief Enable the X,Y out of limit check
- * 
+ *
  */
 void Reg::enableXYCheck(void)
 {
@@ -606,7 +606,7 @@ void Reg::enableXYCheck(void)
 
 /**
  * @brief disable the X,Y out of limit check
- * 
+ *
  */
 void Reg::disableXYCheck(void)
 {
@@ -615,7 +615,7 @@ void Reg::disableXYCheck(void)
 
 /**
  * @brief Get the status of the X,Y out of limit check
- * 
+ *
  * @return true  X,Y out of limit check is enabled
  * @return false X,Y out of limit check is disabled
  */
@@ -628,7 +628,7 @@ bool Reg::isXYCheck(void)
 
 /**
  * @brief Enable the GMR magnitude check
- * 
+ *
  */
 void Reg::enableGMRCheck(void)
 {
@@ -637,7 +637,7 @@ void Reg::enableGMRCheck(void)
 
 /**
  * @brief disable the GMR magnitude check
- * 
+ *
  */
 void Reg::disableGMRCheck(void)
 {
@@ -646,7 +646,7 @@ void Reg::disableGMRCheck(void)
 
 /**
  * @brief Get the status of the GMR magnitude check
- * 
+ *
  * @return true  GMR magnitude check is enabled
  * @return false GMR magnitude check is disabled
  */
@@ -659,7 +659,7 @@ bool Reg::isGMRCheck(void)
 
 /**
  * @brief Enable the ADC test vector check
- * 
+ *
  */
 void Reg::enableADCCheck(void)
 {
@@ -668,7 +668,7 @@ void Reg::enableADCCheck(void)
 
 /**
  * @brief disable the ADC test vector check
- * 
+ *
  */
 void Reg::disableADCCheck(void)
 {
@@ -677,7 +677,7 @@ void Reg::disableADCCheck(void)
 
 /**
  * @brief Get the status of the ADC test vectorGMR magnitude check
- * 
+ *
  * @return true  ADC test vector check is enabled
  * @return false ADC test vector check is disabled
  */
@@ -691,7 +691,7 @@ bool Reg::isADCCheck(void)
 /**
  * @brief Activate the firmware reset, all configuration registers retain their contents.
  * Will also set the SRST register.
- * 
+ *
  */
 void Reg::activateFirmwareReset(void)
 {
@@ -700,7 +700,7 @@ void Reg::activateFirmwareReset(void)
 
 /**
  * @brief Get the status of the firmware reset register
- * 
+ *
  * @return true  activation on firmware reset
  * @return false default after execution of reset
  */
@@ -713,7 +713,7 @@ bool Reg::isFirmwareReset(void)
 
 /**
  * @brief Do we have a new calculated angle value since last readout
- * 
+ *
  * @return true  new angle value available
  * @return false no new angle value calculated
  */
@@ -726,7 +726,7 @@ bool Reg::isAngleValueNew(void)
 
 /**
  * @brief Get a new calculated angle value
- * 
+ *
  * @return uint16_t calculated angle value
  */
 uint16_t Reg::getAngleValue(void)
@@ -738,7 +738,7 @@ uint16_t Reg::getAngleValue(void)
 
 /**
  * @brief  Do we have a new calculated speed value since last readout
- * 
+ *
  * @return true  new speed value available
  * @return false no new speed value calculated
  */
@@ -751,7 +751,7 @@ bool Reg::isSpeedValueNew(void)
 
 /**
  * @brief Get a new calculated speed value
- * 
+ *
  * @return uint16_t calculated speed value
  */
 uint16_t Reg::getSpeedValue(void)
@@ -763,7 +763,7 @@ uint16_t Reg::getSpeedValue(void)
 
 /**
  * @brief  Do we have a new number of revolutions since last readout
- * 
+ *
  * @return true  new number of revolutions available
  * @return false no number of revolutions
  */
@@ -776,7 +776,7 @@ bool Reg::isNumberOfRevolutionsNew(void)
 
 /**
  * @brief Get a new number of revolutions value
- * 
+ *
  * @return uint16_t number of revolutions
  */
 uint16_t Reg::getNumberOfRevolutions(void)
@@ -795,7 +795,7 @@ uint16_t Reg::getNumberOfRevolutions(void)
 /**
  * @brief Get the frame counter value.
  * Internal frame counter increments every update period.
- * 
+ *
  * @return uint16_t frame counter
  */
 uint16_t Reg::getFrameCounter(void)
@@ -807,7 +807,7 @@ uint16_t Reg::getFrameCounter(void)
 
 /**
  * @brief Set the frame counter value
- * 
+ *
  */
 void Reg::setFrameCounter(uint16_t fcnt)
 {
@@ -817,7 +817,7 @@ void Reg::setFrameCounter(uint16_t fcnt)
 /**
  * @brief Get the frame synchronisation counter value
  * Internal frame sub counter within one frame.
- * 
+ *
  * @return uint16_t frame synchronisation counter
  */
 uint16_t Reg::getFrameSyncCounter(void)
@@ -830,7 +830,7 @@ uint16_t Reg::getFrameSyncCounter(void)
 
 /**
  * @brief Set the frame synchronisation counter value
- * 
+ *
  */
 void Reg::setFrameSyncCounter(uint16_t fsync)
 {
@@ -840,7 +840,7 @@ void Reg::setFrameSyncCounter(uint16_t fsync)
 /**
  * @brief Get the temperature value as signed offset compensated temperature value
  * Saturated between -30°C  and above 140°C
- * 
+ *
  * @return uint16_t temperature value
  */
 uint16_t Reg::getTemperatureValue(void)
@@ -859,7 +859,7 @@ uint16_t Reg::getTemperatureValue(void)
 
 /**
  * @brief Set the filter decimation, update rate setting
- * 
+ *
  */
 void Reg::setFilterDecimation(uint8_t firmd)
 {
@@ -868,7 +868,7 @@ void Reg::setFilterDecimation(uint8_t firmd)
 
 /**
  * @brief Get the filter decimation, update rate setting
- * 
+ *
  * @return uint16_t filter decimation
  */
 uint8_t Reg::getFilterDecimation(void)
@@ -880,7 +880,7 @@ uint8_t Reg::getFilterDecimation(void)
 
 /**
  * @brief Set the IIF (Incremental Interfave Mode)
- * 
+ *
  */
 void Reg::setIIFMod(uint8_t iifmod)
 {
@@ -890,7 +890,7 @@ void Reg::setIIFMod(uint8_t iifmod)
 /**
  * @brief Get the temperature value as signed offset compensated temperature value
  * Saturated between -30°C  and above 140°C
- * 
+ *
  * @return uint16_t IIF mode
  */
 uint8_t Reg::getIIFMod(void)
@@ -902,7 +902,7 @@ uint8_t Reg::getIIFMod(void)
 
 /**
  * @brief Set DSPU on hold
- * 
+ *
  */
 void Reg::holdDSPU(void)
 {
@@ -911,7 +911,7 @@ void Reg::holdDSPU(void)
 
 /**
  * @brief release DSPU operations
- * 
+ *
  */
 void Reg::releaseDSPU(void)
 {
@@ -920,7 +920,7 @@ void Reg::releaseDSPU(void)
 
 /**
  * @brief Get the status of DSPU operations
- * 
+ *
  * @return true  DSPU is on hold
  * @return false DSPU is in operation
  */
@@ -933,7 +933,7 @@ bool Reg::isDSPUhold(void)
 
 /**
  * @brief Set the clock source to internal oscillator
- * 
+ *
  */
 void Reg::setInternalClock(void)
 {
@@ -942,7 +942,7 @@ void Reg::setInternalClock(void)
 
 /**
  * @brief Set clock sourec to external SCK
- * 
+ *
  */
 void Reg::setExternalClock(void)
 {
@@ -951,7 +951,7 @@ void Reg::setExternalClock(void)
 
 /**
  * @brief Get the status of the clock source
- * 
+ *
  * @return true  external 4MHz clock on pin IFC selected
  * @return false internal oscillator
  */
@@ -964,7 +964,7 @@ bool Reg::statusClockSource(void)
 
 /**
  * @brief Enable the Filter parallel diagnostics function
- * 
+ *
  */
 void Reg::enableFilterParallel(void)
 {
@@ -973,7 +973,7 @@ void Reg::enableFilterParallel(void)
 
 /**
  * @brief disable the Filter parallel diagnostics function
- * 
+ *
  */
 void Reg::disableFilterParallel(void)
 {
@@ -982,7 +982,7 @@ void Reg::disableFilterParallel(void)
 
 /**
  * @brief Get the status of the Filter parallel diagnostics function
- * 
+ *
  * @return true  filter parallel is enabled
  * @return false filter parallel is disabled
  */
@@ -995,7 +995,7 @@ bool Reg::isFilterParallel(void)
 
 /**
  * @brief Enable the Filter inverted diagnostics function
- * 
+ *
  */
 void Reg::enableFilterInverted(void)
 {
@@ -1004,7 +1004,7 @@ void Reg::enableFilterInverted(void)
 
 /**
  * @brief disable the Filter inverted diagnostics function
- * 
+ *
  */
 void Reg::disableFilterInverted(void)
 {
@@ -1013,7 +1013,7 @@ void Reg::disableFilterInverted(void)
 
 /**
  * @brief Get the status of the Filter inverted diagnostics function
- * 
+ *
  * @return true  filter inverted is enabled
  * @return false filter inverted is disabled
  */
@@ -1026,7 +1026,7 @@ bool Reg::isFilterInverted(void)
 
 /**
  * @brief Enable the ADC test vector diagnostics function
- * 
+ *
  */
 void Reg::enableADCTestVector(void)
 {
@@ -1035,7 +1035,7 @@ void Reg::enableADCTestVector(void)
 
 /**
  * @brief disable the ADC test vector diagnostics function
- * 
+ *
  */
 void Reg::disableADCTestVector(void)
 {
@@ -1044,7 +1044,7 @@ void Reg::disableADCTestVector(void)
 
 /**
  * @brief Get the status of the ADC test vector diagnostics function
- * 
+ *
  * @return true  ADC test vector is enabled
  * @return false ADC test vector is disabled
  */
@@ -1057,7 +1057,7 @@ bool Reg::isADCTestVector(void)
 
 /**
  * @brief Set the fuse reload register and trigger a reload
- * 
+ *
  */
 void Reg::setFuseReload(void)
 {
@@ -1066,7 +1066,7 @@ void Reg::setFuseReload(void)
 
 /**
  * @brief Get the status of the fuse reload register
- * 
+ *
  * @return true  reload of registers from fuses immediately
  * @return false normal operations
  */
@@ -1079,7 +1079,7 @@ bool Reg::getFulseReload(void)
 
 /**
  * @brief Set the test vector x
- * 
+ *
  */
 void Reg::setTestVectorX(uint8_t adctvx)
 {
@@ -1088,7 +1088,7 @@ void Reg::setTestVectorX(uint8_t adctvx)
 
 /**
  * @brief Get the test vector x
- * 
+ *
  * @return uint8_t test vector x
  */
 uint8_t Reg::getTestVectorX(void)
@@ -1100,7 +1100,7 @@ uint8_t Reg::getTestVectorX(void)
 
 /**
  * @brief Set the test vector s
- * 
+ *
  */
 void Reg::setTestVectorY(uint8_t adctvs)
 {
@@ -1109,7 +1109,7 @@ void Reg::setTestVectorY(uint8_t adctvs)
 
 /**
  * @brief Get the test vector y
- * 
+ *
  * @return uint8_t test vector y
  */
 uint8_t Reg::getTestVectorY(void)
@@ -1121,7 +1121,7 @@ uint8_t Reg::getTestVectorY(void)
 
 /**
  * @brief Set angle direction clockwise
- * 
+ *
  */
 void Reg::directionClockwise(void)
 {
@@ -1130,7 +1130,7 @@ void Reg::directionClockwise(void)
 
 /**
  * @brief Set angle direction counter clockwise
- * 
+ *
  */
 void Reg::directionConterClockwise(void)
 {
@@ -1139,7 +1139,7 @@ void Reg::directionConterClockwise(void)
 
 /**
  * @brief Get the angle direction
- * 
+ *
  * @return true  angle direction is clockwise
  * @return false angle direction is counter clockwise
  */
@@ -1152,7 +1152,7 @@ bool Reg::isAngleDirection(void)
 
 /**
  * @brief Enable the angle prediction based on current speed
- * 
+ *
  */
 void Reg::enablePrediction(void)
 {
@@ -1161,7 +1161,7 @@ void Reg::enablePrediction(void)
 
 /**
  * @brief disable the angle prediction
- * 
+ *
  */
 void Reg::disablePrediction(void)
 {
@@ -1170,7 +1170,7 @@ void Reg::disablePrediction(void)
 
 /**
  * @brief Get the status of angle perdiction
- * 
+ *
  * @return true  perdiction is enabled
  * @return false perdiction is disabled
  */
@@ -1183,7 +1183,7 @@ bool Reg::isPrediction(void)
 
 /**
  * @brief Set the representation of the angle output value and the speed value
- * 
+ *
  */
 void Reg::setAngleRange(angleRange_t range)
 {
@@ -1191,8 +1191,8 @@ void Reg::setAngleRange(angleRange_t range)
 }
 
 /**
- * @brief Get the representation of the angle range 
- * 
+ * @brief Get the representation of the angle range
+ *
  * @return angleRange_t type of angle range
  */
 Reg::angleRange_t Reg::getAngleRange(void)
@@ -1204,7 +1204,7 @@ Reg::angleRange_t Reg::getAngleRange(void)
 
 /**
  * @brief Set the automatic calibration mode
- * 
+ *
  */
 void Reg::setCalibrationMode(calibrationMode_t autocal)
 {
@@ -1213,7 +1213,7 @@ void Reg::setCalibrationMode(calibrationMode_t autocal)
 
 /**
  * @brief Get the actual automatic calibration mode
- * 
+ *
  * @return angleRange_t type of calibration mode
  */
 Reg::calibrationMode_t Reg::getCalibrationMode(void)
@@ -1225,7 +1225,7 @@ Reg::calibrationMode_t Reg::getCalibrationMode(void)
 
 /**
  * @brief Enable the analog spike filter to filter voltage spikes in IFC, SCK, CS
- * 
+ *
  */
 void Reg::enableSpikeFilter(void)
 {
@@ -1234,7 +1234,7 @@ void Reg::enableSpikeFilter(void)
 
 /**
  * @brief disable the analog spike filter to filter
- * 
+ *
  */
 void Reg::disableSpikeFilter(void)
 {
@@ -1243,7 +1243,7 @@ void Reg::disableSpikeFilter(void)
 
 /**
  * @brief Get the status of the analog spike filter
- * 
+ *
  * @return true  spike filter is enabled
  * @return false spike filter is disabled
  */
@@ -1256,7 +1256,7 @@ bool Reg::isSpikeFilter(void)
 
 /**
  * @brief Enable open drain on SSC interface
- * 
+ *
  */
 void Reg::enableSSCOpenDrain(void)
 {
@@ -1265,7 +1265,7 @@ void Reg::enableSSCOpenDrain(void)
 
 /**
  * @brief Enable push pull on SSC interface
- * 
+ *
  */
 void Reg::enableSSCPushPull(void)
 {
@@ -1274,7 +1274,7 @@ void Reg::enableSSCPushPull(void)
 
 /**
  * @brief Get the status of the SSC output mode
- * 
+ *
  * @return true  SSC open drain
  * @return false SSC push pull default
  */
@@ -1287,7 +1287,7 @@ bool Reg::isSSCOutputMode(void)
 
 /**
  * @brief Set a new value for the angle base calibration
- * 
+ *
  */
 void Reg::setAngleBase(uint16_t base)
 {
@@ -1297,7 +1297,7 @@ void Reg::setAngleBase(uint16_t base)
 /**
  * @brief Get the actual 0° angle position
  * The 0° angle position is factory calibrated parallel to the edge of the chip
- * 
+ *
  * @return uint16_t angle base calibration
  */
 uint16_t Reg::getAngleBase(void)
@@ -1309,7 +1309,7 @@ uint16_t Reg::getAngleBase(void)
 
 /**
  * @brief Set a new pad driver configuration
- * 
+ *
  */
 void Reg::setPadDriver(uint8_t pad)
 {
@@ -1318,7 +1318,7 @@ void Reg::setPadDriver(uint8_t pad)
 
 /**
  * @brief Get the pad driver configuration
- * 
+ *
  * @return uint8_t pad driver
  */
 uint8_t Reg::getPadDriver(void)
@@ -1330,7 +1330,7 @@ uint8_t Reg::getPadDriver(void)
 
 /**
  * @brief Set offset correction x value
- * 
+ *
  */
 void Reg::setOffsetX(int16_t offx)
 {
@@ -1339,7 +1339,7 @@ void Reg::setOffsetX(int16_t offx)
 
 /**
  * @brief Get offset correction x value
- * 
+ *
  * @return int16_t offset x value
  */
 int16_t Reg::getOffsetX(void)
@@ -1351,7 +1351,7 @@ int16_t Reg::getOffsetX(void)
 
 /**
  * @brief Set offset correction y value
- * 
+ *
  */
 void Reg::setOffsetY(int16_t offy)
 {
@@ -1360,7 +1360,7 @@ void Reg::setOffsetY(int16_t offy)
 
 /**
  * @brief Get offset correction y value
- * 
+ *
  * @return int16_t offset y value
  */
 int16_t Reg::getOffsetY(void)
@@ -1372,7 +1372,7 @@ int16_t Reg::getOffsetY(void)
 
 /**
  * @brief Set amplitude correction value
- * 
+ *
  */
 void Reg::setAmplitudeSynch(int16_t synch)
 {
@@ -1381,7 +1381,7 @@ void Reg::setAmplitudeSynch(int16_t synch)
 
 /**
  * @brief Get amplitude correction value
- * 
+ *
  * @return int16_t offset y value
  */
 int16_t Reg::getAmplitudeSynch(void)
@@ -1393,7 +1393,7 @@ int16_t Reg::getAmplitudeSynch(void)
 
 /**
  * @brief Set the FIR (Filter Initial Rate) update rate
- * 
+ *
  */
 void Reg::setFIRUpdateRate(bool fir)
 {
@@ -1402,7 +1402,7 @@ void Reg::setFIRUpdateRate(bool fir)
 
 /**
  * @brief Get the FIR update rate
- * 
+ *
  * @return uint8_t(bool) FIR update rate
  */
 uint8_t Reg::getFIRUpdateRate(void)
@@ -1414,7 +1414,7 @@ uint8_t Reg::getFIRUpdateRate(void)
 
 /**
  * @brief Enable open drain in IFA, IFB and IFC
- * 
+ *
  */
 void Reg::enableIFABOpenDrain(void)
 {
@@ -1423,7 +1423,7 @@ void Reg::enableIFABOpenDrain(void)
 
 /**
  * @brief Enable push pull in IFA, IFB and IFC
- * 
+ *
  */
 void Reg::enableIFABPushPull(void)
 {
@@ -1432,7 +1432,7 @@ void Reg::enableIFABPushPull(void)
 
 /**
  * @brief Get the status of the IFA, IFB and IFC output mode
- * 
+ *
  * @return true  IFA, IFB and IFC open drain
  * @return false IFA, IFB and IFC push pull default
  */
@@ -1445,7 +1445,7 @@ bool Reg::isIFABOutputMode(void)
 
 /**
  * @brief Set the orthogonality correction of x y components
- * 
+ *
  */
 void Reg::setOrthogonality(int16_t ortho)
 {
@@ -1454,7 +1454,7 @@ void Reg::setOrthogonality(int16_t ortho)
 
 /**
  * @brief Get the orthogonality correction of x y components
- * 
+ *
  * @return int16_t orthogonality correction
  */
 int16_t Reg::getOrthogonality(void)
@@ -1467,7 +1467,7 @@ int16_t Reg::getOrthogonality(void)
 /**
  * @brief Set the hysteresis mode for HSM,
  * or the unit time if in SPC mode (see manual)
- * 
+ *
  */
 void Reg::setHysteresisMode(uint8_t hyst)
 {
@@ -1477,7 +1477,7 @@ void Reg::setHysteresisMode(uint8_t hyst)
 /**
  * @brief Get the hysteresis mode for HSM,
  * or the unit time if in SPC mode (see manual)
- * 
+ *
  * @return uint8_t hysteresis mode/unit time
  */
 uint8_t Reg::getHysteresisMode(void)
@@ -1489,7 +1489,7 @@ uint8_t Reg::getHysteresisMode(void)
 
 /**
  * @brief Set the interface Mode on IFA,IFB,IFC
- * 
+ *
  */
 void Reg::setInterfaceMode(interfaceType_t ifmd)
 {
@@ -1498,7 +1498,7 @@ void Reg::setInterfaceMode(interfaceType_t ifmd)
 
 /**
  * @brief Get the interface Mode on IFA,IFB,IFC
- * 
+ *
  * @return interfaceType_t interface type
  */
 Reg::interfaceType_t Reg::getInterfaceMode(void)
@@ -1519,7 +1519,7 @@ void Reg::setIFABres(uint8_t res)
 
 /**
  * @brief Get multipurpose register
- * 
+ *
  * @return uint8_t multipurpose, PWM frequency, IIF resolution, SPC frame configuration
  */
 uint8_t Reg::getIFABres(void)
@@ -1531,7 +1531,7 @@ uint8_t Reg::getIFABres(void)
 
 /**
  * @brief Set multipurpose register,
- * 
+ *
  */
 void Reg::setHSMplp(uint8_t plp)
 {
@@ -1540,7 +1540,7 @@ void Reg::setHSMplp(uint8_t plp)
 
 /**
  * @brief Get multipurpose register
- * 
+ *
  * @return uint8_t multipurpose, PWM frequency, IIF resolution, SPC frame configuration
  */
 uint8_t Reg::getHSMplp(void)
@@ -1552,7 +1552,7 @@ uint8_t Reg::getHSMplp(void)
 
 /**
  * @brief Set offset temperature coefficient for x component
- * 
+ *
  */
 void Reg::setOffsetTemperatureX(int8_t tcox)
 {
@@ -1561,7 +1561,7 @@ void Reg::setOffsetTemperatureX(int8_t tcox)
 
 /**
  * @brief Get offset temperature coefficient for x component
- * 
+ *
  * @return int8_t x temperature coefficient
  */
 int8_t Reg::getOffsetTemperatureX(void)
@@ -1577,7 +1577,7 @@ int8_t Reg::getOffsetTemperatureX(void)
 
 /**
  * @brief Set offset temperature coefficient for y component
- * 
+ *
  */
 void Reg::setOffsetTemperatureY(int8_t tcoy)
 {
@@ -1586,7 +1586,7 @@ void Reg::setOffsetTemperatureY(int8_t tcoy)
 
 /**
  * @brief Get offset temperature coefficient for y component
- * 
+ *
  * @return int8_t x temperature coefficient
  */
 int8_t Reg::getOffsetTemperatureY(void)
@@ -1602,7 +1602,7 @@ int8_t Reg::getOffsetTemperatureY(void)
 
 /**
  * @brief Enable startup bist
- * 
+ *
  */
 void Reg::enableStartupBist(void)
 {
@@ -1611,7 +1611,7 @@ void Reg::enableStartupBist(void)
 
 /**
  * @brief Disable startup bist
- * 
+ *
  */
 void Reg::disableStartupBist(void)
 {
@@ -1620,7 +1620,7 @@ void Reg::disableStartupBist(void)
 
 /**
  * @brief Get the status of startup bist
- * 
+ *
  * @return true  Bist enabled
  * @return false Bist disabled
  */
@@ -1633,7 +1633,7 @@ bool Reg::isStartupBist(void)
 
 /**
  * @brief Set CRC of parameters from address 08h to 0Fh
- * 
+ *
  */
 void Reg::setCRCpar(uint16_t crc)
 {
@@ -1642,7 +1642,7 @@ void Reg::setCRCpar(uint16_t crc)
 
 /**
  * @brief Get CRC of parameters from address 08h to 0Fh
- * 
+ *
  * @return uint16_t CRC
  */
 uint16_t Reg::getCRCpar(void)
@@ -1654,7 +1654,7 @@ uint16_t Reg::getCRCpar(void)
 
 /**
  * @brief Get GMR ADC x value
- * 
+ *
  * @return uint16_t ADC x
  */
 int16_t Reg::getADCx(void)
@@ -1666,7 +1666,7 @@ int16_t Reg::getADCx(void)
 
 /**
  * @brief Get GMR ADC y value
- * 
+ *
  * @return uint16_t ADC y
  */
 int16_t Reg::getADCy(void)
@@ -1678,7 +1678,7 @@ int16_t Reg::getADCy(void)
 
 /**
  * @brief Get angle vactor magnitude
- * 
+ *
  * @return uint16_t MAG
  */
 uint16_t Reg::getVectorMagnitude(void)
@@ -1690,7 +1690,7 @@ uint16_t Reg::getVectorMagnitude(void)
 
 /**
  * @brief Get Temperature Sensor raw value
- * 
+ *
  * @return uint16_t Temperature raw value
  */
 uint16_t Reg::getTemperatureRAW(void)
@@ -1702,7 +1702,7 @@ uint16_t Reg::getTemperatureRAW(void)
 
 /**
  * @brief Is there a new Temperature Sensor RAW value
- * 
+ *
  * @return true  Bist enabled
  * @return false Bist disabled
  */
@@ -1715,7 +1715,7 @@ bool Reg::isTemperatureToggle(void)
 
 /**
  * @brief Get Counter value of increments
- * 
+ *
  * @return uint16_t Temperature raw value
  */
 uint16_t Reg::getCounterIncrements(void)
@@ -1727,7 +1727,7 @@ uint16_t Reg::getCounterIncrements(void)
 
 /**
  * @brief Get Temperature 25°C offset value
- * 
+ *
  * @return uint16_t T25 offset value
  */
 uint16_t Reg::getT25Offset(void)
