@@ -47,4 +47,4 @@ jobs:
         force_orphan: true
         publish_branch: gh-pages
       env:
-        github_token: ${{ secrets.DELOYGH }}
+        github_token: ${{ secrets.DEPLOYGH }}
