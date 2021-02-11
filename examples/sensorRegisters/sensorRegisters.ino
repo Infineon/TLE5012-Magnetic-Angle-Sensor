@@ -39,37 +39,6 @@ void loop()
 Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
-void setup() {
-  delay(1000);
-  Serial.begin(115200);
-  while (!Serial) {};
-  checkError = Tle5012Sensor.begin();
-  Serial.print("checkerror: "); Serial.println(checkError,HEX);
-  delay(1000);
-
-  // read all registers
-  checkError = Tle5012Sensor.readRegMap();
-  show_bin();
-
-  show_STAT();
-  show_ACSTAT();
-  show_MAINA();
-  show_MOD1();
-  show_SIL();
-  show_MOD2();
-  show_MOD3();
-  show_OFFSETS();
-  show_IFAB();
-  show_MOD4();
-  show_TCOTY();
-  show_ADC();
-
-  Serial.end();
-}
-
-void loop() {
-}
-
 
 void printval(uint16_t regValue, String regType)
 {
@@ -697,5 +666,40 @@ void show_ADC()
   printval(Tle5012Sensor.reg.getT25Offset(),"9,  int16_t\tr\t9:15  ");
   Serial.println(sc_T250);
 }
+
+
+
+void setup() {
+  delay(1000);
+  Serial.begin(115200);
+  while (!Serial) {};
+  checkError = Tle5012Sensor.begin();
+  Serial.print("checkerror: "); Serial.println(checkError,HEX);
+  delay(1000);
+
+  // read all registers
+  checkError = Tle5012Sensor.readRegMap();
+  show_bin();
+
+  show_STAT();
+  show_ACSTAT();
+  show_MAINA();
+  show_MOD1();
+  show_SIL();
+  show_MOD2();
+  show_MOD3();
+  show_OFFSETS();
+  show_IFAB();
+  show_MOD4();
+  show_TCOTY();
+  show_ADC();
+
+  Serial.end();
+}
+
+void loop() {
+}
+
+
 
 #endif
