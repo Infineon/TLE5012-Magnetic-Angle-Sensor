@@ -39,8 +39,6 @@ jobs:
         echo ${{ secrets.GH_USER }}
         echo ${{ secrets.SECRET_NAME }}
         python doxyifx.py release ${{ github.actor }} ${{ secrets.GITHUB_TOKEN }}
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
             
     - name: GH Pages Deployment
       uses: peaceiris/actions-gh-pages@v3
