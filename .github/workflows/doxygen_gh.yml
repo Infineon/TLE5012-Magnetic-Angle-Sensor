@@ -35,6 +35,9 @@ jobs:
         git clone https://github.com/Infineon/InfineonDoxyGenerator.git
         cd InfineonDoxyGenerator
         python doxyifx.py html
+        echo ${{ secrets.GITHUB_TOKEN }}
+        echo ${{ secrets.GH_USER }}
+        echo ${{ secrets.DEPLOYGH }}
         #python doxyifx.py release ${{ secrets.GH_USER }} ${{ secrets.GITHUB_TOKEN }}
     
     - name: GH Pages Deployment
