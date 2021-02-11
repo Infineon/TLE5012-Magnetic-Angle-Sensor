@@ -37,9 +37,11 @@ jobs:
         python doxyifx.py html
         echo ${{ secrets.GITHUB_TOKEN }}
         echo ${{ secrets.GH_USER }}
-        echo ${{ secrets.DEPLOYGH }}
-        #python doxyifx.py release ${{ secrets.GH_USER }} ${{ secrets.GITHUB_TOKEN }}
-    
+        echo ${{ secrets.SECRET_NAME }}
+        python doxyifx.py release ${{ github.actor }} ${{ secrets.GITHUB_TOKEN }}
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+            
     - name: GH Pages Deployment
       uses: peaceiris/actions-gh-pages@v3
       if: success()
@@ -50,4 +52,4 @@ jobs:
         force_orphan: true
         publish_branch: gh-pages
       env:
-        github_token: ${{ secrets.DEPLOYGH }}
+        github_token: ${{ secrets.SECRET_NAME }}
