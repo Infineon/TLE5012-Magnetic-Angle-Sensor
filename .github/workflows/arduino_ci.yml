@@ -8,18 +8,17 @@ jobs:
     strategy:
       matrix:
         example: [
-            examples/E9000SPC
-            #,
-            #examples/readAngleSpeedRevolutions,
-            #examples/readAngleTest,
-            #examples/readAngleValueProcessing,
-            #examples/readMultipleRegisters,
-            #examples/readSpeedProcessing,
-            #examples/sensorRegisters,
-            #examples/sensorType,
-            #examples/testSensorMainValues,
-            #examples/useMultipleSensors,
-            #examples/writeRegisters
+            examples/E9000SPC,
+            examples/readAngleSpeedRevolutions,
+            examples/readAngleTest,
+            examples/readAngleValueProcessing,
+            examples/readMultipleRegisters,
+            examples/readSpeedProcessing,
+            examples/sensorRegisters,
+            examples/sensorType,
+            examples/testSensorMainValues,
+            examples/useMultipleSensors,
+            examples/writeRegisters
         ]
 
         arduino-platform: ["arduino:avr"]
@@ -48,5 +47,5 @@ jobs:
           ln -s "$PWD" "$HOME/Arduino/libraries/."
 
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." ${{ matrix.example }}
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 

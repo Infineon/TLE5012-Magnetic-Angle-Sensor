@@ -35,16 +35,16 @@ jobs:
         git clone https://github.com/Infineon/InfineonDoxyGenerator.git
         cd InfineonDoxyGenerator
         python doxyifx.py html
-        ls -la ../docs/doxygen/build/html
-        #python doxyifx.py release ${{ github.actor }} ${{ secrets.GITHUB_TOKEN }}
-            
+        #python doxyifx.py release ${{ secrets.GH_USER }} ${{ secrets.GITHUB_TOKEN }}
+    
     - name: GH Pages Deployment
       uses: peaceiris/actions-gh-pages@v3
       if: success()
       with:
-        publish_dir: ./docs/doxygen/build/html
+        publish_dir: ./doc/doxygen/build/html/
         enable_jekyll: false
         allow_empty_commit: false
         force_orphan: true
         publish_branch: gh-pages
+      env:
         github_token: ${{ secrets.GITHUB_TOKEN }}
