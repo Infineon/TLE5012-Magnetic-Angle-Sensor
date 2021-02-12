@@ -41,10 +41,9 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       if: success()
       with:
-        publish_dir: ./doc/doxygen/build/html/
+        publish_dir: ./docs/doxygen/build/html
         enable_jekyll: false
         allow_empty_commit: false
         force_orphan: true
         publish_branch: gh-pages
-      env:
         github_token: ${{ secrets.GITHUB_TOKEN }}
