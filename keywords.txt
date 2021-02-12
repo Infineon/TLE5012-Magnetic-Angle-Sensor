@@ -1,82 +1,254 @@
 #######################################
-# Syntax Coloring Map For IFX Tle5012
+# Syntax Coloring Map For TLE5012b
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-errorTypes	KEYWORD1
+GPIO KEYWORD1
+Reg KEYWORD1
+SPIC KEYWORD1
+Timer KEYWORD1
+Tle5012b KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-readFromSensor	KEYWORD2
-readBlockCRC	KEYWORD2
-readMoreRegisters	KEYWORD2
-
-readStatus	KEYWORD2
-readAngleValue	KEYWORD2
-readAngleSpeed	KEYWORD2
-readAngleRevolution	KEYWORD2
-
-readUpdStatus	KEYWORD2
-readUpdAngleValue	KEYWORD2
-readUpdAngleSpeed	KEYWORD2
-readUpdAngleRevolution	KEYWORD2
-
-readTemp	KEYWORD2
-readRawX	KEYWORD2
-readRawY	KEYWORD2
-
-readActivationStatus	KEYWORD2
-readOffsetX	KEYWORD2
-readOffsetY	KEYWORD2
-
-readIntMode1	KEYWORD2
-readSIL	KEYWORD2
-readIntMode2	KEYWORD2
-readIntMode3	KEYWORD2
-readSynch	KEYWORD2
-readIFAB	KEYWORD2
-readIntMode4	KEYWORD2
-readTempCoeff	KEYWORD2
-
-writeToSensor	KEYWORD2
-
-writeActivationStatus	KEYWORD2
-writeIntMode1	KEYWORD2
-writeSIL	KEYWORD2
-
-writeIntMode2	KEYWORD2
-writeIntMode3	KEYWORD2
-writeOffsetX	KEYWORD2
-writeOffsetY	KEYWORD2
-writeSynch	KEYWORD2
-writeIFAB	KEYWORD2
-writeIntMode4	KEYWORD2
-writeTempCoeff	KEYWORD2
-
-writeTempCoeffUpdate	KEYWORD2
-
-getAngleSpeed	KEYWORD2
-getAngleValue	KEYWORD2
-getNumRevolutions	KEYWORD2
-
-getUpdAngleSpeed	KEYWORD2
-getUpdAngleValue	KEYWORD2
-getUpdNumRevolutions	KEYWORD2
-getTemperature	KEYWORD2
-getAngleRange	KEYWORD2
-
-#######################################
-# Instances (KEYWORD2)
-#######################################
-
-Tle5012	KEYWORD2
+Code KEYWORD2
+Communication KEYWORD2
+Interface KEYWORD2
+Mode KEYWORD2
+Modulation KEYWORD2
+activateFirmwareReset KEYWORD2
+begin KEYWORD2
+changeMode KEYWORD2
+checkErrorStatus KEYWORD2
+cycle KEYWORD2
+deinit KEYWORD2
+delayMicro KEYWORD2
+delayMilli KEYWORD2
+directionClockwise KEYWORD2
+directionConterClockwise KEYWORD2
+disable KEYWORD2
+disableADCCheck KEYWORD2
+disableADCTestVector KEYWORD2
+disableDSPUbist KEYWORD2
+disableDSPUoverflow KEYWORD2
+disableFilterInverted KEYWORD2
+disableFilterParallel KEYWORD2
+disableFuseCRC KEYWORD2
+disableGMRCheck KEYWORD2
+disablePrediction KEYWORD2
+disableSensor KEYWORD2
+disableSpikeFilter KEYWORD2
+disableStartupBist KEYWORD2
+disableVoltageCheck KEYWORD2
+disableWatchdog KEYWORD2
+disableXYCheck KEYWORD2
+elapsed KEYWORD2
+enable KEYWORD2
+enableADCCheck KEYWORD2
+enableADCTestVector KEYWORD2
+enableDSPUbist KEYWORD2
+enableDSPUoverflow KEYWORD2
+enableFilterInverted KEYWORD2
+enableFilterParallel KEYWORD2
+enableFuseCRC KEYWORD2
+enableGMRCheck KEYWORD2
+enableIFABOpenDrain KEYWORD2
+enableIFABPushPull KEYWORD2
+enablePrediction KEYWORD2
+enableSSCOpenDrain KEYWORD2
+enableSSCPushPull KEYWORD2
+enableSensor KEYWORD2
+enableSpikeFilter KEYWORD2
+enableStartupBist KEYWORD2
+enableVoltageCheck KEYWORD2
+enableWatchdog KEYWORD2
+enableXYCheck KEYWORD2
+end KEYWORD2
+fetch_Safety KEYWORD2
+getADCx KEYWORD2
+getADCy KEYWORD2
+getAmplitudeSynch KEYWORD2
+getAngleBase KEYWORD2
+getAngleRange KEYWORD2
+getAngleSpeed KEYWORD2
+getAngleValue KEYWORD2
+getCRCpar KEYWORD2
+getCalibrationMode KEYWORD2
+getCounterIncrements KEYWORD2
+getFIRUpdateRate KEYWORD2
+getFilterDecimation KEYWORD2
+getFrameCounter KEYWORD2
+getFrameSyncCounter KEYWORD2
+getFulseReload KEYWORD2
+getHSMplp KEYWORD2
+getHysteresisMode KEYWORD2
+getIFABres KEYWORD2
+getIIFMod KEYWORD2
+getInterfaceMode KEYWORD2
+getNumRevolutions KEYWORD2
+getNumberOfRevolutions KEYWORD2
+getOffsetTemperatureX KEYWORD2
+getOffsetTemperatureY KEYWORD2
+getOffsetX KEYWORD2
+getOffsetY KEYWORD2
+getOrthogonality KEYWORD2
+getPadDriver KEYWORD2
+getSlaveNumber KEYWORD2
+getSpeedValue KEYWORD2
+getT25Offset KEYWORD2
+getTemperature KEYWORD2
+getTemperatureRAW KEYWORD2
+getTemperatureValue KEYWORD2
+getTestVectorX KEYWORD2
+getTestVectorY KEYWORD2
+getVectorMagnitude KEYWORD2
+holdDSPU KEYWORD2
+init KEYWORD2
+isADCCheck KEYWORD2
+isADCTestVector KEYWORD2
+isActivationReset KEYWORD2
+isAngleDirection KEYWORD2
+isAngleValueNew KEYWORD2
+isDSPUbist KEYWORD2
+isDSPUhold KEYWORD2
+isDSPUoverflow KEYWORD2
+isFilterInverted KEYWORD2
+isFilterParallel KEYWORD2
+isFirmwareReset KEYWORD2
+isFuseCRC KEYWORD2
+isGMRCheck KEYWORD2
+isIFABOutputMode KEYWORD2
+isNumberOfRevolutionsNew KEYWORD2
+isPrediction KEYWORD2
+isSSCOutputMode KEYWORD2
+isSpeedValueNew KEYWORD2
+isSpikeFilter KEYWORD2
+isStartupBist KEYWORD2
+isStatusADC KEYWORD2
+isStatusDSPU KEYWORD2
+isStatusFuse KEYWORD2
+isStatusGMRA KEYWORD2
+isStatusGMRXY KEYWORD2
+isStatusMagnitideOutOfLimit KEYWORD2
+isStatusOverflow KEYWORD2
+isStatusROM KEYWORD2
+isStatusRead KEYWORD2
+isStatusReset KEYWORD2
+isStatusVoltage KEYWORD2
+isStatusWatchDog KEYWORD2
+isStatusXYOutOfLimit KEYWORD2
+isTemperatureToggle KEYWORD2
+isVoltageCheck KEYWORD2
+isWatchdog KEYWORD2
+isXYCheck KEYWORD2
+possible KEYWORD2
+read KEYWORD2
+readActivationStatus KEYWORD2
+readActiveStatus KEYWORD2
+readBlockCRC KEYWORD2
+readFromSensor KEYWORD2
+readIFAB KEYWORD2
+readIntMode1 KEYWORD2
+readIntMode2 KEYWORD2
+readIntMode3 KEYWORD2
+readIntMode4 KEYWORD2
+readMoreRegisters KEYWORD2
+readOffsetX KEYWORD2
+readOffsetY KEYWORD2
+readRawX KEYWORD2
+readRawY KEYWORD2
+readRegMap KEYWORD2
+readSIL KEYWORD2
+readStatus KEYWORD2
+readSynch KEYWORD2
+readTempCoeff KEYWORD2
+readTempDMag KEYWORD2
+readTempIIFCnt KEYWORD2
+readTempRaw KEYWORD2
+readTempT25 KEYWORD2
+releaseDSPU KEYWORD2
+resetFirmware KEYWORD2
+responseSlave KEYWORD2
+return KEYWORD2
+setActivationReset KEYWORD2
+setAmplitudeSynch KEYWORD2
+setAngleBase KEYWORD2
+setAngleRange KEYWORD2
+setCRCpar KEYWORD2
+setCalibration KEYWORD2
+setCalibrationMode KEYWORD2
+setExternalClock KEYWORD2
+setFIRUpdateRate KEYWORD2
+setFilterDecimation KEYWORD2
+setFrameCounter KEYWORD2
+setFrameSyncCounter KEYWORD2
+setFuseReload KEYWORD2
+setHSMplp KEYWORD2
+setHysteresisMode KEYWORD2
+setIFABres KEYWORD2
+setIIFMod KEYWORD2
+setInterfaceMode KEYWORD2
+setInternalClock KEYWORD2
+setOffsetTemperatureX KEYWORD2
+setOffsetTemperatureY KEYWORD2
+setOffsetX KEYWORD2
+setOffsetY KEYWORD2
+setOrthogonality KEYWORD2
+setPadDriver KEYWORD2
+setSlaveNumber KEYWORD2
+setTestVectorX KEYWORD2
+setTestVectorY KEYWORD2
+start KEYWORD2
+statusClockSource KEYWORD2
+stop KEYWORD2
+triggerUpdate KEYWORD2
+write KEYWORD2
+writeActivationStatus KEYWORD2
+writeIFAB KEYWORD2
+writeIntMode1 KEYWORD2
+writeIntMode2 KEYWORD2
+writeIntMode3 KEYWORD2
+writeIntMode4 KEYWORD2
+writeInterfaceType KEYWORD2
+writeOffsetX KEYWORD2
+writeOffsetY KEYWORD2
+writeSIL KEYWORD2
+writeSlaveNumber KEYWORD2
+writeSynch KEYWORD2
+writeTempCoeff KEYWORD2
+writeTempCoeffUpdate KEYWORD2
+writeToSensor KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
 
+ANGLE_360_VAL LITERAL1
+CHANGE_UINT_TO_INT_15 LITERAL1
+CHANGE_UNIT_TO_INT_9 LITERAL1
+CHECK_BIT_14 LITERAL1
+CHECK_BIT_9 LITERAL1
+CRC_NUM_REGISTERS LITERAL1
+CRC_POLYNOMIAL LITERAL1
+CRC_SEED LITERAL1
+DELETE_7BITS LITERAL1
+DELETE_BIT_15 LITERAL1
+GET_BIT_14_4 LITERAL1
+INTERFACE_ERROR_MASK LITERAL1
+INV_ANGLE_ERROR_MASK LITERAL1
+MAX_NUM_REG LITERAL1
+MAX_REGISTER_MEM LITERAL1
+POW_2_15 LITERAL1
+POW_2_7 LITERAL1
+READ_BLOCK_CRC LITERAL1
+READ_SENSOR LITERAL1
+SYSTEM_ERROR_MASK LITERAL1
+TEMP_DIV LITERAL1
+TEMP_OFFSET LITERAL1
+TRIGGER_DELAY LITERAL1
+WRITE_SENSOR LITERAL1

@@ -1,0 +1,49 @@
+/**
+ * @defgroup tle5012corelib    Core Library
+ * @{
+ */
+
+/** @defgroup tle5012api       Tle5012b base API */
+/** @defgroup tle5012util      Tle5012 macros and global enums */
+/** @defgroup tle5012reg       Tle5012 register functions API */
+/** @defgroup pal              Platform Abstraction Layer Interface */
+/** @} */
+
+/**
+ * @defgroup tle5012frmw        SW Frameworks
+ * @{
+ */
+
+    /**
+    * @defgroup tle5012ino         Arduino
+    * @{
+    */
+
+        /** @defgroup inoApi        Tle5012 Arduino API */
+        /** @defgroup arduinoPal    PAL Arduino */
+        /** @defgroup platfIno      Arduino HW Platforms */
+
+    /** @} */
+
+    /**
+     * @defgroup tle5012wiced       WICED
+     * @{
+     */
+
+        /** @defgroup wicedPal       PAL WICED */
+        /** @defgroup wicedHW        43xxx HW Platforms */
+
+    /** @} */
+
+    /**
+     * @defgroup tle5012mtb       ModusToolbox
+     * @{
+     */
+
+        /** @defgroup mtbPal         PAL MTB */
+        /** @defgroup mtbHW          HAL HW Platforms */
+
+    /** @} */
+
+/** @} */
+
