@@ -32,7 +32,7 @@ pipeline {
 				stage('HTML') {
 					steps {
 						echo "html"
-						sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
+						//sh ("export DOXY_BIN_PATH=/usr/local/bin/;cd ${env.WORKSPACE}/docs;/usr/bin/make html")
 					}
 				}
 				/*-----------------------------------------------------------------------------
@@ -63,6 +63,7 @@ pipeline {
 
 		stage('Check') {
 			steps {
+				echo "check"
 				sh "cd  ${env.WORKSPACE};mkdir -p build;/usr/local/bin/cppcheck -v --enable=all --xml-version=2 -I examples src 2> build/cppcheck-report.xml"
 			} // end steps
 		} // end stage
@@ -73,7 +74,7 @@ pipeline {
 			}
 			steps {
 				withSonarQubeEnv('SonarQube') {
-					sh "${scannerHome}/bin/sonar-scanner -X"
+					sh "export JAVA_HOME=/volume1/@appstore/java-installer/jdk-11;${scannerHome}/bin/sonar-scanner -X"
 				}
 				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
 					timeout(time: 10, unit: 'MINUTES') {
@@ -92,7 +93,7 @@ pipeline {
 				stage('DEVELOPMENT') {
 					steps {
 						echo "html deploy"
-						sh ("mkdir -p /mnt/raspel/Public/doxygen/Tle5012/;cd ${env.WORKSPACE}/docs;cp -r html /mnt/raspel/Public/doxygen/Tle5012/")
+						//sh ("mkdir -p /mnt/raspel/Public/doxygen/Tle5012/;cd ${env.WORKSPACE}/docs;cp -r html /mnt/raspel/Public/doxygen/Tle5012/")
 
 					}
 				}
