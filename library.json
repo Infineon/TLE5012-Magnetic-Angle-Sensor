@@ -1,5 +1,5 @@
 {  
-   "name":"TLE5012-Magnetic-Angle-Sensor",
+   "name":"TLE5012",
    "keywords":"hall, sensor, magnetic, sensor2go, TLE5012B",
    "description": "This library enables the Infineon TLE5012B magnetic angle sensor. The TLE5012B is a pre-calibrated 360° angle sensor to detect magnetic fields. The sensor is available as Sens2go kit as well as bulk chip.",
    "repository":{  
