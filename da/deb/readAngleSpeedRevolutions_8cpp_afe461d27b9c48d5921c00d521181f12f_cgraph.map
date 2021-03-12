@@ -1,0 +1,16 @@
+<map id="loop" name="loop">
+<area shape="rect" id="node2" href="$da/d19/group__tle5012api.html#ga14f4b39cdb03955a1d7f4b0648232e87" title="Tle5012b::getAngleSpeed" alt="" coords="105,5,293,32"/>
+<area shape="rect" id="node3" href="$da/d19/group__tle5012api.html#ga69b7f1776bb9a5ccdc6e37f36e30070e" title="Tle5012b::getAngleValue" alt="" coords="107,56,291,83"/>
+<area shape="rect" id="node4" href="$da/d19/group__tle5012api.html#gaa6c23f2ed450d6bf769fb9f824ca18b8" title="Tle5012b::getNumRevolutions" alt="" coords="341,107,560,133"/>
+<area shape="rect" id="node14" href="$da/d19/group__tle5012api.html#gaf264b8bee7cedf6f8703c6f45bb92e0e" title="Tle5012b::getAngleRange" alt="" coords="104,157,293,184"/>
+<area shape="rect" id="node5" href="$da/d19/group__tle5012api.html#ga9140a4c8dcf66a3417edc8a2e0a6520a" title="Tle5012b::readFromSensor" alt="" coords="608,132,803,159"/>
+<area shape="rect" id="node6" href="$d3/d5d/group__pal.html#ab4063089bb8c1c5287a9b21b94ef5c28" title="Function which allows 3wire SPI (SSC) by sending and receiving data in the same function. " alt="" coords="1287,81,1428,108"/>
+<area shape="rect" id="node7" href="$da/d19/group__tle5012api.html#ga693aa704e4e6631219edd80fbee80347" title="Tle5012b::checkSafety" alt="" coords="851,183,1021,209"/>
+<area shape="rect" id="node8" href="$da/d19/group__tle5012api.html#ga2430563f51c44e3dcd7438330fa59fd5" title="Tle5012b::resetSafety" alt="" coords="1069,132,1235,159"/>
+<area shape="rect" id="node10" href="$dd/d22/TLE5012b_8cpp.html#ad49b292d48f6fdff2fcad35f0a217eef" title="getFirstByte" alt="" coords="1102,183,1202,209"/>
+<area shape="rect" id="node11" href="$dd/d22/TLE5012b_8cpp.html#a73d3da25810058a7adb4f830bafb961e" title="getSecondByte" alt="" coords="1092,233,1212,260"/>
+<area shape="rect" id="node12" href="$dd/d22/TLE5012b_8cpp.html#af5f2e5cfee7e8bbbd20d6b568c5927b0" title="crcCalc" alt="" coords="1117,284,1187,311"/>
+<area shape="rect" id="node9" href="$d3/d5d/group__pal.html#aa0f6e3c2f3e37b3414087b1c52261cc9" title="Sends a trigger through out the SPI bus. " alt="" coords="1283,132,1432,159"/>
+<area shape="rect" id="node13" href="$dd/d22/TLE5012b_8cpp.html#a1d0d34e26b6c32396a3b1dcf5617c7f7" title="crc8" alt="" coords="1333,284,1382,311"/>
+<area shape="rect" id="node15" href="$da/d19/group__tle5012api.html#ga378219cd79b8ad2a7403028ce12ec16d" title="read register offset 0x08 " alt="" coords="361,157,540,184"/>
+</map>

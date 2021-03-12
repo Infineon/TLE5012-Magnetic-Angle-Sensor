@@ -1,0 +1,6 @@
+<map id="Core Library" name="Core Library">
+<area shape="rect" id="node1" href="$da/d19/group__tle5012api.html" title="Tle5012b base API" alt="" coords="192,5,335,32"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html" title="Platform Abstraction\l Layer Interface" alt="" coords="185,57,341,98"/>
+<area shape="rect" id="node3" href="$dc/dc4/group__tle5012util.html" title="Tle5012 macros and\l global enums" alt="" coords="186,122,341,163"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html" title="Tle5012 register functions API" alt="" coords="155,188,372,215"/>
+</map>

@@ -1,0 +1,37 @@
+<map id="tle5012b_util.hpp" name="tle5012b_util.hpp">
+<area shape="rect" id="node2" href="$da/db2/TLE5012b_8hpp.html" title="TLE5012b.hpp" alt="" coords="858,80,971,107"/>
+<area shape="rect" id="node3" href="$dd/d22/TLE5012b_8cpp.html" title="TLE5012b.cpp" alt="" coords="95,155,207,181"/>
+<area shape="rect" id="node4" href="$d5/d3a/tle5012b__reg_8hpp.html" title="tle5012b_reg.hpp" alt="" coords="282,155,417,181"/>
+<area shape="rect" id="node5" href="$d2/d0d/tle5012b__reg_8cpp.html" title="tle5012b_reg.cpp" alt="" coords="155,229,290,256"/>
+<area shape="rect" id="node6" href="$d9/d4f/gpio-arduino_8hpp.html" title="Arduino PAL for the GPIO. " alt="" coords="441,155,573,181"/>
+<area shape="rect" id="node8" href="$da/de3/TLE5012-pal-ino_8hpp.html" title="TLE5012&#45;pal&#45;ino.hpp" alt="" coords="469,229,624,256"/>
+<area shape="rect" id="node11" href="$dd/df3/TLE5012-ino_8hpp.html" title="TLE5012&#45;ino.hpp" alt="" coords="236,379,367,405"/>
+<area shape="rect" id="node12" href="$d6/d44/E9000SPC_8hpp.html" title="E9000SPC.hpp" alt="" coords="853,304,968,331"/>
+<area shape="rect" id="node14" href="$d0/db5/readAngleSpeedRevolutions_8hpp.html" title="readAngleSpeedRevolutions.hpp" alt="" coords="992,304,1224,331"/>
+<area shape="rect" id="node16" href="$de/dbf/readAngleTest_8hpp.html" title="readAngleTest.hpp" alt="" coords="1249,304,1391,331"/>
+<area shape="rect" id="node18" href="$d0/d22/readAngleValueProcessing_8hpp.html" title="readAngleValueProcessing.hpp" alt="" coords="1415,304,1638,331"/>
+<area shape="rect" id="node20" href="$d8/d95/readMultipleRegisters_8hpp.html" title="readMultipleRegisters.hpp" alt="" coords="425,304,615,331"/>
+<area shape="rect" id="node22" href="$df/db7/readSpeedProcessing_8hpp.html" title="readSpeedProcessing.hpp" alt="" coords="640,304,829,331"/>
+<area shape="rect" id="node24" href="$d9/d72/sensorRegisters_8hpp.html" title="sensorRegisters.hpp" alt="" coords="2247,304,2401,331"/>
+<area shape="rect" id="node26" href="$d7/d98/sensorType_8hpp.html" title="sensorType.hpp" alt="" coords="2425,304,2548,331"/>
+<area shape="rect" id="node28" href="$d7/d20/testSensorMainValues_8hpp.html" title="testSensorMainValues.hpp" alt="" coords="1662,304,1855,331"/>
+<area shape="rect" id="node30" href="$da/d1a/useMultipleSensors_8hpp.html" title="useMultipleSensors.hpp" alt="" coords="1880,304,2056,331"/>
+<area shape="rect" id="node32" href="$d0/d4b/writeRegisters_8hpp.html" title="writeRegisters.hpp" alt="" coords="2081,304,2223,331"/>
+<area shape="rect" id="node34" href="$d3/d9c/TLE5012-pal-wiced_8hpp.html" title="TLE5012&#45;pal&#45;wiced.hpp" alt="" coords="1351,155,1524,181"/>
+<area shape="rect" id="node7" href="$df/df8/gpio-arduino_8cpp.html" title="gpio&#45;arduino.cpp" alt="" coords="315,229,445,256"/>
+<area shape="rect" id="node9" href="$dd/dc6/TLE5012-pal-ino_8cpp.html" title="TLE5012 Arduino Hardware Platforms. " alt="" coords="5,304,160,331"/>
+<area shape="rect" id="node10" href="$db/d5f/TLE5012-platf-ino_8hpp.html" title="TLE5012 Arduino Hardware Platforms. " alt="" coords="185,304,349,331"/>
+<area shape="rect" id="node13" href="$d8/de6/E9000SPC_8cpp.html" title="E9000SPC.cpp" alt="" coords="853,379,968,405"/>
+<area shape="rect" id="node15" href="$da/deb/readAngleSpeedRevolutions_8cpp.html" title="readAngleSpeedRevolutions.cpp" alt="" coords="993,379,1223,405"/>
+<area shape="rect" id="node17" href="$d3/d7e/readAngleTest_8cpp.html" title="readAngleTest.cpp" alt="" coords="1249,379,1391,405"/>
+<area shape="rect" id="node19" href="$d4/d19/readAngleValueProcessing_8cpp.html" title="readAngleValueProcessing.cpp" alt="" coords="1416,379,1637,405"/>
+<area shape="rect" id="node21" href="$d2/da2/readMultipleRegisters_8cpp.html" title="readMultipleRegisters.cpp" alt="" coords="425,379,615,405"/>
+<area shape="rect" id="node23" href="$dc/dc7/readSpeedProcessing_8cpp.html" title="readSpeedProcessing.cpp" alt="" coords="641,379,829,405"/>
+<area shape="rect" id="node25" href="$d2/d97/sensorRegisters_8cpp.html" title="sensorRegisters.cpp" alt="" coords="2248,379,2400,405"/>
+<area shape="rect" id="node27" href="$da/d86/sensorType_8cpp.html" title="sensorType.cpp" alt="" coords="2425,379,2548,405"/>
+<area shape="rect" id="node29" href="$d1/d19/testSensorMainValues_8cpp.html" title="testSensorMainValues.cpp" alt="" coords="1663,379,1855,405"/>
+<area shape="rect" id="node31" href="$d9/d4b/useMultipleSensors_8cpp.html" title="useMultipleSensors.cpp" alt="" coords="1881,379,2055,405"/>
+<area shape="rect" id="node33" href="$db/dda/writeRegisters_8cpp.html" title="writeRegisters.cpp" alt="" coords="2081,379,2223,405"/>
+<area shape="rect" id="node35" href="$df/d9c/TLE5012-pal-wiced_8cpp.html" title="TLE5012 Wiced Hardware Platforms. " alt="" coords="1290,229,1462,256"/>
+<area shape="rect" id="node36" href="$d6/de8/TLE5012-platf-wiced_8hpp.html" title="TLE5012 Wiced Hardware Platforms. " alt="" coords="1538,229,1721,256"/>
+</map>

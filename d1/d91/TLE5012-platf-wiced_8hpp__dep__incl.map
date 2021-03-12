@@ -1,0 +1,24 @@
+<map id="TLE5012&#45;platf&#45;wiced.hpp" name="TLE5012&#45;platf&#45;wiced.hpp">
+<area shape="rect" id="node2" href="$d6/d44/E9000SPC_8hpp.html" title="E9000SPC.hpp" alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node4" href="$d0/db5/readAngleSpeedRevolutions_8hpp.html" title="readAngleSpeedRevolutions.hpp" alt="" coords="144,80,376,107"/>
+<area shape="rect" id="node6" href="$de/dbf/readAngleTest_8hpp.html" title="readAngleTest.hpp" alt="" coords="401,80,543,107"/>
+<area shape="rect" id="node8" href="$d0/d22/readAngleValueProcessing_8hpp.html" title="readAngleValueProcessing.hpp" alt="" coords="567,80,790,107"/>
+<area shape="rect" id="node10" href="$d8/d95/readMultipleRegisters_8hpp.html" title="readMultipleRegisters.hpp" alt="" coords="814,80,1005,107"/>
+<area shape="rect" id="node12" href="$df/db7/readSpeedProcessing_8hpp.html" title="readSpeedProcessing.hpp" alt="" coords="1029,80,1219,107"/>
+<area shape="rect" id="node14" href="$d9/d72/sensorRegisters_8hpp.html" title="sensorRegisters.hpp" alt="" coords="1243,80,1397,107"/>
+<area shape="rect" id="node16" href="$d7/d98/sensorType_8hpp.html" title="sensorType.hpp" alt="" coords="1421,80,1544,107"/>
+<area shape="rect" id="node18" href="$d7/d20/testSensorMainValues_8hpp.html" title="testSensorMainValues.hpp" alt="" coords="1569,80,1762,107"/>
+<area shape="rect" id="node20" href="$da/d1a/useMultipleSensors_8hpp.html" title="useMultipleSensors.hpp" alt="" coords="1787,80,1963,107"/>
+<area shape="rect" id="node22" href="$d0/d4b/writeRegisters_8hpp.html" title="writeRegisters.hpp" alt="" coords="1987,80,2130,107"/>
+<area shape="rect" id="node3" href="$d8/de6/E9000SPC_8cpp.html" title="E9000SPC.cpp" alt="" coords="5,155,120,181"/>
+<area shape="rect" id="node5" href="$da/deb/readAngleSpeedRevolutions_8cpp.html" title="readAngleSpeedRevolutions.cpp" alt="" coords="145,155,375,181"/>
+<area shape="rect" id="node7" href="$d3/d7e/readAngleTest_8cpp.html" title="readAngleTest.cpp" alt="" coords="401,155,543,181"/>
+<area shape="rect" id="node9" href="$d4/d19/readAngleValueProcessing_8cpp.html" title="readAngleValueProcessing.cpp" alt="" coords="568,155,789,181"/>
+<area shape="rect" id="node11" href="$d2/da2/readMultipleRegisters_8cpp.html" title="readMultipleRegisters.cpp" alt="" coords="814,155,1005,181"/>
+<area shape="rect" id="node13" href="$dc/dc7/readSpeedProcessing_8cpp.html" title="readSpeedProcessing.cpp" alt="" coords="1030,155,1218,181"/>
+<area shape="rect" id="node15" href="$d2/d97/sensorRegisters_8cpp.html" title="sensorRegisters.cpp" alt="" coords="1244,155,1396,181"/>
+<area shape="rect" id="node17" href="$da/d86/sensorType_8cpp.html" title="sensorType.cpp" alt="" coords="1421,155,1544,181"/>
+<area shape="rect" id="node19" href="$d1/d19/testSensorMainValues_8cpp.html" title="testSensorMainValues.cpp" alt="" coords="1569,155,1761,181"/>
+<area shape="rect" id="node21" href="$d9/d4b/useMultipleSensors_8cpp.html" title="useMultipleSensors.cpp" alt="" coords="1787,155,1962,181"/>
+<area shape="rect" id="node23" href="$db/dda/writeRegisters_8cpp.html" title="writeRegisters.cpp" alt="" coords="1987,155,2130,181"/>
+</map>

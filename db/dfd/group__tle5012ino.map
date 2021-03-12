@@ -1,0 +1,6 @@
+<map id="Arduino" name="Arduino">
+<area shape="rect" id="node2" href="$dc/d65/group__inoApi.html" title="Tle5012 Arduino API" alt="" coords="307,5,460,32"/>
+<area shape="rect" id="node3" href="$d1/d0a/group__arduinoPal.html" title="Arduino SPIClass extension to use 3wire SSC SPI interfaces. " alt="" coords="334,56,433,83"/>
+<area shape="rect" id="node4" href="$d0/d9b/group__platfIno.html" title="Arduino HW Platforms" alt="" coords="300,107,467,133"/>
+<area shape="rect" id="node5" href="$d0/d99/group__tle5012frmw.html" title="SW Frameworks" alt="" coords="5,56,132,83"/>
+</map>

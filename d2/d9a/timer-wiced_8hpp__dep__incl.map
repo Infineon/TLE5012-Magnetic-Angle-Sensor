@@ -1,0 +1,28 @@
+<map id="timer&#45;wiced.hpp" name="timer&#45;wiced.hpp">
+<area shape="rect" id="node2" href="$d4/d22/timer-wiced_8cpp.html" title="WICED Timer Platform Abstraction Layer. " alt="" coords="919,80,1046,107"/>
+<area shape="rect" id="node3" href="$d3/d9c/TLE5012-pal-wiced_8hpp.html" title="TLE5012&#45;pal&#45;wiced.hpp" alt="" coords="1071,80,1244,107"/>
+<area shape="rect" id="node4" href="$d6/d44/E9000SPC_8hpp.html" title="E9000SPC.hpp" alt="" coords="5,229,120,256"/>
+<area shape="rect" id="node6" href="$d0/db5/readAngleSpeedRevolutions_8hpp.html" title="readAngleSpeedRevolutions.hpp" alt="" coords="144,229,376,256"/>
+<area shape="rect" id="node8" href="$de/dbf/readAngleTest_8hpp.html" title="readAngleTest.hpp" alt="" coords="401,229,543,256"/>
+<area shape="rect" id="node10" href="$d0/d22/readAngleValueProcessing_8hpp.html" title="readAngleValueProcessing.hpp" alt="" coords="567,229,790,256"/>
+<area shape="rect" id="node12" href="$d8/d95/readMultipleRegisters_8hpp.html" title="readMultipleRegisters.hpp" alt="" coords="814,229,1005,256"/>
+<area shape="rect" id="node14" href="$df/db7/readSpeedProcessing_8hpp.html" title="readSpeedProcessing.hpp" alt="" coords="1029,229,1219,256"/>
+<area shape="rect" id="node16" href="$d9/d72/sensorRegisters_8hpp.html" title="sensorRegisters.hpp" alt="" coords="1243,229,1397,256"/>
+<area shape="rect" id="node18" href="$d7/d98/sensorType_8hpp.html" title="sensorType.hpp" alt="" coords="1421,229,1544,256"/>
+<area shape="rect" id="node20" href="$d7/d20/testSensorMainValues_8hpp.html" title="testSensorMainValues.hpp" alt="" coords="1569,229,1762,256"/>
+<area shape="rect" id="node22" href="$da/d1a/useMultipleSensors_8hpp.html" title="useMultipleSensors.hpp" alt="" coords="1787,229,1963,256"/>
+<area shape="rect" id="node24" href="$d0/d4b/writeRegisters_8hpp.html" title="writeRegisters.hpp" alt="" coords="1987,229,2130,256"/>
+<area shape="rect" id="node26" href="$df/d9c/TLE5012-pal-wiced_8cpp.html" title="TLE5012 Wiced Hardware Platforms. " alt="" coords="1527,155,1699,181"/>
+<area shape="rect" id="node27" href="$d6/de8/TLE5012-platf-wiced_8hpp.html" title="TLE5012 Wiced Hardware Platforms. " alt="" coords="1066,155,1249,181"/>
+<area shape="rect" id="node5" href="$d8/de6/E9000SPC_8cpp.html" title="E9000SPC.cpp" alt="" coords="5,304,120,331"/>
+<area shape="rect" id="node7" href="$da/deb/readAngleSpeedRevolutions_8cpp.html" title="readAngleSpeedRevolutions.cpp" alt="" coords="145,304,375,331"/>
+<area shape="rect" id="node9" href="$d3/d7e/readAngleTest_8cpp.html" title="readAngleTest.cpp" alt="" coords="401,304,543,331"/>
+<area shape="rect" id="node11" href="$d4/d19/readAngleValueProcessing_8cpp.html" title="readAngleValueProcessing.cpp" alt="" coords="568,304,789,331"/>
+<area shape="rect" id="node13" href="$d2/da2/readMultipleRegisters_8cpp.html" title="readMultipleRegisters.cpp" alt="" coords="814,304,1005,331"/>
+<area shape="rect" id="node15" href="$dc/dc7/readSpeedProcessing_8cpp.html" title="readSpeedProcessing.cpp" alt="" coords="1030,304,1218,331"/>
+<area shape="rect" id="node17" href="$d2/d97/sensorRegisters_8cpp.html" title="sensorRegisters.cpp" alt="" coords="1244,304,1396,331"/>
+<area shape="rect" id="node19" href="$da/d86/sensorType_8cpp.html" title="sensorType.cpp" alt="" coords="1421,304,1544,331"/>
+<area shape="rect" id="node21" href="$d1/d19/testSensorMainValues_8cpp.html" title="testSensorMainValues.cpp" alt="" coords="1569,304,1761,331"/>
+<area shape="rect" id="node23" href="$d9/d4b/useMultipleSensors_8cpp.html" title="useMultipleSensors.cpp" alt="" coords="1787,304,1962,331"/>
+<area shape="rect" id="node25" href="$db/dda/writeRegisters_8cpp.html" title="writeRegisters.cpp" alt="" coords="1987,304,2130,331"/>
+</map>

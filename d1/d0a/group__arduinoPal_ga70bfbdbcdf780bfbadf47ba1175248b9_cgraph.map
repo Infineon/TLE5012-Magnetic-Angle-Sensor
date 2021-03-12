@@ -1,0 +1,4 @@
+<map id="SPICIno::sendReceive" name="SPICIno::sendReceive">
+<area shape="rect" id="node2" href="$d1/d0a/group__arduinoPal.html#ga3fe182714d43e7162932410c89a4907d" title="Set the chipselect pin. This function is needed if more than one sensor is in the SPI bus..." alt="" coords="237,5,399,32"/>
+<area shape="rect" id="node3" href="$d1/d0a/group__arduinoPal.html#ga188d7e3ef617a83d80fb90dab0ad8316" title="Main SPI three wire communication functions for sending and receiving data. " alt="" coords="215,56,421,83"/>
+</map>

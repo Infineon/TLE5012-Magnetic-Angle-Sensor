@@ -1,0 +1,50 @@
+<map id="tle5012&#45;conf.hpp" name="tle5012&#45;conf.hpp">
+<area shape="rect" id="node2" href="$d9/d4f/gpio-arduino_8hpp.html" title="Arduino PAL for the GPIO. " alt="" coords="166,80,298,107"/>
+<area shape="rect" id="node4" href="$da/de3/TLE5012-pal-ino_8hpp.html" title="TLE5012&#45;pal&#45;ino.hpp" alt="" coords="192,229,347,256"/>
+<area shape="rect" id="node6" href="$db/d5f/TLE5012-platf-ino_8hpp.html" title="TLE5012 Arduino Hardware Platforms. " alt="" coords="185,304,349,331"/>
+<area shape="rect" id="node7" href="$dd/df3/TLE5012-ino_8hpp.html" title="TLE5012&#45;ino.hpp" alt="" coords="261,379,392,405"/>
+<area shape="rect" id="node8" href="$d2/d8c/spi3w-ino_8hpp.html" title="spi3w&#45;ino.hpp" alt="" coords="650,80,763,107"/>
+<area shape="rect" id="node11" href="$df/d2f/spic-arduino_8hpp.html" title="Arduino PAL for the SPI cover. " alt="" coords="424,155,555,181"/>
+<area shape="rect" id="node13" href="$db/dc3/gpio-mtb_8hpp.html" title="MTB PAL for the GPIO. " alt="" coords="912,80,1021,107"/>
+<area shape="rect" id="node15" href="$da/dda/spic-mtb_8hpp.html" title="Mtb PAL for the SPI cover. " alt="" coords="1045,80,1152,107"/>
+<area shape="rect" id="node17" href="$dc/ddb/timer-mtb_8hpp.html" title="MTB Timer PAL. " alt="" coords="1176,80,1291,107"/>
+<area shape="rect" id="node19" href="$d8/de6/E9000SPC_8cpp.html" title="E9000SPC.cpp" alt="" coords="3179,379,3293,405"/>
+<area shape="rect" id="node20" href="$d6/d44/E9000SPC_8hpp.html" title="E9000SPC.hpp" alt="" coords="2993,304,3108,331"/>
+<area shape="rect" id="node21" href="$da/deb/readAngleSpeedRevolutions_8cpp.html" title="readAngleSpeedRevolutions.cpp" alt="" coords="2154,379,2385,405"/>
+<area shape="rect" id="node22" href="$d0/db5/readAngleSpeedRevolutions_8hpp.html" title="readAngleSpeedRevolutions.hpp" alt="" coords="2176,304,2408,331"/>
+<area shape="rect" id="node23" href="$d3/d7e/readAngleTest_8cpp.html" title="readAngleTest.cpp" alt="" coords="2863,379,3004,405"/>
+<area shape="rect" id="node24" href="$de/dbf/readAngleTest_8hpp.html" title="readAngleTest.hpp" alt="" coords="2679,304,2822,331"/>
+<area shape="rect" id="node25" href="$d4/d19/readAngleValueProcessing_8cpp.html" title="readAngleValueProcessing.cpp" alt="" coords="2421,379,2643,405"/>
+<area shape="rect" id="node26" href="$d0/d22/readAngleValueProcessing_8hpp.html" title="readAngleValueProcessing.hpp" alt="" coords="2433,304,2655,331"/>
+<area shape="rect" id="node27" href="$d2/da2/readMultipleRegisters_8cpp.html" title="readMultipleRegisters.cpp" alt="" coords="1401,379,1591,405"/>
+<area shape="rect" id="node28" href="$d8/d95/readMultipleRegisters_8hpp.html" title="readMultipleRegisters.hpp" alt="" coords="1569,304,1759,331"/>
+<area shape="rect" id="node29" href="$dc/dc7/readSpeedProcessing_8cpp.html" title="readSpeedProcessing.cpp" alt="" coords="1699,379,1887,405"/>
+<area shape="rect" id="node30" href="$df/db7/readSpeedProcessing_8hpp.html" title="readSpeedProcessing.hpp" alt="" coords="1784,304,1973,331"/>
+<area shape="rect" id="node31" href="$d2/d97/sensorRegisters_8cpp.html" title="sensorRegisters.cpp" alt="" coords="1955,379,2107,405"/>
+<area shape="rect" id="node32" href="$d9/d72/sensorRegisters_8hpp.html" title="sensorRegisters.hpp" alt="" coords="1998,304,2151,331"/>
+<area shape="rect" id="node33" href="$da/d86/sensorType_8cpp.html" title="sensorType.cpp" alt="" coords="3031,379,3153,405"/>
+<area shape="rect" id="node34" href="$d7/d98/sensorType_8hpp.html" title="sensorType.hpp" alt="" coords="2847,304,2969,331"/>
+<area shape="rect" id="node35" href="$d1/d19/testSensorMainValues_8cpp.html" title="testSensorMainValues.cpp" alt="" coords="3317,379,3509,405"/>
+<area shape="rect" id="node36" href="$d7/d20/testSensorMainValues_8hpp.html" title="testSensorMainValues.hpp" alt="" coords="3133,304,3326,331"/>
+<area shape="rect" id="node37" href="$d9/d4b/useMultipleSensors_8cpp.html" title="useMultipleSensors.cpp" alt="" coords="3534,379,3709,405"/>
+<area shape="rect" id="node38" href="$da/d1a/useMultipleSensors_8hpp.html" title="useMultipleSensors.hpp" alt="" coords="3351,304,3527,331"/>
+<area shape="rect" id="node39" href="$db/dda/writeRegisters_8cpp.html" title="writeRegisters.cpp" alt="" coords="3733,379,3875,405"/>
+<area shape="rect" id="node40" href="$d0/d4b/writeRegisters_8hpp.html" title="writeRegisters.hpp" alt="" coords="3551,304,3694,331"/>
+<area shape="rect" id="node41" href="$d2/d39/gpio-wiced_8hpp.html" title="WICED PAL for the GPIO. " alt="" coords="2170,80,2291,107"/>
+<area shape="rect" id="node43" href="$d3/d9c/TLE5012-pal-wiced_8hpp.html" title="TLE5012&#45;pal&#45;wiced.hpp" alt="" coords="2313,155,2487,181"/>
+<area shape="rect" id="node45" href="$d6/de8/TLE5012-platf-wiced_8hpp.html" title="TLE5012 Wiced Hardware Platforms. " alt="" coords="2598,229,2781,256"/>
+<area shape="rect" id="node46" href="$da/dee/spic-wiced_8hpp.html" title="WICED PAL for the SPI cover. " alt="" coords="2367,80,2486,107"/>
+<area shape="rect" id="node48" href="$d8/d76/timer-wiced_8hpp.html" title="WICED Timer PAL. " alt="" coords="2510,80,2637,107"/>
+<area shape="rect" id="node3" href="$df/df8/gpio-arduino_8cpp.html" title="gpio&#45;arduino.cpp" alt="" coords="101,155,232,181"/>
+<area shape="rect" id="node5" href="$dd/dc6/TLE5012-pal-ino_8cpp.html" title="TLE5012 Arduino Hardware Platforms. " alt="" coords="5,304,160,331"/>
+<area shape="rect" id="node9" href="$df/d56/spi3w-ard_8cpp.html" title="spi3w&#45;ard.cpp" alt="" coords="579,155,693,181"/>
+<area shape="rect" id="node10" href="$db/d8b/spi3w-xmc_8cpp.html" title="spi3w&#45;xmc.cpp" alt="" coords="717,155,837,181"/>
+<area shape="rect" id="node12" href="$d8/d55/spic-arduino_8cpp.html" title="spic&#45;arduino.cpp" alt="" coords="425,229,554,256"/>
+<area shape="rect" id="node14" href="$d1/dac/gpio-mtb_8cpp.html" title="gpio&#45;mtb.cpp" alt="" coords="913,155,1021,181"/>
+<area shape="rect" id="node16" href="$dc/d2b/spic-mtb_8cpp.html" title="spic&#45;mtb.cpp" alt="" coords="1045,155,1152,181"/>
+<area shape="rect" id="node18" href="$d5/d20/timer-mtb_8cpp.html" title="MTB Timer Platform Abstraction Layer. " alt="" coords="1176,155,1291,181"/>
+<area shape="rect" id="node42" href="$d6/d24/gpio-wiced_8cpp.html" title="gpio&#45;wiced.cpp" alt="" coords="2169,155,2289,181"/>
+<area shape="rect" id="node44" href="$df/d9c/TLE5012-pal-wiced_8cpp.html" title="TLE5012 Wiced Hardware Platforms. " alt="" coords="2299,229,2471,256"/>
+<area shape="rect" id="node47" href="$d4/d1b/spic-wiced_8cpp.html" title="spic&#45;wiced.cpp" alt="" coords="2511,155,2630,181"/>
+<area shape="rect" id="node49" href="$d4/d22/timer-wiced_8cpp.html" title="WICED Timer Platform Abstraction Layer. " alt="" coords="2654,155,2781,181"/>
+</map>

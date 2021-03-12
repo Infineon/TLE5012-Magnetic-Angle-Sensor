@@ -1,0 +1,51 @@
+<map id="application_start" name="application_start">
+<area shape="rect" id="node2" href="$d9/d4b/useMultipleSensors_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="setup" alt="" coords="184,1304,243,1331"/>
+<area shape="rect" id="node50" href="$d9/d4b/useMultipleSensors_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title="loop" alt="" coords="347,1735,398,1761"/>
+<area shape="rect" id="node3" href="$d2/d6a/group__wicedPal.html#ga6492a8e0a1ca3d3f0b3bbbd5279ffc55" title="begin method with default assignments for the SPI bus and pin setting. The EN pin is only available f..." alt="" coords="293,107,452,133"/>
+<area shape="rect" id="node9" href="$da/d19/group__tle5012api.html#gaf3d41ee5db94f9867807e03e11c32add" title="Tle5012b::readStatus" alt="" coords="785,709,945,736"/>
+<area shape="rect" id="node11" href="$da/d3e/group__tle5012reg.html#ga5e5bdf8f9096cffa8d3068b9bfbd65ce" title="Get the actual slave number of the sensor. Up to four sensors can be selected via this register field..." alt="" coords="291,1836,454,1863"/>
+<area shape="rect" id="node12" href="$da/d19/group__tle5012api.html#ga69b7f1776bb9a5ccdc6e37f36e30070e" title="Tle5012b::getAngleValue" alt="" coords="520,2267,704,2293"/>
+<area shape="rect" id="node13" href="$da/d19/group__tle5012api.html#gae2350754d5ba951fcfb4ec786f3f0e87" title="Function separates safety word bits. " alt="" coords="291,1221,455,1262"/>
+<area shape="rect" id="node4" href="$d3/d5d/group__pal.html#aaf10147dbb4db9c1dddee5343418a893" title="Initializes the SPIC. " alt="" coords="572,5,652,32"/>
+<area shape="rect" id="node5" href="$da/d19/group__tle5012api.html#ga1b640b2d39e54af974b2699e9cbaf7ab" title="Tle5012b::enableSensor" alt="" coords="523,56,701,83"/>
+<area shape="rect" id="node6" href="$da/d19/group__tle5012api.html#ga40e7bbc659f88cd747dcde66ca22e207" title="Tle5012b::writeSlaveNumber" alt="" coords="507,107,717,133"/>
+<area shape="rect" id="node8" href="$da/d19/group__tle5012api.html#ga32fa9cede7dabe812630f28fd67f45a9" title="Tle5012b::readBlockCRC" alt="" coords="521,157,703,184"/>
+<area shape="rect" id="node7" href="$da/d19/group__tle5012api.html#ga0601c6d4d0449d1dec934420b74c5a23" title="Tle5012b::writeToSensor" alt="" coords="774,376,955,403"/>
+<area shape="rect" id="node10" href="$da/d19/group__tle5012api.html#ga9140a4c8dcf66a3417edc8a2e0a6520a" title="Tle5012b::readFromSensor" alt="" coords="1008,1279,1203,1305"/>
+<area shape="rect" id="node14" href="$da/d19/group__tle5012api.html#gab67b3e69d8acc26005635f1cdf986c01" title="destructor stops the Sensor " alt="" coords="537,1760,687,1787"/>
+<area shape="rect" id="node15" href="$da/d19/group__tle5012api.html#ga9624bbe8790e7e5bbcfee9dbadcfc226" title="default begin with standard pin setting " alt="" coords="531,1963,693,1989"/>
+<area shape="rect" id="node16" href="$da/d19/group__tle5012api.html#gac2c7251bb9b2570fd3f065087ad1c9aa" title="Tle5012b::end" alt="" coords="807,1912,922,1939"/>
+<area shape="rect" id="node17" href="$da/d19/group__tle5012api.html#ga36f65d31d68be3190354b6aa32238b8e" title="Tle5012b::disableSensor" alt="" coords="1015,1887,1196,1913"/>
+<area shape="rect" id="node18" href="$da/d19/group__tle5012api.html#ga77e853610d04e46b9c3db7aedeefd583" title="Tle5012b::begin" alt="" coords="549,2013,675,2040"/>
+<area shape="rect" id="node19" href="$da/d19/group__tle5012api.html#gaf3e2a7844327621adf0759a071eca4b7" title="Tle5012b::readMoreRegisters" alt="" coords="507,2064,717,2091"/>
+<area shape="rect" id="node20" href="$da/d19/group__tle5012api.html#gac6d071f7e86dd97d3f38399084a11b25" title="Tle5012b::readActivation\lStatus" alt="" coords="772,853,957,894"/>
+<area shape="rect" id="node21" href="$da/d19/group__tle5012api.html#gac4f137488cec51ae6ebd8b56142def33" title="read register offset 0x01 " alt="" coords="511,2115,713,2141"/>
+<area shape="rect" id="node22" href="$da/d19/group__tle5012api.html#gac4bb2f1dcaf241c31ab7b9ae99428d36" title="read register offset 0x06 " alt="" coords="775,927,954,953"/>
+<area shape="rect" id="node23" href="$da/d19/group__tle5012api.html#ga9072a0c9381eecc0b1a125be8e2d38ef" title="read register offset 0x07 " alt="" coords="795,995,934,1021"/>
+<area shape="rect" id="node24" href="$da/d19/group__tle5012api.html#ga378219cd79b8ad2a7403028ce12ec16d" title="read register offset 0x08 " alt="" coords="775,1051,954,1077"/>
+<area shape="rect" id="node25" href="$da/d19/group__tle5012api.html#ga390dd86d484f4592b1041ce0aac93c60" title="read register offset 0x09 " alt="" coords="775,1101,954,1128"/>
+<area shape="rect" id="node26" href="$da/d19/group__tle5012api.html#ga1e96e8730f7d991408fff4b04c87d855" title="read register offset 0x0A " alt="" coords="781,1152,948,1179"/>
+<area shape="rect" id="node27" href="$da/d19/group__tle5012api.html#ga1a43aac5d2822e07b4c71724374b2eb2" title="read register offset 0x0B " alt="" coords="781,1203,948,1229"/>
+<area shape="rect" id="node28" href="$da/d19/group__tle5012api.html#gac870f707edce38e0bd1340edc920b3a7" title="read register offset 0x0C " alt="" coords="785,1253,944,1280"/>
+<area shape="rect" id="node29" href="$da/d19/group__tle5012api.html#ga7762e0656aa14a5946ff483da629fb6b" title="read register offset 0x0D " alt="" coords="791,1304,938,1331"/>
+<area shape="rect" id="node30" href="$da/d19/group__tle5012api.html#ga574e5494be6d2cc283dfb809dfb46daa" title="read register offset 0x0E " alt="" coords="775,1355,954,1381"/>
+<area shape="rect" id="node31" href="$da/d19/group__tle5012api.html#ga046788e8d5857a5a8d5753adcd4a3e29" title="read register offset 0x0F " alt="" coords="771,1405,959,1432"/>
+<area shape="rect" id="node32" href="$da/d19/group__tle5012api.html#ga2ae450ae4fa350c848755cb168434f09" title="read register offset 0x14 " alt="" coords="769,1456,960,1483"/>
+<area shape="rect" id="node33" href="$da/d19/group__tle5012api.html#gaffe9143fe96d1a6f98655076be36b6c2" title="read register offset 0x15 " alt="" coords="773,1507,956,1533"/>
+<area shape="rect" id="node34" href="$da/d19/group__tle5012api.html#ga9a52618065603e37804e1b0de141fdec" title="read register offset 0x20 " alt="" coords="769,1557,960,1584"/>
+<area shape="rect" id="node35" href="$da/d19/group__tle5012api.html#ga04fdd68d0d026e0985e9a80f55aa7d4c" title="read register offset 0x30 " alt="" coords="775,1608,954,1635"/>
+<area shape="rect" id="node36" href="$da/d19/group__tle5012api.html#gafa199fd73a1fcd1d521e84dfc76067b2" title="Tle5012b::readRawX" alt="" coords="787,1659,943,1685"/>
+<area shape="rect" id="node37" href="$da/d19/group__tle5012api.html#gad1a15395c2a870a9aed4a15350d00f4d" title="Tle5012b::readRawY" alt="" coords="787,1709,942,1736"/>
+<area shape="rect" id="node38" href="$da/d19/group__tle5012api.html#gaf264b8bee7cedf6f8703c6f45bb92e0e" title="Tle5012b::getAngleRange" alt="" coords="517,1051,707,1077"/>
+<area shape="rect" id="node39" href="$da/d19/group__tle5012api.html#gaa6c23f2ed450d6bf769fb9f824ca18b8" title="Tle5012b::getNumRevolutions" alt="" coords="503,1811,721,1837"/>
+<area shape="rect" id="node40" href="$da/d19/group__tle5012api.html#ga8af825f5a06821b5681b1d3decc2dc39" title="Tle5012b::getTemperature" alt="" coords="515,2165,709,2192"/>
+<area shape="rect" id="node41" href="$da/d19/group__tle5012api.html#ga14f4b39cdb03955a1d7f4b0648232e87" title="Tle5012b::getAngleSpeed" alt="" coords="518,2216,706,2243"/>
+<area shape="rect" id="node42" href="$da/d19/group__tle5012api.html#gab2145a6cfee2789b6178a4397e708abf" title="Tle5012b::writeTempCoeff\lUpdate" alt="" coords="516,731,708,773"/>
+<area shape="rect" id="node43" href="$da/d19/group__tle5012api.html#ga0bccafbd2b4459d84eda14d9761f0803" title="write register offset 0x01 " alt="" coords="517,259,707,301"/>
+<area shape="rect" id="node44" href="$da/d19/group__tle5012api.html#gadae82ceca5bf85722579ed7ba6560b98" title="write register offset 0x06 " alt="" coords="521,325,703,352"/>
+<area shape="rect" id="node45" href="$da/d19/group__tle5012api.html#ga3bd4b8868a04073ad03d3de56616ce08" title="write register offset 0x07 " alt="" coords="541,376,683,403"/>
+<area shape="rect" id="node46" href="$da/d19/group__tle5012api.html#gab80206716ba9efaf55c55bc8ba517087" title="write register offset 0x08 " alt="" coords="521,427,703,453"/>
+<area shape="rect" id="node47" href="$da/d19/group__tle5012api.html#ga630f5d767edb27a10c9c253f1ea3c8fc" title="write register offset 0x09 " alt="" coords="521,477,703,504"/>
+<area shape="rect" id="node48" href="$da/d19/group__tle5012api.html#ga399b13d2b82e6b169b21cf0b6f76476b" title="write register offset 0x0A " alt="" coords="527,528,697,555"/>
+<area shape="rect" id="node49" href="$da/d19/group__tle5012api.html#ga604fc1dd18d344cb087510b74aca0bc8" title="write register offset 0x0B " alt="" coords="527,579,697,605"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="show_additional" name="show_additional">
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#gabc78bbfe0d988b518828751a06698f5b" title="Get the actual automatic calibration mode. " alt="" coords="181,5,363,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga18147e84d1bf18e71e999cdc81da47b6" title="Get the status of angle perdiction. " alt="" coords="207,56,337,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga7116be10e748d09dfb658ddd15eeb097" title="Get the pad driver configuration. " alt="" coords="203,107,341,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga0222a62f8dad0942c95481a6fde77e9d" title="Get the status of the SSC output mode. " alt="" coords="187,157,357,184"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#ga836bf580483b1da2c573760245d6bc49" title="Get the status of the analog spike filter. " alt="" coords="205,208,339,235"/>
+</map>
