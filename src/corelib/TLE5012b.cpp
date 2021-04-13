@@ -483,7 +483,7 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed)
 }
 errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, updTypes upd, safetyTypes safe)
 {
-	int8_t numOfData = 0x5;
+	int8_t numOfData = 0x6;
 	uint16_t rawData[numOfData] = {};
 
 	errorTypes status = readMoreRegisters(reg.REG_ASPD + numOfData, rawData, upd, safe);
