@@ -1,6 +1,9 @@
 /**
- * Run Arduino file Read_Angle_Value_Processing before running this file.
- * Using the Angle Value received from the TLE5012, you can control the line at the bottom of the screen to save the ball from falling.
+ * Run Arduino file readAngleValueProcessing before running this file.
+ * Using the Angle Value received from the TLE5012, you can control the line
+ * at the bottom of the screen to save the ball from falling.
+ *
+ * needs: readAngleValueProcessing.ino
  */
 import processing.serial.*;
 

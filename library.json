@@ -1,16 +1,22 @@
 {  
    "name":"TLE5012-Magnetic-Angle-Sensor",
    "keywords":"hall, sensor, magnetic, sensor2go, TLE5012B",
-   "description":"This library provides an interface to communicate with the TLE5012B via SPI interface",
+   "description": "This library enables the Infineon TLE5012B magnetic angle sensor. The TLE5012B is a pre-calibrated 360° angle sensor to detect magnetic fields. The sensor is available as Sens2go kit as well as bulk chip.",
    "repository":{  
       "type":"git",
       "url":"https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor.git",
       "branch":"master"
    },
-   "version":"2.0.2",
+   "authors":{
+      "name":"Infineon Technologies",
+      "url":"https://www.infineon.com/cms/en/product/evaluation-boards/tle5012b_e1000_ms2go/",
+      "maintainer": true
+   },
+   "version":"3.0.1",
    "frameworks":"arduino",
    "platforms":[  
       "infineonxmc",
       "atmelavr"
    ]
 }
+
