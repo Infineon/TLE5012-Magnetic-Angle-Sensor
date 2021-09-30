@@ -53,7 +53,7 @@ class SPIClass3W : public SPIClass
 		uint8_t     mCS;                //!< Pin for chip select
 		uint8_t     mSpiNum;            //!< Number of used SPI channel
 
-				SPIClass3W();
+				SPIClass3W(uint8_t spiNum = 0);
 				~SPIClass3W();
 		void    begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs);
 		void    setCSPin(uint8_t cs);
@@ -67,6 +67,7 @@ class SPIClass3W : public SPIClass
 
 
 		#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
+
 			/*!
 			* The enhanced 3-Wire parameter structure includes miso/mosi open and close
 			* setting and for the enable pin setting of the Sensor2Go evaluation boards.
@@ -94,24 +95,6 @@ class SPIClass3W : public SPIClass
 			void initSpi();              //!< initial startup of the 3-Wire SPI interface
 		#endif
 };
-
-/**
- * @brief define a new SPI3W macro for handling more than the default SPI channel
- * 
- */
-extern SPIClass3W SPI3W;
-#if (NUM_SPI > 1)
-	extern SPIClass3W SPI3W1;
-#	if (NUM_SPI > 2)
-		extern SPIClass3W SPI3W2;
-#		if (NUM_SPI > 3)
-			extern SPIClass3W SPI3W3;
-#			if (NUM_SPI > 4)
-				extern SPIClass3W SPI3W4;
-#			endif
-#		endif
-#	endif
-#endif
 
 /** @} */
 

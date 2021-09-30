@@ -25,6 +25,7 @@
 
 #include "corelib/TLE5012b.hpp"
 #include "framework/arduino/wrapper/TLE5012-platf-ino.hpp"
+#include "framework/arduino/pal/TLE5012-pal-ino.hpp"
 
 /**
  * @class Tle5012Ino

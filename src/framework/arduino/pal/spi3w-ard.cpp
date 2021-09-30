@@ -24,13 +24,13 @@
  * @brief Construct a new SPIClass3W::SPIClass3W object
  * 
  */
-SPIClass3W::SPIClass3W():SPIClass()
+SPIClass3W::SPIClass3W(uint8_t spiNum):SPIClass()
 {
 	this->mCS = PIN_SPI_SS;
 	this->mMISO = PIN_SPI_MISO;
 	this->mMOSI = PIN_SPI_MOSI;
 	this->mSCK = PIN_SPI_SCK;
-	this->mSpiNum = 0;
+	this->mSpiNum = spiNum;
 }
 
 /**

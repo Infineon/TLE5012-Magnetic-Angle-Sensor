@@ -25,13 +25,13 @@
  * @brief Construct a new SPIClass3W::SPIClass3W object
  * 
  */
-SPIClass3W::SPIClass3W()
+SPIClass3W::SPIClass3W(uint8_t spiNum):SPIClass()
 {
 	this->mCS = PIN_SPI_SS;
 	this->mMISO = PIN_SPI_MISO;
 	this->mMOSI = PIN_SPI_MOSI;
 	this->mSCK = PIN_SPI_SCK;
-	this->mSpiNum = 0;
+	this->mSpiNum = spiNum;
 }
 
 /**
@@ -59,7 +59,6 @@ void SPIClass3W::begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs)
 	m3Wire.mosi = mapping_port_pin[this->mMOSI];
 	m3Wire.miso = mapping_port_pin[this->mMISO];
 	m3Wire.sck  = mapping_port_pin[this->mSCK];
-	m3Wire.cs   = mapping_port_pin[this->mCS];
 	setupSPI();
 	initSpi();
 }

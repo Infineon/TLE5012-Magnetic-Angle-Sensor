@@ -28,6 +28,7 @@
 #include "spic-arduino.hpp"
 #include "gpio-arduino.hpp"
 #include "spic-arduino.hpp"
+#include "spi3w-ino.hpp"
 
 //! Check for XMC mcu family */
 #define PIN_SPI_EN    UNUSED_PIN  /*!< TLE5012 with any other PCB has no switch on/off */
@@ -47,11 +48,9 @@ class Tle5012Ino: virtual public Tle5012b
 
 	public:
 
-		uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
-
 					Tle5012Ino();
 					Tle5012Ino(uint8_t csPin, slaveNum slave=TLE5012B_S0);
-					Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
+					Tle5012Ino(SPIClass3W *bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
 		errorTypes  begin();
 
 };
