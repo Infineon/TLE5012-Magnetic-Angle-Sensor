@@ -2,7 +2,7 @@
  * \name        writeRegisters
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     2.0.1
+ * \version     3.1.0
  * \brief       Testscript for a writing register settings.
  * \details
  * This example show how to use the register write functions

@@ -2,7 +2,7 @@
  * \name        readAngleSpeedRevolutions
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     2.0.1
+ * \version     3.1.0
  * \brief       reads angle value, rotation speed and number of revolutions
  * \details
  * This is a fast running example to demonstrate the possible readout

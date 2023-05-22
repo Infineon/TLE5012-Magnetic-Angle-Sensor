@@ -2,7 +2,7 @@
  * \name        const
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       macros and other const variables
  *
  * \attention

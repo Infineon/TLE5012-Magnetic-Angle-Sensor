@@ -3,7 +3,7 @@
  * \name        TLE5012b.cpp - core library for the TLE5012B angle sensor.
  * \author      Infineon Technologies AG
  * \copyright   2019-2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       GMR-based angle sensor for angular position sensing in automotive applications
  * \ref         tle5012corelib
  *

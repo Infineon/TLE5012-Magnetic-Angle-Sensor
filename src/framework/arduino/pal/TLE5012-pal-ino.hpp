@@ -3,7 +3,7 @@
  * \name        TLE5012-pal-ino.hpp - Arduino Hardware Abstraction Layer
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \ref         arduinoPal
  *
  * SPDX-License-Identifier: MIT

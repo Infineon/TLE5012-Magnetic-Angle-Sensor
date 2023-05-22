@@ -2,7 +2,7 @@
  * \name        useMultipleSensors
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     2.0.1
+ * \version     3.1.0
  * \brief       Testscript for using up to four sensors on one SPI channel.
  * \details
  * This example program starts one to four sensors on one SPI line with different CS pins

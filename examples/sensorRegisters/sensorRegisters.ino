@@ -2,7 +2,7 @@
  * \name        sensorRegisters
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       Reads all sensor registers and reports there status
  * \details
  * This example program will read all documented registers from the sensor and

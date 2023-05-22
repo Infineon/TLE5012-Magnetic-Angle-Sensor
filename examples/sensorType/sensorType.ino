@@ -2,7 +2,7 @@
  * \name        sensorType
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       prints register bit matrix and sensor interface type
  * \details
  * This example program prints the bit matrix of all registers and the sensors default

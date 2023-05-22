@@ -3,7 +3,7 @@
  * \name        tle5012b_reg.cpp - core support for the TLE5012B angle sensor.
  * \author      Infineon Technologies AG
  * \copyright   2019-2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       GMR-based angle sensor for angular position sensing in automotive applications
  * \details
  *              This file includes the registry definition macros of all Sensor registers and

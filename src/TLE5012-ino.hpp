@@ -4,7 +4,7 @@
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
  * \ref         tle5012ino
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       This is a Arduino platform file use Infineon's TLE5012B magnetic angular sensor
  *
  * SPDX-License-Identifier: MIT
