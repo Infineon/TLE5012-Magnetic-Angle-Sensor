@@ -1,0 +1,9 @@
+<map id="tle5012::Tle5012Wiced" name="tle5012::Tle5012Wiced">
+<area shape="rect" id="node1" title="represents a basic TLE5012b Wiced class." alt="" coords="237,289,408,316"/>
+<area shape="rect" id="node2" href="$da/d19/group__tle5012api.html#d7/d01/classtle5012_1_1Tle5012b" title=" " alt="" coords="253,213,392,240"/>
+<area shape="rect" id="node3" href="$dc/da1/structtle5012_1_1Tle5012b_1_1safetyWord.html" title=" " alt="" coords="5,95,152,136"/>
+<area shape="rect" id="node4" href="$d3/d5d/group__pal.html#dc/d94/classtle5012_1_1GPIOPAL" title=" " alt="" coords="177,102,311,129"/>
+<area shape="rect" id="node5" href="$d3/d5d/group__pal.html#d7/d08/classtle5012_1_1SPICPAL" title="SPI abstract API." alt="" coords="336,102,467,129"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#df/d2a/classtle5012_1_1Reg" title=" " alt="" coords="491,102,595,129"/>
+<area shape="rect" id="node7" href="$da/d3e/group__tle5012reg.html#da/d12/structtle5012_1_1Reg_1_1AddressField__t" title="Register address field." alt="" coords="439,5,646,32"/>
+</map>

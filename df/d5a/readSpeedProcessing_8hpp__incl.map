@@ -1,0 +1,28 @@
+<map id="readSpeedProcessing.hpp" name="readSpeedProcessing.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="543,5,732,32"/>
+<area shape="rect" id="node2" href="$d9/d40/tle5012-conf_8hpp.html" title="TLE5012 Library Configuration." alt="" coords="105,319,239,360"/>
+<area shape="rect" id="node5" title=" " alt="" coords="1951,415,2022,442"/>
+<area shape="rect" id="node6" title=" " alt="" coords="229,162,301,189"/>
+<area shape="rect" id="node7" href="$d6/de8/TLE5012-platf-wiced_8hpp.html" title="TLE5012 Wiced Hardware Platforms." alt="" coords="386,80,569,107"/>
+<area shape="rect" id="node8" href="$d3/d9c/TLE5012-pal-wiced_8hpp.html" title=" " alt="" coords="568,155,707,196"/>
+<area shape="rect" id="node9" href="$da/db2/TLE5012b_8hpp.html" title=" " alt="" coords="1539,244,1736,271"/>
+<area shape="rect" id="node24" title=" " alt="" coords="1048,326,1152,353"/>
+<area shape="rect" id="node3" href="$d6/dfd/tle5012-conf-opts_8hpp.html" title="TLE5012 Library Configuration Options." alt="" coords="182,415,346,442"/>
+<area shape="rect" id="node4" href="$d8/d2a/tle5012-conf-dfl_8hpp.html" title="TLE5012 Default Library Configuration." alt="" coords="5,415,157,442"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1176,326,1267,353"/>
+<area shape="rect" id="node18" title=" " alt="" coords="427,326,562,353"/>
+<area shape="rect" id="node19" href="$d2/d39/gpio-wiced_8hpp.html" title="WICED PAL for the GPIO." alt="" coords="427,244,549,271"/>
+<area shape="rect" id="node21" href="$d8/d76/timer-wiced_8hpp.html" title="WICED Timer PAL." alt="" coords="624,244,752,271"/>
+<area shape="rect" id="node25" href="$da/dee/spic-wiced_8hpp.html" title="WICED PAL for the SPI cover." alt="" coords="777,244,895,271"/>
+<area shape="rect" id="node10" title=" " alt="" coords="1666,326,1737,353"/>
+<area shape="rect" id="node11" href="$da/d01/pal-gpio_8hpp.html" title="PAL of the GPIO." alt="" coords="1341,326,1480,353"/>
+<area shape="rect" id="node13" href="$d9/d52/tle5012b__types_8hpp.html" title=" " alt="" coords="1341,408,1480,449"/>
+<area shape="rect" id="node14" href="$dd/d44/pal-spic_8hpp.html" title=" " alt="" coords="1505,326,1642,353"/>
+<area shape="rect" id="node15" href="$de/d8d/tle5012b__util_8hpp.html" title=" " alt="" coords="1761,326,1895,353"/>
+<area shape="rect" id="node16" href="$d5/d3a/tle5012b__reg_8hpp.html" title=" " alt="" coords="1919,326,2054,353"/>
+<area shape="rect" id="node12" title=" " alt="" coords="1665,415,1735,442"/>
+<area shape="rect" id="node20" title=" " alt="" coords="264,326,403,353"/>
+<area shape="rect" id="node22" title=" " alt="" coords="587,326,731,353"/>
+<area shape="rect" id="node23" title=" " alt="" coords="755,326,864,353"/>
+<area shape="rect" id="node26" title=" " alt="" coords="888,326,1024,353"/>
+</map>

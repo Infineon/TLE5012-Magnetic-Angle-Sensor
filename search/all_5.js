@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['d_38',['d',['../d9/d4b/useMultipleSensors_8cpp.html#ab3c2710f1db2f26af2d9d0d39402d4a4',1,'useMultipleSensors.cpp']]],
+  ['deinit_39',['deinit',['../d3/d5d/group__pal.html#add67cc69f05c4ac0c5b882a4827c09f7',1,'tle5012::GPIOPAL::deinit()'],['../d1/d0a/group__arduinoPal.html#a4e94cdd2f27e866da1743779ba24eeb1',1,'tle5012::GPIOIno::deinit()'],['../d3/d5d/group__pal.html#af42cca03dde6291895a996f97604586d',1,'tle5012::SPICPAL::deinit()'],['../d2/d6a/group__wicedPal.html#aedd87b914d36e569e28c01656937cafa',1,'tle5012::TimerWiced::deinit()'],['../d2/d6a/group__wicedPal.html#a0a9dd993037359b724de65f2b70c9a23',1,'tle5012::SPICWiced::deinit()'],['../d2/d6a/group__wicedPal.html#a4ec386b3d2ddd9e91ae3772f02c0e76f',1,'tle5012::GPIOWiced::deinit()'],['../d4/d84/group__mtbPal.html#a83b28aff6e8043488eebcc41a5972e28',1,'tle5012::TimerMtb::deinit()'],['../d4/d84/group__mtbPal.html#aed7d077bdc163ad0c17b002c6e12318e',1,'tle5012::SPICMtb::deinit()'],['../d4/d84/group__mtbPal.html#a388811d72f342886d05babc31b5708c9',1,'tle5012::GPIOMtb::deinit()'],['../d1/d0a/group__arduinoPal.html#gad7e75b8af3a3ff4cb087f02b8bfed0a2',1,'tle5012::SPICIno::deinit()']]],
+  ['delaymicro_40',['delayMicro',['../d4/d84/group__mtbPal.html#a0cadabbd00e03dbb3010b5f1d6a299ba',1,'tle5012::TimerMtb::delayMicro()'],['../d2/d6a/group__wicedPal.html#afb40a03cd534c8f36db2c8fef6e6d2af',1,'tle5012::TimerWiced::delayMicro()']]],
+  ['delaymilli_41',['delayMilli',['../d4/d84/group__mtbPal.html#a9f357076a36d2bef73084a43a4defe09',1,'tle5012::TimerMtb::delayMilli()'],['../d2/d6a/group__wicedPal.html#aae3919531a9c98c8c8c698dca980cb76',1,'tle5012::TimerWiced::delayMilli()']]],
+  ['delete_5f7bits_42',['DELETE_7BITS',['../dc/dc4/group__tle5012util.html#ga2ff345772205e5fdd1c54065c6976c66',1,'tle5012b_util.hpp']]],
+  ['delete_5fbit_5f15_43',['DELETE_BIT_15',['../dc/dc4/group__tle5012util.html#ga83726ef7f0fa1ad48fa2594752f8d85c',1,'tle5012b_util.hpp']]],
+  ['directionclockwise_44',['directionClockwise',['../da/d3e/group__tle5012reg.html#a2dcf6fd1318856fc79075a51808eb4b7',1,'tle5012::Reg']]],
+  ['directioncounterclockwise_45',['directionCounterClockwise',['../da/d3e/group__tle5012reg.html#a72b3c995d5cc39ee8fd25c4d85c11b0e',1,'tle5012::Reg']]],
+  ['disable_46',['disable',['../d2/d6a/group__wicedPal.html#a7da98b1d6c6aac426f00f39149984617',1,'tle5012::GPIOWiced::disable()'],['../d1/d0a/group__arduinoPal.html#add9c1afad4f479018c72607b737a1cec',1,'tle5012::GPIOIno::disable()'],['../d4/d84/group__mtbPal.html#a25b3310774a824c319bd201c339b2f4a',1,'tle5012::GPIOMtb::disable()'],['../d3/d5d/group__pal.html#a84dac2a913ed1b2399b0349971baa216',1,'tle5012::GPIOPAL::disable()']]],
+  ['disableadccheck_47',['disableADCCheck',['../da/d3e/group__tle5012reg.html#ae718e2000d4c3faf7c1620b79f949d6f',1,'tle5012::Reg']]],
+  ['disableadctestvector_48',['disableADCTestVector',['../da/d3e/group__tle5012reg.html#afeafc6b71d9af6b68fb3418e5025125b',1,'tle5012::Reg']]],
+  ['disabledspubist_49',['disableDSPUbist',['../da/d3e/group__tle5012reg.html#ad2666f14a4726d20014fd14f2d08b2d2',1,'tle5012::Reg']]],
+  ['disabledspuoverflow_50',['disableDSPUoverflow',['../da/d3e/group__tle5012reg.html#a235592861de784149870808d13259bf7',1,'tle5012::Reg']]],
+  ['disablefilterinverted_51',['disableFilterInverted',['../da/d3e/group__tle5012reg.html#a3ade2a4fb924ca4c470789f6c4063c9a',1,'tle5012::Reg']]],
+  ['disablefilterparallel_52',['disableFilterParallel',['../da/d3e/group__tle5012reg.html#a413841a470fdcec93e837cc0570952c6',1,'tle5012::Reg']]],
+  ['disablefusecrc_53',['disableFuseCRC',['../da/d3e/group__tle5012reg.html#a82de952284b9fcc91e18e5a152d1838a',1,'tle5012::Reg']]],
+  ['disablegmrcheck_54',['disableGMRCheck',['../da/d3e/group__tle5012reg.html#ade82637b53d7372f870e17aef73003ef',1,'tle5012::Reg']]],
+  ['disableprediction_55',['disablePrediction',['../da/d3e/group__tle5012reg.html#a0030d4ec381c08c13f27be60b0ebd432',1,'tle5012::Reg']]],
+  ['disablesensor_56',['disableSensor',['../da/d19/group__tle5012api.html#a36f65d31d68be3190354b6aa32238b8e',1,'tle5012::Tle5012b']]],
+  ['disablespikefilter_57',['disableSpikeFilter',['../da/d3e/group__tle5012reg.html#aa5f227d2d2c32cb1d3253e5153d313cd',1,'tle5012::Reg']]],
+  ['disablestartupbist_58',['disableStartupBist',['../da/d3e/group__tle5012reg.html#ade6ac110a1a35963a5d58ea55cfae458',1,'tle5012::Reg']]],
+  ['disablevoltagecheck_59',['disableVoltageCheck',['../da/d3e/group__tle5012reg.html#a0790286c186e7650a17685c9c14c9b72',1,'tle5012::Reg']]],
+  ['disablewatchdog_60',['disableWatchdog',['../da/d3e/group__tle5012reg.html#a5cf9f5b57650ea37fad6596fe2fa0bae',1,'tle5012::Reg']]],
+  ['disablexycheck_61',['disableXYCheck',['../da/d3e/group__tle5012reg.html#a0f1a092b4c8fe86a5bfcb4ff39190a1d',1,'tle5012::Reg']]]
+];

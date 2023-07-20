@@ -1,0 +1,4 @@
+<map id="tle5012::SPIClass3W::begin" name="tle5012::SPIClass3W::begin">
+<area shape="rect" id="node1" title="New for fetching SPI parameter." alt="" coords="5,5,160,47"/>
+<area shape="rect" id="node2" href="$d1/d0a/group__arduinoPal.html#ga3fe182714d43e7162932410c89a4907d" title="Set the chip select pin. This function is needed if more than one sensor is in the SPI bus." alt="" coords="208,5,363,47"/>
+</map>

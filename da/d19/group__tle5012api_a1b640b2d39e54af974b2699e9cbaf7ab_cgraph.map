@@ -1,0 +1,4 @@
+<map id="tle5012::Tle5012b::enableSensor" name="tle5012::Tle5012b::enableSensor">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html#ae3ace776a0281d49c814e1aaa81e17b6" title="Enables the GPIO output according to the GPIO logic." alt="" coords="200,13,387,39"/>
+</map>

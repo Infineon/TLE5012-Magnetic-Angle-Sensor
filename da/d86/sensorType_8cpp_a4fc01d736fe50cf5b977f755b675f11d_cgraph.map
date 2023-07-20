@@ -1,0 +1,10 @@
+<map id="setup" name="setup">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,64,83"/>
+<area shape="rect" id="node2" href="$da/d86/sensorType_8cpp.html#a49c5f7ecf8853be45136d7e78b73b46d" title="Shows additional information for each sensor type from the additional registers MOD2 and MOD3." alt="" coords="112,5,240,32"/>
+<area shape="rect" id="node3" href="$da/d86/sensorType_8cpp.html#a4dfbabeee1ca138326af9b859a683f78" title="Function prints the binary code of each documented register." alt="" coords="135,56,217,83"/>
+<area shape="rect" id="node4" href="$da/d86/sensorType_8cpp.html#a01fe77c635c3793253f2033acedb277d" title="This function prints the identity of the sensor which is set as factory default inside the sensor fus..." alt="" coords="119,107,233,133"/>
+<area shape="rect" id="node5" href="$da/d86/sensorType_8cpp.html#abfbca907358ae6cde45c02cfd5ae8b92" title="Sensor is set with IIF interface with the following settings." alt="" coords="290,31,398,57"/>
+<area shape="rect" id="node6" href="$da/d86/sensorType_8cpp.html#a885fa0eba452ffd13669be06ce128a00" title="Sensor is set with IIF interface with the following settings." alt="" coords="297,81,391,108"/>
+<area shape="rect" id="node7" href="$da/d86/sensorType_8cpp.html#ad5d72d013c258a5aa5ecb022c3e548b8" title="Sensor is set with PWM interface with the following settings." alt="" coords="288,132,400,159"/>
+<area shape="rect" id="node8" href="$da/d86/sensorType_8cpp.html#ad92812466e0693cea965d8862ac6c697" title="Sensor is set with SPC interface with the following settings." alt="" coords="293,183,395,209"/>
+</map>

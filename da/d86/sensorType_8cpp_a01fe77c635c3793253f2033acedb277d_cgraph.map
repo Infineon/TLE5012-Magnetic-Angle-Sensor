@@ -1,0 +1,7 @@
+<map id="show_identity" name="show_identity">
+<area shape="rect" id="node1" title="This function prints the identity of the sensor which is set as factory default inside the sensor fus..." alt="" coords="5,81,119,108"/>
+<area shape="rect" id="node2" href="$da/d86/sensorType_8cpp.html#abfbca907358ae6cde45c02cfd5ae8b92" title="Sensor is set with IIF interface with the following settings." alt="" coords="169,5,277,32"/>
+<area shape="rect" id="node3" href="$da/d86/sensorType_8cpp.html#a885fa0eba452ffd13669be06ce128a00" title="Sensor is set with IIF interface with the following settings." alt="" coords="176,56,269,83"/>
+<area shape="rect" id="node4" href="$da/d86/sensorType_8cpp.html#ad5d72d013c258a5aa5ecb022c3e548b8" title="Sensor is set with PWM interface with the following settings." alt="" coords="167,107,279,133"/>
+<area shape="rect" id="node5" href="$da/d86/sensorType_8cpp.html#ad92812466e0693cea965d8862ac6c697" title="Sensor is set with SPC interface with the following settings." alt="" coords="171,157,274,184"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="tle5012::SPICWiced::sendReceive" name="tle5012::SPICWiced::sendReceive">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node2" href="$d2/d6a/group__wicedPal.html#a41f4069c641f9616db03bc8519b9715d" title="transfers a data package via the spi bus" alt="" coords="201,5,349,47"/>
+</map>

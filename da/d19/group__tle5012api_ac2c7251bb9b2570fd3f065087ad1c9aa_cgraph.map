@@ -1,0 +1,6 @@
+<map id="tle5012::Tle5012b::end" name="tle5012::Tle5012b::end">
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,176,61"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html#af42cca03dde6291895a996f97604586d" title="Deinitialize the SPIC." alt="" coords="224,5,400,32"/>
+<area shape="rect" id="node3" href="$da/d19/group__tle5012api.html#a36f65d31d68be3190354b6aa32238b8e" title=" " alt="" coords="239,57,385,98"/>
+<area shape="rect" id="node4" href="$d3/d5d/group__pal.html#a84dac2a913ed1b2399b0349971baa216" title="Disables the GPIO output according to the GPIO logic." alt="" coords="448,64,637,91"/>
+</map>

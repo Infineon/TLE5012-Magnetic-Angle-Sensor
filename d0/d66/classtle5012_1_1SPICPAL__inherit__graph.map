@@ -1,0 +1,4 @@
+<map id="tle5012::SPICPAL" name="tle5012::SPICPAL">
+<area shape="rect" id="node1" title="SPI abstract API." alt="" coords="5,5,136,32"/>
+<area shape="rect" id="node2" href="$d1/d0a/group__arduinoPal.html#db/d92/classtle5012_1_1SPICIno" title="Arduino SPIC class This function is setting the basics for a SPIC and the default spi." alt="" coords="7,80,135,107"/>
+</map>
