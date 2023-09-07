@@ -2,12 +2,12 @@
  * \name        const
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       macros and other const variables
  *
  * \attention
  * Ths setup reduces variable memory so that the sensorType can run on MCUs
- * with low memory by shifting global variable memory to main programm memory.
+ * with low memory by shifting global variable memory to main program memory.
  */
 
 
@@ -26,7 +26,7 @@
 #define sc_E5000        F(" = TLE5012B_E5000")
 #define sc_PWM          F(" = PWM")
 #define sc_ifsetPWM     F("\nPWM Interface settings\n")
-#define sc_PWMfreq      F("\nMOD4 Frequnecy:         \t")
+#define sc_PWMfreq      F("\nMOD4 Frequency:         \t")
 #define sc_PWMtime      F("\nIFAB Unit time:         \t")
 #define sc_PWMfilter    F("\nIFAB Filter update time:\t")
 #define sc_PWMpin       F("\nIFAB IFA pin:           \t")

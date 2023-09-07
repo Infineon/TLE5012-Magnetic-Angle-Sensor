@@ -14,6 +14,7 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
+
 /**
  * @class Tle5012Ino
  *
@@ -37,6 +38,7 @@
 #define PRINTBINS(Num) for (uint32_t t = (1UL << ((sizeof(Num)*8)-1)); t; t >>= 1) Serial.write(Num  & t ? " 1 " : " 0 ");
 
 /** @} */
+
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TLE5012_PLATF_INO_HPP_ **/

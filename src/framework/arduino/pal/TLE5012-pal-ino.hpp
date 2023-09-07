@@ -3,7 +3,7 @@
  * \name        TLE5012-pal-ino.hpp - Arduino Hardware Abstraction Layer
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \ref         arduinoPal
  *
  * SPDX-License-Identifier: MIT
@@ -17,40 +17,42 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
+#include <Arduino.h>
+#include "../../../corelib/TLE5012b.hpp"
+#include "pal-gpio-arduino.hpp"
+#include "pal-spic-arduino.hpp"
+
+namespace tle5012
+{
+
 /**
  * @addtogroup arduinoPal
  *
  * @{
  */
 
-#include <Arduino.h>
-#include "../../../corelib/TLE5012b.hpp"
-#include "spic-arduino.hpp"
-#include "gpio-arduino.hpp"
-#include "spic-arduino.hpp"
-#include "spi3w-ino.hpp"
-
 //! Check for XMC mcu family */
-#define PIN_SPI_EN    UNUSED_PIN  /*!< TLE5012 with any other PCB has no switch on/off */
+
 
 /**
  * @brief represents a basic TLE5012b Arduino class.
  *
- * This class provides a simple API for connecting Arduino/Genuio and compatible
+ * This class provides a simple API for connecting Arduino and compatible
  * MCUs. As the default interface for the sensor is the 3wire SSC SPI interface,
  * the default SPIClass is extended by the SPIclass3W.
  *
  * @see Tle5012
  */
-
 class Tle5012Ino: virtual public Tle5012b
 {
 
 	public:
 
+		uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
+
 					Tle5012Ino();
 					Tle5012Ino(uint8_t csPin, slaveNum slave=TLE5012B_S0);
-					Tle5012Ino(SPIClass3W *bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
+					Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
 		errorTypes  begin();
 
 };
@@ -58,6 +60,8 @@ class Tle5012Ino: virtual public Tle5012b
 /**
  * @}
  */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TLE5012_PAL_INO_HPP_ **/

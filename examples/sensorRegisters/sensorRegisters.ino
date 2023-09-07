@@ -2,7 +2,7 @@
  * \name        sensorRegisters
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       Reads all sensor registers and reports there status
  * \details
  * This example program will read all documented registers from the sensor and
@@ -11,14 +11,14 @@
  * about each register.
  * 
  * \attention This Sketch needs ca. 35kB of memory and does not compile on the original
- * Arduino/Genuino Uno. Use the sensorType.ino instead
+ * Arduino Uno. Use the sensorType.ino instead
  * 
  * SPDX-License-Identifier: MIT
  *
  */
 
  #if defined(__AVR_ATmega328P__) 
- // Needs more memory than the Arduino/Genuino UNO has
+ // Needs more memory than the Arduino UNO has
  void setup()
  {
    delay(1000);
@@ -35,6 +35,8 @@ void loop()
 
 #include <TLE5012-ino.hpp>
 #include "const.h"
+
+using namespace tle5012;
 
 Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
@@ -120,7 +122,7 @@ void show_STAT()
   printval(valb,"1,  boolean\tr\t9     ");
   Serial.println(valb ? sc_SADCT0 : sc_SADCT1);
 
-  valb = Tle5012Sensor.reg.isStatusMagnitideOutOfLimit();
+  valb = Tle5012Sensor.reg.isStatusMagnitudeOutOfLimit();
   Serial.print(sc_smagol);
   printval(valb,"1,  boolean\tru\t7    ");
   Serial.println(valb ? sc_SMAGOL0 : sc_SMAGOL1);
@@ -340,7 +342,7 @@ void show_SIL()
   printval(valb,"1, boolean \trw\t14   ");
   Serial.println(valb ? sc_FINV0 : sc_FINV1);
 
-  valb = Tle5012Sensor.reg.getFulseReload();
+  valb = Tle5012Sensor.reg.getFuseReload();
   Serial.print(sc_fuserel);
   printval(valb,"1, boolean \trw\t10   ");
   Serial.println(valb ? sc_FREL0 : sc_FREL1);

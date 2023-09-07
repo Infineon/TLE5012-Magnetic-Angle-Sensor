@@ -2,7 +2,7 @@
  * \name        testSensorMainValues
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       This example can be used for a first fast test if the sensors works
  * \details
  * It will generate a looped output of the direct measured data (DIR) and
@@ -15,6 +15,8 @@
  */
 
 #include <TLE5012-ino.hpp>
+
+using namespace tle5012;
 
 // Tle5012b Object
 Tle5012Ino Tle5012Sensor = Tle5012Ino();

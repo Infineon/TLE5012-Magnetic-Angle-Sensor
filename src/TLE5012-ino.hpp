@@ -4,7 +4,7 @@
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
  * \ref         tle5012ino
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       This is a Arduino platform file use Infineon's TLE5012B magnetic angular sensor
  *
  * SPDX-License-Identifier: MIT
@@ -18,25 +18,27 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
+
+#include "corelib/TLE5012b.hpp"
+#include "framework/arduino/wrapper/TLE5012-platf-ino.hpp"
+
+
 /**
  * @addtogroup inoApi
  * @{
  */
-
-#include "corelib/TLE5012b.hpp"
-#include "framework/arduino/wrapper/TLE5012-platf-ino.hpp"
-#include "framework/arduino/pal/TLE5012-pal-ino.hpp"
 
 /**
  * @class Tle5012Ino
  *
  * @brief represents the TLE5012 base class
  * This file is only a startup wrapper for Arduino IDE so that the framework
- * setup can be handeld without any special setup.
+ * setup can be handled without any special setup.
  * 
  */
 
 /* @} */
+
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TLE5012_INO_HPP_ **/

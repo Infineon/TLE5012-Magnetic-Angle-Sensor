@@ -16,6 +16,8 @@
 
 #include "../../../pal/timer.hpp"
 
+namespace tle5012
+{
 
 /**
  * @addtogroup mtbPal
@@ -38,7 +40,10 @@ class TimerMtb: virtual public Timer
 	private:
 		mtb_time_t startTime;
 };
+
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TIMER_MTB_HPP_ **/

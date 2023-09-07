@@ -2,7 +2,7 @@
  * \name        readAngleTest
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     2.0.1
+ * \version     3.1.0
  * \brief       Testscript for a first check.
  * \details
  * This example reads all main Sensor registers (angle,revolution,speed,range and temperature)
@@ -16,6 +16,8 @@
  */
 
 #include <TLE5012-ino.hpp>
+
+using namespace tle5012;
 
 Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;

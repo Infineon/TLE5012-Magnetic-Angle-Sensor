@@ -3,7 +3,7 @@
  * \name        TLE5012b.hpp - core library for the TLE5012B angle sensor.
  * \author      Infineon Technologies AG
  * \copyright   2019-2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       GMR-based angle sensor for angular position sensing in automotive applications
  * \ref         tle5012corelib
  *
@@ -15,10 +15,15 @@
 #define TLE5012B_HPP
 
 #include <string.h>
-#include "../pal/gpio.hpp"
-#include "../pal/spic.hpp"
+#include "../pal/pal-gpio.hpp"
+#include "../pal/pal-spic.hpp"
 #include "tle5012b_util.hpp"
 #include "tle5012b_reg.hpp"
+#include "tle5012b_types.hpp"
+
+
+namespace tle5012
+{
 
 /**
  * @addtogroup tle5012api
@@ -44,8 +49,8 @@ class Tle5012b
 			TLE5012B_S3 = 0x6000     //!< \brief TLE5012B_S3 fourth sensor and ditto
 		};
 
-		SPIC     *sBus;              //!< \brief SPI cover class as representation of the SPI bus
-		GPIO     *en;                //!< \brief shield enable GPIO to switch sensor2go on/off
+		SPICPAL  *sBus;              //!< \brief SPI cover class as representation of the SPI bus
+		GPIOPAL  *en;                //!< \brief shield enable GPIOPal to switch sensor2go on/off
 		Reg      reg;                //!< \brief Register map
 		slaveNum mSlave;             //!< \brief actual set slave number
 
@@ -100,14 +105,14 @@ class Tle5012b
 		 * \param csPin    pin number of the CS pin
 		 * \param slave    slave offset setting for the SNR register, default is TLE5012B_S0
 		 */
-		//errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
+		errorTypes begin(uint8_t csPin, slaveNum slave=TLE5012B_S0);
 
-		//!< \brief Ends the comunication and switches the sensor off, if possible (only Sensor2go kit)
+		//!< \brief Ends the communication and switches the sensor off, if possible (only Sensor2go kit)
 		void end();
 
 		/*!
 		* Function enables Sensor by switch on EN pin which is only possible
-		* on Sensor2go shields, but also sets chipselect high.
+		* on Sensor2go shields, but also sets chip select high.
 		* So it is called always.
 		*/
 		void enableSensor();
@@ -230,12 +235,12 @@ class Tle5012b
 		/*!
 		* Same function as before but also returns a pointer to the raw data
 		* @param [in,out] angleValue pointer to 16bit double angle value
-		* @param [in,out] rawAnglevalue point to an int16_t raw data value
+		* @param [in,out] rawAngleValue point to an int16_t raw data value
 		* @param [in] upd read from update (UPD_high) register or directly (default, UPD_low)
 		* @param [in] safe generate safety word (default, SAFE_high) or no (SAFE_low)
 		* @return CRC error type
 		*/
-		errorTypes getAngleValue(double &angleValue, int16_t &rawAnglevalue, updTypes upd=UPD_low, safetyTypes safe=SAFE_high);
+		errorTypes getAngleValue(double &angleValue, int16_t &rawAngleValue, updTypes upd=UPD_low, safetyTypes safe=SAFE_high);
 
 		/*!
 		* Returns the number of revolutions done from the angle value which is a 9 bit signed integer.
@@ -404,5 +409,7 @@ class Tle5012b
 /**
  * @}
  */
+
+}
 
 #endif /* TLE5012B_HPP */

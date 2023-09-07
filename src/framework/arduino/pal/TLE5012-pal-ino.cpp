@@ -11,6 +11,8 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
+using namespace tle5012;
+
 /**
  * @addtogroup arduinoPal
  */
@@ -29,7 +31,7 @@ Tle5012Ino::Tle5012Ino():Tle5012b()
 }
 
 /**
- * @brief Construct a new Tle5012Ino::Tle5012Ino object with chipselect and sensor slave
+ * @brief Construct a new Tle5012Ino::Tle5012Ino object with chip select and sensor slave
  * Use this constructor if:
  * - you use more than one sensor with one SPI channel (up to four are possible)
  * 
@@ -55,10 +57,10 @@ Tle5012Ino::Tle5012Ino(uint8_t csPin, slaveNum slave):Tle5012b()
  * @param sckPin   system clock pin for external sensor clock setting
  * @param slave    optional sensor slave setting
  */
-Tle5012Ino::Tle5012Ino(SPIClass3W *bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave):Tle5012b()
+Tle5012Ino::Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave):Tle5012b()
 {
 	Tle5012b::mSlave = slave;
-	Tle5012b::sBus = new SPICIno(*bus,csPin,misoPin,mosiPin,sckPin);
+	Tle5012b::sBus = new SPICIno(bus,csPin,misoPin,mosiPin,sckPin);
 }
 
 /**
@@ -75,9 +77,9 @@ errorTypes Tle5012Ino::begin(void)
 		#undef PIN_SPI_EN
 		#define PIN_SPI_EN    8           /*!< TLE5012 Sensor2Go Kit has a switch on/off pin */
 	#endif
-
 	// init helper libs
-	sBus->init();
+
+	Tle5012b::sBus->init();
 	if (PIN_SPI_EN != UNUSED_PIN) {
 		Tle5012b::en = new GPIOIno(PIN_SPI_EN, OUTPUT, GPIOIno::POSITIVE);
 		Tle5012b::en->init();

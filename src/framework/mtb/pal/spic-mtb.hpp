@@ -19,6 +19,9 @@
 #include <platform.h>
 #include <mtb_platform.h>
 
+namespace tle5012
+{
+
 /**
  * @addtogroup mtbPal
  * @{
@@ -61,7 +64,10 @@ class SPICMtb: virtual public SPIC
 		Error_t     transfer16(uint16_t send, uint16_t &received);
 
 };
+
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** SPIC_MTB_HPP_ **/

@@ -14,6 +14,9 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_WICED)
 
+namespace tle5012
+{
+
 /**
  * @class Tle5012Wiced
  *
@@ -38,6 +41,8 @@
 #define PRINTBINS(Num) for (uint32_t t = (1UL << ((sizeof(Num)*8)-1)); t; t >>= 1) WPRINT_APP_INFO((" %u ",(Num  & t ? 1 : 0) ));
 
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TLE5012_PLATF_WICED_HPP_ **/
