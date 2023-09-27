@@ -116,6 +116,16 @@ void SPIClass3W::setupSPI()
 		m3Wire.mosi_open.input_hysteresis = XMC_GPIO_INPUT_HYSTERESIS_STANDARD;
 		m3Wire.sck_config.mode = XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT6;
 		m3Wire.sck_config.input_hysteresis = XMC_GPIO_INPUT_HYSTERESIS_STANDARD;
+	#elif defined(XMC4400_Platform2GO) || defined(XMC4200_Platform2GO)
+		m3Wire.channel = XMC_SPI1_CH1;
+		m3Wire.miso_close.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
+		m3Wire.miso_open.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
+		m3Wire.mosi_open.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
+		m3Wire.mosi_open.mode = XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT4;
+		m3Wire.sck_config.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
+		m3Wire.cs_config.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
+		m3Wire.sck_config.mode = XMC_GPIO_MODE_OUTPUT_PUSH_PULL_ALT4;
+		m3Wire.input_source = XMC_INPUT_D;
 	#elif defined(XMC4700_Relax_Kit)
 		m3Wire.miso_close.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
 		m3Wire.miso_open.output_strength = XMC_GPIO_OUTPUT_STRENGTH_MEDIUM;
