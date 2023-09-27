@@ -18,14 +18,17 @@
  * @addtogroup arduinoPal
  * @{
  */
+namespace tle5012
+{
+
 
 /**
  * @brief Arduino SPIClass3W extends the default SPIClass
  * The extension allows the use of 3wire SSC SPI interfaces for
- * default Arduino/Genuino and for XMC, special for the Sensor2go kit
+ * default Arduino and for XMC, special for the Sensor2go kit
  * Therefore via the correct code is loaded via SPI3W_INO macro settings.
  *
- * @attention keep in mind, you can set more different chipselect pins, but
+ * @attention keep in mind, you can set more different chip select pins, but
  * you can not separate more than 4 sensors data streams from each other
  * 
  */
@@ -33,8 +36,9 @@
 #ifndef SPI3W_INO_HPP
 #define SPI3W_INO_HPP
 
-#define SPI3W_ARD     1
-#define SPI3W_XMC     2
+#define SPI3W_ARD        1
+#define SPI3W_XMC        2
+#define SPI3W_ESP32      3
 
 #define MAX_SLAVE_NUM    4              //!< Maximum numbers of slaves on one SPI bus
 #define SPEED            1000000U       //!< default speed of SPI transfer
@@ -45,6 +49,8 @@ class SPIClass3W : public SPIClass
 	public:
 		#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
 			#define SPI3W_INO SPI3W_XMC
+		#elif defined(ESP32)
+			#define SPI3W_INO SPI3W_ESP32
 		#else
 			#define SPI3W_INO SPI3W_ARD
 		#endif
@@ -53,7 +59,7 @@ class SPIClass3W : public SPIClass
 		uint8_t     mCS;                //!< Pin for chip select
 		uint8_t     mSpiNum;            //!< Number of used SPI channel
 
-				SPIClass3W(uint8_t spiNum = 0);
+				SPIClass3W();
 				~SPIClass3W();
 		void    begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs);
 		void    setCSPin(uint8_t cs);
@@ -67,7 +73,6 @@ class SPIClass3W : public SPIClass
 
 
 		#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
-
 			/*!
 			* The enhanced 3-Wire parameter structure includes miso/mosi open and close
 			* setting and for the enable pin setting of the Sensor2Go evaluation boards.
@@ -89,14 +94,38 @@ class SPIClass3W : public SPIClass
 				XMC_GPIO_CONFIG_t        cs_config;
 			} XMC_3W_SPI_t;
 
-			XMC_3W_SPI_t m3Wire;         //!< enhanced 3-Wire SPI parameter structure
+			XMC_3W_SPI_t      m3Wire;    //!< enhanced 3-Wire SPI parameter structure
 
 			void setupSPI();             //!< initial 3-Wire SPI setup
 			void initSpi();              //!< initial startup of the 3-Wire SPI interface
+
+		#elif defined(ESP32)
+			void *e3Wire;                //!< we use a void pointer to avoid loading the ESP-IDF driver here
 		#endif
+
+
 };
 
+/**
+ * @brief define a new SPI3W macro for handling more than the default SPI channel
+ * 
+ */
+extern SPIClass3W SPI3W;
+#if (NUM_SPI > 1)
+	extern SPIClass3W SPI3W1;
+#	if (NUM_SPI > 2)
+		extern SPIClass3W SPI3W2;
+#		if (NUM_SPI > 3)
+			extern SPIClass3W SPI3W3;
+#			if (NUM_SPI > 4)
+				extern SPIClass3W SPI3W4;
+#			endif
+#		endif
+#	endif
+#endif
+
 /** @} */
+}
 
 #endif /* SPI3W_INO_HPP */
 #endif /* TLE5012_FRAMEWORK */

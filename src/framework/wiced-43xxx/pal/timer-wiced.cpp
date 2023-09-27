@@ -11,6 +11,8 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_WICED)
 
+using namespace tle5012;
+
 /**
  * @brief Constructor of the WICED Timer class
  *

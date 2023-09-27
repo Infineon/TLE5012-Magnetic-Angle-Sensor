@@ -1,5 +1,5 @@
 /**
- * @file        gpio.hpp
+ * @file        pal-gpio.hpp
  * @brief       PAL of the GPIO
  * @date        May 2020
  * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
@@ -8,27 +8,22 @@
  */
 
 #include <stdint.h>
+#include "../corelib/tle5012b_types.hpp"
 
-#ifndef GPIO_HPP_
-#define GPIO_HPP_
+#ifndef PAL_GPIO_HPP_
+#define PAL_GPIO_HPP_
+
+namespace tle5012
+{
 
 /**
  * @addtogroup pal
  * @{
  */
 
-class GPIO
+class GPIOPAL
 {
 	public:
-
-		enum Error_t
-		{
-			OK          = 0,     /**< No error */
-			INTF_ERROR  = -1,    /**< Interface error */
-			CONF_ERROR  = -2,    /**< Configuration error */
-			READ_ERROR  = -3,    /**< Read error */
-			WRITE_ERROR = -4,    /**< Write error */
-		};
 
 		/**
 		 * @name   Interrupt event
@@ -72,7 +67,7 @@ class GPIO
 		virtual Error_t        init        () = 0;
 
 		/**
-			 * @brief       Deinitializes the GPIO
+			 * @brief       Deinitialize the GPIO
 			 * @return      GPIO error code
 			 * @retval      OK if success
 			 * @retval      INIT_ERROR if deinitialization error
@@ -125,13 +120,10 @@ class GPIO
 		 */
 		virtual Error_t        disable     () = 0;
 
-		Error_t checkErrorStatus();
-
-	private:
-		Error_t errorStatus;
-
 };
 
 /** @} */
 
-#endif /** GPIO_HPP_ **/
+}
+
+#endif /** PAL_GPIO_HPP_ **/

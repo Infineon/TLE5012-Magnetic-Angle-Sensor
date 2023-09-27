@@ -18,6 +18,9 @@
 #include "../../../pal/gpio.hpp"
 #include <mtb_platform.h>
 
+namespace tle5012
+{
+
 /**
  * @addtogroup mtbPal
  * @{
@@ -45,6 +48,8 @@ class GPIOMtb : virtual public GPIO
 
 
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** GPIO_MTB_HPP_ **/

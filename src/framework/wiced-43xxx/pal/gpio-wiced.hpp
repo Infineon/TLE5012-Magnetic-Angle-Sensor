@@ -18,6 +18,10 @@
 #include "../../../pal/gpio.hpp"
 #include <wiced_platform.h>
 
+
+namespace tle5012
+{
+
 /**
  * @addtogroup wicedPal
  * @{
@@ -43,8 +47,9 @@ class GPIOWiced : virtual public GPIO
 		Error_t     disable();
 };
 
-
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** GPIO_WICED_HPP_ **/

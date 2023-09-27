@@ -1,49 +1,44 @@
 /*!
-   \name        useMultipleSensors
-   \author      Infineon Technologies AG
-   \copyright   2020 Infineon Technologies AG
-   \version     2.0.1
-   \brief       Testscript for using up to four sensors on one SPI channel.
-   \details
-   This example program starts one to four sensors on one SPI line with different CS pins
-   and returns the angle value together with the safety word and the status register SNR.
-   Due to the selected slave number the SNR will be set to 0x00, 0x01, 0x10 or 0x11. When
-   you fetch a value from the sensor with safety word on, than the safety word register RESP
-   will indicate the sensor who is responding. This should be the same than you have
-   ask for. The loop function will than print out the individual sensor(s) angle values.
-
-   This example also demonstrates how to handle more than on sensor in an array setup.
-
-   \attention Needs much memory which can be too much for the original Arduino/Genuino Uno
-
-   SPDX-License-Identifier: MIT
-
-*/
+ * \name        useMultipleSensors
+ * \author      Infineon Technologies AG
+ * \copyright   2020 Infineon Technologies AG
+ * \version     3.1.0
+ * \brief       Testscript for using up to four sensors on one SPI channel.
+ * \details
+ * This example program starts one to four sensors on one SPI line with different CS pins
+ * and returns the angle value together with the safety word and the status register SNR.
+ * Due to the selected slave number the SNR will be set to 0x00, 0x01, 0x10 or 0x11. When
+ * you fetch a value from the sensor with safety word on, than the safety word register RESP
+ * will indicate the sensor who is responding. This should be the same than you have
+ * ask for. The loop function will than print out the individual sensor(s) angle values.
+ *  
+ * This example also demonstrates how to handle more than on sensor in an array setup.
+ * 
+ * \attention Needs much memory which can be too much for the original Arduino/Genuino Uno
+ * 
+ * SPDX-License-Identifier: MIT
+ *
+ */
 
 #include <TLE5012-ino.hpp>
 
+using namespace tle5012;
+
 //! number of connected sensors
-#define SENSOR_NUM 2
-
-
-SPIClass3W SPI3W0(0);
-SPIClass3W SPI3W1(1);
-SPIClass3W SPI3W2(2);
+#define SENSOR_NUM 1
 
 //! define more unique chipselect pins for more connected Sensors
 #define CS_PIN_SENSOR_1   10  //!< This is a setup for the default Arduino, use 3 for the Sensor2Go kit
-#define CS_PIN_SENSOR_2   96   //!< This is also a setup for the Sensor2Go kit but with a second sensor attached
-#define CS_PIN_SENSOR_3   68
+#define CS_PIN_SENSOR_2   5   //!< This is also a setup for the Sensor2Go kit but with a second sensor attached
+//#define CS_PIN_SENSOR_3   x
 //#define CS_PIN_SENSOR_4   x
 
 //! Tle5012b Object, set/remove depending on the number of connected sensors
 Tle5012Ino sensor[SENSOR_NUM] = {
-//  Tle5012Ino(&SPI3W0, CS_PIN_SENSOR_1, 12, 11, 13, Tle5012b::TLE5012B_S0),
-//  Tle5012Ino(&SPI3W2, CS_PIN_SENSOR_2, 71, 97, 70, Tle5012b::TLE5012B_S1),
-  //  Tle5012Ino(&SPI3W1,CS_PIN_SENSOR_3,37, 67, 69, Tle5012b::TLE5012B_S0),
-  //  Tle5012Ino(CS_PIN_SENSOR_1, Tle5012b::TLE5012B_S0),
-    (Tle5012Ino(CS_PIN_SENSOR_1,Tle5012b::TLE5012B_S2)),
-    (Tle5012Ino(CS_PIN_SENSOR_3,Tle5012b::TLE5012B_S3)),
+  (Tle5012Ino(CS_PIN_SENSOR_1,sensor[1].TLE5012B_S0)),
+//  (Tle5012Ino(CS_PIN_SENSOR_2,sensor[1].TLE5012B_S1)),
+//  (Tle5012Ino(CS_PIN_SENSOR_3,sensor[1].TLE5012B_S2)),
+//  (Tle5012Ino(CS_PIN_SENSOR_4,sensor[1].TLE5012B_S3)),
 };
 
 //! Sensor IFX SIL(TM) errorCheck
@@ -57,36 +52,34 @@ void setup() {
   delay(2000);
   Serial.begin(115200);
   while (!Serial) {};
-
+   
   // Remove remark if you have more than one sensor,
   // or change the Tle5012Sensor.TLE5012B_S0 to S1-S3 to demonstrate the effect
-  Serial.print("\n\n");
-  for (int8_t i = 0; i < SENSOR_NUM; i++)
+  for (int8_t i=0;i<SENSOR_NUM;i++)
   {
     checkError = sensor[i].begin();
-    Serial.print("init done for sensor ");
-    Serial.print(i);
-    Serial.print(" with checkError ");
-    Serial.println(checkError, HEX);
   }
+  Serial.print("init done! with checkError ");
+  Serial.print("\n\ncheckerror: ");
+  Serial.println(checkError, HEX);
 
   uint16_t stat;
   uint8_t resp;
   double a = 0.0;
-  for (int8_t i = 0; i < SENSOR_NUM; i++)
+  for (int8_t i=0;i<SENSOR_NUM;i++)
   {
-    a = 0.0;
     sensor[i].readStatus(stat);
+    sensor[i].reg.getSlaveNumber();
     sensor[i].getAngleValue(a);
     sensor[i].safetyStatus.fetch_Safety(sensor[i].safetyWord);
-
+  
     Serial.print(i);
     Serial.print("\tangle: ");
     Serial.print(a);
     Serial.print("\tSTAT SNR: ");
     Serial.print(sensor[i].reg.getSlaveNumber());
     Serial.print("\tRESP: ");
-
+  
     switch (sensor[i].safetyStatus.responseSlave()) {
       case sensor[i].TLE5012B_S3:
         Serial.print("0x0111 = TLE5012B_S3");
@@ -103,12 +96,12 @@ void setup() {
     }
     Serial.println();
   }
-  delay(100);
+  delay(1000);
   Serial.println();
 }
 
 void loop() {
-  for (int8_t i = 0; i < SENSOR_NUM; i++) {
+  for (int8_t i=0;i<SENSOR_NUM;i++){
     d[i] = 0.0;
     r[i] = 0;
     sensor[i].getAngleValue(d[i]);

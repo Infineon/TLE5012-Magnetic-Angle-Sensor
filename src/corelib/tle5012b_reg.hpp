@@ -3,14 +3,14 @@
  * \name        tle5012b_reg.hpp - core register support header for the TLE5012B angle sensor.
  * \author      Infineon Technologies AG
  * \copyright   2019-2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       GMR-based angle sensor for angular position sensing in automotive applications
  * \details
  *              This file includes the registry definition macros of all Sensor registers and
  *              the bit settings for each of the register content values. Depending on
  *              the type of secondary interface (PWM, IIF or HSM) the meaning of some register values
  *              differs, so please have look in the TLE5012 manual for the exact meaning.
- *              Also included here are other sensefull macros for handling the TLE5012 sensor.
+ *              Also included here are other senseful macros for handling the TLE5012 sensor.
  * \ref         tle5012corelib
  *
  * SPDX-License-Identifier: MIT
@@ -24,6 +24,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "TLE5012b.hpp"
+
+namespace tle5012
+{
 
 /**
  * @addtogroup tle5012reg
@@ -100,9 +103,9 @@ class Reg
 		typedef struct
 		{
 			uint8_t  regAccess;              //!< \brief Bitfield register access */
-			uint16_t regAddress;             //!< \brief Bitfiled register address */
+			uint16_t regAddress;             //!< \brief Bitfield register address */
 			uint16_t mask;                   //!< \brief Bitfield mask */
-			uint8_t  position;               //!< \brief Bitfiled position */
+			uint8_t  position;               //!< \brief Bitfield position */
 			uint8_t  resetValue;             //!< \brief Bitfield register reset value */
 			uint8_t  posMap;                 //!< \brief Bitfield position of register in regMap */
 		}BitField_t;
@@ -113,8 +116,8 @@ class Reg
 		 */
 		typedef struct
 		{
-			uint16_t regAddress;            //!< \brief Addressfield register address */
-			uint8_t  posMap;                //!< \brief Addressfield register regMap position */
+			uint16_t regAddress;            //!< \brief Address field register address */
+			uint8_t  posMap;                //!< \brief Address field register regMap position */
 		}AddressField_t;
 
 		static const AddressField_t addrFields[];    //!< \brief Registers bitfields
@@ -162,7 +165,7 @@ class Reg
 		bool isStatusDSPU(void);
 		bool isStatusOverflow(void);
 		bool isStatusXYOutOfLimit(void);
-		bool isStatusMagnitideOutOfLimit(void);
+		bool isStatusMagnitudeOutOfLimit(void);
 		bool isStatusADC(void);
 		bool isStatusROM(void);
 		bool isStatusGMRXY(void);
@@ -243,15 +246,15 @@ class Reg
 		void disableADCTestVector(void);
 		bool isADCTestVector(void);
 		void setFuseReload(void);
-		bool getFulseReload(void);
+		bool getFuseReload(void);
 		void setTestVectorX(uint8_t adctvx);
 		uint8_t getTestVectorX(void);
-		void setTestVectorY(uint8_t adctvs);
+		void setTestVectorY(uint8_t adctvy);
 		uint8_t getTestVectorY(void);
 
 		// REG_MOD_2
 		void directionClockwise(void);
-		void directionConterClockwise(void);
+		void directionCounterClockwise(void);
 		bool isAngleDirection(void);
 		void enablePrediction(void);
 		void disablePrediction(void);
@@ -459,4 +462,5 @@ class Reg
  * @}
  */
 
+}
 #endif /* TLE5012B_REG_HPP */

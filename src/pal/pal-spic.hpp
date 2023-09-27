@@ -8,27 +8,27 @@
  */
 
 #include <stdint.h>
+#include "../corelib/tle5012b_types.hpp"
 
-#ifndef SPIC_HPP_
-#define SPIC_HPP_
+
+#ifndef PAL_SPIC_HPP_
+#define PAL_SPIC_HPP_
+
+namespace tle5012
+{
 
 /**
  * @addtogroup pal
  * @{
  */
 
-class SPIC
+/**
+ * @class SPICPAL
+ * @brief SPI abstract API 
+ */
+class SPICPAL
 {
 	public:
-
-		enum Error_t
-		{
-			OK          = 0,     /**< No error */
-			INTF_ERROR  = -1,    /**< Interface error */
-			CONF_ERROR  = -2,    /**< Configuration error */
-			READ_ERROR  = -3,    /**< Read error */
-			WRITE_ERROR = -4,    /**< Write error */
-		};
 
 		/**
 		 * @brief       Initializes the SPIC
@@ -39,7 +39,7 @@ class SPIC
 		virtual Error_t        init        () = 0;
 
 		/**
-		 * @brief       Deinitializes the SPIC
+		 * @brief       Deinitialize the SPIC
 		 * @return      SPIC error code
 		 * @retval      OK if success
 		 * @retval      INIT_ERROR if deinitialization error
@@ -67,13 +67,10 @@ class SPIC
 		 */
 		virtual Error_t       sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data) = 0;
 
-		Error_t checkErrorStatus();
-
-	private:
-		Error_t errorStatus;
-
 };
 
 /** @} */
 
-#endif /** SPIC_HPP_ **/
+}
+
+#endif /** PAL_SPIC_HPP_ **/

@@ -2,7 +2,7 @@
  * \name        E9000SPC
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.1
+ * \version     3.1.0
  * \brief       This example shows how to handle the TLE5012B-E9000 variant with SPC interface
  * \details
  * The TLE5012B-E9000 with SPC interface does not start the DSP automatically in a loop at start up.
@@ -24,6 +24,8 @@
  */
 
 #include <TLE5012-ino.hpp>
+
+using namespace tle5012;
 
 //!< \brief GPIO pin number of IFA on the Sensor2Go kit
 #define        IFA        9

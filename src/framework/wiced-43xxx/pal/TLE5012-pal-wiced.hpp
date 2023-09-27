@@ -3,7 +3,7 @@
  * \name        TLE5012-pal-wiced.hpp - Wiced Hardware Abstraction Layer
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \ref         wicedPal
  *
  * SPDX-License-Identifier: MIT
@@ -16,6 +16,9 @@
 #include "../../../config/tle5012-conf.hpp"
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_WICED)
+
+namespace tle5012
+{
 
 /**
  * @addtogroup wicedPal
@@ -65,6 +68,8 @@ class Tle5012Wiced: virtual public Tle5012b
 /**
  * @}
  */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TLE5012_PAL_WICED_HPP_ **/

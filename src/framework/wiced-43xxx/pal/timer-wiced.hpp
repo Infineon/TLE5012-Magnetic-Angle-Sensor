@@ -18,6 +18,9 @@
 #include "wiced_time.h"
 #include "wiced_rtos.h"
 
+namespace tle5012
+{
+
 /**
  * @addtogroup wicedPal
  * @{
@@ -39,7 +42,10 @@ class TimerWiced: virtual public Timer
 	private:
 		wiced_time_t startTime;
 };
+
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** TIMER_WICED_HPP_ **/

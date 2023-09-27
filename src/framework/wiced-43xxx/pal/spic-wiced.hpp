@@ -21,6 +21,9 @@
 #include "wiced_time.h"
 #include "wiced_rtos.h"
 
+namespace tle5012
+{
+
 /**
  * @addtogroup wicedPal
  * @{
@@ -44,8 +47,8 @@ class SPICWiced: virtual public SPIC
 		uint8_t            mode;
 		uint8_t            clock;
 
-		uint8_t            sendBuffer[2];
-		uint8_t            receiveBuffer[2];
+		uint8_t           sendBuffer[2];
+		uint8_t           receiveBuffer[2];
 		bool               spiSetting = false;
 
 		//* @brief Definition of the SPI-Segment which contains the data for the communication
@@ -63,7 +66,10 @@ class SPICWiced: virtual public SPIC
 		Error_t     sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data);
 
 };
+
 /** @} */
+
+}
 
 #endif /** TLE5012_FRAMEWORK **/
 #endif /** SPIC_WICED_HPP_ **/

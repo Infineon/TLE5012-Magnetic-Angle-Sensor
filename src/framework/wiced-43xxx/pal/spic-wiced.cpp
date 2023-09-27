@@ -14,6 +14,8 @@
 #include <wiced.h>
 #include <platform.h>
 
+using namespace tle5012;
+
 /**
  * @brief Constructor of the WICED SPIC class
  *

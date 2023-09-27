@@ -11,6 +11,8 @@
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_MTB)
 
+using namespace tle5012;
+
 /**
  * @brief Constructor of the MTB Timer class
  *

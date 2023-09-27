@@ -2,7 +2,7 @@
  * \name        writeRegisters
  * \author      Infineon Technologies AG
  * \copyright   2020 Infineon Technologies AG
- * \version     2.0.1
+ * \version     3.1.0
  * \brief       Testscript for a writing register settings.
  * \details
  * This example show how to use the register write functions
@@ -14,6 +14,8 @@
  */
 
 #include <TLE5012-ino.hpp>
+
+using namespace tle5012;
 
 Tle5012Ino Tle5012Sensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;

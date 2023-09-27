@@ -9,16 +9,20 @@
 
 
 
-#ifndef SPIC_ARDUINO_HPP_
-#define SPIC_ARDUINO_HPP_
+#ifndef PAL_SPIC_ARDUINO_HPP_
+#define PAL_SPIC_ARDUINO_HPP_
 
 #include "../../../config/tle5012-conf.hpp"
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 #include "Arduino.h"
-#include "../../../pal/spic.hpp"
+#include "../../../pal/pal-spic.hpp"
 #include "spi3w-ino.hpp"
+#include "pal-pin-types.hpp"
+
+namespace tle5012
+{
 
 /**
  * @addtogroup arduinoPal
@@ -30,17 +34,18 @@
  * This function is setting the basics for a SPIC and the default spi.
  */
 
-class SPICIno: virtual public SPIC
+class SPICIno: virtual public SPICPAL
 {
 	private:
 
-		uint8_t       csPin   = PIN_SPI_SS;          //<! \brief chipselect pin for the device
+		uint8_t       csPin   = PIN_SPI_SS;          //<! \brief chip select pin for the device
 		uint8_t       misoPin = PIN_SPI_MISO;        //<! \brief SPI miso pin
 		uint8_t       mosiPin = PIN_SPI_MOSI;        //<! \brief SPI mosi pin
 		uint8_t       sckPin  = PIN_SPI_SCK;         //<! \brief SPI system clock pin
-		SPIClass3W    *spi;                          //<! \brief extended SPI class pointer
+		SPIClass3W    *spi    = NULL;                //<! \brief extended SPI class pointer
 
 	public:
+
 					SPICIno(uint8_t csPin=PIN_SPI_SS);
 					SPICIno(SPIClass3W &port, uint8_t csPin=PIN_SPI_SS, uint8_t misoPin=PIN_SPI_MISO, uint8_t mosiPin=PIN_SPI_MOSI, uint8_t sckPin=PIN_SPI_SCK);
 					~SPICIno();
@@ -53,5 +58,7 @@ class SPICIno: virtual public SPIC
 
 /** @} */
 
+}
+
 #endif /** TLE5012_FRAMEWORK **/
-#endif /** SPIC_ARDUINO_HPP_ **/
+#endif /** PAL_SPIC_ARDUINO_HPP_ **/

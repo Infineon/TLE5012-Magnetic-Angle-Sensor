@@ -1,5 +1,5 @@
 PROJECT_NAME           = "TLE5012B"
-PROJECT_NUMBER         = 3.0.0
+PROJECT_NUMBER         = 3.1.0
 PROJECT_BRIEF          = "The TLE5012B is a pre-calibrated 360° angle sensor that detects the orientation of a magnetic field. The raw signals (sine and cosine) are digitally processed internally to calculate the angle orientation of the magnetic field (magnet)."
 OUTPUT_DIRECTORY       = ./../docs/doxygen/build
 CREATE_SUBDIRS         = YES

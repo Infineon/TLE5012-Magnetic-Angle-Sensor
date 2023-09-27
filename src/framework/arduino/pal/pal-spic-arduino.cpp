@@ -7,9 +7,11 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "spic-arduino.hpp"
+#include "pal-spic-arduino.hpp"
 
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
+
+using namespace tle5012;
 
 /**
  * @addtogroup arduinoPal
@@ -24,13 +26,15 @@
  * - you use the default SPI channel
  * - if use the default SPI channel with up to four sensors
  * 
- * @param csPin optional chipselect pin. If not set it will be default PIN_SPI_SS
+ * @param csPin optional chip select pin. If not set it will be default PIN_SPI_SS
  */
 SPICIno::SPICIno(uint8_t csPin)
 {
 	this->csPin = csPin;
 	#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
 		this->spi = &SPI;
+	#else
+		this->spi = new SPIClass3W();
 	#endif
 }
 
@@ -44,10 +48,10 @@ SPICIno::SPICIno(uint8_t csPin)
  * - also with up to four sensors per channel
  *
  * @param port     SPI port if not default
- * @param csPin    chipselect pin for the SPI port
+ * @param csPin    chip select pin for the SPI port
  * @param misoPin  miso pin number
  * @param mosiPin  mosi pin number
- * @param sckPin   systemclock pin number
+ * @param sckPin   system clock pin number
  */
 SPICIno::SPICIno(SPIClass3W &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
 {
@@ -64,9 +68,9 @@ SPICIno::SPICIno(SPIClass3W &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiP
  * This function is initializing the chosen spi channel
  * with the given values for lsb, clock and mode
  *
- * @return      SPICIno::Error_t
+ * @return      Error_t
  */
-SPICIno::Error_t SPICIno::init()
+Error_t SPICIno::init()
 {
 	this->spi->begin(this->misoPin, this->mosiPin, this->sckPin, this->csPin);
 	return OK;
@@ -75,11 +79,11 @@ SPICIno::Error_t SPICIno::init()
 /**
  * @brief Deinitialize the SPIC
  *
- * This function is deinitializing the chosen spi channel.
+ * This function deinitialize the chosen spi channel.
  *
- * @return      SPICIno::Error_t
+ * @return      Error_t
  */
-SPICIno::Error_t SPICIno::deinit()
+Error_t SPICIno::deinit()
 {
 	this->spi->endTransaction();
 	this->spi->end();
@@ -92,9 +96,9 @@ SPICIno::Error_t SPICIno::deinit()
  * should be triggered once before UPD registers where read as
  * it generates a snapshot of the UPD register values at trigger point
  * 
- * @return SPICIno::Error_t 
+ * @return Error_t 
  */
-SPICIno::Error_t SPICIno::triggerUpdate()
+Error_t SPICIno::triggerUpdate()
 {
 	digitalWrite(this->sckPin, LOW);
 	digitalWrite(this->mosiPin, HIGH);
@@ -112,13 +116,13 @@ SPICIno::Error_t SPICIno::triggerUpdate()
 * @param received_data pointer to data structure buffer for the read data
 * @param size_of_received_data size of data words to be read
 */
-SPICIno::Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data)
+Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data)
 {
 	this->spi->setCSPin(this->csPin);
 	this->spi->sendReceiveSpi(sent_data,size_of_sent_data,received_data,size_of_received_data);
 	return OK;
 }
-
+ 
 /** @} */
 
 #endif /** TLE5012_FRAMEWORK **/

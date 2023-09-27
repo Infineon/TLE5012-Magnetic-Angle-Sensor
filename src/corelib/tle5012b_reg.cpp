@@ -3,14 +3,14 @@
  * \name        tle5012b_reg.cpp - core support for the TLE5012B angle sensor.
  * \author      Infineon Technologies AG
  * \copyright   2019-2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       GMR-based angle sensor for angular position sensing in automotive applications
  * \details
  *              This file includes the registry definition macros of all Sensor registers and
  *              the bit settings for each of the register content values. Depending on
  *              the type of secondary interface (PWM, IIF or HSM) the meaning of some register values
  *              differs, so please have look in the TLE5012 manual for the exact meaning.
- *              Also included here are other sensefull macros for handling the TLE5012 sensor.
+ *              Also included here are other senseful macros for handling the TLE5012 sensor.
  * \ref         tle5012corelib
  *
  * SPDX-License-Identifier: MIT
@@ -19,6 +19,8 @@
 
 #include "TLE5012b.hpp"
 #include "tle5012b_reg.hpp"
+
+using namespace tle5012;
 
 const Reg::AddressField_t Reg::addrFields[] =
 {
@@ -293,7 +295,7 @@ bool Reg::isStatusDSPU(void)
 }
 
 /**
- * @brief Cyclic scheck of DSPU (Digital Signal Processing Unit) overflow
+ * @brief Cyclic check of DSPU (Digital Signal Processing Unit) overflow
  *
  * @return true  DSPU overflow occurred
  * @return false No DSPU overflow occurred
@@ -324,7 +326,7 @@ bool Reg::isStatusXYOutOfLimit(void)
  * @return true  GMR-magnitude out of limit
  * @return false GMR magnitude ok
  */
-bool Reg::isStatusMagnitideOutOfLimit(void)
+bool Reg::isStatusMagnitudeOutOfLimit(void)
 {
 	uint16_t bitf = 0x00;
 	getBitField(bitFields[REG_STAT_SMAGOL], bitf);
@@ -334,7 +336,7 @@ bool Reg::isStatusMagnitideOutOfLimit(void)
 /**
  * @brief Check signal path with test vectors
  *
- * @return true  Test vetors out of limit
+ * @return true  Test vectors out of limit
  * @return false Test vectors ok
  */
 bool Reg::isStatusADC(void)
@@ -345,7 +347,7 @@ bool Reg::isStatusADC(void)
 }
 
 /**
- * @brief Check of ROM-CRC at statup
+ * @brief Check of ROM-CRC at startup
  *
  * @return true  CRC fail or running
  * @return false CRC ok
@@ -421,7 +423,7 @@ void Reg::setSlaveNumber(uint8_t snr)
 /**
  * @brief Hardware reset, will be performed after chip select returns to high.
  *
- * @return true  activation of harware reset
+ * @return true  activation of hardware reset
  * @return false after reset, thus always returns false
  */
 bool Reg::isActivationReset(void)
@@ -879,7 +881,7 @@ uint8_t Reg::getFilterDecimation(void)
 }
 
 /**
- * @brief Set the IIF (Incremental Interfave Mode)
+ * @brief Set the IIF (Incremental Interface Mode)
  *
  */
 void Reg::setIIFMod(uint8_t iifmod)
@@ -941,7 +943,7 @@ void Reg::setInternalClock(void)
 }
 
 /**
- * @brief Set clock sourec to external SCK
+ * @brief Set clock source to external SCK
  *
  */
 void Reg::setExternalClock(void)
@@ -1070,7 +1072,7 @@ void Reg::setFuseReload(void)
  * @return true  reload of registers from fuses immediately
  * @return false normal operations
  */
-bool Reg::getFulseReload(void)
+bool Reg::getFuseReload(void)
 {
 	uint16_t bitf = 0x00;
 	getBitField(bitFields[REG_SIL_FUSEREL], bitf);
@@ -1102,9 +1104,9 @@ uint8_t Reg::getTestVectorX(void)
  * @brief Set the test vector s
  *
  */
-void Reg::setTestVectorY(uint8_t adctvs)
+void Reg::setTestVectorY(uint8_t adctvy)
 {
-	setBitField(bitFields[REG_SIL_ADCTVY], adctvs);
+	setBitField(bitFields[REG_SIL_ADCTVY], adctvy);
 }
 
 /**
@@ -1132,7 +1134,7 @@ void Reg::directionClockwise(void)
  * @brief Set angle direction counter clockwise
  *
  */
-void Reg::directionConterClockwise(void)
+void Reg::directionCounterClockwise(void)
 {
 	setBitField(bitFields[REG_MOD_2_ANGDIR], 0);
 }
@@ -1169,10 +1171,10 @@ void Reg::disablePrediction(void)
 }
 
 /**
- * @brief Get the status of angle perdiction
+ * @brief Get the status of angle prediction
  *
- * @return true  perdiction is enabled
- * @return false perdiction is disabled
+ * @return true  prediction is enabled
+ * @return false prediction is disabled
  */
 bool Reg::isPrediction(void)
 {
@@ -1677,7 +1679,7 @@ int16_t Reg::getADCy(void)
 }
 
 /**
- * @brief Get angle vactor magnitude
+ * @brief Get angle vector magnitude
  *
  * @return uint16_t MAG
  */

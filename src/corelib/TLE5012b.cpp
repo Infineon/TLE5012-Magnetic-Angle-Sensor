@@ -3,7 +3,7 @@
  * \name        TLE5012b.cpp - core library for the TLE5012B angle sensor.
  * \author      Infineon Technologies AG
  * \copyright   2019-2020 Infineon Technologies AG
- * \version     3.0.0
+ * \version     3.1.0
  * \brief       GMR-based angle sensor for angular position sensing in automotive applications
  * \ref         tle5012corelib
  *
@@ -12,6 +12,8 @@
  */
 
 #include "TLE5012b.hpp"
+
+using namespace tle5012;
 
 //-----------------------------------------------------------------------------
 // none_class functions
@@ -235,17 +237,17 @@ errorTypes Tle5012b::checkSafety(uint16_t safety, uint16_t command, uint16_t* re
 	if (!((safety) & SYSTEM_ERROR_MASK))
 	{
 		errorCheck = SYSTEM_ERROR;
-		resetSafety();
+		// resetSafety();
 	} else if (!((safety) & INTERFACE_ERROR_MASK))
 	{
 		errorCheck = INTERFACE_ACCESS_ERROR;
-		//resetSafety();
+		// resetSafety();
 	} else if (!((safety) & INV_ANGLE_ERROR_MASK))
 	{
 		errorCheck = INVALID_ANGLE_ERROR;
-		//resetSafety();
+		// resetSafety();
 	}else{
-		//resetSafety();
+		resetSafety();
 		uint16_t lengthOfTemp = length * 2 + 2;
 		uint8_t temp[lengthOfTemp];
 
@@ -412,10 +414,10 @@ errorTypes Tle5012b::readRawY(int16_t &data)
 // begin get functions
 errorTypes Tle5012b::getAngleValue(double &angleValue)
 {
-	int16_t rawAnglevalue = 0;
-	return (getAngleValue(angleValue, rawAnglevalue, UPD_low, SAFE_high));
+	int16_t rawAngleValue = 0;
+	return (getAngleValue(angleValue, rawAngleValue, UPD_low, SAFE_high));
 }
-errorTypes Tle5012b::getAngleValue(double &angleValue, int16_t &rawAnglevalue, updTypes upd, safetyTypes safe)
+errorTypes Tle5012b::getAngleValue(double &angleValue, int16_t &rawAngleValue, updTypes upd, safetyTypes safe)
 {
 	uint16_t rawData = 0;
 	errorTypes status = readFromSensor(reg.REG_AVAL, rawData, upd, safe);
@@ -429,8 +431,8 @@ errorTypes Tle5012b::getAngleValue(double &angleValue, int16_t &rawAnglevalue, u
 	{
 		rawData = rawData - CHANGE_UINT_TO_INT_15;
 	}
-	rawAnglevalue = rawData;
-	angleValue = (ANGLE_360_VAL / POW_2_15) * ((double) rawAnglevalue);
+	rawAngleValue = rawData;
+	angleValue = (ANGLE_360_VAL / POW_2_15) * ((double) rawAngleValue);
 	return (status);
 }
 
@@ -483,7 +485,7 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed)
 }
 errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, updTypes upd, safetyTypes safe)
 {
-	int8_t numOfData = 0x5;
+	int8_t numOfData = 0x6;
 	uint16_t rawData[numOfData] = {};
 
 	errorTypes status = readMoreRegisters(reg.REG_ASPD + numOfData, rawData, upd, safe);

@@ -13,6 +13,8 @@
 #if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 #if (SPI3W_INO == SPI3W_XMC)
 
+using namespace tle5012;
+
 /**
  * @addtogroup arduinoPal
  * @{
@@ -25,13 +27,13 @@
  * @brief Construct a new SPIClass3W::SPIClass3W object
  * 
  */
-SPIClass3W::SPIClass3W(uint8_t spiNum):SPIClass()
+SPIClass3W::SPIClass3W()
 {
 	this->mCS = PIN_SPI_SS;
 	this->mMISO = PIN_SPI_MISO;
 	this->mMOSI = PIN_SPI_MOSI;
 	this->mSCK = PIN_SPI_SCK;
-	this->mSpiNum = spiNum;
+	this->mSpiNum = 0;
 }
 
 /**
@@ -43,12 +45,12 @@ SPIClass3W::~SPIClass3W()
 }
 
 /*!
- * @brief oversire the default begin function
+ * @brief overwrite the default begin function
  * 
  * @param miso [in] pin number for miso, on sensor2go boards the same than mosi
  * @param mosi [in] pin number for mosi, on sensor2go boards the same than miso
  * @param sck  [in] the system clock pin for external clock driver
- * @param cs   [in] chipselect pin, up to four different cs pins can be used together with the slave number
+ * @param cs   [in] chip select pin, up to four different cs pins can be used together with the slave number
  */
 void SPIClass3W::begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs)
 {
@@ -59,24 +61,24 @@ void SPIClass3W::begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs)
 	m3Wire.mosi = mapping_port_pin[this->mMOSI];
 	m3Wire.miso = mapping_port_pin[this->mMISO];
 	m3Wire.sck  = mapping_port_pin[this->mSCK];
+	m3Wire.cs   = mapping_port_pin[this->mCS];
 	setupSPI();
 	initSpi();
 }
 
 /*!
- * @brief Set the chipselect pin. This function is needed if more than one
+ * @brief Set the chip select pin. This function is needed if more than one
  * sensor is in the SPI bus
  * @param cs [in] Pin number of the sensors chip select
  */
 void SPIClass3W::setCSPin(uint8_t cs)
 {
 	this->mCS = cs;
-	m3Wire.cs = mapping_port_pin[this->mCS];
 }
 
 /**
  * @brief The setup function fills the XMC_3W_SPI_t structure for all XMC boards
- * with the apropiate values.
+ * with the appropiate values.
  * 
  */
 void SPIClass3W::setupSPI()
