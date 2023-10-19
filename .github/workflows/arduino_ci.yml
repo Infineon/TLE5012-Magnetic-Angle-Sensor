@@ -27,14 +27,14 @@ jobs:
           - arduino-platform: "arduino:avr"
             fqbn: "arduino:avr:uno"
 
-    runs-on: windows-latest
+    runs-on: self-hosted, linux, x64, EPE,  magnetic-angle-sensor
 
     steps:
       - name: Checkout
         uses: actions/checkout@master
 
       - name: Setup Arduino CLI
-        uses: arduino/setup-arduino-cli@v1.1.1
+        uses: arduino/setup-arduino-cli@v1
 
       - name: Install platform
         run: |
