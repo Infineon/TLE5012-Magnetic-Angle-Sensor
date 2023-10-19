@@ -27,7 +27,7 @@ jobs:
           - arduino-platform: "arduino:avr"
             fqbn: "arduino:avr:uno"
 
-    runs-on: self-hosted, linux, x64, EPE,  magnetic-angle-sensor
+    runs-on: [ self-hosted, EPE, magnetic-angle-sensor ]
 
     steps:
       - name: Checkout
