@@ -43,8 +43,8 @@ jobs:
 
       - name: Install repo as library
         run: |
-          mkdir -p "$HOME/runner-link"
-          ln -sf "$PWD" "$HOME/runner-link/"${{ matrix.example }}
+          # mkdir -p "$HOME/runner-link"
+          # ln -sf "$PWD" "$HOME/runner-link/"${{ matrix.example }}
 
       - name: Compile Sketch
         run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
