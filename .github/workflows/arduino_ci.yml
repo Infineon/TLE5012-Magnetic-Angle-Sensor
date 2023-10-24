@@ -48,6 +48,6 @@ jobs:
 
       - name: Compile Sketch
         run: |
-          chmod -R 777 /tmp/arduino/
+          # chmod -R 777 /tmp/arduino/
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
