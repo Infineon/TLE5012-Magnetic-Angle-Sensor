@@ -47,5 +47,7 @@ jobs:
           # ln -sf "$PWD" "$HOME/runner-link/"${{ matrix.example }}
 
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        run: |
+          chmod -R 777 /tmp/arduino/
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
