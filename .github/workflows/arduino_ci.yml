@@ -41,13 +41,6 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.arduino-platform }}
 
-      - name: Install repo as library
-        run: |
-          # mkdir -p "$HOME/runner-link"
-          # ln -sf "$PWD" "$HOME/runner-link/"${{ matrix.example }}
-
-      - name: Compile Sketch
-        run: |
-          # chmod -R 777 /tmp/arduino/
-          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+      - name: Compile Sketch arduino
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
