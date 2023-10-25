@@ -44,7 +44,7 @@ jobs:
       - name: Install repo as library
         run: |
           mkdir -p "$HOME/Arduino/libraries"
-          ln -sf "$GITHUB_WORKSPACE" "$HOME/Arduino/libraries/"${{ matrix.example }}
+          ln -sf "$HOME/Arduino/libraries/"${{ matrix.example }} "$GITHUB_WORKSPACE"
 
       - name: Compile Sketch
         run: |
