@@ -46,7 +46,7 @@ jobs:
           echo $HOME
           echo $GITHUB_WORKSPACE
           mkdir -p "$HOME/Arduino/libraries"
-          ln -sf "$HOME/Arduino/libraries/"${{ matrix.example }} "$GITHUB_WORKSPACE"
+          ln -sf "$HOME/Arduino/libraries/" "$GITHUB_WORKSPACE"
 
       - name: Compile Sketch
         run: |
