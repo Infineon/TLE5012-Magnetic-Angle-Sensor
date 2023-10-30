@@ -1,9 +1,18 @@
 name: Arduino CI
 
-on: [push, pull_request]
+
+# on which event should we start push, pullrequest or schedule dispatches
+on: 
+  - push
+  - pull_request
+
+
 
 jobs:
   build:
+
+    # we run this on selhosted runner, use labels to be more specific
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -21,13 +30,15 @@ jobs:
             examples/writeRegisters
         ]
 
-        arduino-platform: ["arduino:avr"]
+        arduino-platform: [
+          "arduino:avr",
+          "Infineon:xmc"
+        ]
 
         include:
           - arduino-platform: "arduino:avr"
-            fqbn: "arduino:avr:uno"
-
-    runs-on: self-hosted
+            fqbn: 
+              - arduino:avr:uno
 
     steps:
       - name: Checkout
