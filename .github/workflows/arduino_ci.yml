@@ -32,7 +32,7 @@ jobs:
 
         arduino-platform: [
           "arduino:avr",
-          "Infineon:xmc"
+          "infineon:xmc"
         ]
 
         # include:
