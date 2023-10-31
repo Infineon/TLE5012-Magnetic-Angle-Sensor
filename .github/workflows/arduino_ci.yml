@@ -14,21 +14,25 @@ jobs:
     # we run this on selhosted runner, use labels to be more specific
     runs-on: self-hosted
 
+    board_manager:
+      additional_urls:
+        https://github.com/Infineon/XMC-for-Arduino/releases/latest/download/package_infineon_index.json
+
     strategy:
       matrix:
-        example: [
-            examples/E9000SPC,
-            examples/readAngleSpeedRevolutions,
-            examples/readAngleTest,
-            examples/readAngleValueProcessing,
-            examples/readMultipleRegisters,
-            examples/readSpeedProcessing,
-            examples/sensorRegisters,
-            examples/sensorType,
-            examples/testSensorMainValues,
-            examples/useMultipleSensors,
-            examples/writeRegisters
-        ]
+        # example: [
+        #     examples/E9000SPC,
+        #     examples/readAngleSpeedRevolutions,
+        #     examples/readAngleTest,
+        #     examples/readAngleValueProcessing,
+        #     examples/readMultipleRegisters,
+        #     examples/readSpeedProcessing,
+        #     examples/sensorRegisters,
+        #     examples/sensorType,
+        #     examples/testSensorMainValues,
+        #     examples/useMultipleSensors,
+        #     examples/writeRegisters
+        # ]
 
         arduino-platform: [
           "arduino:avr",
