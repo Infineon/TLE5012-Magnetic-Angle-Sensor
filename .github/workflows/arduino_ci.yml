@@ -44,7 +44,8 @@ jobs:
           - arduino-platform: "arduino:avr"
             fqbn: 
               - arduino:avr:uno
-          
+              - infineon:xmc:XMC1100_XMC2GO
+              
 
     steps:
       - name: Checkout
