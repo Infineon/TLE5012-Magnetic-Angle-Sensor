@@ -34,15 +34,16 @@ jobs:
         #     examples/writeRegisters
         # ]
 
+        # board packages we want to run
         arduino-platform: [
           "arduino:avr",
           "infineon:xmc"
         ]
 
-        # include:
-        #   - arduino-platform: "arduino:avr"
-        #     fqbn: 
-        #       - arduino:avr:uno
+        include:
+          - arduino-platform: "arduino:avr"
+            fqbn: 
+              - arduino:avr:uno
           
 
     steps:
