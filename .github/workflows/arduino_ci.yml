@@ -1,18 +1,18 @@
 name: Arduino CI
 
-
 # on which event should we start push, pullrequest or schedule dispatches
 on: 
   - push
   - pull_request
 
-
-
 jobs:
   build:
-
+    # python /home/des-epe-team/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d XMC1100-0064 -p /dev/ttyACM0 -f /tmp/arduino/sketches/B91C01BFF3AB128A10FE7B23FF310E46/readAngleTest.ino.hex
     # we run this on selhosted runner, use labels to be more specific
-    runs-on: self-hosted
+    runs-on: 
+      - self-hosted
+      - X64
+      - Linux
 
     # board_manager:
     #   additional_urls:
@@ -35,17 +35,18 @@ jobs:
         # ]
 
         # board packages we want to run
-        arduino-platform: [
+        platform: [
           "arduino:avr",
           "infineon:xmc"
         ]
 
         include:
-          - arduino-platform: "arduino:avr"
+          - platform: "arduino:avr"
             fqbn: 
               - arduino:avr:uno
+          - platform: "infineon:xmc"
+            fqbn: 
               - infineon:xmc:XMC1100_XMC2GO
-              
 
     steps:
       - name: Checkout
@@ -54,10 +55,10 @@ jobs:
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1
 
-      - name: Install platform
+      - name: Install/Update Arduino Platform
         run: |
           arduino-cli core update-index
-          arduino-cli core install ${{ matrix.arduino-platform }}
+          arduino-cli core install ${{ matrix.platform }}
 
       # - name: Install repo as library
       #   run: |
