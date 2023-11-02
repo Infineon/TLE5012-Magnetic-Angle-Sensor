@@ -20,19 +20,19 @@ jobs:
 
     strategy:
       matrix:
-        # example: [
-        #     examples/E9000SPC,
-        #     examples/readAngleSpeedRevolutions,
-        #     examples/readAngleTest,
-        #     examples/readAngleValueProcessing,
-        #     examples/readMultipleRegisters,
-        #     examples/readSpeedProcessing,
-        #     examples/sensorRegisters,
-        #     examples/sensorType,
-        #     examples/testSensorMainValues,
-        #     examples/useMultipleSensors,
-        #     examples/writeRegisters
-        # ]
+        example: [
+            examples/E9000SPC,
+            examples/readAngleSpeedRevolutions,
+            examples/readAngleTest,
+            examples/readAngleValueProcessing,
+            examples/readMultipleRegisters,
+            examples/readSpeedProcessing,
+            examples/sensorRegisters,
+            examples/sensorType,
+            examples/testSensorMainValues,
+            examples/useMultipleSensors,
+            examples/writeRegisters
+        ]
 
         # board packages we want to run
         platform: [
@@ -60,15 +60,12 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.platform }}
 
-      # - name: Install repo as library
-      #   run: |
-      #     echo $HOME
-      #     echo $GITHUB_WORKSPACE
-      #     mkdir -p "$HOME/Arduino/libraries"
-      #     ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
+      - name: Install repo as library
+        run: |
+          mkdir -p "$HOME/Arduino/libraries"
+          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
 
-      # - name: Compile Sketch
-      #   run: |
-      #     # chmod -R 777 /tmp/arduino/
-      #     arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+      - name: Compile Sketch
+        run: |
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
