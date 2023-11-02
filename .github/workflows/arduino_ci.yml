@@ -42,11 +42,9 @@ jobs:
 
         include:
           - platform: "arduino:avr"
-            fqbn: 
-              - arduino:avr:uno
+            fqbn: arduino:avr:uno
           - platform: "infineon:xmc"
-            fqbn: 
-              - infineon:xmc:XMC1100_XMC2GO
+            fqbn: infineon:xmc:XMC1100_XMC2GO
 
     steps:
       - name: Checkout
@@ -67,5 +65,5 @@ jobs:
 
       - name: Compile Sketch
         run: |
-          arduino-cli compile --fqbn ${{ matrix.platform.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
