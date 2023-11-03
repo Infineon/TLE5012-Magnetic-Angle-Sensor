@@ -19,12 +19,12 @@ jobs:
         example: [
             # examples/E9000SPC,
             # examples/readAngleSpeedRevolutions,
-            examples/readAngleTest,
+            # examples/readAngleTest,
             # examples/readAngleValueProcessing,
             # examples/readMultipleRegisters,
             # examples/readSpeedProcessing,
             # examples/sensorRegisters,
-            # examples/sensorType,
+            examples/sensorType,
             # examples/testSensorMainValues,
             # examples/useMultipleSensors,
             # examples/writeRegisters
