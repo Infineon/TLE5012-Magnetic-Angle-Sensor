@@ -17,17 +17,17 @@ jobs:
     strategy:
       matrix:
         example: [
-            examples/E9000SPC,
-            examples/readAngleSpeedRevolutions,
+            # examples/E9000SPC,
+            # examples/readAngleSpeedRevolutions,
             examples/readAngleTest,
-            examples/readAngleValueProcessing,
-            examples/readMultipleRegisters,
-            examples/readSpeedProcessing,
-            examples/sensorRegisters,
-            examples/sensorType,
-            examples/testSensorMainValues,
-            examples/useMultipleSensors,
-            examples/writeRegisters
+            # examples/readAngleValueProcessing,
+            # examples/readMultipleRegisters,
+            # examples/readSpeedProcessing,
+            # examples/sensorRegisters,
+            # examples/sensorType,
+            # examples/testSensorMainValues,
+            # examples/useMultipleSensors,
+            # examples/writeRegisters
         ]
 
         # board packages we want to run
@@ -97,15 +97,16 @@ jobs:
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@master
 
-      - name: Set and check environment, install repos
+      - name: Compile Sketch
         run: |
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
           ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
-          cd /opt/runner_support/
-          ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
-
-      - name: Compile Sketch
-        run: |
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
   
+      - name: Deploy
+        run: |
+          cd /opt/runner_support/
+          export PORT=./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
+          echo $PORT
+          python $HOME/.arduino15\packages\Infineon\hardware\xmc\3.0.0/tools/xmc-flasher.py upload -d XMC1402-0064 -p $PORT -f "$HOME/Arduino/libraries/magnetic-angle-sensor/examples/readAngleTest/build/Infineon.xmc.XMC1100_XMC2GO/*.hex"
