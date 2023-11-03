@@ -110,4 +110,5 @@ jobs:
           export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
           echo $PORT
-          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d XMC1100-0064 -p $PORT -f "$HOME/Arduino/libraries/magnetic-angle-sensor/examples/readAngleTest/build/Infineon.xmc.XMC1100_XMC2GO/*.hex"
+          cd $HOME
+          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d XMC1100-0064 -p $PORT -f $HOME/Arduino/libraries/magnetic-angle-sensor/examples/readAngleTest/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
