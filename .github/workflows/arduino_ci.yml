@@ -55,7 +55,7 @@ jobs:
 
       - name: Set and check environment, install repos
         run: |
-          ln -sfn ~/.arduino15/packages/Infineon /opt/XMC-for-Arduino
+          ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
           ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
 
