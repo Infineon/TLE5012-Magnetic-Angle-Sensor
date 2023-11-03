@@ -78,6 +78,7 @@ jobs:
       matrix:
         example: [
             examples/readAngleTest,
+            examples/sensorType,
         ]
 
         # board packages we want to run
