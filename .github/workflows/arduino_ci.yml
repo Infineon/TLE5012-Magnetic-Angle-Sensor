@@ -99,5 +99,13 @@ jobs:
 
       - name: Set and check environment, install repos
         run: |
+          ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+          mkdir -p "$HOME/Arduino/libraries"
+          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
           cd /opt/runner_support/
           ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
+
+      - name: Compile Sketch
+        run: |
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
+  
