@@ -77,7 +77,7 @@ jobs:
       max-parallel: 1
       matrix:
         example: [
-            examples/readAngleTest,
+            examples/sensorType,
         ]
 
         # board packages we want to run
