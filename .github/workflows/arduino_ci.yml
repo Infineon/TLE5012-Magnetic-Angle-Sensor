@@ -74,6 +74,7 @@ jobs:
       - Linux
 
     strategy:
+      max-parallel: 1
       matrix:
         example: [
             examples/readAngleTest,
@@ -99,4 +100,4 @@ jobs:
       - name: Set and check environment, install repos
         run: |
           cd /opt/runner_support/
-          ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}
+          ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
