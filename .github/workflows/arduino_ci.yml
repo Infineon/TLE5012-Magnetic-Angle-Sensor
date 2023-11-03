@@ -53,16 +53,16 @@ jobs:
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@master
 
-      - name: Install/Update Arduino Platform
-        run: |
-          arduino-cli core update-index
-          arduino-cli core install ${{ matrix.platform }}
-
       - name: Set and check environment, install repos
         run: |
           ln -sfn ~/.arduino15/packages/Infineon /opt/XMC-for-Arduino
           mkdir -p "$HOME/Arduino/libraries"
           ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
+
+      - name: Install/Update Arduino Platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install ${{ matrix.platform }}
 
       - name: Compile Sketch
         run: |
