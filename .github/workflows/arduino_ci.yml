@@ -58,8 +58,9 @@ jobs:
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.platform }}
 
-      - name: Install repo as library
+      - name: Set and check environment, install repos
         run: |
+          ln -sfn ~/.arduino15/packages/Infineon /opt/XMC-for-Arduino
           mkdir -p "$HOME/Arduino/libraries"
           ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
 
