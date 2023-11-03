@@ -9,14 +9,10 @@ jobs:
   build:
     # python /home/des-epe-team/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d XMC1100-0064 -p /dev/ttyACM0 -f /tmp/arduino/sketches/B91C01BFF3AB128A10FE7B23FF310E46/readAngleTest.ino.hex
     # we run this on selhosted runner, use labels to be more specific
-    runs-on: 
+    runs-on:
       - self-hosted
       - X64
       - Linux
-
-    # board_manager:
-    #   additional_urls:
-    #     https://github.com/Infineon/XMC-for-Arduino/releases/latest/download/package_infineon_index.json
 
     strategy:
       matrix:
@@ -68,3 +64,39 @@ jobs:
         run: |
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
+  deploy:
+
+    needs: build
+
+    runs-on:
+      - self-hosted
+      - X64
+      - Linux
+
+    strategy:
+      matrix:
+        example: [
+            examples/readAngleTest,
+        ]
+
+        # board packages we want to run
+        platform: [
+          "infineon:xmc"
+        ]
+
+        include:
+          - platform: "infineon:xmc"
+            fqbn: Infineon:xmc:XMC1100_XMC2GO
+            port_name: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.port_serial.0
+
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+    
+          - name: Setup Arduino CLI
+            uses: arduino/setup-arduino-cli@master
+    
+          - name: Set and check environment, install repos
+            run: |
+              cd /opt/runner_support/
+              ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}
