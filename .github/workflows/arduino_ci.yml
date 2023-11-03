@@ -89,14 +89,14 @@ jobs:
             fqbn: Infineon:xmc:XMC1100_XMC2GO
             port_name: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.port_serial.0
 
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v4
-    
-          - name: Setup Arduino CLI
-            uses: arduino/setup-arduino-cli@master
-    
-          - name: Set and check environment, install repos
-            run: |
-              cd /opt/runner_support/
-              ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@master
+
+      - name: Set and check environment, install repos
+        run: |
+          cd /opt/runner_support/
+          ./find_usb.sh `cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}
