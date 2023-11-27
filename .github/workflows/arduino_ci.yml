@@ -119,7 +119,7 @@ jobs:
           export DEVICE=`cat ./board2port.yaml | shyaml get-value ${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
           export REPO="$(basename "$GITHUB_REPOSITORY")"
-          export HEXNAME=tr ':' '.' <<<"${{ matrix.fqbn }}"
+          export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
           echo $PORT
           echo $DEVICE
           echo $REPO
