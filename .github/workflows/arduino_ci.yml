@@ -118,8 +118,11 @@ jobs:
           export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
           export DEVICE=`cat ./board2port.yaml | shyaml get-value ${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
+          export REPO="$(basename "$GITHUB_REPOSITORY")"
+          export HEXNAME=tr ':' '.' <<<"${{ matrix.fqbn }}""
           echo $PORT
           echo $DEVICE
           echo $REPO
+          echo $HEXNAME
           cd $HOME
-          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ matrix.lib }}/${{ matrix.example }}/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
+          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/$REPO/${{ matrix.example }}/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
