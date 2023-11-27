@@ -17,16 +17,16 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: [
-            examples/E9000SPC,
-            examples/readAngleSpeedRevolutions,
-            examples/readAngleTest,
-            examples/readAngleValueProcessing,
-            examples/readMultipleRegisters,
-            examples/readSpeedProcessing,
-            examples/sensorRegisters,
-            examples/sensorType,
-            examples/testSensorMainValues,
-            examples/useMultipleSensors,
+            # examples/E9000SPC,
+            # examples/readAngleSpeedRevolutions,
+            # examples/readAngleTest,
+            # examples/readAngleValueProcessing,
+            # examples/readMultipleRegisters,
+            # examples/readSpeedProcessing,
+            # examples/sensorRegisters,
+            # examples/sensorType,
+            # examples/testSensorMainValues,
+            # examples/useMultipleSensors,
             examples/writeRegisters
         ]
 
@@ -124,5 +124,6 @@ jobs:
           export DEVICE=`cat ./board2port.yaml | shyaml get-value ${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
           echo $PORT
+          echo $DEVICE
           cd $HOME
           python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/${{ matrix.workspace }}/${{ matrix.lib }}/${{ matrix.example }}/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
