@@ -42,9 +42,7 @@ jobs:
         - platform: "arduino:avr"
           fqbn: arduino:avr:uno
         - platform: "infineon:xmc"
-          fqbn: Infineon:xmc:XMC1100_XMC2GO
-        - platform: "infineon:xmc"
-          fqbn: Infineon:xmc:XMC4700_Relax_Kit
+          fqbn: Infineon:xmc:XMC1100_XMC2GO, Infineon:xmc:XMC4700_Relax_Kit
 
 
     steps:
