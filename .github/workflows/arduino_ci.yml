@@ -37,13 +37,10 @@ jobs:
         ]
 
         include:
-        - lib: "magnetic-angle-sensor"
-
         - platform: "arduino:avr"
           fqbn: arduino:avr:uno
         - platform: "infineon:xmc"
           fqbn: Infineon:xmc:XMC1100_XMC2GO
-
 
     steps:
       - name: Checkout actions
@@ -55,11 +52,10 @@ jobs:
       # setup links inside the selfhosted runner for correct directory setup
       - name: Set and check environment, install repos
         run: |
+          export REPO="$(basename "$GITHUB_REPOSITORY")"
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
-          export REPO="$(basename "$GITHUB_REPOSITORY")"
-          echo $REPO
-          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/${{ matrix.lib }}
+          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
 
       # Update the arduino code. Attention this does not setup XMC packages as this are set inside the selfhosted runner
       - name: Install/Update Arduino Platform
@@ -96,8 +92,6 @@ jobs:
 
         # for flashig we need the port_name, see board2port.yaml
         include:
-          - workspace: "Arduino/libraries"
-          - lib: "magnetic-angle-sensor"
           - platform: "infineon:xmc"
             fqbn: Infineon:xmc:XMC1100_XMC2GO
             port_name: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.port_serial.0
@@ -112,9 +106,10 @@ jobs:
 
       - name: Compile Sketch
         run: |
+          export REPO="$(basename "$GITHUB_REPOSITORY")"
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
-          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/${{ matrix.lib }}
+          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
   
       - name: Deploy
@@ -125,5 +120,6 @@ jobs:
           export PORT=`./find_usb.sh $SERIAL_NUM`
           echo $PORT
           echo $DEVICE
+          echo $REPO
           cd $HOME
           python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ matrix.lib }}/${{ matrix.example }}/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
