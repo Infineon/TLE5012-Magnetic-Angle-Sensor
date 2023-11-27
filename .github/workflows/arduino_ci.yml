@@ -1,13 +1,12 @@
 name: Arduino CI
 
 # on which event should we start push, pullrequest or schedule dispatches
-on: 
+on:
   - push
   - pull_request
 
 jobs:
   build:
-    # python /home/des-epe-team/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d XMC1100-0064 -p /dev/ttyACM0 -f /tmp/arduino/sketches/B91C01BFF3AB128A10FE7B23FF310E46/readAngleTest.ino.hex
     # we run this on selhosted runner, use labels to be more specific
     runs-on:
       - self-hosted
@@ -16,18 +15,19 @@ jobs:
 
     strategy:
       matrix:
+        # List of all examples in the lib to compile
         example: [
-            # examples/E9000SPC,
-            # examples/readAngleSpeedRevolutions,
-            # examples/readAngleTest,
-            # examples/readAngleValueProcessing,
-            # examples/readMultipleRegisters,
-            # examples/readSpeedProcessing,
-            # examples/sensorRegisters,
+            examples/E9000SPC,
+            examples/readAngleSpeedRevolutions,
+            examples/readAngleTest,
+            examples/readAngleValueProcessing,
+            examples/readMultipleRegisters,
+            examples/readSpeedProcessing,
+            examples/sensorRegisters,
             examples/sensorType,
-            # examples/testSensorMainValues,
-            # examples/useMultipleSensors,
-            # examples/writeRegisters
+            examples/testSensorMainValues,
+            examples/useMultipleSensors,
+            examples/writeRegisters
         ]
 
         # board packages we want to run
@@ -37,24 +37,32 @@ jobs:
         ]
 
         include:
-          - platform: "arduino:avr"
-            fqbn: arduino:avr:uno
-          - platform: "infineon:xmc"
-            fqbn: Infineon:xmc:XMC1100_XMC2GO
+        - workspace: "Arduino/libraries"
+        - lib: "magnetic-angle-sensor"
+        - platform: "arduino:avr"
+          fqbn: arduino:avr:uno
+        - platform: "infineon:xmc"
+          fqbn: [
+            Infineon:xmc:XMC1100_XMC2GO,
+            Infineon:xmc:XMC4700_Relax_Kit
+          ]
+
 
     steps:
-      - name: Checkout
+      - name: Checkout actions
         uses: actions/checkout@v4
 
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@master
 
+      # setup links inside the selfhosted runner for correct directory setup
       - name: Set and check environment, install repos
         run: |
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-          mkdir -p "$HOME/Arduino/libraries"
-          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
+          mkdir -p "$HOME/${{ matrix.workspace }}"
+          ln -sf $GITHUB_WORKSPACE/ $HOME/${{ matrix.workspace }}/${{ matrix.lib }}
 
+      # Update the arduino code. Attention this does not setup XMC packages as this are set inside the selfhosted runner
       - name: Install/Update Arduino Platform
         run: |
           arduino-cli core update-index
@@ -62,7 +70,7 @@ jobs:
 
       - name: Compile Sketch
         run: |
-          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/${{ matrix.workspace }}/." ${{ matrix.example }}
 
   deploy:
 
@@ -76,23 +84,28 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
+        # Samples to flash
         example: [
-            examples/readAngleTest,
-            examples/sensorType,
+          examples/sensorType,
+          examples/readAngleTest,
         ]
 
-        # board packages we want to run
+        # board packages we want to run and flash
         platform: [
           "infineon:xmc"
         ]
 
+        # for flashig we need the port_name, see board2port.yaml
         include:
+          - workspace: "Arduino/libraries"
+          - lib: "magnetic-angle-sensor"
           - platform: "infineon:xmc"
             fqbn: Infineon:xmc:XMC1100_XMC2GO
             port_name: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.port_serial.0
+            device: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.device.0
 
     steps:
-      - name: Checkout
+      - name: Checkout action
         uses: actions/checkout@v4
 
       - name: Setup Arduino CLI
@@ -101,15 +114,16 @@ jobs:
       - name: Compile Sketch
         run: |
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-          mkdir -p "$HOME/Arduino/libraries"
-          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/magnetic-angle-sensor
-          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
+          mkdir -p "$HOME/${{ matrix.workspace }}"
+          ln -sf $GITHUB_WORKSPACE/ $HOME/${{ matrix.workspace }}/${{ matrix.lib }}
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/${{ matrix.workspace }}/." ${{ matrix.example }} --export-binaries
   
       - name: Deploy
         run: |
           cd /opt/runner_support/
           export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
+          export DEVICE=`cat ./board2port.yaml | shyaml get-value ${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
           echo $PORT
           cd $HOME
-          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d XMC1100-0064 -p $PORT -f $HOME/Arduino/libraries/magnetic-angle-sensor/${{ matrix.example }}/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
+          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/${{ matrix.workspace }}/${{ matrix.lib }}/${{ matrix.example }}/build/Infineon.xmc.XMC1100_XMC2GO/*.hex
