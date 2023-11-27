@@ -33,6 +33,7 @@ jobs:
         # board packages we want to run
         platform: [
           "arduino:avr",
+          "infineon:xmc",
           "infineon:xmc"
         ]
 
