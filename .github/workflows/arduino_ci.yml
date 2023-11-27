@@ -33,19 +33,17 @@ jobs:
         # board packages we want to run
         platform: [
           "arduino:avr",
-          "infineon:xmc",
           "infineon:xmc"
         ]
 
         include:
-        - workspace: "Arduino/libraries"
         - lib: "magnetic-angle-sensor"
+        - workspace: "Arduino/libraries"
+
         - platform: "arduino:avr"
           fqbn: arduino:avr:uno
         - platform: "infineon:xmc"
           fqbn: Infineon:xmc:XMC1100_XMC2GO
-        - platform: "infineon:xmc"
-          fqbn: Infineon:xmc:XMC4700_Relax_Kit
 
 
     steps:
@@ -60,6 +58,7 @@ jobs:
         run: |
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/${{ matrix.workspace }}"
+          echo export
           ln -sf $GITHUB_WORKSPACE/ $HOME/${{ matrix.workspace }}/${{ matrix.lib }}
 
       # Update the arduino code. Attention this does not setup XMC packages as this are set inside the selfhosted runner
