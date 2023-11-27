@@ -58,7 +58,7 @@ jobs:
         run: |
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/${{ matrix.workspace }}"
-          echo export
+          export
           ln -sf $GITHUB_WORKSPACE/ $HOME/${{ matrix.workspace }}/${{ matrix.lib }}
 
       # Update the arduino code. Attention this does not setup XMC packages as this are set inside the selfhosted runner
