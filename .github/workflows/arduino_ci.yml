@@ -122,8 +122,8 @@ jobs:
           export REPO="$(basename "$GITHUB_REPOSITORY")"
           export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
 
-          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.".".$REPO.".".${{ matrix.port_name}}`
-          export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.".".$REPO.".".${{ matrix.device}}`
+          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.$REPO.${{ matrix.port_name}}`
+          export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.$REPO.${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
           echo "Port Serial Num:     ".$SERIAL_NUM
           echo "Port found:          ".$PORT
