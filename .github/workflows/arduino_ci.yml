@@ -31,17 +31,18 @@ jobs:
         ]
 
         # board packages we want to run
-        platform: [
-          "arduino:avr",
-          "infineon:xmc"
+        fqbn: [
+          "arduino:avr:uno",
+          "infineon:xmc:XMC1100_XMC2GO",
+          "infineon:xmc:XMC4700_Relax_Kit",
         ]
 
         include:
-        - fqbn: arduino:avr:uno
+        - fqbn: "arduino:avr:uno"
           platform: "arduino:avr"
-        - fqbn: Infineon:xmc:XMC1100_XMC2GO
+        - fqbn: "Infineon:xmc:XMC1100_XMC2GO"
           platform: "infineon:xmc"
-        - fqbn: Infineon:xmc:XMC4700_Relax_Kit
+        - fqbn: "Infineon:xmc:XMC4700_Relax_Kit"
           platform: "infineon:xmc"
           
     steps:
