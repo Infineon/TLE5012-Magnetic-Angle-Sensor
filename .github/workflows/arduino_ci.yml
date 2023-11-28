@@ -33,8 +33,8 @@ jobs:
         # board packages we want to run
         fqbn: [
           "arduino:avr:uno",
-          "infineon:xmc:XMC1100_XMC2GO",
-          "infineon:xmc:XMC4700_Relax_Kit",
+          "Infineon:xmc:XMC1100_XMC2GO",
+          "Infineon:xmc:XMC4700_Relax_Kit",
         ]
 
         include:
