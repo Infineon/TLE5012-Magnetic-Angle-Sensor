@@ -115,7 +115,7 @@ jobs:
           mkdir -p "$HOME/Arduino/libraries"
           ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
-  
+
       - name: Deploy
         run: |
           cd /opt/runner_support/
@@ -130,5 +130,6 @@ jobs:
           echo "Port Serial Num:     " $SERIAL_NUM
           echo "Port found:          " $PORT
           echo "Flash device:        " $DEVICE
+
           cd $HOME
           python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/$REPO/${{ matrix.example }}/build/$HEXNAME/*.hex
