@@ -112,6 +112,8 @@ jobs:
       max-parallel: 1
 
       # the code to flash
+      matrix:
+      # the code to flash
         example: [
           examples/sensorType,
           examples/readAngleTest
