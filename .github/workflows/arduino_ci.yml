@@ -17,24 +17,25 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: [
-            examples/E9000SPC,
-            examples/readAngleSpeedRevolutions,
-            examples/readAngleTest,
-            examples/readAngleValueProcessing,
-            examples/readMultipleRegisters,
-            examples/readSpeedProcessing,
-            examples/sensorRegisters,
-            examples/sensorType,
-            examples/testSensorMainValues,
-            examples/useMultipleSensors,
-            examples/writeRegisters
-        ]
+        #     examples/E9000SPC,
+        #     examples/readAngleSpeedRevolutions,
+             examples/readAngleTest,
+        #     examples/readAngleValueProcessing,
+        #     examples/readMultipleRegisters,
+        #     examples/readSpeedProcessing,
+        #     examples/sensorRegisters,
+        #     examples/sensorType,
+        #     examples/testSensorMainValues,
+        #     examples/useMultipleSensors,
+        #     examples/writeRegisters
+        # ]
 
         # board packages we want to run
+        # attention the matrix spans over the fqbn not platform so that we can choose different boards
         fqbn: [
           "arduino:avr:uno",
           "Infineon:xmc:XMC1100_XMC2GO",
-          "Infineon:xmc:XMC4700_Relax_Kit",
+          "Infineon:xmc:XMC4700_Relax_Kit"
         ]
 
         include:
@@ -44,7 +45,7 @@ jobs:
           platform: "infineon:xmc"
         - fqbn: "Infineon:xmc:XMC4700_Relax_Kit"
           platform: "infineon:xmc"
-          
+
     steps:
       - name: Checkout actions
         uses: actions/checkout@v4
@@ -85,20 +86,22 @@ jobs:
         # Samples to flash
         example: [
           examples/sensorType,
-          examples/readAngleTest,
+          examples/readAngleTest
         ]
 
-        # board packages we want to run and flash
-        platform: [
-          "infineon:xmc"
+        # board packages we want to run
+        # attention the matrix spans over the fqbn not platform so that we can choose different boards
+        fqbn: [
+          "arduino:avr:uno",
+          "Infineon:xmc:XMC1100_XMC2GO",
+          "Infineon:xmc:XMC4700_Relax_Kit"
         ]
 
-        # for flashig we need the port_name, see board2port.yaml
         include:
-          - platform: "infineon:xmc"
-            fqbn: Infineon:xmc:XMC1100_XMC2GO
-            port_name: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.port_serial.0
-            device: infineon.xmc.XMC1100_XMC2GO.magnetic-angle-sensor.device.0
+        - fqbn: "Infineon:xmc:XMC1100_XMC2GO"
+          platform: "infineon:xmc"
+          port_name: port_serial.0
+          device: device.0
 
     steps:
       - name: Checkout action
@@ -118,11 +121,12 @@ jobs:
       - name: Deploy
         run: |
           cd /opt/runner_support/
-          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value ${{ matrix.port_name}}`
-          export DEVICE=`cat ./board2port.yaml | shyaml get-value ${{ matrix.device}}`
-          export PORT=`./find_usb.sh $SERIAL_NUM`
           export REPO="$(basename "$GITHUB_REPOSITORY")"
           export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
+
+          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.".".$REPO.".".${{ matrix.port_name}}`
+          export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.".".$REPO.".".${{ matrix.device}}`
+          export PORT=`./find_usb.sh $SERIAL_NUM`
           echo "Port Serial Num:     ".$SERIAL_NUM
           echo "Port found:          ".$PORT
           echo "Flash device:        ".$DEVICE
