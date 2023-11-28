@@ -37,11 +37,13 @@ jobs:
         ]
 
         include:
-        - platform: "arduino:avr"
-          fqbn: arduino:avr:uno
-        - platform: "infineon:xmc"
-          fqbn: Infineon:xmc:XMC1100_XMC2GO
-
+        - fqbn: arduino:avr:uno
+          platform: "arduino:avr"
+        - fqbn: Infineon:xmc:XMC1100_XMC2GO
+          platform: "infineon:xmc"
+        - fqbn: Infineon:xmc:XMC4700_Relax_Kit
+          platform: "infineon:xmc"
+          
     steps:
       - name: Checkout actions
         uses: actions/checkout@v4
