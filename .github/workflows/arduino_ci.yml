@@ -28,7 +28,7 @@ jobs:
         #     examples/testSensorMainValues,
         #     examples/useMultipleSensors,
         #     examples/writeRegisters
-        # ]
+        ]
 
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
