@@ -33,18 +33,18 @@ jobs:
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
         fqbn: [
-          arduino:avr:uno,
-          Infineon:xmc:XMC1100_XMC2GO,
-          Infineon:xmc:XMC4700_Relax_Kit
+          "arduino:avr:uno",
+          "Infineon:xmc:XMC1100_XMC2GO",
+          "Infineon:xmc:XMC4700_Relax_Kit"
         ]
 
         include:
-        - fqbn:     arduino:avr:uno
-          platform: arduino:avr
-        - fqbn:     Infineon:xmc:XMC1100_XMC2GO
-          platform: infineon:xmc
-        - fqbn:     Infineon:xmc:XMC4700_Relax_Kit
-          platform: infineon:xmc
+        - fqbn:     "arduino:avr:uno"
+          platform: "arduino:avr"
+        - fqbn:     "Infineon:xmc:XMC1100_XMC2GO"
+          platform: "infineon:xmc"
+        - fqbn:     "Infineon:xmc:XMC4700_Relax_Kit"
+          platform: "infineon:xmc"
 
     steps:
       - name: Checkout actions
@@ -92,14 +92,14 @@ jobs:
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
         fqbn: [
-          Infineon:xmc:XMC1100_XMC2GO,
+          "Infineon:xmc:XMC1100_XMC2GO",
         ]
 
         include:
-        - fqbn:      Infineon:xmc:XMC1100_XMC2GO
-          platform:  infineon:xmc
-          port_name: port_serial.0
-          device:    device.0
+        - fqbn:      "Infineon:xmc:XMC1100_XMC2GO"
+          platform:  "infineon:xmc"
+          port_name: "port_serial.0"
+          device:    "device.0"
 
     steps:
       - name: Checkout action
