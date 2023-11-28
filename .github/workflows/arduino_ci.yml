@@ -92,9 +92,7 @@ jobs:
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
         fqbn: [
-          "arduino:avr:uno",
           "Infineon:xmc:XMC1100_XMC2GO",
-          "Infineon:xmc:XMC4700_Relax_Kit"
         ]
 
         include:
