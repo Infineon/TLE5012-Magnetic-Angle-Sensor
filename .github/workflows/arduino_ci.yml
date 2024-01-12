@@ -89,6 +89,8 @@ jobs:
     # Compile the sample code for the selected board and board support package with the arduino compiler
     - name: Compile Sketch
       run: |
+        export TMPDIR=$HOME/tmp
+        mkdir -p $TMPDIR
         arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
@@ -153,6 +155,8 @@ jobs:
       # compile the code with the arduino-cli and export the binary files for flashing
       - name: Compile Sketch
         run: |
+          export TMPDIR=$HOME/tmp
+          mkdir -p $TMPDIR
           export REPO="$(basename "$GITHUB_REPOSITORY")"
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
