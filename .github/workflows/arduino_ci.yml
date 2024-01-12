@@ -116,6 +116,7 @@ jobs:
       # the code to flash
         example: [
           examples/sensorType,
+          examples/sensorRegisters,
           examples/readAngleTest
         ]
 
