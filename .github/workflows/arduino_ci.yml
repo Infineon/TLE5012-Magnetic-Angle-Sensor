@@ -117,8 +117,7 @@ jobs:
       matrix:
       # the code to flash
         example: [
-          examples/sensorType,
-          examples/readAngleTest
+          examples/sensorType
         ]
 
         # board packages we want to run
