@@ -1,6 +1,6 @@
 {  
-   "name":"TLE5012",
-   "keywords":"hall, sensor, magnetic, sensor2go, TLE5012B",
+   "name":"xensiv-angle-sensor-tlx012-ino",
+   "keywords":"hall, sensor, magnetic, sensor2go, TLE5012B, TLI5012B",
    "description": "This library enables the Infineon TLE5012B magnetic angle sensor. The TLE5012B is a pre-calibrated 360° angle sensor to detect magnetic fields. The sensor is available as Sens2go kit as well as bulk chip.",
    "repository":{  
       "type":"git",
@@ -12,7 +12,7 @@
       "url":"https://www.infineon.com/cms/en/product/evaluation-boards/tle5012b_e1000_ms2go/",
       "maintainer": true
    },
-   "version":"3.1.0",
+   "version":"4.0.0",
    "frameworks":"arduino",
    "platforms":[  
       "infineonxmc",
