@@ -784,14 +784,14 @@ bool Reg::isNumberOfRevolutionsNew(void)
 uint16_t Reg::getNumberOfRevolutions(void)
 {
 	uint16_t bitf = 0x00;
-	uint16_t revol = 0x00;
+	uint16_t revolutions = 0x00;
 	getBitField(bitFields[REG_AREV_REVOL], bitf);
-	revol = (bitf & 0xFF);
-	if (revol & 0x100)
+	revolutions = (bitf & 0xFF);
+	if (revolutions & 0x100)
 	{
-		revol = revol * -1;
+		revolutions = revolutions * -1;
 	}
-	return revol;
+	return revolutions;
 }
 
 /**
@@ -848,15 +848,15 @@ void Reg::setFrameSyncCounter(uint16_t fsync)
 uint16_t Reg::getTemperatureValue(void)
 {
 	uint16_t bitf = 0x00;
-	uint16_t TEMPR = 0x00;
+	uint16_t temperature = 0x00;
 	getBitField(bitFields[REG_FSYNC_TEMPR], bitf);
 	return bitf;
-	TEMPR = (bitf & 0xFF);
-	if (TEMPR & 0x100)
+	temperature = (bitf & 0xFF);
+	if (temperature & 0x100)
 	{
-		TEMPR = TEMPR * -1;
+		temperature = temperature * -1;
 	}
-	return TEMPR;
+	return temperature;
 }
 
 /**

@@ -1,17 +1,17 @@
 /**
- * @file        pal-gpio.hpp
+ * @file        tlx512-pal-gpio.hpp
  * @brief       PAL of the GPIO
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @date        January 2024
+ * @copyright   Copyright (c) 2019-2024 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
-#include <stdint.h>
-#include "../corelib/tle5012b_types.hpp"
+#ifndef TLX5012_PAL_GPIO_HPP_
+#define TLX5012_PAL_GPIO_HPP_
 
-#ifndef PAL_GPIO_HPP_
-#define PAL_GPIO_HPP_
+#include <stdint.h>
+#include "tle5012b_types.hpp"
 
 namespace tle5012
 {
@@ -126,4 +126,4 @@ class GPIOPAL
 
 }
 
-#endif /** PAL_GPIO_HPP_ **/
+#endif /** TLX5012_PAL_GPIO_HPP_ **/

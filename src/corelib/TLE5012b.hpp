@@ -15,8 +15,8 @@
 #define TLE5012B_HPP
 
 #include <string.h>
-#include "../pal/pal-gpio.hpp"
-#include "../pal/pal-spic.hpp"
+#include "tlx5012-pal-gpio.hpp"
+#include "tlx5012-pal-spic.hpp"
 #include "tle5012b_util.hpp"
 #include "tle5012b_reg.hpp"
 #include "tle5012b_types.hpp"

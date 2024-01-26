@@ -11,12 +11,8 @@
  *
  */
 
-#ifndef TLE5012_INO_HPP_
-#define TLE5012_INO_HPP_
-
-#include "config/tle5012-conf.hpp"
-
-#if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
+#ifndef TLX5012_ARDUINO_HPP_
+#define TLX5012_ARDUINO_HPP_
 
 
 #include "corelib/TLE5012b.hpp"

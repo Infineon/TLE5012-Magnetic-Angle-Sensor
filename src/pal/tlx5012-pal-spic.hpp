@@ -1,18 +1,19 @@
 /**
- * @file        spic.hpp
+ * @file        tlx512-pal-spic.hpp
  * @brief       PAL of the SPI cover
- * @date        June 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * @date        January 2024
+ * @copyright   Copyright (c) 2019-2024 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
+
+
+#ifndef TLX5012_PAL_SPIC_HPP_
+#define TLX5012_PAL_SPIC_HPP_
+
 #include <stdint.h>
-#include "../corelib/tle5012b_types.hpp"
-
-
-#ifndef PAL_SPIC_HPP_
-#define PAL_SPIC_HPP_
+#include "tle5012b_types.hpp"
 
 namespace tle5012
 {
@@ -73,4 +74,4 @@ class SPICPAL
 
 }
 
-#endif /** PAL_SPIC_HPP_ **/
+#endif /** TLX5012_PAL_SPIC_HPP_ **/
