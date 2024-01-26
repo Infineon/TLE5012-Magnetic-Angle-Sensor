@@ -61,7 +61,6 @@ void SPIClass3W::begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs)
 	m3Wire.mosi = mapping_port_pin[this->mMOSI];
 	m3Wire.miso = mapping_port_pin[this->mMISO];
 	m3Wire.sck  = mapping_port_pin[this->mSCK];
-	m3Wire.cs   = mapping_port_pin[this->mCS];
 	setupSPI();
 	initSpi();
 }
@@ -74,6 +73,7 @@ void SPIClass3W::begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs)
 void SPIClass3W::setCSPin(uint8_t cs)
 {
 	this->mCS = cs;
+	m3Wire.cs   = mapping_port_pin[this->mCS];
 }
 
 /**
