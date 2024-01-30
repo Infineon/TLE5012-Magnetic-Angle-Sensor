@@ -2,8 +2,8 @@
 /*!
  * \name        const
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
  * \brief       macros and other const variables
  *
  * \attention
@@ -62,7 +62,7 @@
 #define sc_SPCpin         F("\nIFAB IFA pin:           \t")
 
 // additional
-#define sc_MOD2cal        F("\nMOD2 Autocalibration:   \t")
+#define sc_MOD2cal        F("\nMOD2 auto calibration:  \t")
 #define sc_MOD2predict    F("\nMOD2 Prediction:        \t")
 #define sc_MODpin         F("\nMOD3 IFA/B/C pin set:   \t")
 #define sc_MODstrongfast  F("strong driver, DATA: strong driver, fast edge")
@@ -120,8 +120,8 @@
 #define sc_SVR1           F("Voltages Ok")
 #define sc_SFUSE0         F("CRC on fuse fail")
 #define sc_SFUSE1         F("CRC on fuse Ok")
-#define sc_SDSPU0         F("DPSU self-test not Ok or still running")
-#define sc_SDSPU1         F("DPSU self-test Ok")
+#define sc_SDSPU0         F("DSPU self-test not Ok or still running")
+#define sc_SDSPU1         F("DSPU self-test Ok")
 #define sc_SOV0           F("DSPU overflow occurred")
 #define sc_SOV1           F("No DSPU overflow occurred")
 #define sc_SXYOL0         F("X/Y data out of limit")

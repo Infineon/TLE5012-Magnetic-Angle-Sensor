@@ -1,9 +1,9 @@
 /*!
  * \name        useMultipleSensors
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
- * \brief       Testscript for using up to four sensors on one SPI channel.
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
+ * \brief       test script for using up to four sensors on one SPI channel.
  * \details
  * This example program starts one to four sensors on one SPI line with different CS pins
  * and returns the angle value together with the safety word and the status register SNR.
@@ -14,20 +14,20 @@
  *  
  * This example also demonstrates how to handle more than on sensor in an array setup.
  * 
- * \attention Needs much memory which can be too much for the original Arduino/Genuino Uno
+ * \attention Needs much memory which can be too much for the original Arduino Uno
  * 
  * SPDX-License-Identifier: MIT
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 
 //! number of connected sensors
 #define SENSOR_NUM 1
 
-//! define more unique chipselect pins for more connected Sensors
+//! define more unique chip select pins for more connected Sensors
 #define CS_PIN_SENSOR_1   10  //!< This is a setup for the default Arduino, use 3 for the Sensor2Go kit
 #define CS_PIN_SENSOR_2   5   //!< This is also a setup for the Sensor2Go kit but with a second sensor attached
 //#define CS_PIN_SENSOR_3   x
@@ -60,7 +60,7 @@ void setup() {
     checkError = sensor[i].begin();
   }
   Serial.print("init done! with checkError ");
-  Serial.print("\n\ncheckerror: ");
+  Serial.print("\n\ncheckError: ");
   Serial.println(checkError, HEX);
 
   uint16_t stat;

@@ -1,8 +1,9 @@
 /**
- * @file        pal-pin-types.hpp
- * @brief       Arduino PAL for the GPIO and SPI
- * @date        July 2023
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * \file        pal-pin-types.hpp
+ * \brief       pin settings if not pins are defined
+ * \author      Infineon Technologies AG
+ * \version     4.0.0
+ * \copyright   2020-2024 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
@@ -10,10 +11,6 @@
 
 #ifndef PAL_PIN_TYPES_HPP_
 #define PAL_PIN_TYPES_HPP_
-
-#include "../../../config/tle5012-conf.hpp"
-
-#if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 namespace tle5012
 {
@@ -51,16 +48,7 @@ namespace tle5012
     #define SCK                 18
     #endif
 
-    /** @} */
-    // Support macros
-    //!< \brief Prints a binary number with leading zeros (Automatic Handling)
-    #define PRINTBIN(Num) for (uint32_t t = (1UL << ((sizeof(Num)*8)-1)); t; t >>= 1) Serial.write(Num  & t ? '1' : '0');
-    //!< \brief Prints a binary number with leading zeros (Automatic Handling) with space
-    #define PRINTBINS(Num) for (uint32_t t = (1UL << ((sizeof(Num)*8)-1)); t; t >>= 1) Serial.write(Num  & t ? " 1 " : " 0 ");
-
 
 }
 
-
-#endif /** TLE5012_FRAMEWORK **/
 #endif /** PAL_PIN_TYPES_HPP_ **/

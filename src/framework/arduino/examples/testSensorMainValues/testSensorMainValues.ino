@@ -1,20 +1,20 @@
 /*!
  * \name        testSensorMainValues
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
  * \brief       This example can be used for a first fast test if the sensors works
  * \details
  * It will generate a looped output of the direct measured data (DIR) and
- * data from the update (UPD) registers. Therefore it demonstrats also the use of
- * the direct read (without UPD) and the snapshoot registers (with UPD). See Sensor
- * manual for more information of the UPD mode and the snapshoot registers.
+ * data from the update (UPD) registers. Therefore it demonstrates also the use of
+ * the direct read (without UPD) and the snapshot registers (with UPD). See Sensor
+ * manual for more information of the UPD mode and the snapshot registers.
  * 
  * SPDX-License-Identifier: MIT
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 
@@ -28,9 +28,13 @@ void setup() {
   Serial.begin(115200);
   while (!Serial) {};
   checkError = Tle5012Sensor.begin();
-  Serial.println("init done!");
+  Serial.print("checkError: ");
+  Serial.println(checkError,HEX);
+  delay(1000);
+
   Tle5012Sensor.resetFirmware();
   Tle5012Sensor.sBus->triggerUpdate();
+  Serial.println("init done!");
   delay(1000);
 }
 

@@ -1,15 +1,14 @@
 /**
- * @file        spic-arduino.hpp
- * @brief       Arduino PAL for the SPI cover
- * @date        June 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * \file        pal-spic-arduino.hpp
+ * \brief       Arduino PAL for the SPI cover
+ * \author      Infineon Technologies AG
+ * \version     4.0.0
+ * \copyright   2020-2024 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
 #include "pal-spic-arduino.hpp"
-
-#if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 using namespace tle5012;
 
@@ -124,5 +123,3 @@ Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, ui
 }
  
 /** @} */
-
-#endif /** TLE5012_FRAMEWORK **/

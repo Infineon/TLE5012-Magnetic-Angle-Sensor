@@ -1,12 +1,12 @@
 /*!
  * \name        readAngleTest
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
- * \brief       Testscript for a first check.
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
+ * \brief       test script for a first check.
  * \details
  * This example reads all main Sensor registers (angle,revolution,speed,range and temperature)
- * for a simple first test of the sensor and comunication.
+ * for a simple first test of the sensor and communication.
  * 
  * \attention
  * We use default very low speed 9600 baud, but the sensor can much more, see the other examples
@@ -15,7 +15,7 @@
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 

@@ -1,16 +1,16 @@
 /*
- * @file        spi3w-xmc-ino.cpp
- * @brief       TLE5012 XMC4Arduino SPIClass extension
- * @date        October 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- *
+ * \file        spi3w-xmc-ino.cpp
+ * \brief       XMC 3wire SPI cover
+ * \author      Infineon Technologies AG
+ * \version     4.0.0
+ * \copyright   2020-2024 Infineon Technologies AG
+ * 
  * SPDX-License-Identifier: MIT
  */
 
 
 #include "spi3w-ino.hpp"
 
-#if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 #if (SPI3W_INO == SPI3W_XMC)
 
 using namespace tle5012;
@@ -225,4 +225,3 @@ void SPIClass3W::sendReceiveSpi(uint16_t* sent_data, uint16_t size_of_sent_data,
 /** @} */
 
 #endif /* SPI3W_INO */
-#endif /* TLE5012_FRAMEWORK */

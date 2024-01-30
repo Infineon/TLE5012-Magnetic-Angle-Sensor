@@ -1,8 +1,8 @@
 /*!
  * \name        sensorType
  * \author      Infineon Technologies AG (Dr.Olaf Filies)
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
  * \brief       prints register bit matrix and sensor interface type
  * \details
  * This example program prints the bit matrix of all registers and the sensors default
@@ -17,7 +17,7 @@
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 #include "const.h"
 
 using namespace tle5012;
@@ -30,7 +30,7 @@ void setup() {
   Serial.begin(115200);
   while (!Serial) {};
   checkError  = Tle5012Sensor.begin();
-  Serial.print("\n\ncheckerror: ");
+  Serial.print("\n\ncheckError: ");
   Serial.println(checkError, HEX);
 
   /**
@@ -57,7 +57,7 @@ void setup() {
   //checkError = Tle5012Sensor.writeInterfaceType(Tle5012Sensor.SPC);
 
   /*
-     Checkout the different autocalibration modes by removing the
+     Checkout the different auto calibration modes by removing the
      remarks. As each predefined interface has its default auto calibration
      mode, a restart or resetFirmware will set everything back to
      factory defaults.
@@ -155,7 +155,7 @@ void show_identity()
  */
 void pwmInterface()
 {
-  uint8_t val = 0;
+  uint8_t value = 0;
   uint8_t firupdate = Tle5012Sensor.reg.getFIRUpdateRate();
   bool ifabout      = Tle5012Sensor.reg.isIFABOutputMode();
 
@@ -170,13 +170,13 @@ void pwmInterface()
   }
   Serial.print(sc_ifsetPWM);
 
-  val = Tle5012Sensor.reg.getIFABres();
+  value = Tle5012Sensor.reg.getIFABres();
   Serial.print(sc_PWMfreq);
-  Serial.print(val == 0 ? "244 Hz" : (val == 1 ? "488 Hz" : (val == 2 ? "977 Hz" : "1953 Hz")));
+  Serial.print(value == 0 ? "244 Hz" : (value == 1 ? "488 Hz" : (value == 2 ? "977 Hz" : "1953 Hz")));
 
-  val = Tle5012Sensor.reg.getHysteresisMode();
+  value = Tle5012Sensor.reg.getHysteresisMode();
   Serial.print(sc_PWMtime);
-  Serial.print(val == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
+  Serial.print(value == 0 ? "3.0 μs" : (value == 1 ? "2.5 μs" : (value == 2 ? "2.0 μs" : "1.5 μs")));
 
   Serial.print(sc_PWMfilter);
   Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() ? "85.3 μs" : "42.7 μs");
@@ -191,7 +191,7 @@ void pwmInterface()
  */
 void iifInterface()
 {
-  uint8_t val = 0;
+  uint8_t value = 0;
 
   Serial.print(sc_PCB);
   Serial.print(Tle5012Sensor.reg.TLE5012B_E1000);
@@ -199,23 +199,23 @@ void iifInterface()
 
   Serial.print(sc_ifsetIIF);
 
-  val = Tle5012Sensor.reg.getIIFMod();
+  value = Tle5012Sensor.reg.getIIFMod();
   Serial.print(sc_IIFmod);
-  Serial.print(val == 0
+  Serial.print(value == 0
                ? sc_disable
-               : (val == 1
+               : (value == 1
                   ? sc_IIFab
-                  : (val == 2
+                  : (value == 2
                     ? sc_IIFdirection
                     : sc_NotAllowed)));
 
-  val = Tle5012Sensor.reg.getIFABres();
+  value = Tle5012Sensor.reg.getIFABres();
   Serial.print(sc_IIFres);
-  Serial.print(val == 0 ? "0.088° step" : (val == 1 ? "0.176° step" : (val == 2 ? "0.352° step" : "0.703° step")));
+  Serial.print(value == 0 ? "0.088° step" : (value == 1 ? "0.176° step" : (value == 2 ? "0.352° step" : "0.703° step")));
 
-  val = Tle5012Sensor.reg.getHysteresisMode();
+  value = Tle5012Sensor.reg.getHysteresisMode();
   Serial.print(sc_IIFhyster);
-  Serial.print(val == 0 ? "HSM: 0°" : (val == 1 ? "HSM: 0.175°" : (val == 2 ? "HSM: 0.35°" : "HSM: 0.70°")));
+  Serial.print(value == 0 ? "HSM: 0°" : (value == 1 ? "HSM: 0.175°" : (value == 2 ? "HSM: 0.35°" : "HSM: 0.70°")));
 
   Serial.print(sc_IIFfilter);
   Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() ? "85.3 μs" : "42.7 μs");
@@ -230,7 +230,7 @@ void iifInterface()
  */
 void hsmInterface()
 {
-  uint8_t val = 0;
+  uint8_t value = 0;
 
   Serial.print(sc_PCB);
   Serial.print(Tle5012Sensor.reg.TLE5012B_E3005);
@@ -238,13 +238,13 @@ void hsmInterface()
 
   Serial.print(sc_ifsetHSM);
 
-  val = Tle5012Sensor.reg.getIFABres();
+  value = Tle5012Sensor.reg.getIFABres();
   Serial.print(sc_HSMframe);
-  Serial.print(val == 0 ? sc_Angle12 : (val == 1 ? sc_Angle16 : (val == 2 ? sc_Angle12Temp : sc_Angle16Temp)));
+  Serial.print(value == 0 ? sc_Angle12 : (value == 1 ? sc_Angle16 : (value == 2 ? sc_Angle12Temp : sc_Angle16Temp)));
 
-  val = Tle5012Sensor.reg.getHysteresisMode();
+  value = Tle5012Sensor.reg.getHysteresisMode();
   Serial.print(sc_HSMhyster);
-  Serial.print(val == 0 ? "0°" : (val == 1 ? "0.175°" : (val == 2 ? "0.35°" : "0.70°")));
+  Serial.print(value == 0 ? "0°" : (value == 1 ? "0.175°" : (value == 2 ? "0.35°" : "0.70°")));
 
   Serial.print(sc_HSMfilter);
   Serial.print(Tle5012Sensor.reg.getFIRUpdateRate() ? "85.3 μs" : "42.7 μs");
@@ -259,7 +259,7 @@ void hsmInterface()
  */
 void spcInterface()
 {
-  uint8_t val = 0;
+  uint8_t value = 0;
 
   Serial.print(sc_PCB);
   Serial.print(Tle5012Sensor.reg.TLE5012B_E9000);
@@ -267,17 +267,17 @@ void spcInterface()
 
   Serial.print(sc_ifsetSPC);
 
-  val = Tle5012Sensor.reg.getIFABres();
+  value = Tle5012Sensor.reg.getIFABres();
   Serial.print(sc_SPCframe);
-  Serial.print(val == 0 ? sc_Angle12 : (val == 1 ? sc_Angle16 : (val == 2 ? sc_Angle12Temp : sc_Angle16Temp)));
+  Serial.print(value == 0 ? sc_Angle12 : (value == 1 ? sc_Angle16 : (value == 2 ? sc_Angle12Temp : sc_Angle16Temp)));
 
-  val = Tle5012Sensor.reg.getHysteresisMode();
+  value = Tle5012Sensor.reg.getHysteresisMode();
   Serial.print(sc_SPCtime);
-  Serial.print(val == 0 ? "3.0 μs" : (val == 1 ? "2.5 μs" : (val == 2 ? "2.0 μs" : "1.5 μs")));
+  Serial.print(value == 0 ? "3.0 μs" : (value == 1 ? "2.5 μs" : (value == 2 ? "2.0 μs" : "1.5 μs")));
 
-  val = Tle5012Sensor.reg.getHSMplp();
+  value = Tle5012Sensor.reg.getHSMplp();
   Serial.print(sc_SPCtrigger);
-  Serial.print(val == 0 ? "90 μs" : "t_mlow + 12 UT");
+  Serial.print(value == 0 ? "90 μs" : "t_mlow + 12 UT");
 
   Serial.print(sc_SPCpin);
   Serial.print(Tle5012Sensor.reg.isIFABOutputMode() ? sc_OpenDrain : sc_PushPull);
@@ -290,29 +290,29 @@ void spcInterface()
  */
 void show_additional()
 {
-  uint8_t val = 0;
+  uint8_t value = 0;
 
   Serial.println();
-  val = Tle5012Sensor.reg.getCalibrationMode();
+  value = Tle5012Sensor.reg.getCalibrationMode();
   Serial.print(sc_MOD2cal);
-  Serial.print(val == 0
+  Serial.print(value == 0
               ? sc_Cal1
-              : (val == 1
+              : (value == 1
                  ? sc_Cal1
-                 : (val == 2
+                 : (value == 2
                     ? sc_Cal2
                     : sc_Cal3)));
 
   Serial.print(sc_MOD2predict);
   Serial.print(Tle5012Sensor.reg.isPrediction() ? sc_enable : sc_disable);
 
-  val = Tle5012Sensor.reg.getPadDriver();
+  value = Tle5012Sensor.reg.getPadDriver();
   Serial.print(sc_MODpin);
-  Serial.print(val == 0
+  Serial.print(value == 0
               ? sc_MODstrongfast
-              : (val == 1
+              : (value == 1
                  ? sc_MODstrongslow
-                 : (val == 2
+                 : (value == 2
                     ? sc_MODweakfast
                     : sc_MODweakslow)));
 

@@ -1,8 +1,8 @@
 /*!
  * \name        readSpeedProcessing
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
  * \brief       reads the angle speed
  * \details
  * Demonstrates the fast readout of the angle speed.
@@ -15,7 +15,7 @@
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 
@@ -27,7 +27,7 @@ void setup() {
   Serial.begin(1000000);
   while (!Serial) {};
   checkError = Tle5012MagneticAngleSensor.begin();
-  Serial.print("checkerror: ");
+  Serial.print("checkError: ");
   Serial.println(checkError, HEX);
   Serial.println("init done");
   delay(1000);

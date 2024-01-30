@@ -1,8 +1,8 @@
 /*!
  * \name        readAngleSpeedRevolutions
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
  * \brief       reads angle value, rotation speed and number of revolutions
  * \details
  * This is a fast running example to demonstrate the possible readout
@@ -16,7 +16,7 @@
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 
@@ -29,7 +29,10 @@ void setup() {
   Serial.begin(115200);
   while (!Serial) {};
   checkError = Tle5012MagneticAngleSensor.begin();
+  Serial.print("checkError: ");
+  Serial.println(checkError, HEX);
   Serial.println("init done!");
+  delay(1000);
   Serial.println("AngleSpeed\tAngleValue\trevolutions\tAngleRange");
   delay(1000);
 }

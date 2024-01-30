@@ -1,14 +1,12 @@
 /*
- * @file        spi3w-ino.hpp
- * @brief       TLE5012 Arduino SPIClass extension
- * @date        October 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * \file        spi3w-ino.hpp
+ * \brief       Arduino SPI 3wire extension
+ * \author      Infineon Technologies AG
+ * \version     4.0.0
+ * \copyright   2020-2024 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
-#include "../../../config/tle5012-conf.hpp"
-
-#if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 #include "Arduino.h"
 #include "SPI.h"
@@ -128,4 +126,3 @@ extern SPIClass3W SPI3W;
 }
 
 #endif /* SPI3W_INO_HPP */
-#endif /* TLE5012_FRAMEWORK */

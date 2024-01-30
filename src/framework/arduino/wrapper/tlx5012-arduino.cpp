@@ -1,15 +1,13 @@
 /** 
- * @file        TLE5012-pal-ino.cpp
- * @brief       TLE5012 Arduino Hardware Platforms
- * @date        October 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
- * 
+ * \file        tlx5012-arduino.cpp
+ * \name        tlx5012-arduino.cpp - Arduino library for the Infineon TLx5012 magnetic angular sensor
+ * \author      Infineon Technologies AG
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
+ * \brief       This is a Arduino platform file use Infineon's TLE5012B magnetic angular sensor
+ *
  * SPDX-License-Identifier: MIT
  */
-
-#include "TLE5012-pal-ino.hpp"
-
-#if (TLE5012_FRAMEWORK == TLE5012_FRMWK_ARDUINO)
 
 using namespace tle5012;
 
@@ -94,4 +92,5 @@ errorTypes Tle5012Ino::begin(void)
 }
 
 #endif /** TLE5012_FRAMEWORK **/
+
 /** @} */

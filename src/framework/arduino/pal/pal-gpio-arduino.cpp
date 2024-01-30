@@ -1,16 +1,14 @@
 /**
- * @file        gpio-arduino.hpp
- * @brief       Arduino PAL for the GPIO
- * @date        May 2020
- * @copyright   Copyright (c) 2019-2020 Infineon Technologies AG
+ * \file        pal-gpio-arduino.cpp
+ * \brief       Arduino PAL for the GPIO
+ * \author      Infineon Technologies AG
+ * \version     4.0.0
+ * \copyright   2020-2024 Infineon Technologies AG
  *
  * SPDX-License-Identifier: MIT
  */
 
 #include "pal-gpio-arduino.hpp"
-
-#if (TLE94112_FRAMEWORK == TLE94112_FRMWK_ARDUINO)
-
 #include <Arduino.h>
 
 using namespace tle5012;
@@ -149,9 +147,4 @@ Error_t GPIOIno::disable()
 	}
 	return OK;
 }
-
-
-#endif /** TLE94112_FRAMEWORK **/
-
-
 

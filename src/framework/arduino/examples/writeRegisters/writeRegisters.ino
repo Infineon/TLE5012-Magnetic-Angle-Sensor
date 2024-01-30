@@ -1,19 +1,19 @@
 /*!
  * \name        writeRegisters
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
- * \brief       Testscript for a writing register settings.
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
+ * \brief       test script for a writing register settings.
  * \details
  * This example show how to use the register write functions
- * of the sensor, to change certain bits with deafult low speed
- * 9600 baud comunication and standard sensor settings
+ * of the sensor, to change certain bits with default low speed
+ * 9600 baud communication and standard sensor settings
  * 
  * SPDX-License-Identifier: MIT
  *
  */
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 
@@ -27,7 +27,7 @@ void setup() {
   while (!Serial) {};
   Serial.println("init done!\n");
   checkError = Tle5012Sensor.begin();
-  Serial.print("checkerror: ");
+  Serial.print("checkError: ");
   Serial.println(checkError, HEX);
   delay(1000);
 }

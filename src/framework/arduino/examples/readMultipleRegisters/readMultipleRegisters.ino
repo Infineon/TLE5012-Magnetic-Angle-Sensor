@@ -1,9 +1,9 @@
 /*!
  * \name        readMultipleRegisters
  * \author      Infineon Technologies AG
- * \copyright   2020 Infineon Technologies AG
- * \version     3.1.0
- * \brief       Demostrates how to read multiple registers
+ * \copyright   2020-2024 Infineon Technologies AG
+ * \version     4.0.0
+ * \brief       Demonstrates how to read multiple registers
  * \details
  * This example demonstrates how to read multiple raw registers at once.
  * In this case you have to recalculate values like angle, angle speed etc.
@@ -22,7 +22,7 @@
  */
 
 
-#include <TLE5012-ino.hpp>
+#include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
 
@@ -38,7 +38,7 @@ void setup() {
   Serial.begin(9600);
   while (!Serial) {};
   checkError = Tle5012Sensor.begin();
-  Serial.print("checkerror: ");
+  Serial.print("checkError: ");
   Serial.println(checkError, HEX);
   delay(1000);
   Serial.println("init done!");
