@@ -1,4 +1,4 @@
-# TLE5012B-Angle-Sensor
+# XENSIV-Angle-Sensor-TLx5012
 
 ![PlatformIO CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/PlatformIO%20CI/badge.svg)
 ![Arduino CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg)

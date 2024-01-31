@@ -9,6 +9,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include "tlx5012-arduino.hpp"
+
 using namespace tle5012;
 
 /**
@@ -91,6 +93,5 @@ errorTypes Tle5012Ino::begin(void)
 	return (readBlockCRC());
 }
 
-#endif /** TLE5012_FRAMEWORK **/
 
 /** @} */

@@ -21,11 +21,13 @@
 #include "pal-gpio-arduino.hpp"
 #include "pal-spic-arduino.hpp"
 
-
 /**
  * @addtogroup inoApi
  * @{
  */
+namespace tle5012
+{
+
 
 /**
  * @class Tle5012Ino
@@ -49,9 +51,8 @@
 #define PRINTBINS(Num) for (uint32_t t = (1UL << ((sizeof(Num)*8)-1)); t; t >>= 1) Serial.write(Num  & t ? " 1 " : " 0 ");
 
 
-class Tle5012Ino: virtual public Tle5012b
+class Tle5012Ino: public Tle5012b
 {
-
 	public:
 
 		uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
@@ -63,7 +64,7 @@ class Tle5012Ino: virtual public Tle5012b
 
 };
 
-
 /* @} */
+}
 
 #endif /** TLE5012_INO_HPP_ **/
