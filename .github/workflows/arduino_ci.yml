@@ -78,7 +78,7 @@ jobs:
         mkdir -p "$HOME/Arduino/libraries"
         cd $GITHUB_WORKSPACE/
         pwd
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries/$REPO
+        xfp-dev arduino workspace-setup
 
     # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
     # the arduino board support packages can be updated automatically
