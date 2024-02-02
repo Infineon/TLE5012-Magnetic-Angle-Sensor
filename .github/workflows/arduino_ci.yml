@@ -70,12 +70,14 @@ jobs:
     # setup links inside the self hosted runner for correct directory setup
     # REPO is the base name of the library which is linked to the right directory structure
     # check wether the .arduino15 packages dir is available
+    # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
     - name: Set and check environment, install repos
       run: |
         export REPO="$(basename "$GITHUB_REPOSITORY")"
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
-        ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries/$REPO
 
     # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
     # the arduino board support packages can be updated automatically
