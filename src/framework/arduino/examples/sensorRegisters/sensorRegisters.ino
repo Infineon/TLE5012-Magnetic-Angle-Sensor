@@ -675,27 +675,38 @@ void setup() {
   delay(1000);
   Serial.begin(115200);
   while (!Serial) {};
+  delay(5000);
+  Serial.println("Init done!");
+
   checkError = Tle5012Sensor.begin();
-  Serial.print("checkError: ");
+  Serial.print("Sensor checkError: ");
   Serial.println(checkError,HEX);
-  delay(1000);
 
-  // read all registers
-  checkError = Tle5012Sensor.readRegMap();
-  show_bin();
+  if (checkError == 0){
+    delay(1000);
 
-  show_STAT();
-  show_ACSTAT();
-  show_MAINA();
-  show_MOD1();
-  show_SIL();
-  show_MOD2();
-  show_MOD3();
-  show_OFFSETS();
-  show_IFAB();
-  show_MOD4();
-  show_TCOTY();
-  show_ADC();
+    // read all registers
+    checkError = Tle5012Sensor.readRegMap();
+    Serial.print("Register Map checkError: ");
+    Serial.println(checkError,HEX);
+
+    show_bin();
+
+    show_STAT();
+    show_ACSTAT();
+    show_MAINA();
+    show_MOD1();
+    show_SIL();
+    show_MOD2();
+    show_MOD3();
+    show_OFFSETS();
+    show_IFAB();
+    show_MOD4();
+    show_TCOTY();
+    show_ADC();
+  }else{
+    Serial.print("There is no magnet near the sensor");
+  }
 
   Serial.end();
 }

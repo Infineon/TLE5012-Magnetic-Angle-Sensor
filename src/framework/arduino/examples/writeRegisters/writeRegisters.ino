@@ -22,10 +22,11 @@ errorTypes checkError = NO_ERROR;
 bool s = true;
 
 void setup() {
-  delay(2000);
+  delay(1000);
   Serial.begin(9600);
   while (!Serial) {};
-  Serial.println("init done!\n");
+  delay(5000);
+  Serial.println("init done!");
   checkError = Tle5012Sensor.begin();
   Serial.print("checkError: ");
   Serial.println(checkError, HEX);

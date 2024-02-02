@@ -28,6 +28,8 @@ void setup() {
   delay(2000);
   Serial.begin(115200);
   while (!Serial) {};
+  delay(5000);
+
   checkError = Tle5012MagneticAngleSensor.begin();
   Serial.print("checkError: ");
   Serial.println(checkError, HEX);
@@ -40,23 +42,24 @@ void setup() {
 void loop() {
   if (checkError == 0)
   {
-    double d = 0.0;
-    int16_t b = 0;
-    checkError = Tle5012MagneticAngleSensor.getAngleSpeed(d);
-    Serial.print(d);
-  
-    Serial.print("\t");
-    checkError = Tle5012MagneticAngleSensor.getAngleValue(d);
-    Serial.print(d);
-  
-    Serial.print("\t\t");
-    checkError = Tle5012MagneticAngleSensor.getNumRevolutions(b);
-    Serial.print(b);
+
+    double speed = 0.0;
+    double angle = 0.0;
+    double range = 0.0;
+    int16_t revol = 0;
     
-    Serial.print("\t\t");
-    Tle5012MagneticAngleSensor.getAngleRange(d);
-    Serial.print(d);
+    
+    Tle5012MagneticAngleSensor.getAngleSpeed(speed);
+    Tle5012MagneticAngleSensor.getAngleValue(angle);
+    Tle5012MagneticAngleSensor.getAngleRange(range);
+    Tle5012MagneticAngleSensor.getNumRevolutions(revol);
+
+    Serial.print(speed);    Serial.print("\t\t");
+    Serial.print(angle);    Serial.print("\t\t");
+    Serial.print(revol);    Serial.print("\t\t");
+    Serial.print(range);
     Serial.print("\n");
+
   }
   delay(100); //can be removed
 }

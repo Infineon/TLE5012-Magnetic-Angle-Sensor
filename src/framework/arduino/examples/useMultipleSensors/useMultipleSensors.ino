@@ -13,6 +13,8 @@
  * ask for. The loop function will than print out the individual sensor(s) angle values.
  *  
  * This example also demonstrates how to handle more than on sensor in an array setup.
+ * It is not designed for a Kit2Go sensor but for a setup on a normal XMC or Arduino
+ * with up to four sensors on one SPI channel.
  * 
  * \attention Needs much memory which can be too much for the original Arduino Uno
  * 
@@ -25,7 +27,7 @@
 using namespace tle5012;
 
 //! number of connected sensors
-#define SENSOR_NUM 1
+#define SENSOR_NUM 1          //!< This number has to be corespondent to the line inn the sensor array (line 37)
 
 //! define more unique chip select pins for more connected Sensors
 #define CS_PIN_SENSOR_1   10  //!< This is a setup for the default Arduino, use 3 for the Sensor2Go kit
@@ -52,7 +54,8 @@ void setup() {
   delay(2000);
   Serial.begin(115200);
   while (!Serial) {};
-   
+  delay(5000);
+
   // Remove remark if you have more than one sensor,
   // or change the Tle5012Sensor.TLE5012B_S0 to S1-S3 to demonstrate the effect
   for (int8_t i=0;i<SENSOR_NUM;i++)

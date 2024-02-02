@@ -12,6 +12,7 @@
  */
 
 #include "TLE5012b.hpp"
+#include "Arduino.h"
 
 using namespace tle5012;
 
@@ -89,26 +90,28 @@ uint8_t crcCalc(uint8_t* crcData, uint8_t length)
  */
 double calculateAngleSpeed(double angRange, int16_t rawAngleSpeed, uint16_t firMD, uint16_t predictionVal)
 {
-	double finalAngleSpeed;
 	double microsecToSec = 0.000001;
 	double firMDVal;
-	if (firMD == 1)
+	switch ( firMD )
 	{
-		firMDVal = 42.7;
-	}else if (firMD == 0)
-	{
-		firMDVal = 21.3;
-	}else if (firMD == 2)
-	{
-		firMDVal = 85.3;
-	}else if (firMD == 3)
-	{
-		firMDVal = 170.6;
-	}else{
-		firMDVal = 0;
+		case 1:
+			firMDVal = 42.7;
+			break;
+		case 2:
+			firMDVal = 85.3;
+			break;
+		case 3:
+			firMDVal = 170.6;
+			break;
+		default:
+			firMDVal = 21.3;
 	}
-	finalAngleSpeed = ((angRange / POW_2_15) * ((double) rawAngleSpeed)) / (((double) predictionVal) * firMDVal * microsecToSec);
-	return (finalAngleSpeed);
+
+	double dividend = angRange * (double)rawAngleSpeed / (POW_2_15 * microsecToSec);
+	double divisor = (double)predictionVal * firMDVal;
+	double finalAngleSpeed = dividend / divisor;
+
+	return ( finalAngleSpeed);
 }
 // end none class functions
 
@@ -248,7 +251,7 @@ errorTypes Tle5012b::checkSafety(uint16_t safety, uint16_t command, uint16_t* re
 		// resetSafety();
 	}else{
 		resetSafety();
-		uint16_t lengthOfTemp = length * 2 + 2;
+		const uint16_t lengthOfTemp = MAX_REGISTER_MEM * 2 + 2;
 		uint8_t temp[lengthOfTemp];
 
 		temp[0] = getFirstByte(command);
@@ -261,7 +264,7 @@ errorTypes Tle5012b::checkSafety(uint16_t safety, uint16_t command, uint16_t* re
 		}
 
 		uint8_t crcReceivedFinal = getSecondByte(safety);
-		uint8_t crc = crcCalc(temp, lengthOfTemp);
+		uint8_t crc = crcCalc(temp, length * 2 + 2);
 
 		if (crc == crcReceivedFinal)
 		{
@@ -485,7 +488,7 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed)
 }
 errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, updTypes upd, safetyTypes safe)
 {
-	int8_t numOfData = 0x6;
+	const int8_t numOfData = 0x6;
 	uint16_t rawData[numOfData] = {};
 
 	errorTypes status = readMoreRegisters(reg.REG_ASPD + numOfData, rawData, upd, safe);
@@ -493,7 +496,6 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, u
 	{
 		return (status);
 	}
-
 	// Prepare raw speed
 	rawSpeed = rawData[0];
 	rawSpeed = (rawSpeed & (DELETE_BIT_15));
@@ -503,9 +505,9 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, u
 		rawSpeed = rawSpeed - CHANGE_UINT_TO_INT_15;
 	}
 
-	// Prepare firMDVal
-	uint16_t firMDVal = rawData[3];
-	firMDVal >>= 14;
+	// Prepare firMD
+	uint16_t firMD = rawData[3];
+	firMD >>= 14;
 
 	// Prepare intMode2Prediction
 	uint16_t intMode2Prediction = rawData[5];
@@ -524,7 +526,8 @@ errorTypes Tle5012b::getAngleSpeed(double &finalAngleSpeed, int16_t &rawSpeed, u
 
 	//checks the value of fir_MD according to which the value in the calculation of the speed will be determined
 	//according to if prediction is enabled then, the formula for speed changes
-	finalAngleSpeed = calculateAngleSpeed(angleRange, rawSpeed, firMDVal, intMode2Prediction);
+	finalAngleSpeed = calculateAngleSpeed(angleRange, rawSpeed, firMD, intMode2Prediction);
+
 	return (status);
 }
 

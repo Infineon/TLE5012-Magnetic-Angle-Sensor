@@ -15,7 +15,8 @@
  * the second digit is how many consecutive registers to read which is
  * be done by adding the length and the command values.
  * A max of 15 value can read at once, one additional value is reserved for
- * the safety bit.
+ * the safety bit. We only read the registers if checkError is false.
+ * Therefore a magnet must be near the sensor, otherwise it will not work.
  * 
  * SPDX-License-Identifier: MIT
  *
@@ -31,17 +32,19 @@ errorTypes checkError = NO_ERROR;
 
 uint16_t command = 0x0050; //!< read register beginning with REG_FSYNC
 uint8_t leng = 5;          //!< and the next four registers REG_MOD_1, REG_SIL, REG_MOD2 and REG_MOD3
-bool s = true;
+bool s = true;             //!< stop flag as we do not want to loop
 
 void setup() {
   delay(1000);
   Serial.begin(9600);
   while (!Serial) {};
+  delay(5000);
+  Serial.println("init done!");
+
   checkError = Tle5012Sensor.begin();
   Serial.print("checkError: ");
   Serial.println(checkError, HEX);
   delay(1000);
-  Serial.println("init done!");
 }
 
 void loop() 

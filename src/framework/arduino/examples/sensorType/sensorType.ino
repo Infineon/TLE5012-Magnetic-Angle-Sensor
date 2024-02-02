@@ -29,7 +29,9 @@ void setup() {
   delay(1000);
   Serial.begin(115200);
   while (!Serial) {};
+  delay(5000);
   checkError  = Tle5012Sensor.begin();
+  delay(1000);
   Serial.print("\n\ncheckError: ");
   Serial.println(checkError, HEX);
 
@@ -69,6 +71,9 @@ void setup() {
 
   // read all registers
   checkError = Tle5012Sensor.readRegMap();
+  Serial.print("Register Map checkError: ");
+  Serial.println(checkError, HEX);
+
   // printout register binary values and sensor identity
   show_bin();
   show_identity();

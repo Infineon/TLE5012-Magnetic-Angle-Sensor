@@ -26,6 +26,8 @@ void setup() {
   delay(2000);
   Serial.begin(9600);
   while (!Serial) {};
+  delay(5000);
+
   checkError = Tle5012Sensor.begin();
   Serial.print("checkError: ");
   Serial.println(checkError,HEX);

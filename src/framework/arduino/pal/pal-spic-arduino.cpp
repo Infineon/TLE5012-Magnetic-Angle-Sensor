@@ -31,7 +31,7 @@ SPICIno::SPICIno(uint8_t csPin)
 {
 	this->csPin = csPin;
 	#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
-		this->spi = &SPI;
+		this->spi = (SPIClass3W *) &SPI;
 	#else
 		this->spi = new SPIClass3W();
 	#endif
