@@ -77,7 +77,7 @@ jobs:
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
         cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries --debug
 
     # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
     # the arduino board support packages can be updated automatically
