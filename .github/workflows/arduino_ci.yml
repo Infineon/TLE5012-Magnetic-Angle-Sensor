@@ -89,16 +89,13 @@ jobs:
         arduino-cli core install ${{ matrix.platform }}
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
+    # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
     - name: Compile Sketch
       run: |
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
         export REPO="$(basename "$GITHUB_REPOSITORY")"
-        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        mkdir -p "$HOME/Arduino/libraries"
-        ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
         arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
-
 
   # This step allows HIL (Hardware in the loop), therefore
   # is searches for the given board/sensor combination and tries to find the actual port
@@ -157,6 +154,7 @@ jobs:
       # check/set the arduino15 package library
       # link the repo to the correct place for compiling under arduino-cli
       # compile the code with the arduino-cli and export the binary files for flashing
+      # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
       - name: Compile Sketch
         run: |
           export TMPDIR=$HOME/tmp
@@ -164,7 +162,6 @@ jobs:
           export REPO="$(basename "$GITHUB_REPOSITORY")"
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
-          ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
 
         # Flashes the compiled HEX file onto the selected MCU
