@@ -93,6 +93,10 @@ jobs:
       run: |
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
+        export REPO="$(basename "$GITHUB_REPOSITORY")"
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        mkdir -p "$HOME/Arduino/libraries"
+        ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
         arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
