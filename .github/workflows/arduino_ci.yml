@@ -27,16 +27,16 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: [
-            # examples/E9000SPC,
-            # examples/readAngleSpeedRevolutions,
-            # examples/readAngleTest,
-            # examples/readAngleValueProcessing,
-            # examples/readMultipleRegisters,
-            # examples/readSpeedProcessing,
-            # examples/sensorRegisters,
-            # examples/sensorType,
-            # examples/testSensorMainValues,
-            # examples/useMultipleSensors,
+            examples/E9000SPC,
+            examples/readAngleSpeedRevolutions,
+            examples/readAngleTest,
+            examples/readAngleValueProcessing,
+            examples/readMultipleRegisters,
+            examples/readSpeedProcessing,
+            examples/sensorRegisters,
+            examples/sensorType,
+            examples/testSensorMainValues,
+            examples/useMultipleSensors,
             examples/writeRegisters
         ]
 
@@ -49,10 +49,10 @@ jobs:
         ]
 
         include:
-        # - fqbn:     "arduino:avr:uno"
-        #   platform: "arduino:avr"
-        # - fqbn:     "Infineon:xmc:XMC1100_XMC2GO"
-        #   platform: "infineon:xmc"
+        - fqbn:     "arduino:avr:uno"
+          platform: "arduino:avr"
+        - fqbn:     "Infineon:xmc:XMC1100_XMC2GO"
+          platform: "infineon:xmc"
         - fqbn:     "Infineon:xmc:XMC4700_Relax_Kit"
           platform: "infineon:xmc"
 
@@ -163,6 +163,7 @@ jobs:
           export REPO="$(basename "$GITHUB_REPOSITORY")"
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
+          cd $HOME/Arduino/libraries/$REPO
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
 
         # Flashes the compiled HEX file onto the selected MCU
