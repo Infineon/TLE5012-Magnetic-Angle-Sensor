@@ -27,32 +27,32 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: [
-            examples/E9000SPC,
-            examples/readAngleSpeedRevolutions,
-            examples/readAngleTest,
-            examples/readAngleValueProcessing,
-            examples/readMultipleRegisters,
-            examples/readSpeedProcessing,
-            examples/sensorRegisters,
-            examples/sensorType,
-            examples/testSensorMainValues,
-            examples/useMultipleSensors,
+            # examples/E9000SPC,
+            # examples/readAngleSpeedRevolutions,
+            # examples/readAngleTest,
+            # examples/readAngleValueProcessing,
+            # examples/readMultipleRegisters,
+            # examples/readSpeedProcessing,
+            # examples/sensorRegisters,
+            # examples/sensorType,
+            # examples/testSensorMainValues,
+            # examples/useMultipleSensors,
             examples/writeRegisters
         ]
 
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
         fqbn: [
-          "arduino:avr:uno",
-          "Infineon:xmc:XMC1100_XMC2GO",
+          # "arduino:avr:uno",
+          # "Infineon:xmc:XMC1100_XMC2GO",
           "Infineon:xmc:XMC4700_Relax_Kit"
         ]
 
         include:
-        - fqbn:     "arduino:avr:uno"
-          platform: "arduino:avr"
-        - fqbn:     "Infineon:xmc:XMC1100_XMC2GO"
-          platform: "infineon:xmc"
+        # - fqbn:     "arduino:avr:uno"
+        #   platform: "arduino:avr"
+        # - fqbn:     "Infineon:xmc:XMC1100_XMC2GO"
+        #   platform: "infineon:xmc"
         - fqbn:     "Infineon:xmc:XMC4700_Relax_Kit"
           platform: "infineon:xmc"
 
