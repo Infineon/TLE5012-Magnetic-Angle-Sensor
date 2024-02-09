@@ -1,0 +1,50 @@
+name: Doxygen GH
+
+on: [pull_request]
+
+jobs:
+  build-documentation:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v2
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: ${{ runner.os }}-pip-
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Install doxygen
+      run: |
+        sudo apt-get install -y doxygen
+        sudo apt-get install -y graphviz
+
+    - name: Run doxygen
+      run: |
+        git clone https://github.com/Infineon/InfineonDoxyGenerator.git
+        cd InfineonDoxyGenerator
+        python doxyifx.py html
+        #python doxyifx.py release ${{ secrets.GH_USER }} ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: GH Pages Deployment
+      uses: peaceiris/actions-gh-pages@v3
+      if: success()
+      with:
+        publish_dir: ./doc/doxygen/build/html/
+        enable_jekyll: false
+        allow_empty_commit: false
+        force_orphan: true
+        publish_branch: gh-pages
+      env:
+        github_token: ${{ secrets.GITHUB_TOKEN }}

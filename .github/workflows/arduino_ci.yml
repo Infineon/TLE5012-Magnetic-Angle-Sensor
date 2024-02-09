@@ -16,15 +16,17 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          echo "matrix='test'" >> $GITHUB_OUTPUT 
+          echo "matrix='test'" >> $GITHUB_OUTPUT
           REPO="$(basename "$GITHUB_REPOSITORY")"
-          echo "repo=$REPO" >> $GITHUB_OUTPUT 
+          echo "repo=$REPO" >> $GITHUB_OUTPUT
       - id: set-project
-        run: export $(xfp-dev arduino workspace-setup project-name)
+        run: |
+          export $(xfp-dev arduino workspace-setup project-name)
+          echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-      repo: ${{ steps.set-set-matrix.outputs.repo }}
-      project: ${{ steps.set-project.outputs.PROJECTNAME }}
+      repo: ${{ steps.set-matrix.outputs.repo }}
+      project: ${{ steps.set-project.outputs.project }}
 
 
   # The build job compiles the sample code for different boards
@@ -94,11 +96,9 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
     - name: Set and check environment, install repos
       run: |
-        export REPO=${{ needs.setup.outputs.repo }}
-        export PROJECT=${{ needs.setup.outputs.project }}
         echo ${{ needs.setup.outputs.matrix }}
-        echo $REPO
-        echo $PROJECT
+        echo ${{ needs.setup.outputs.repo }}
+        echo ${{ needs.setup.outputs.project }}
         export REPO="$(basename "$GITHUB_REPOSITORY")"
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
@@ -141,7 +141,7 @@ jobs:
       - Linux
 
     strategy:
-      # flashing only one by one 
+      # flashing only one by one
       max-parallel: 1
 
       # the code to flash
