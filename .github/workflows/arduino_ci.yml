@@ -96,7 +96,7 @@ jobs:
     - name: Set and check environment, install repos
       run: |
         echo ${{ needs.setup.outputs.matrix }}
-        echo ${{ needs.setup.outputs.repo }}
+        echo [${{ needs.setup.outputs.repo }}]
         echo ${{ needs.setup.outputs.project }}
         export REPO="$(basename "$GITHUB_REPOSITORY")"
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
