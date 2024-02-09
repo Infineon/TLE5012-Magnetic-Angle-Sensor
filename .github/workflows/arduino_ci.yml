@@ -26,7 +26,7 @@ jobs:
           data_string=${data[@]}
 
           printf -v joined '%s, ' "${data[@]}"
-          echo "matrix=${data_string//${IFS:0:1}/,}" >> $GITHUB_OUTPUT
+          echo "matrix=[${data_string//${IFS:0:1}/,}]" >> $GITHUB_OUTPUT
 
 
     outputs:
@@ -55,7 +55,7 @@ jobs:
 
       matrix:
         # List of all examples in the lib to compile
-        example: ${{ needs.setup.outputs.matrix }}
+        example: ${{ fromJson( needs.setup.outputs.matrix ) }}
           
           # [
             # examples/E9000SPC,
