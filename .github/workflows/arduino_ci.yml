@@ -8,9 +8,23 @@ on:
 # This template runes multiple workflows
 jobs:
 
+  setup:
+    runs-on:
+      - self-hosted
+      - X64
+      - Linux
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: echo "matrix=test"
+
 
   # The build job compiles the sample code for different boards
   build:
+
+    # wait on first setup run before starting main function
+    needs: setup
 
     # we run this on self hosted runner, use labels to be more specific
     # add specific names if there are some, otherwise self-hosted, X64, Linux are the default ones
