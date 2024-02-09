@@ -15,6 +15,8 @@ jobs:
       - Linux
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      repo: ${{steps.set-matrix.outputs.REPO}}
+      project: ${{steps.set-matrix.outputs.PROJECTNAME}}
     steps:
       - id: set-matrix
         run: |
@@ -93,6 +95,9 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
     - name: Set and check environment, install repos
       run: |
+        echo ${{ needs.setup.matrix.outputs.matrix }}
+        echo ${{ needs.setup.matrix.outputs.REPO }}
+        echo ${{ needs.setup.matrix.outputs.PROJECTNAME }}
         export REPO="$(basename "$GITHUB_REPOSITORY")"
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
