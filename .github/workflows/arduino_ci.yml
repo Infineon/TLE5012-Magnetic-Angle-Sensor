@@ -15,17 +15,21 @@ jobs:
       - Linux
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-      repo: ${{steps.set-matrix.outputs.REPO}}
-      project: ${{steps.set-matrix.outputs.PROJECTNAME}}
+      repo: ${{ steps.set-repo.outputs.REPO }}
+      project: ${{ steps.set-project.outputs.PROJECTNAME }}
     steps:
       - id: set-matrix
         run: |
-          export REPO="$(basename "$GITHUB_REPOSITORY")"
-          export $(xfp-dev arduino workspace-setup project-name)
           echo "matrix=test"
-          echo PROJECTNAME=$PROJECTNAME
+      - id: set-repo
+        run: |
+          export REPO="$(basename "$GITHUB_REPOSITORY")"
           echo REPO=$REPO
-  
+      - id: set-project
+        run: |
+          export $(xfp-dev arduino workspace-setup project-name)
+          echo PROJECTNAME=$PROJECTNAME
+
 
   # The build job compiles the sample code for different boards
   build:
