@@ -16,11 +16,17 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          echo "matrix='test'" >> $GITHUB_OUTPUT
           REPO="$(basename "$GITHUB_REPOSITORY")"
           echo "repo=$REPO" >> $GITHUB_OUTPUT
           export $(xfp-dev arduino workspace-setup project-name)
           echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
+
+          cd $GITHUB_WORKSPACE/src/framework/arduino
+          for x in examples/*; do myarr+=($x); done;
+          echo ${myarr[@]}
+          echo "matrix=[${myarr[@]}]" >> $GITHUB_OUTPUT
+
+
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       repo: ${{ steps.set-matrix.outputs.repo }}
