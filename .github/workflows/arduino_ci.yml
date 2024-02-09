@@ -20,12 +20,11 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          echo "matrix=test"
-          pwd
           export REPO="$(basename "$GITHUB_REPOSITORY")"
           export $(xfp-dev arduino workspace-setup project-name)
-          echo $PROJECTNAME
-          echo $REPO
+          echo "matrix=test"
+          echo PROJECTNAME=$PROJECTNAME
+          echo REPO=$REPO
   
 
   # The build job compiles the sample code for different boards
