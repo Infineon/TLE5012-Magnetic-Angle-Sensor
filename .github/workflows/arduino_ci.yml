@@ -105,7 +105,6 @@ jobs:
     - name: Set and check environment, install repos
       run: |
         echo ${{ needs.setup.outputs.matrix }}
-        echo ${{ fromJson(needs.setup.outputs.matrix) }}
         echo ${{ needs.setup.outputs.repo }}
         echo ${{ needs.setup.outputs.project }}
 
