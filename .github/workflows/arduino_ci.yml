@@ -17,8 +17,14 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - id: set-matrix
-        run: echo "matrix=test"
-
+        run: |
+          echo "matrix=test"
+          pwd
+          export REPO="$(basename "$GITHUB_REPOSITORY")"
+          export $(xfp-dev arduino workspace-setup project-name)
+          echo $PROJECTNAME
+          echo $REPO
+  
 
   # The build job compiles the sample code for different boards
   build:
@@ -110,6 +116,7 @@ jobs:
         mkdir -p $TMPDIR
         export $(xfp-dev arduino workspace-setup project-name)
         cd $HOME/Arduino/libraries/$PROJECTNAME
+        echo $PROJECTNAME
         arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
   # This step allows HIL (Hardware in the loop), therefore
@@ -178,7 +185,10 @@ jobs:
           mkdir -p $TMPDIR
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
+
+          echo $PROJECTNAME
           cd $HOME/Arduino/libraries/$PROJECTNAME
+
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
 
         # Flashes the compiled HEX file onto the selected MCU
