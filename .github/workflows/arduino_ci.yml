@@ -24,9 +24,7 @@ jobs:
           cd $GITHUB_WORKSPACE/src/framework/arduino
           for x in examples/*; do data+=($x); done;
           data_string=${data[@]}
-
-          printf -v joined '"%s", ' "${data[@]}"
-          echo "matrix={"example": [${data_string//${IFS:0:1}/,}]}" >> $GITHUB_OUTPUT
+          echo "matrix=$(jq -cn {example: ${data_string//${IFS:0:1}/,}})" >> $GITHUB_OUTPUT
 
 
     outputs:
