@@ -13,10 +13,6 @@ jobs:
       - self-hosted
       - X64
       - Linux
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-      repo: ${{ steps.set-repo.outputs.REPO }}
-      project: ${{ steps.set-project.outputs.PROJECTNAME }}
     steps:
       - id: set-matrix
         run: matrix="test"
@@ -24,6 +20,10 @@ jobs:
         run: REPO="$(basename "$GITHUB_REPOSITORY")"
       - id: set-project
         run: export $(xfp-dev arduino workspace-setup project-name)
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      repo: ${{ steps.set-repo.outputs.REPO }}
+      project: ${{ steps.set-project.outputs.PROJECTNAME }}
 
 
   # The build job compiles the sample code for different boards
