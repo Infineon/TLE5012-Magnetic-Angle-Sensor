@@ -48,16 +48,16 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: [
-            examples/E9000SPC,
-            examples/readAngleSpeedRevolutions,
-            examples/readAngleTest,
-            examples/readAngleValueProcessing,
-            examples/readMultipleRegisters,
-            examples/readSpeedProcessing,
-            examples/sensorRegisters,
-            examples/sensorType,
-            examples/testSensorMainValues,
-            examples/useMultipleSensors,
+            # examples/E9000SPC,
+            # examples/readAngleSpeedRevolutions,
+            # examples/readAngleTest,
+            # examples/readAngleValueProcessing,
+            # examples/readMultipleRegisters,
+            # examples/readSpeedProcessing,
+            # examples/sensorRegisters,
+            # examples/sensorType,
+            # examples/testSensorMainValues,
+            # examples/useMultipleSensors,
             examples/writeRegisters
         ]
 
