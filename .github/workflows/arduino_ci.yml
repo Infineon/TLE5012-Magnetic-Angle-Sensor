@@ -94,8 +94,8 @@ jobs:
       run: |
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
-        export REPO="$(basename "$GITHUB_REPOSITORY")"
-        cd $HOME/Arduino/libraries/$REPO
+        export $(xfp-dev arduino workspace-setup project-name)
+        cd $HOME/Arduino/libraries/$PROJECTNAME
         arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
   # This step allows HIL (Hardware in the loop), therefore
@@ -159,11 +159,12 @@ jobs:
       - name: Compile Sketch
         run: |
           export TMPDIR=$HOME/tmp
+          export $(xfp-dev arduino workspace-setup project-name)
+
           mkdir -p $TMPDIR
-          export REPO="$(basename "$GITHUB_REPOSITORY")"
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
-          cd $HOME/Arduino/libraries/$REPO
+          cd $HOME/Arduino/libraries/$PROJECTNAME
           arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
 
         # Flashes the compiled HEX file onto the selected MCU
@@ -177,16 +178,18 @@ jobs:
         run: |
           cd /opt/runner_support/
           export REPO="$(basename "$GITHUB_REPOSITORY")"
+          export $(xfp-dev arduino workspace-setup project-name)
           export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
 
           export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.$REPO.${{ matrix.port_name}}`
           export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.$REPO.${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
           echo "Repo name extracted: " $REPO
+          echo "Real repo name:      " $PROJECTNAME
           echo "Build HEX name:      " $HEXNAME
           echo "Port Serial Num:     " $SERIAL_NUM
           echo "Port found:          " $PORT
           echo "Flash device:        " $DEVICE
 
           cd $HOME
-          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/$REPO/${{ matrix.example }}/build/$HEXNAME/*.hex
+          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/$PROJECTNAME/${{ matrix.example }}/build/$HEXNAME/*.hex

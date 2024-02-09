@@ -1,4 +1,4 @@
-# XENSIV-Angle-Sensor-TLx5012
+# XENSIV TLx5012B Angle Sensor
 
 ![PlatformIO CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/PlatformIO%20CI/badge.svg)
 ![Arduino CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg)
@@ -8,7 +8,7 @@
 |:--:|:--:|:--:|
 | *bulk sensor* | *breakout board* | *Sensor2Go kit* 
 
-Library of Infineon's highly sensitive [TLE5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-sensors/magnetic-position-sensors/angle-sensors) 360° magnetic angle sensor.
+Library of Infineon's highly sensitive [TLx5012B](https://www.infineon.com/cms/en/product/sensor/magnetic-sensors/magnetic-position-sensors/angle-sensors) 360° magnetic angle sensor.
 ### Supported Frameworks
 
 <table>
@@ -20,7 +20,7 @@ Library of Infineon's highly sensitive [TLE5012B](https://www.infineon.com/cms/e
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/Arduino-API">Arduino API</a></td>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/WICED-API">WICED API</a></td>
-        <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/TLE5012B-API/">TLE5012B API</a><br><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/TLE5012BMotor-API">TLE5012B Register API</a></td>
+        <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/TLE5012B-API/">TLE5012B API</a><br><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/TLE5012BMotor-API">TLx5012B Register API</a></td>
     </tr>
     <tr>
         <td style="text-align: center"><a href="https://github.com/Infineon/TLE5012-Magnetic-Angle-Sensor/wiki/Ino-Getting-Started">Getting Started</a></td>
@@ -30,7 +30,7 @@ Library of Infineon's highly sensitive [TLE5012B](https://www.infineon.com/cms/e
 </table>
 
 ## Summary
-The [TLE5012B](https://www.infineon.com/cms/en/product/evaluation-boards/tle5012b_e1000_ms2go/) is a 360° angle sensor that detects the orientation of a magnetic field. This is achieved by measuring sine and cosine angle components with monolithic integrated Giant Magneto Resistance (iGMR) elements. These raw signals (sine and cosine) are digitally processed internally to calculate the angle orientation of the magnetic field (magnet). The TLE5012B is a pre-calibrated sensor. The calibration parameters are stored in laser fuses. At start-up the values of the fuses are written into flip-flops, where these values can be changed by the application-specific parameters. Further precision of the angle measurement over a wide temperature range and a long lifetime can be improved by enabling an optional internal auto calibration algorithm. Data communications are accomplished with a bi-directional Synchronous Serial Communication (SSC) that is SPI-compatible. The sensor configuration is stored in registers, which are accessible by the SSC interface. Additionally four other interfaces are available with the TLE5012B: Pulse-Width-Modulation (PWM) Protocol, Short-PWM-Code (SPC) Protocol, Hall Switch Mode (HSM) and Incremental Interface (IIF). These interfaces can be used in parallel with SSC or alone. Pre-configured sensor derivate with different interface settings are available.
+The [TLE5012B](https://www.infineon.com/cms/en/product/evaluation-boards/tle5012b_e1000_ms2go/) is a 360° angle sensor that detects the orientation of a magnetic field. This is achieved by measuring sine and cosine angle components with monolithic integrated Giant Magneto Resistance (iGMR) elements. These raw signals (sine and cosine) are digitally processed internally to calculate the angle orientation of the magnetic field (magnet). The TLx5012B is a pre-calibrated sensor. The calibration parameters are stored in laser fuses. At start-up the values of the fuses are written into flip-flops, where these values can be changed by the application-specific parameters. Further precision of the angle measurement over a wide temperature range and a long lifetime can be improved by enabling an optional internal auto calibration algorithm. Data communications are accomplished with a bi-directional Synchronous Serial Communication (SSC) that is SPI-compatible. The sensor configuration is stored in registers, which are accessible by the SSC interface. Additionally four other interfaces are available with the TLx5012B: Pulse-Width-Modulation (PWM) Protocol, Short-PWM-Code (SPC) Protocol, Hall Switch Mode (HSM) and Incremental Interface (IIF). These interfaces can be used in parallel with SSC or alone. Pre-configured sensor derivate with different interface settings are available.
 
 ## Key Features and Benefits
 * Giant Magneto Resistance (GMR)-based principle
@@ -52,8 +52,8 @@ Please have a look at the [wiki](https://github.com/infineon/TLE5012-Magnetic-An
 * [Infineon Microcontroller](https://www.infineon.com/cms/en/tools/landing/infineon-for-makers/microcontroller-boards/)
 * [Infineon XENSIV™ - Sensor 2GO kits](https://www.infineon.com/cms/en/product/promopages/sensors-2go/#shields2go-myiot)
 * [Infineon Magnetic Sensor Kits](https://www.infineon.com/cms/en/product/promopages/sensors-2go)
-* [TLE5012B variants](https://www.infineon.com/cms/en/product/promopages/sensors-2go/#angle-sensor-2go)
-* [TLE5012B manual](https://www.infineon.com/dgdl/Infineon-Angle_Sensor_TLE5012B-UM-v01_02-en-UM-v01_02-EN.pdf?fileId=5546d46146d18cb40146ec2eeae4633b)
+* [TLx5012B variants](https://www.infineon.com/cms/en/product/promopages/sensors-2go/#angle-sensor-2go)
+* [TLx5012B manual](https://www.infineon.com/dgdl/Infineon-Angle_Sensor_TLE5012B-UM-v01_02-en-UM-v01_02-EN.pdf?fileId=5546d46146d18cb40146ec2eeae4633b)
 * [GUI for Angle Sensor 2GO](https://www.infineon.com/dgdl/Infineon-Software-Magnetic-Angle-Sensor-2Go-SW-v01_01-SW-v01_01-EN.zip?fileId=5546d462675a69720167799771c5519e)
 * [XMC-for-Arduino](https://github.com/Infineon/XMC-for-Arduino)
 * [WICED Studio](https://community.cypress.com/community/software-forums/wiced-wifi/wiced-wifi-documentation)
