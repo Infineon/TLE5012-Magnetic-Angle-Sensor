@@ -15,14 +15,15 @@ jobs:
       - Linux
     steps:
       - id: set-matrix
-        run: matrix="test"
-      - id: set-repo
-        run: REPO="$(basename "$GITHUB_REPOSITORY")"
+        run: |
+          echo "matrix='test'" >> $GITHUB_OUTPUT 
+          REPO="$(basename "$GITHUB_REPOSITORY")"
+          echo "repo=$REPO" >> $GITHUB_OUTPUT 
       - id: set-project
         run: export $(xfp-dev arduino workspace-setup project-name)
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-      repo: ${{ steps.set-repo.outputs.REPO }}
+      repo: ${{ steps.set-set-matrix.outputs.repo }}
       project: ${{ steps.set-project.outputs.PROJECTNAME }}
 
 
