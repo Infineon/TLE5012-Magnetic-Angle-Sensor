@@ -53,7 +53,9 @@ jobs:
 
       matrix:
         # List of all examples in the lib to compile
-        example: [
+        example: ${{ needs.setup.outputs.matrix }}
+          
+          # [
             # examples/E9000SPC,
             # examples/readAngleSpeedRevolutions,
             # examples/readAngleTest,
@@ -64,8 +66,8 @@ jobs:
             # examples/sensorType,
             # examples/testSensorMainValues,
             # examples/useMultipleSensors,
-            examples/writeRegisters
-        ]
+            # examples/writeRegisters
+        # ]
 
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
