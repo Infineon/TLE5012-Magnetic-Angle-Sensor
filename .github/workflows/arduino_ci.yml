@@ -19,13 +19,11 @@ jobs:
       project: ${{ steps.set-project.outputs.PROJECTNAME }}
     steps:
       - id: set-matrix
-        run: matrix=test
+        run: matrix="test"
       - id: set-repo
         run: REPO="$(basename "$GITHUB_REPOSITORY")"
       - id: set-project
-        run: |
-          export $(xfp-dev arduino workspace-setup project-name)
-          PROJECTNAME=$PROJECTNAME
+        run: export $(xfp-dev arduino workspace-setup project-name)
 
 
   # The build job compiles the sample code for different boards
