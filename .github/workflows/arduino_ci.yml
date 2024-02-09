@@ -55,10 +55,10 @@ jobs:
 
       matrix:
         # List of all examples in the lib to compile
-        example: ${{ fromJson( needs.setup.outputs.matrix ) }}
+        example: [examples/E9000SPC]
           
           # [
-            # examples/E9000SPC,
+            # ,
             # examples/readAngleSpeedRevolutions,
             # examples/readAngleTest,
             # examples/readAngleValueProcessing,
