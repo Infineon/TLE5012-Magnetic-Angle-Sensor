@@ -25,7 +25,7 @@ jobs:
           for x in examples/*; do data+=($x); done;
           printf -v joined '%s,' "${data[@]}"
           echo "${joined%,}"
-          echo "matrix=${joined%,}" >> $GITHUB_OUTPUT
+          echo "matrix=[${joined%,}]" >> $GITHUB_OUTPUT
 
 
     outputs:
