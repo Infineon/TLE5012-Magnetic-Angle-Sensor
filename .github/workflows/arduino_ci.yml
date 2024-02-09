@@ -22,7 +22,7 @@ jobs:
           echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
 
           cd $GITHUB_WORKSPACE/src/framework/arduino
-          for x in examples/*; do myarr+=($x); done;
+          for x in examples/*; do data+=($x); done;
           printf -v joined '%s,' "${data[@]}"
           echo "${joined%,}"
           echo "matrix=${joined%,}" >> $GITHUB_OUTPUT
