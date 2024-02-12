@@ -24,8 +24,8 @@ jobs:
           cd $GITHUB_WORKSPACE/src/framework/arduino
           for x in examples/*; do data+=($x); done;
           data_string=${data[@]}
-          echo $data_string
-          echo "::set-output name=matrix=$(jq -cn ${data_string)" >> $GITHUB_OUTPUT
+          echo "$data_string"
+          echo "::set-output name=matrix=$(jq -cn ${data_string})" >> $GITHUB_OUTPUT
 
 
     outputs:
