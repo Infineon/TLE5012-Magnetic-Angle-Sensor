@@ -53,7 +53,7 @@ jobs:
 
       matrix:
         # List of all examples in the lib to compile
-        example: ${{ needs.setup.outputs.matrix }}
+        example: ${{ fromJson(needs.setup.outputs.matrix) }}
           
           # [[ examples/E9000SPC]
             # ,
