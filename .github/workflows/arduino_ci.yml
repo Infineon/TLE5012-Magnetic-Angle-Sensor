@@ -8,11 +8,21 @@ on:
 # This template runes multiple workflows
 jobs:
 
+
+
+  #############################################################################
+  # This action sets common variables for the flow and
+  # identifies the exampls to comple
   setup:
+
+    # we run this on self hosted runner, use labels to be more specific
+    # add specific names if there are some, otherwise self-hosted, X64, Linux are the default ones
     runs-on:
       - self-hosted
       - X64
       - Linux
+
+    # Fetch variables and move them to the GITHUB_OUTPUT
     steps:
       - id: set-matrix
         run: |
@@ -26,13 +36,15 @@ jobs:
           export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
           echo matrix="$mvar" >> $GITHUB_OUTPUT
 
-
+    # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       repo: ${{ steps.set-matrix.outputs.repo }}
       project: ${{ steps.set-matrix.outputs.project }}
 
 
+
+  #############################################################################
   # The build job compiles the sample code for different boards
   build:
 
@@ -55,19 +67,7 @@ jobs:
         # List of all examples in the lib to compile
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
           
-          # [[ examples/E9000SPC]
-            # ,
-            # examples/readAngleSpeedRevolutions,
-            # examples/readAngleTest,
-            # examples/readAngleValueProcessing,
-            # examples/readMultipleRegisters,
-            # examples/readSpeedProcessing,
-            # examples/sensorRegisters,
-            # examples/sensorType,
-            # examples/testSensorMainValues,
-            # examples/useMultipleSensors,
-            # examples/writeRegisters
-        # ]
+          # [ examples/E9000SPC]
 
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
@@ -130,6 +130,7 @@ jobs:
 
 
 
+  #############################################################################
   # This step allows HIL (Hardware in the loop), therefore
   # is searches for the given board/sensor combination and tries to find the actual port
   # on the self hosted runner. (see documentation for the board2port finder)
