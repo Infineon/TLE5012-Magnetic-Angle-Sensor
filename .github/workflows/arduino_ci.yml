@@ -24,7 +24,8 @@ jobs:
           cd $GITHUB_WORKSPACE/src/framework/arduino
           for x in examples/*; do data+=($x); done;
           data_string=${data[@]}
-          echo "matrix=$(jq -cn {example: ${data[@]}})" >> $GITHUB_OUTPUT
+          echo $data_string
+          echo "::set-output name=matrix=$(jq -cn ${data_string)" >> $GITHUB_OUTPUT
 
 
     outputs:
@@ -103,8 +104,6 @@ jobs:
     - name: Set and check environment, install repos
       run: |
         echo ${{ needs.setup.outputs.matrix }}
-        echo ${{ needs.setup.outputs.repo }}
-        echo ${{ needs.setup.outputs.project }}
 
         export REPO=${{ needs.setup.outputs.repo }}
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
