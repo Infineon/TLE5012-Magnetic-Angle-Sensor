@@ -24,7 +24,6 @@ jobs:
           cd $GITHUB_WORKSPACE/src/framework/arduino
           for x in examples/*; do data+=($x); done;
           export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
-          
           echo matrix="$mvar" >> $GITHUB_OUTPUT
 
 
@@ -54,9 +53,9 @@ jobs:
 
       matrix:
         # List of all examples in the lib to compile
-        example: [examples/E9000SPC]
+        example: ${{ needs.setup.outputs.matrix }}
           
-          # [
+          # [[ examples/E9000SPC]
             # ,
             # examples/readAngleSpeedRevolutions,
             # examples/readAngleTest,
