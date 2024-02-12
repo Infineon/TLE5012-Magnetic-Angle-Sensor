@@ -8,9 +8,9 @@
  * Demonstrates the fast readout of the angle speed.
  * Depending on the microcontroller you use more or less
  * speed on the serial port is possible.
- * 
+ *
  * \attention Use this sketch together with the processing script examples
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */

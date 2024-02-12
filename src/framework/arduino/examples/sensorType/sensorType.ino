@@ -85,7 +85,7 @@ void loop() {
 
 /**
  * @brief Function prints the binary code of each documented register
- * 
+ *
  */
 void show_bin()
 {
@@ -117,13 +117,13 @@ void show_bin()
 /**
  * @brief This function prints the identity of the sensor which
  * is set as factory default inside the sensor fuses.
- * 
+ *
  */
 void show_identity()
 {
   uint8_t interface = Tle5012Sensor.reg.getInterfaceMode();
   uint8_t slavenum  = Tle5012Sensor.reg.getSlaveNumber();
-  
+
   Serial.println("----------------------------------------------------------------");
   Serial.print(sc_slave);
   Serial.print(slavenum, BIN);
@@ -132,7 +132,7 @@ void show_identity()
   Serial.println("");
   Serial.print(sc_Interface);
   Serial.print(interface);
- 
+
   switch (interface)
   {
     case Tle5012Sensor.reg.IIF:
@@ -156,7 +156,7 @@ void show_identity()
 
 /**
  * @brief Sensor is set with PWM interface with the following settings
- * 
+ *
  */
 void pwmInterface()
 {
@@ -192,7 +192,7 @@ void pwmInterface()
 
 /**
  * @brief Sensor is set with IIF interface with the following settings
- * 
+ *
  */
 void iifInterface()
 {
@@ -231,7 +231,7 @@ void iifInterface()
 
 /**
  * @brief Sensor is set with IIF interface with the following settings
- * 
+ *
  */
 void hsmInterface()
 {
@@ -260,7 +260,7 @@ void hsmInterface()
 
 /**
  * @brief Sensor is set with SPC interface with the following settings
- * 
+ *
  */
 void spcInterface()
 {
@@ -291,7 +291,7 @@ void spcInterface()
 /**
  * @brief Shows additional information for each sensor type
  * from the additional registers MOD2 and MOD3
- * 
+ *
  */
 void show_additional()
 {

@@ -9,7 +9,7 @@
  * data from the update (UPD) registers. Therefore it demonstrates also the use of
  * the direct read (without UPD) and the snapshot registers (with UPD). See Sensor
  * manual for more information of the UPD mode and the snapshot registers.
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */
@@ -48,13 +48,13 @@ void loop() {
   int16_t rt = 0; int16_t rtu = 0;
   double s = 0.0; double su = 0.0;
   int16_t rs = 0; int16_t rsu = 0;
-  
+
   Tle5012Sensor.getAngleRange(rr);
   Tle5012Sensor.getAngleValue(a,ra);
   Tle5012Sensor.getNumRevolutions(r);
   Tle5012Sensor.getTemperature(t,rt);
   Tle5012Sensor.getAngleSpeed(s,rs);
-  
+
   // to read UPD registers, call triggerUpdate once and
   // than read all UPD registers you need before calling
   // triggerUpdate again

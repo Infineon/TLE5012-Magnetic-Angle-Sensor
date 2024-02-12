@@ -9,9 +9,9 @@
  * speed of the sensor for the angle, angle speed and number of revolutions
  * at once.
  * For reconfiguring of the SPI interface, have a look at the documentation.
- * 
+ *
  * \attention Use together with the speed.pde processing script
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */
@@ -25,7 +25,6 @@ Tle5012Ino Tle5012MagneticAngleSensor = Tle5012Ino();
 errorTypes checkError = NO_ERROR;
 
 void setup() {
-  delay(2000);
   Serial.begin(115200);
   while (!Serial) {};
   delay(5000);
@@ -47,8 +46,7 @@ void loop() {
     double angle = 0.0;
     double range = 0.0;
     int16_t revol = 0;
-    
-    
+
     Tle5012MagneticAngleSensor.getAngleSpeed(speed);
     Tle5012MagneticAngleSensor.getAngleValue(angle);
     Tle5012MagneticAngleSensor.getAngleRange(range);
@@ -60,6 +58,12 @@ void loop() {
     Serial.print(range);
     Serial.print("\n");
 
+    checkError = Tle5012MagneticAngleSensor.readBlockCRC();
+
+  }else{
+    checkError = Tle5012MagneticAngleSensor.readBlockCRC();
+    Serial.print("checkError: ");
+    Serial.println(checkError, HEX);
   }
   delay(100); //can be removed
 }
