@@ -131,28 +131,58 @@ jobs:
 
 
 
-  # #############################################################################
-  # # The build job compiles the sample code for different boards
-  # build-plt:
+  #############################################################################
+  # The build job compiles the sample code for different boards
+  build-plt:
 
-  #   # wait on first setup run before starting main function
-  #   needs: setup
+    # wait on first setup run before starting main function
+    needs: setup
 
-  #   # we run this on self hosted runner, use labels to be more specific
-  #   # add specific names if there are some, otherwise self-hosted, X64, Linux are the default ones
-  #   runs-on:
-  #     - self-hosted
-  #     - X64
-  #     - Linux
+    # we run this on self hosted runner, use labels to be more specific
+    # add specific names if there are some, otherwise self-hosted, X64, Linux are the default ones
+    runs-on:
+      - self-hosted
+      - X64
+      - Linux
 
-  #   # which combination of sample code and boards should run
-  #   # for this example of 2 sample codes and 3 boards a total of 2x3=6 runners have to work.
-  #   # if we have only 4 runner then these 4 are started and the last 2 are waiting until they can start
-  #   strategy:
+    # which combination of sample code and boards should run
+    # for this example of 2 sample codes and 3 boards a total of 2x3=6 runners have to work.
+    # if we have only 4 runner then these 4 are started and the last 2 are waiting until they can start
+    strategy:
 
-  #     matrix:
-  #       # List of all examples in the lib to compile
-  #       example: ${{ fromJson(needs.setup.outputs.matrix) }}
+      matrix:
+        # List of all examples in the lib to compile
+        example: ${{ fromJson(needs.setup.outputs.matrix) }}
+
+    steps:
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: ${{ runner.os }}-pip-
+
+    - name: Cache PlatformIO
+      uses: actions/cache@v2
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+
+    - name: Install PlatformIO
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade platformio
+        platformio platform install -f infineonxmc
+        platformio platform install -f atmelavr
+
+    - name: Run PlatformIO
+      run: |
+        pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
+      env:
+        PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
 
 
@@ -201,13 +231,6 @@ jobs:
 
     # These are the steps which should run for each combination of fqbn and example code
     steps:
-        # checkout the latest github action code
-      - name: Checkout actions
-        uses: actions/checkout@v4
-
-        # checkout the latest arduino-cli compiler
-      - name: Setup Arduino CLI
-        uses: arduino/setup-arduino-cli@master
 
       # Compile the code which we want to flash
       # REPO: the name of the repository which is also the link name
