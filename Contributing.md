@@ -22,7 +22,7 @@ different software repositories. Check if you have the right combination.
 
     - a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring
 
-    - a **hardware list** the exact name of a sensors or mikrocontrollers you used
+    - a **hardware list** the exact name of a sensors or microcontroller you used
 
     - a **circuit diagram** if you have a such a problem
 
