@@ -4,7 +4,7 @@
  * \author      Infineon Technologies AG
  * \version     4.0.0
  * \copyright   2020-2024 Infineon Technologies AG
- * 
+ *
  * SPDX-License-Identifier: MIT
  */
 
@@ -25,9 +25,9 @@ using namespace tle5012;
 /**
  * @brief This is a special spi send and receive function for the TLE5012 based on
  * the ESP-IDF library. We avoid here the ESP32hal driver from the Arduino package.
- * 
+ *
  * Function is from easyio-lib-for-esp32 see https://github.com/ZhiliangMa/easyio-lib-for-esp32
- * 
+ *
  * @param spi       the spi structure
  * @param senddata  the send buffer
  * @return uint16_t the result from the rx buffer
@@ -75,9 +75,8 @@ SPIClass3W::SPIClass3W()
     this->mMOSI = PIN_SPI_MOSI;
     this->mSCK = PIN_SPI_SCK;
     this->mSpiNum = 0;
-    spi_device_handle_t esp3Wire = NULL; // Some C structure and 
+    spi_device_handle_t esp3Wire = NULL; // Some C structure and
     this->e3Wire = &esp3Wire;            // void pointer magic
-
 }
 
 /**

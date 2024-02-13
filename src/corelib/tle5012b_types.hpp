@@ -1,8 +1,9 @@
-	/**
- * @file        hss-types.hpp
- * @brief       High side switch types
- * @copyright   Copyright (c) 2021 Infineon Technologies AG
- *
+/**
+ * \file        tle5012b_types.hpp
+ * \name        tle5012b_types.hpp - core support types
+ * \author      Infineon Technologies AG
+ * \copyright   2019-2024 Infineon Technologies AG
+ * \version     4.0.0
  * SPDX-License-Identifier: MIT
  */
 

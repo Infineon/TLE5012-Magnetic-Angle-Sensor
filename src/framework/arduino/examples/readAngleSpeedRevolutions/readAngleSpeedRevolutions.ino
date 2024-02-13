@@ -41,7 +41,6 @@ void setup() {
 void loop() {
   if (checkError == 0)
   {
-
     double speed = 0.0;
     double angle = 0.0;
     double range = 0.0;
