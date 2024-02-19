@@ -23,7 +23,9 @@ jobs:
       - Linux
 
     steps:
-    # Fetch variables and move them to the GITHUB_OUTPUT
+      # checkout the latest github action code
+    - name: Checkout actions
+      uses: actions/checkout@v4
 
     # prepare the runner for the repo data
     # setup links inside the self hosted runner for correct directory setup
@@ -66,7 +68,7 @@ jobs:
         path: ~/.platformio
         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
-
+    # Fetch variables and move them to the GITHUB_OUTPUT
     - id: set-matrix
       run: |
         REPO="$(basename "$GITHUB_REPOSITORY")"
@@ -129,7 +131,6 @@ jobs:
       # checkout the latest github action code
     - name: Checkout actions
       uses: actions/checkout@v4
-
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
