@@ -36,7 +36,6 @@ jobs:
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
         rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
-        rm -rf "$GITHUB_WORKSPACE"
 
     # checkout the latest github action code
     - name: Checkout actions
