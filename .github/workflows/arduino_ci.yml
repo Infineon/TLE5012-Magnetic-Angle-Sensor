@@ -36,6 +36,21 @@ jobs:
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
+    # prepare the runner for the repo data
+    # setup links inside the self hosted runner for correct directory setup
+    # REPO is the base name of the library which is linked to the right directory structure
+    # check wether the .arduino15 packages dir is available
+    - name: Set and check environment, install repos
+      run: |
+        export $(xfp-dev arduino workspace-setup project-name)
+        echo "project=$PROJECTNAME"
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        mkdir -p "$HOME/Arduino/libraries"
+        rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
+        rm -rf "$GITHUB_WORKSPACE"
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+
     # checkout the latest github action code
     - name: Checkout actions
       uses: actions/checkout@v4
@@ -53,20 +68,6 @@ jobs:
         arduino-cli core update-index
         arduino-cli core install "arduino:avr"
         arduino-cli core install "infineon:xmc"
-
-    # prepare the runner for the repo data
-    # setup links inside the self hosted runner for correct directory setup
-    # REPO is the base name of the library which is linked to the right directory structure
-    # check wether the .arduino15 packages dir is available
-    - name: Set and check environment, install repos
-      run: |
-        export $(xfp-dev arduino workspace-setup project-name)
-        echo "project=$PROJECTNAME"
-        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        mkdir -p "$HOME/Arduino/libraries"
-        rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
-        cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
     # Cache python pip downloads if we have one for faster access
     - name: Cache pip
