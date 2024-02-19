@@ -68,13 +68,13 @@ uint16_t tle5012b_spi_send_and_recv_uint16(spi_device_handle_t spi, uint16_t sen
  * @brief Construct a new SPIClass3W::SPIClass3W object
  *
  */
-SPIClass3W::SPIClass3W()
+SPIClass3W::SPIClass3W(uint8_t spiNum):SPIClass()
 {
     this->mCS = PIN_SPI_SS;
     this->mMISO = PIN_SPI_MISO;
     this->mMOSI = PIN_SPI_MOSI;
     this->mSCK = PIN_SPI_SCK;
-    this->mSpiNum = 0;
+    this->mSpiNum = spiNum;
     spi_device_handle_t esp3Wire = NULL; // Some C structure and
     this->e3Wire = &esp3Wire;            // void pointer magic
 }

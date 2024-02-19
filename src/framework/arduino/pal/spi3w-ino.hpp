@@ -57,7 +57,7 @@ class SPIClass3W : public SPIClass
         uint8_t     mCS;                //!< Pin for chip select
         uint8_t     mSpiNum;            //!< Number of used SPI channel
 
-                SPIClass3W();
+                SPIClass3W(uint8_t spiNum = 0);
                 ~SPIClass3W();
         void    begin(uint8_t miso, uint8_t mosi, uint8_t sck, uint8_t cs);
         void    setCSPin(uint8_t cs);

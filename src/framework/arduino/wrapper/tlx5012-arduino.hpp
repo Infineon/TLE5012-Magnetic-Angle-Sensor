@@ -59,7 +59,7 @@ class Tle5012Ino: public Tle5012b
 
                     Tle5012Ino();
                     Tle5012Ino(uint8_t csPin, slaveNum slave=TLE5012B_S0);
-                    Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t     mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
+                    Tle5012Ino(SPIClass3W *bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
         errorTypes  begin();
 
 };

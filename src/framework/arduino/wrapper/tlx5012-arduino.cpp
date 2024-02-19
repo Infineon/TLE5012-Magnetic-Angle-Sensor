@@ -57,10 +57,10 @@ Tle5012Ino::Tle5012Ino(uint8_t csPin, slaveNum slave):Tle5012b()
  * @param sckPin   system clock pin for external sensor clock setting
  * @param slave    optional sensor slave setting
  */
-Tle5012Ino::Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave):Tle5012b()
+Tle5012Ino::Tle5012Ino(SPIClass3W *bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave):Tle5012b()
 {
     Tle5012b::mSlave = slave;
-    Tle5012b::sBus = new SPICIno(bus,csPin,misoPin,mosiPin,sckPin);
+    Tle5012b::sBus = new SPICIno(*bus,csPin,misoPin,mosiPin,sckPin);
 }
 
 /**
