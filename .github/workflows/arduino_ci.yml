@@ -27,18 +27,6 @@ jobs:
     - name: Checkout actions
       uses: actions/checkout@v4
 
-    # prepare the runner for the repo data
-    # setup links inside the self hosted runner for correct directory setup
-    # REPO is the base name of the library which is linked to the right directory structure
-    # check wether the .arduino15 packages dir is available
-    - name: Set and check environment, install repos
-      run: |
-        export $(xfp-dev arduino workspace-setup project-name)
-        echo "project=$PROJECTNAME"
-        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        mkdir -p "$HOME/Arduino/libraries"
-        rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
-
     # checkout the latest arduino-cli compiler
     - name: Setup Arduino CLI
       uses: arduino/setup-arduino-cli@master
@@ -75,9 +63,6 @@ jobs:
         echo "repo=$REPO" >> $GITHUB_OUTPUT
         export $(xfp-dev arduino workspace-setup project-name)
         echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
-
-        cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
         cd $GITHUB_WORKSPACE/src/framework/arduino
         for x in examples/*; do data+=($x); done;
@@ -131,6 +116,18 @@ jobs:
       # checkout the latest github action code
     - name: Checkout actions
       uses: actions/checkout@v4
+
+    # prepare the runner for the repo data
+    # setup links inside the self hosted runner for correct directory setup
+    # REPO is the base name of the library which is linked to the right directory structure
+    # check wether the .arduino15 packages dir is available
+    - name: Set and check environment, install repos
+      run: |
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        mkdir -p "$HOME/Arduino/libraries"
+        rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
