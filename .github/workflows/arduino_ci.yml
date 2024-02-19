@@ -37,10 +37,6 @@ jobs:
         mkdir -p "$HOME/Arduino/libraries"
         rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
 
-    # checkout the latest github action code
-    - name: Checkout actions
-      uses: actions/checkout@v4
-
     # checkout the latest arduino-cli compiler
     - name: Setup Arduino CLI
       uses: arduino/setup-arduino-cli@master
@@ -129,6 +125,11 @@ jobs:
 
     # These are the steps which should run for each combination of fqbn and example code
     steps:
+
+      # checkout the latest github action code
+    - name: Checkout actions
+      uses: actions/checkout@v4
+
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
