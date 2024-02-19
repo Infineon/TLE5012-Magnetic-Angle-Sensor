@@ -61,6 +61,8 @@ jobs:
     #rm -rf "$HOME/Arduino/libraries"
     - name: Set and check environment, install repos
       run: |
+        export $(xfp-dev arduino workspace-setup project-name)
+        echo "project=$PROJECTNAME"
         echo "$PROJECTNAME"
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
