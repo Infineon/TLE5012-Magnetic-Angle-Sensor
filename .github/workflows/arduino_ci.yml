@@ -24,17 +24,6 @@ jobs:
 
     steps:
     # Fetch variables and move them to the GITHUB_OUTPUT
-    - id: set-matrix
-      run: |
-        REPO="$(basename "$GITHUB_REPOSITORY")"
-        echo "repo=$REPO" >> $GITHUB_OUTPUT
-        export $(xfp-dev arduino workspace-setup project-name)
-        echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
-
-        cd $GITHUB_WORKSPACE/src/framework/arduino
-        for x in examples/*; do data+=($x); done;
-        export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
-        echo matrix="$mvar" >> $GITHUB_OUTPUT
 
     # prepare the runner for the repo data
     # setup links inside the self hosted runner for correct directory setup
@@ -48,8 +37,6 @@ jobs:
         mkdir -p "$HOME/Arduino/libraries"
         rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
         rm -rf "$GITHUB_WORKSPACE"
-        cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
     # checkout the latest github action code
     - name: Checkout actions
@@ -83,6 +70,22 @@ jobs:
       with:
         path: ~/.platformio
         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+
+
+    - id: set-matrix
+      run: |
+        REPO="$(basename "$GITHUB_REPOSITORY")"
+        echo "repo=$REPO" >> $GITHUB_OUTPUT
+        export $(xfp-dev arduino workspace-setup project-name)
+        echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
+
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+
+        cd $GITHUB_WORKSPACE/src/framework/arduino
+        for x in examples/*; do data+=($x); done;
+        export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
+        echo matrix="$mvar" >> $GITHUB_OUTPUT
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
