@@ -57,7 +57,7 @@ jobs:
 
         cd $GITHUB_WORKSPACE/.github
         export fqbn=`cat ./fqbn.yml | shyaml get-value`
-        echo fqbn="$fqbm" >> $GITHUB_OUTPUT
+        echo fqbn="$fqbn" >> $GITHUB_OUTPUT
         echo "$fqbn"
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
