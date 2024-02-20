@@ -56,7 +56,7 @@ jobs:
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/.github
-        export fqbn=""
+        export fqbn=`cat ./board2port.yaml | shyaml get-value fqbn,yml`
         echo fqbn="$fqbm" >> $GITHUB_OUTPUT
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
@@ -188,6 +188,8 @@ jobs:
         rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
         cd $GITHUB_WORKSPACE/
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+
+        echo "${{ needs.setup.outputs.fqbn }}"
 
     # PlatformIO 
     # pip3 install --upgrade 
