@@ -56,8 +56,9 @@ jobs:
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/.github
-        export fqbn=`cat ./board2port.yaml | shyaml get-value fqbn,yml`
+        export fqbn=`cat ./fqbn.yml | shyaml get-value`
         echo fqbn="$fqbm" >> $GITHUB_OUTPUT
+        echo "$fqbn"
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
