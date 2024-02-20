@@ -129,7 +129,6 @@ jobs:
     - name: Set and check environment, install repos
       run: |
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        ln -sfn /opt/runner_support/platformio ~/.platformio
         mkdir -p "$HOME/Arduino/libraries"
         rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
         cd $GITHUB_WORKSPACE/
@@ -185,7 +184,6 @@ jobs:
     - name: Set and check environment, install repos
       run: |
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        ln -sfn /opt/runner_support/platformio ~/.platformio
         mkdir -p "$HOME/Arduino/libraries"
         rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
         cd $GITHUB_WORKSPACE/
