@@ -58,7 +58,6 @@ jobs:
         cd $GITHUB_WORKSPACE/.github
         export fqbn=`cat ./fqbn.yml | shyaml get-value`
         echo fqbn="$fqbn" >> $GITHUB_OUTPUT
-        echo "$fqbn"
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
@@ -141,6 +140,11 @@ jobs:
       run: |
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
+
+        cd $GITHUB_WORKSPACE/.github
+        export fqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
+        echo "$fqbn"
+
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
