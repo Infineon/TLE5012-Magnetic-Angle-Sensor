@@ -15,7 +15,11 @@
  *
  * \attention
  * We use default very low speed 9600 baud, but the sensor can much more, see the other examples
- *
+ * 
+ * \attention
+ * This example is limited to the Infineon XMC4700, but you can use it also for other MCUs with
+ * multiple SPI channels. It will not work on MCUs which have only one SPI channel
+ * 
  * SPDX-License-Identifier: MIT
  *
  */
@@ -23,6 +27,20 @@
 #include <tlx5012-arduino.hpp>
 
 using namespace tle5012;
+
+#if !defined(XMC4700_Relax_Kit)
+ void setup()
+ {
+   delay(1000);
+   Serial.begin(9600);
+   while (!Serial) {};
+   Serial.println("STOP: this sketch needs multiple SPI channels");
+ }
+
+void loop()
+{
+}
+#else
 
 /*!
  * Main pin defines for XMC4700 SPI in extended pins X1 and X2
@@ -130,3 +148,5 @@ void loop() {
 
   delay(1000);
 }
+
+#endif

@@ -178,6 +178,19 @@ jobs:
     - name: Setup Arduino CLI
       uses: arduino/setup-arduino-cli@master
 
+    # prepare the runner for the repo data
+    # setup links inside the self hosted runner for correct directory setup
+    # REPO is the base name of the library which is linked to the right directory structure
+    # check wether the .arduino15 packages dir is available
+    - name: Set and check environment, install repos
+      run: |
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        ln -sfn /opt/runner_support/platformio ~/.platformio
+        mkdir -p "$HOME/Arduino/libraries"
+        rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+
     # PlatformIO uses python for compiling and it does multiple board compiles
     # at once. PlatformIO is used here to check compatibility, but is not needed for the the flash step
     - name: Run PlatformIO
