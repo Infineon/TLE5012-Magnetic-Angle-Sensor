@@ -131,7 +131,7 @@ jobs:
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         ln -sfn /opt/runner_support/platformio ~/.platformio
         mkdir -p "$HOME/Arduino/libraries"
-        rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
+        rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
         cd $GITHUB_WORKSPACE/
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
