@@ -27,34 +27,20 @@ jobs:
     - name: Checkout actions
       uses: actions/checkout@v4
 
-    # checkout the latest arduino-cli compiler
-    - name: Setup Arduino CLI
-      uses: arduino/setup-arduino-cli@master
-
-    # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
-    # the arduino board support packages can be updated automatically
-    # the XMC board support package is only linked inside the self hosted runner, which allows
-    # to use none official and beta versions
-    - name: Install/Update Arduino Platform
-      run: |
-        arduino-cli core update-index
-        arduino-cli core install "arduino:avr"
-        arduino-cli core install "infineon:xmc"
-
-    # Cache python pip downloads if we have one for faster access
-    - name: Cache pip
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
+    # # Cache python pip downloads if we have one for faster access
+    # - name: Cache pip
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: ~/.cache/pip
+    #     key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+    #     restore-keys: ${{ runner.os }}-pip-
   
-    # Ditto, cache PlatformIO downloads for faster acces during compilation
-    - name: Cache PlatformIO
-      uses: actions/cache@v4
-      with:
-        path: ~/.platformio
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+    # # Ditto, cache PlatformIO downloads for faster acces during compilation
+    # - name: Cache PlatformIO
+    #   uses: actions/cache@v4
+    #   with:
+    #     path: ~/.platformio
+    #     key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
     # Fetch variables and move them to the GITHUB_OUTPUT
     - id: set-matrix
@@ -69,9 +55,14 @@ jobs:
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
+        cd $GITHUB_WORKSPACE/.github
+        export fqbn=""
+        echo fqbn="$fqbm" >> $GITHUB_OUTPUT
+
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      fqbn: ${{ steps.set-matrix.outputs.fqbn }}
       repo: ${{ steps.set-matrix.outputs.repo }}
       project: ${{ steps.set-matrix.outputs.project }}
 
@@ -117,6 +108,20 @@ jobs:
     - name: Checkout actions
       uses: actions/checkout@v4
 
+    # checkout the latest arduino-cli compiler
+    - name: Setup Arduino CLI
+      uses: arduino/setup-arduino-cli@master
+
+    # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
+    # the arduino board support packages can be updated automatically
+    # the XMC board support package is only linked inside the self hosted runner, which allows
+    # to use none official and beta versions
+    - name: Install/Update Arduino Platform
+      run: |
+        arduino-cli core update-index
+        arduino-cli core install "arduino:avr"
+        arduino-cli core install "infineon:xmc"
+
     # prepare the runner for the repo data
     # setup links inside the self hosted runner for correct directory setup
     # REPO is the base name of the library which is linked to the right directory structure
@@ -124,6 +129,7 @@ jobs:
     - name: Set and check environment, install repos
       run: |
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        ln -sfn /opt/runner_support/platformio ~/.platformio
         mkdir -p "$HOME/Arduino/libraries"
         rm -rf "$HOME/Arduino/libraries/$PROJECTNAME"
         cd $GITHUB_WORKSPACE/
@@ -164,6 +170,13 @@ jobs:
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
 
     steps:
+      # checkout the latest github action code
+    - name: Checkout actions
+      uses: actions/checkout@v4
+
+      # checkout the latest arduino-cli compiler
+    - name: Setup Arduino CLI
+      uses: arduino/setup-arduino-cli@master
 
     # PlatformIO uses python for compiling and it does multiple board compiles
     # at once. PlatformIO is used here to check compatibility, but is not needed for the the flash step
