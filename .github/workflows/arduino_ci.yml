@@ -56,7 +56,7 @@ jobs:
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/.github
-        export fqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
+        export fqbn=`cat ./fqbn.yml | shyaml get-values fqbn`
         echo fqbn="$fqbn" >> $GITHUB_OUTPUT
         echo "fqbn=$fqbn"
 
