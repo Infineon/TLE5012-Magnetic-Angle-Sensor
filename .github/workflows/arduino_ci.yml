@@ -207,9 +207,9 @@ jobs:
         fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
         for i in "${fqbn[@]}"
         do
-          echo "Board: $i; Example ${{ matrix.example }}"
           pltio=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value $i.platformio`
-          echo $pltio
+          echo "Board: $i; pio: $pltio; Example ${{ matrix.example }}"
+          pio ci --lib="." --board=$pltio --project-option="lib_deps=Wire"
         done;
     #    pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
 
