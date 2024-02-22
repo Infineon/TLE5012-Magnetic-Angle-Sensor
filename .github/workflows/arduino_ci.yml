@@ -135,8 +135,12 @@ jobs:
         cd $GITHUB_WORKSPACE/
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
-        fqbn=${{ fromJson(needs.setup.outputs.fqbn) }}
-        for i in "${fqbn}[@]"
+        fqbn_str=${{ fromJson(needs.setup.outputs.fqbn) }}
+        echo "$fqbn_str"
+        fqbn=$(echo $fqbn_str | sed -e 's/\[ //g' -e 's/\ ]//g' -e 's/\,//g')
+        $fqbn_arr=($fqbn)
+        echo $fqbn_arr
+        for i in "${fqbn_arr}[@]"
         do
           echo $i
         done;
