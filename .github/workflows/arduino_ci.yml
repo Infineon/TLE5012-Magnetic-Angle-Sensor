@@ -135,9 +135,7 @@ jobs:
         cd $GITHUB_WORKSPACE/
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
-        
-        echo "${{ needs.setup.outputs.fqbn }}"
-        export fqbn=${{ fromJson(needs.setup.outputs.fqbn) }}
+        fqbn=${{ fromJson(needs.setup.outputs.fqbn) }}
         for i in "${fqbn}[@]"
         do
           echo $i
