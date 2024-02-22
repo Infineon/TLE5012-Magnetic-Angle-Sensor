@@ -137,6 +137,8 @@ jobs:
 
         fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
 
+        echo "${fqbn}[@]"
+        echo "$fqbn"
         for i in "${fqbn}[@]"
         do
           echo $i
