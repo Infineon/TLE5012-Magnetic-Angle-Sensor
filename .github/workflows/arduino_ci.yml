@@ -137,13 +137,12 @@ jobs:
 
         fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
 
-        echo "${fqbn}[@]"
+        echo "${fqbn[@]}"
         echo "$fqbn"
-        for i in "${fqbn}[@]"
+        for i in "${fqbn[@]}"
         do
           echo $i
         done;
-
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
