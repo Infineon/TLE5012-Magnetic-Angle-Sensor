@@ -59,6 +59,8 @@ jobs:
         mapfile -t fqyaml < <(cat ./fqbn.yml | shyaml get-values fqbn)
         export fq=`jq --compact-output --null-input '$ARGS.positional' --args -- "${fqyaml[@]}"`
         echo fqbn="$fq" >> $GITHUB_OUTPUT
+        echo $fqyaml
+        echo $fq
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
