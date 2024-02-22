@@ -135,14 +135,6 @@ jobs:
         cd $GITHUB_WORKSPACE/
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
-        fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
-
-        echo "${fqbn[@]}"
-        echo "$fqbn"
-        for i in "${fqbn[@]}"
-        do
-          echo $i
-        done;
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
@@ -151,13 +143,18 @@ jobs:
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
 
-        cd $GITHUB_WORKSPACE/.github
-        export fqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
-        echo "$fqbn"
-
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
+        for i in "${fqbn[@]}"
+        do
+          echo "Board: $i; Example ${{ matrix.example }}"
+          arduino-cli compile --fqbn $i --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        done;
 
+
+    # cd $GITHUB_WORKSPACE/.github
+    # export fqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
+    # echo "$fqbn"
 
 
   #############################################################################
