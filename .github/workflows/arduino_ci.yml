@@ -135,13 +135,12 @@ jobs:
         cd $GITHUB_WORKSPACE/
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
-        fqbn=$(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g')
-        $fqbn_arr=($fqbn)
-        for i in "${fqbn_arr}[@]"
+        fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
+
+        for i in "${fqbn}[@]"
         do
           echo $i
         done;
-
 
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
