@@ -208,6 +208,8 @@ jobs:
         for i in "${fqbn[@]}"
         do
           echo "Board: $i; Example ${{ matrix.example }}"
+          pltio=`cat ./fqbn.yml | shyaml get-value $i.platformio`
+          echo $pltio
         done;
     #    pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
 
