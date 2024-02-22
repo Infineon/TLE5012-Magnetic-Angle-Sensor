@@ -139,6 +139,7 @@ jobs:
 
         fqbn_str=${{ fromJson(needs.setup.outputs.fqbn) }}
         echo "${fqbn_str[@]}"
+        echo "${{ needs.setup.outputs.fqbn }}"
     # fqbn=$(echo $fqbn_str | sed -e 's/\[ //g' -e 's/\ ]//g' -e 's/\,//g')
     # $fqbn_arr=($fqbn)
     # echo $fqbn_arr
