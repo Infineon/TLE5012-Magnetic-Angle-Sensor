@@ -60,7 +60,7 @@ jobs:
         export fq=`jq --compact-output --null-input '$ARGS.positional' --args -- "${fqyaml[@]}"`
         echo fqbn="$fq" >> $GITHUB_OUTPUT
         echo $fqyaml
-        echo $fq
+        echo ${fq[@]}
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
@@ -139,13 +139,13 @@ jobs:
 
         fqbn_str=${{ fromJson(needs.setup.outputs.fqbn) }}
         echo "$fqbn_str"
-        fqbn=$(echo $fqbn_str | sed -e 's/\[ //g' -e 's/\ ]//g' -e 's/\,//g')
-        $fqbn_arr=($fqbn)
-        echo $fqbn_arr
-        for i in "${fqbn_arr}[@]"
-        do
-          echo $i
-        done;
+    # fqbn=$(echo $fqbn_str | sed -e 's/\[ //g' -e 's/\ ]//g' -e 's/\,//g')
+    # $fqbn_arr=($fqbn)
+    # echo $fqbn_arr
+    # for i in "${fqbn_arr}[@]"
+    # do
+    #   echo $i
+    # done;
 
 
 
