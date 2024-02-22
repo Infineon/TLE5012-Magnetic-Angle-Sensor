@@ -56,8 +56,9 @@ jobs:
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/.github
-        mapfile -t array < <(cat ./fqbn.yml | shyaml get-values fqbn)
-        echo fqbn="${array[@]}" >> $GITHUB_OUTPUT
+        mapfile -t fqyaml < <(cat ./fqbn.yml | shyaml get-values fqbn)
+        export fq=`jq --compact-output --null-input '$ARGS.positional' --args -- "${fqyaml[@]}"`
+        echo fqbn="$fq" >> $GITHUB_OUTPUT
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
@@ -136,7 +137,8 @@ jobs:
 
         
         echo "${{ needs.setup.outputs.fqbn }}"
-        for i in "${{ needs.setup.outputs.fqbn }}[@]"
+        export fqbn=${{ fromJson(needs.setup.outputs.fqbn) }}
+        for i in "${fqbn}[@]"
         do
           echo $i
         done;
