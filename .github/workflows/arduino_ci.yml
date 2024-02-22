@@ -59,8 +59,6 @@ jobs:
         mapfile -t fqyaml < <(cat ./fqbn.yml | shyaml get-values fqbn)
         export fq=`jq --compact-output --null-input '$ARGS.positional' --args -- "${fqyaml[@]}"`
         echo fqbn="$fq" >> $GITHUB_OUTPUT
-        echo ${fqyaml[@]}
-        echo ${fq[@]}
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
@@ -138,9 +136,10 @@ jobs:
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
         echo "${{ needs.setup.outputs.fqbn }}"
-        fqbn=$(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[ //g' -e 's/\ ]//g' -e 's/\,//g')
+        fqbn=$(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g')
         echo $fqbn
 
+    #    newArray=( $(echo $jsonArrayString | sed -e            's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
     # $fqbn_arr=($fqbn)
     # echo $fqbn_arr
     # for i in "${fqbn_arr}[@]"
