@@ -136,6 +136,10 @@ jobs:
 
         
         echo "${{ needs.setup.outputs.fqbn }}"
+        for i in "${{ needs.setup.outputs.fqbn }}[@]"
+        do
+          echo $i
+        done;
 
 
 
