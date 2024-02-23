@@ -212,30 +212,6 @@ jobs:
       - X64
       - Linux
 
-    # strategy:
-    #   # flashing only one by one
-    #   max-parallel: 1
-
-      # # the code to flash
-      # matrix:
-      # # the code to flash
-      #   example: [`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value hil.fqbn` ]
-
-      #   # board packages we want to run
-      #   # attention the matrix spans over the fqbn not platform so that we can choose different boards
-      #   # this example compiles each sample code for Arduino Uno, XMC2Go and XMC4700 boards
-      #   fqbn: [
-      #     "Infineon:xmc:XMC1100_XMC2GO"
-      #   ]
-
-      #   # include additional information for each fqbn, in this case the platform name to install
-      #   # port_name: the name of the yaml structure in the board2port.yaml, there can be more than one hardware attached
-      #   # device: the device name the yaml structure in the board2port.yaml, there can be more than one hardware attached
-      #   include:
-      #   - fqbn:      "Infineon:xmc:XMC1100_XMC2GO"
-      #     port_name: "port_serial.0"
-      #     device:    "device.0"
-
     # These are the steps which should run for each combination of fqbn and example code
     steps:
 
