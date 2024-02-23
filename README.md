@@ -1,13 +1,7 @@
 # XENSIV TLx5012B Angle Sensor
 
-Actual workflow:
-![PlatformIO CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg?event=push)
-![Arduino CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg?event=push)
-![Doxygen GH](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Doxygen%20GH/badge.svg)
-
-Release:
-![PlatformIO CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg?event=release)
-![Arduino CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg?event=release)
+![PlatformIO CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg)
+![Arduino CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Arduino%20CI/badge.svg)
 ![Doxygen GH](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/Doxygen%20GH/badge.svg)
 
 | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE_5012B_DSO-8-16_plain.jpg" width=200 style="background:white"> | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE5012B_breakout.png" width=150 style="background:white"> | <img src="https://github.com/infineon/TLE5012-Magnetic-Angle-Sensor/wiki/img/TLE5012B_horizontal.png" width=400 style="background:white"> |
