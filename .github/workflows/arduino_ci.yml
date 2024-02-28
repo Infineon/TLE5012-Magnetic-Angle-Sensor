@@ -23,10 +23,6 @@ jobs:
       - Linux
 
     steps:
-      # checkout the latest github action code
-    - name: Checkout actions
-      uses: actions/checkout@v4
-
     # Fetch variables and move them to the GITHUB_OUTPUT
     - id: set-matrix
       run: |
@@ -40,15 +36,57 @@ jobs:
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
-        cd $GITHUB_WORKSPACE/.github
-        mapfile -t fqyaml < <(cat ./fqbn.yml | shyaml get-values fqbn)
-        export fq=`jq --compact-output --null-input '$ARGS.positional' --args -- "${fqyaml[@]}"`
-        echo fqbn="$fq" >> $GITHUB_OUTPUT
+    # checkout the latest github action code
+    - name: Checkout actions
+      uses: actions/checkout@v4
+
+    # checkout the latest arduino-cli compiler
+    - name: Setup Arduino CLI
+      uses: arduino/setup-arduino-cli@master
+
+    # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
+    # the arduino board support packages can be updated automatically
+    # the XMC board support package is only linked inside the self hosted runner, which allows
+    # to use none official and beta versions
+    - name: Install/Update Arduino Platform
+      run: |
+        arduino-cli core update-index
+        arduino-cli core install "arduino:avr"
+        arduino-cli core install "infineon:xmc"
+
+    # prepare the runner for the repo data
+    # setup links inside the self hosted runner for correct directory setup
+    # REPO is the base name of the library which is linked to the right directory structure
+    # check wether the .arduino15 packages dir is available
+    # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
+    - name: Set and check environment, install repos
+      run: |
+        echo ${{ needs.setup.outputs.matrix }}
+
+        export REPO=${{ needs.setup.outputs.repo }}
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        mkdir -p "$HOME/Arduino/libraries"
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+
+    # Cache python pip downloads if we have one for faster access
+    - name: Cache pip
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: ${{ runner.os }}-pip-
+  
+    # Ditto, cache PlatformIO downloads for faster acces during compilation
+    - name: Cache PlatformIO
+      uses: actions/cache@v4
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
 
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-      fqbn: ${{ steps.set-matrix.outputs.fqbn }}
       repo: ${{ steps.set-matrix.outputs.repo }}
       project: ${{ steps.set-matrix.outputs.project }}
 
@@ -76,39 +114,19 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
+          
+          # [ examples/E9000SPC]
+
+        # board packages we want to run
+        # attention the matrix spans over the fqbn not platform so that we can choose different boards
+        fqbn: [
+          "arduino:avr:uno",
+          "Infineon:xmc:XMC1100_XMC2GO",
+          "Infineon:xmc:XMC4700_Relax_Kit"
+        ]
 
     # These are the steps which should run for each combination of fqbn and example code
     steps:
-
-      # checkout the latest github action code
-    - name: Checkout actions
-      uses: actions/checkout@v4
-
-    # checkout the latest arduino-cli compiler
-    - name: Setup Arduino CLI
-      uses: arduino/setup-arduino-cli@master
-
-    # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
-    # the arduino board support packages can be updated automatically
-    # the XMC board support package is only linked inside the self hosted runner, which allows
-    # to use none official and beta versions
-    - name: Install/Update Arduino Platform
-      run: |
-        arduino-cli core update-index
-        arduino-cli core install "arduino:avr"
-        arduino-cli core install "infineon:xmc"
-
-    # prepare the runner for the repo data
-    # setup links inside the self hosted runner for correct directory setup
-    # REPO is the base name of the library which is linked to the right directory structure
-    # check wether the .arduino15 packages dir is available
-    - name: Set and check environment, install repos
-      run: |
-        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        mkdir -p "$HOME/Arduino/libraries"
-        rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
-        cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
@@ -116,14 +134,8 @@ jobs:
       run: |
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
-
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
-        for i in "${fqbn[@]}"
-        do
-          echo "Board: $i; Example ${{ matrix.example }}"
-          arduino-cli compile --fqbn $i --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
-        done;
+        arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
 
@@ -151,46 +163,13 @@ jobs:
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
 
     steps:
-      # checkout the latest github action code
-    - name: Checkout actions
-      uses: actions/checkout@v4
-
-      # checkout the latest arduino-cli compiler
-    - name: Setup Arduino CLI
-      uses: arduino/setup-arduino-cli@master
-
-    # prepare the runner for the repo data
-    # setup links inside the self hosted runner for correct directory setup
-    # REPO is the base name of the library which is linked to the right directory structure
-    # check wether the .arduino15 packages dir is available
-    - name: Set and check environment, install repos
-      run: |
-        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        mkdir -p "$HOME/Arduino/libraries"
-        rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
-        cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
-
-    # PlatformIO 
-    # pip3 install --upgrade 
-    - name: Install PlatformIO
-      run: |
-        pip3 install --upgrade platformio
-        platformio platform install -f infineonxmc
-        platformio platform install -f atmelavr
 
     # PlatformIO uses python for compiling and it does multiple board compiles
     # at once. PlatformIO is used here to check compatibility, but is not needed for the the flash step
     - name: Run PlatformIO
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        fqbn=( $(echo "${{ needs.setup.outputs.fqbn }}" | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g') );
-        for i in "${fqbn[@]}"
-        do
-          pltio=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value $i.platformio`
-          echo "Board: $i; pio: $pltio; Example ${{ matrix.example }}"
-          pio ci --lib="." --board=$pltio --project-option="lib_deps=Wire"
-        done;
+        pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
@@ -212,16 +191,34 @@ jobs:
       - X64
       - Linux
 
+    strategy:
+      # flashing only one by one
+      max-parallel: 1
+
+      # the code to flash
+      matrix:
+      # the code to flash
+        example: [
+          examples/sensorType
+        ]
+
+        # board packages we want to run
+        # attention the matrix spans over the fqbn not platform so that we can choose different boards
+        # this example compiles each sample code for Arduino Uno, XMC2Go and XMC4700 boards
+        fqbn: [
+          "Infineon:xmc:XMC1100_XMC2GO"
+        ]
+
+        # include additional information for each fqbn, in this case the platform name to install
+        # port_name: the name of the yaml structure in the board2port.yaml, there can be more than one hardware attached
+        # device: the device name the yaml structure in the board2port.yaml, there can be more than one hardware attached
+        include:
+        - fqbn:      "Infineon:xmc:XMC1100_XMC2GO"
+          port_name: "port_serial.0"
+          device:    "device.0"
+
     # These are the steps which should run for each combination of fqbn and example code
     steps:
-
-      # checkout the latest github action code
-      - name: Checkout actions
-        uses: actions/checkout@v4
-
-      # checkout the latest arduino-cli compiler
-      - name: Setup Arduino CLI
-        uses: arduino/setup-arduino-cli@master
 
       # Compile the code which we want to flash
       # REPO: the name of the repository which is also the link name
@@ -235,15 +232,8 @@ jobs:
           mkdir -p $TMPDIR
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
-          rm -rf "$HOME/Arduino/libraries/${{ needs.setup.outputs.project }}"
-          cd $GITHUB_WORKSPACE/
-          xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
-
-          fqbn=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value hil.fqbn`
-          code=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value hil.code`
-
           cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-          arduino-cli compile --fqbn $fqbn --libraries="." --libraries="$HOME/Arduino/libraries/." $code --export-binaries
+          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
 
         # Flashes the compiled HEX file onto the selected MCU
         # REPO: the name of the repository which is also the link name
@@ -255,15 +245,9 @@ jobs:
       - name: Flash
         run: |
           cd /opt/runner_support/
-          fqbn=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value hil.fqbn`
-          code=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value hil.code`
-
-          HEXNAME=`tr ':' '.' <<<"$fqbn"`
-          DEV=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value "$fqbn.device"`
-          PRT=`cat $GITHUB_WORKSPACE/.github/fqbn.yml | shyaml get-value "$fqbn.port_name"`
-
-          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.$PRT`
-          export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.$DEV`
+          export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
+          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.port_name}}`
+          export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
 
           echo "Repo name extracted: " ${{ needs.setup.outputs.repo }}
@@ -274,4 +258,4 @@ jobs:
           echo "Flash device:        " $DEVICE
 
           cd $HOME
-          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/$code/build/$HEXNAME/*.hex
+          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/${{ matrix.example }}/build/$HEXNAME/*.hex

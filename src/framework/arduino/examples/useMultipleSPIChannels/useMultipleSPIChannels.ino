@@ -15,7 +15,7 @@
  *
  * \attention
  * We use default very low speed 9600 baud, but the sensor can much more, see the other examples
- * 
+ *
  * \attention
  * This example is limited to the Infineon XMC4700, but you can use it also for other MCUs with
  * multiple SPI channels. It will not work on MCUs which have only one SPI channel
@@ -29,6 +29,7 @@
 using namespace tle5012;
 
 #if !defined(XMC4700_Relax_Kit)
+
  void setup()
  {
    delay(1000);
@@ -40,7 +41,9 @@ using namespace tle5012;
 void loop()
 {
 }
+
 #else
+
 
 /*!
  * Main pin defines for XMC4700 SPI in extended pins X1 and X2
@@ -85,7 +88,7 @@ Tle5012Ino Tle5012SensorSPI2 = Tle5012Ino(&SPI3W2, PIN_SPI2_SS0, PIN_SPI2_MISO, 
 errorTypes checkError = NO_ERROR;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {};
   delay(5000);
 
