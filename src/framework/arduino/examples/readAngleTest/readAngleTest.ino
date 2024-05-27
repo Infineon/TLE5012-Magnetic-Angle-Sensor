@@ -7,7 +7,11 @@
  * \details
  * This example reads all main Sensor registers (angle,revolution,speed,range and temperature)
  * for a simple first test of the sensor and communication.
- *
+ *+
+ +
+ +
+ +
+ 
  * \attention
  * We use default very low speed 9600 baud, but the sensor can much more, see the other examples
  *
