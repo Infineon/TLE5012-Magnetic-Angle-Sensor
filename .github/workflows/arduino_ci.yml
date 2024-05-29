@@ -199,7 +199,7 @@ jobs:
       matrix:
       # the code to flash
         example: [
-          examples/sensorType
+          examples/readAngleTest
         ]
 
         # board packages we want to run
@@ -260,4 +260,4 @@ jobs:
           cd $HOME
           python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/${{ matrix.example }}/build/$HEXNAME/*.hex
           # arduino-cli monitor --fqbn ${{ matrix.fqbn }} -p $PORT -c baudrate=115200
-          /opt/runner_support/py_console.py $PORT 115200
+          /opt/runner_support/py_console.py $PORT 9600
