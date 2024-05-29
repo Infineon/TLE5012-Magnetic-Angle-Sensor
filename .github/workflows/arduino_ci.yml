@@ -260,56 +260,12 @@ jobs:
           cd $HOME
           python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/${{ matrix.example }}/build/$HEXNAME/*.hex
 
-  # Monitors the output of the HIL flash for a certain time or event
-  monitor:
-
-    # We need a successful build before we can run the deploy
-    needs: [flash, setup, build-ard]
- 
-    strategy:
-      # flashing only one by one
-      max-parallel: 1
-
-      # the code to flash
-      matrix:
-        # the code to flash
-        example: [
-          examples/readAngleTest
-        ]
-
-        # board packages we want to run
-        # attention the matrix spans over the fqbn not platform so that we can choose different boards
-        # this example compiles each sample code for Arduino Uno, XMC2Go and XMC4700 boards
-        fqbn: [
-          "Infineon:xmc:XMC1100_XMC2GO"
-        ]
-
-        # include additional information for each fqbn, in this case the platform name to install
-        # port_name: the name of the yaml structure in the board2port.yaml, there can be more than one hardware attached
-        # device: the device name the yaml structure in the board2port.yaml, there can be more than one hardware attached
-        include:
-        - fqbn:      "Infineon:xmc:XMC1100_XMC2GO"
-          port_name: "port_serial.0"
-          device:    "device.0"
-
-    # we run this on self hosted runner, use labels to be more specific
-    # add specific names if there are some, otherwise self-hosted, X64, Linux are the default ones
-    runs-on:
-      - self-hosted
-      - X64
-      - Linux
-
-    steps:
       - name: Monitor
         run: |
           cd /opt/runner_support/
           export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
-          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.port_serial.0`
+          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.port_name}}`
+          export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
-
-          echo "Repo name extracted: " ${{ needs.setup.outputs.repo }}
-          echo "Real repo name:      " ${{ needs.setup.outputs.project }}
-          echo "Port Serial Num:     " $SERIAL_NUM
-          echo "Port found:          " $PORT
 
           /opt/runner_support/py_console.py $PORT 9600
