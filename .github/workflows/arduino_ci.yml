@@ -277,9 +277,12 @@ jobs:
       - name: Monitor
         run: |
           cd /opt/runner_support/
-          export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
-          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.port_name}}`
+          export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.port_serial.0`
           export PORT=`./find_usb.sh $SERIAL_NUM`
 
-          # arduino-cli monitor --fqbn ${{ matrix.fqbn }} -p $PORT -c baudrate=115200
+          echo "Repo name extracted: " ${{ needs.setup.outputs.repo }}
+          echo "Real repo name:      " ${{ needs.setup.outputs.project }}
+          echo "Port Serial Num:     " $SERIAL_NUM
+          echo "Port found:          " $PORT
+
           /opt/runner_support/py_console.py $PORT 9600
