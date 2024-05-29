@@ -264,7 +264,7 @@ jobs:
   monitor:
 
     # We need a successful build before we can run the deploy
-    needs: [setup, build-ard]
+    needs: [flash, setup, build-ard]
  
     # we run this on self hosted runner, use labels to be more specific
     # add specific names if there are some, otherwise self-hosted, X64, Linux are the default ones
