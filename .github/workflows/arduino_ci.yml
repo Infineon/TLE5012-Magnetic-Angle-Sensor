@@ -258,7 +258,7 @@ jobs:
           echo "Flash device:        " $DEVICE
 
           cd $HOME
-          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.0.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/${{ matrix.example }}/build/$HEXNAME/*.hex
+          python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.1.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/${{ matrix.example }}/build/$HEXNAME/*.hex
 
       - name: Monitor
         run: |
