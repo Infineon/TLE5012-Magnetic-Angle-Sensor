@@ -268,4 +268,4 @@ jobs:
           export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.device}}`
           export PORT=`./find_usb.sh $SERIAL_NUM`
 
-          /opt/runner_support/py_console.py $PORT 9600
+          /opt/runner_support/py_console.py --port $PORT
