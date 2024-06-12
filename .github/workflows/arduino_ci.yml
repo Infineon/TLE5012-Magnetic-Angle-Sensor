@@ -39,11 +39,12 @@ jobs:
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
+        cat ./fqbn.yml | shyaml get-values fqbn
         cd $GITHUB_WORKSPACE/.github
         for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
         do
           echo " --fqbn=${f}"
-          #export mfqbn = "$mfqbn --fqbn=$f"
+          $mfqbn .=" --fqbn=${f}"
         done;
         echo $mfqbn
         echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
