@@ -42,7 +42,7 @@ jobs:
         cd $GITHUB_WORKSPACE/.github
         for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
         do
-          echo '--fqbn="$f"'
+          echo '--fqbn=\"${f}\"'
           #export mfqbn = "$mfqbn --fqbn=$f"
         done;
         echo $mfqbn
