@@ -41,7 +41,7 @@ jobs:
 
         cd $GITHUB_WORKSPACE/.github
         cat ./fqbn.yml | shyaml get-values fqbn
-        for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
+        for f in `cat ./fqbn.yml | shyaml get-values fqbn`;
         do
           $mfqbn .=' --fqbn="'.${f}.'"'
         done;
