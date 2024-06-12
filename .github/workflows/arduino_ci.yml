@@ -36,7 +36,11 @@ jobs:
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
-    # checkout the latest github action code
+        cd $GITHUB_WORKSPACE/.github
+        export mfqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
+        echo fqbn="$mfqbn" >> $GITHUB_OUTPUT
+ 
+      # checkout the latest github action code
     - name: Checkout actions
       uses: actions/checkout@v4
 
@@ -87,9 +91,9 @@ jobs:
     # Connect the GITHUB_OUTPUT to the variables and the workflow output mechanisem
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      fqbn: ${{ steps.set-matrix.outputs.fqbn }}
       repo: ${{ steps.set-matrix.outputs.repo }}
       project: ${{ steps.set-matrix.outputs.project }}
-
 
 
   #############################################################################
@@ -130,6 +134,7 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
     - name: Compile Sketch
       run: |
+        echo  "FQBN" ${{ steps.set-matrix.outputs.fqbn }}
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
@@ -168,7 +173,7 @@ jobs:
     - name: Run PlatformIO
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        pio ci --lib="." --board=xmc1100_xmc2go --board=XMC1100_Boot_Kit --board=XMC4700_Relax_Kit --board=uno --project-option="lib_deps=Wire"
+        pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
