@@ -173,9 +173,9 @@ jobs:
     - name: Run PlatformIO
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        
-        echo "${ needs.setup.outputs.fqbn }//fqbn/board}"
-        echo ${{ needs.setup.outputs.fqbn }}
+        board=${{ needs.setup.outputs.fqbn }}
+        echo "${board//fqbn/board}"
+        echo $board
         pio ci --lib="." ${{ needs.setup.outputs.fqbn }} --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
