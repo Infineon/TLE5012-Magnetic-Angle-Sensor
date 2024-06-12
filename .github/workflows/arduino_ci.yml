@@ -174,16 +174,14 @@ jobs:
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         boards="${{ needs.setup.outputs.fqbn }}"
-        board="${boards//fqbn/board}"
-        "$board" | awk '{print tolower($0)}'
+        board1="${boards//fqbn/board}"
+        board2="${board1//=Infineon:xmc:/=}"
+        board3="$board2" | awk '{print tolower($0)}'
         
         
         echo "==="
-        echo $board
-        
-        #echo "==="
-        #echo $board
-        # pio ci --lib="." ${board} --project-option="lib_deps=Wire"
+        echo $board32
+        # pio ci --lib="." ${board3} --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
