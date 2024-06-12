@@ -40,7 +40,7 @@ jobs:
         pwd
         ls -la
         export mfqbn=`cat ./fqbn.yml | shyaml get-values fqbn`
-        echo fqbn="$mfqbn" >> $GITHUB_OUTPUT
+        # echo fqbn="$mfqbn" >> $GITHUB_OUTPUT
  
       # checkout the latest github action code
     - name: Checkout actions
