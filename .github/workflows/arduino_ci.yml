@@ -32,16 +32,19 @@ jobs:
         echo "project=$PROJECTNAME" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/src/framework/arduino
-        for x in examples/*; do data+=($x); done;
+        for x in examples/*;
+        do 
+          data+=($x);
+        done;
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/.github
-        for f in $(cat ./fqbn.yml | shyaml get-values fqbn)
+        for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
         do
-          echo "$f"
+          echo '--fqbn="$f"'
           #export mfqbn = "$mfqbn --fqbn=$f"
-        done
+        done;
         echo $mfqbn
         echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
 
