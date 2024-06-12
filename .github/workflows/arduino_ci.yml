@@ -174,12 +174,14 @@ jobs:
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         board="${{ needs.setup.outputs.fqbn }}"
-        "${board//fqbn/board}"
+        echo "${board//fqbn/board}"
+        echo "==="
+        echo $board
         
         "$board" | awk '{print tolower($0)}'
         echo "==="
         echo $board
-        pio ci --lib="." ${board} --project-option="lib_deps=Wire"
+        # pio ci --lib="." ${board} --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
