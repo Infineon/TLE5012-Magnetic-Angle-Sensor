@@ -180,7 +180,9 @@ jobs:
         
         
         echo "==="
-        echo $board32
+        echo $board2
+        echo "==="
+        echo $board3
         # pio ci --lib="." ${board3} --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
