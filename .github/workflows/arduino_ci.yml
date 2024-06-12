@@ -168,7 +168,7 @@ jobs:
     - name: Run PlatformIO
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
+        pio ci --lib="." --board=xmc1100_xmc2go --board=XMC1100_Boot_Kit --board=XMC4700_Relax_Kit --board=uno --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
