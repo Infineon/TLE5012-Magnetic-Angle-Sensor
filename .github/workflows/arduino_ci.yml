@@ -43,7 +43,7 @@ jobs:
         cat ./fqbn.yml | shyaml get-values fqbn
         for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
         do
-          $mfqbn .=" --fqbn=${f}"
+          $mfqbn .=' --fqbn="'.${f}.'"'
         done;
         echo $mfqbn
         echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
