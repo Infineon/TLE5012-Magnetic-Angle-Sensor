@@ -175,7 +175,9 @@ jobs:
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         board="${{ needs.setup.outputs.fqbn }}"
         echo "${board//fqbn/board}"
-        pio ci --lib="." ${board} --project-option="lib_deps=Wire"
+        echo "${board//Infineon:xmc:/}"
+        echo "$board" | awk '{print tolower($0)}'
+        pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
