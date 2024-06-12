@@ -39,8 +39,8 @@ jobs:
         cd $GITHUB_WORKSPACE/.github
         pwd
         ls -la
-        # export mfqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
-        # echo fqbn="$mfqbn" >> $GITHUB_OUTPUT
+        export mfqbn=`cat ./fqbn.yml | shyaml get-values fqbn`
+        echo fqbn="$mfqbn" >> $GITHUB_OUTPUT
  
       # checkout the latest github action code
     - name: Checkout actions
@@ -141,7 +141,7 @@ jobs:
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         #arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
-        arduino-cli compile --fqbn "arduino:avr:uno" --fqbn "Infineon:xmc:XMC1100_XMC2GO" --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        arduino-cli compile --fqbn "arduino:avr:uno" "Infineon:xmc:XMC1100_XMC2GO" --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
 
