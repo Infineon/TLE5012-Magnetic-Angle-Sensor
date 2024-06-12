@@ -139,8 +139,7 @@ jobs:
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        #arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
-        arduino-cli compile ${{ needs.setup.outputs.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        arduino-cli compile ${{ needs.setup.outputs.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --verbose
 
 
 
@@ -175,9 +174,9 @@ jobs:
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         
-        echo "${${{ needs.setup.outputs.fqbn }}//fqbn/board}"
+        echo "${ needs.setup.outputs.fqbn }//fqbn/board}"
         echo ${{ needs.setup.outputs.fqbn }}
-        pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
+        pio ci --lib="." ${{ needs.setup.outputs.fqbn }} --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
