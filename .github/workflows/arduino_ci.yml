@@ -175,8 +175,8 @@ jobs:
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         boards="${{ needs.setup.outputs.fqbn }}"
         board1="${boards//fqbn/board}"
-        board2="${board1//=Infineon:xmc:/=}"
-        board3="$board2" | awk '{print tolower($0)}'
+        board2="${board1//=.*:/=}"
+        "$board2" | awk '{print tolower($0)}'
         
         
         echo "==="
