@@ -174,8 +174,9 @@ jobs:
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         board="${{ needs.setup.outputs.fqbn }}"
-        $board="${board//fqbn/board}"
-        echo "$board" | awk '{print tolower($0)}'
+        "${board//fqbn/board}"
+        
+        "$board" | awk '{print tolower($0)}'
         echo "==="
         echo $board
         pio ci --lib="." ${board} --project-option="lib_deps=Wire"
