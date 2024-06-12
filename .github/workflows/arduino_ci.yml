@@ -142,7 +142,7 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
     - name: Compile Sketch
       run: |
-        echo  "FQBN" ${{ steps.set-matrix.outputs.fqbn }}
+        echo  "FQBN" ${{ needs.set-matrix.outputs.fqbn }}
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
