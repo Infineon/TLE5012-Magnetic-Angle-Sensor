@@ -39,15 +39,15 @@ jobs:
         export mvar=`jq --compact-output --null-input '$ARGS.positional' --args -- "${data[@]}"`
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
-        cat ./fqbn.yml | shyaml get-values fqbn
         cd $GITHUB_WORKSPACE/.github
+        cat ./fqbn.yml | shyaml get-values fqbn
         for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
         do
           echo " --fqbn=${f}"
           $mfqbn .=" --fqbn=${f}"
         done;
         echo $mfqbn
-        #echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
+        echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
 
       # checkout the latest github action code
     - name: Checkout actions
