@@ -114,8 +114,6 @@ jobs:
       matrix:
         # List of all examples in the lib to compile
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
-          
-          # [ examples/E9000SPC]
 
         # board packages we want to run
         # attention the matrix spans over the fqbn not platform so that we can choose different boards
@@ -135,7 +133,8 @@ jobs:
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-        arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        #arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        arduino-cli compile --fqbn "arduino:avr:uno" --fqbn "Infineon:xmc:XMC1100_XMC2GO" --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
 
@@ -248,6 +247,7 @@ jobs:
           export HEXNAME=`tr ':' '.' <<<"${{ matrix.fqbn }}"`
           export SERIAL_NUM=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.port_name}}`
           export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.device}}`
+          export TYPE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.$REPO.type`
           export PORT=`./find_usb.sh $SERIAL_NUM`
 
           echo "Repo name extracted: " ${{ needs.setup.outputs.repo }}
@@ -256,6 +256,7 @@ jobs:
           echo "Port Serial Num:     " $SERIAL_NUM
           echo "Port found:          " $PORT
           echo "Flash device:        " $DEVICE
+          echo "Board type name:     " $TYPE
 
           cd $HOME
           python $HOME/.arduino15/packages/Infineon/hardware/xmc/3.1.0/tools/xmc-flasher.py upload -d $DEVICE -p $PORT -f $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}/${{ matrix.example }}/build/$HEXNAME/*.hex
