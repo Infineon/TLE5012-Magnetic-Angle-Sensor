@@ -37,7 +37,10 @@ jobs:
         echo matrix="$mvar" >> $GITHUB_OUTPUT
 
         cd $GITHUB_WORKSPACE/.github
+        pwd
+        ls -la
         export mfqbn=`cat ./fqbn.yml | shyaml get-value fqbn`
+
         echo fqbn="$mfqbn" >> $GITHUB_OUTPUT
  
       # checkout the latest github action code
