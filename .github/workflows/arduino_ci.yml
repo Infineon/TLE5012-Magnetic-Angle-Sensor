@@ -42,7 +42,7 @@ jobs:
         cd $GITHUB_WORKSPACE/.github
         for f in $(cat ./fqbn.yml | shyaml get-values fqbn);
         do
-          echo '--fqbn=\"${f}\"'
+          echo " --fqbn=${f}"
           #export mfqbn = "$mfqbn --fqbn=$f"
         done;
         echo $mfqbn
@@ -147,7 +147,7 @@ jobs:
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         #arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
-        arduino-cli compile --fqbn="arduino:avr:uno" --fqbn="Infineon:xmc:XMC1100_XMC2GO" --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        arduino-cli compile --fqbn=arduino:avr:uno --fqbn=Infineon:xmc:XMC1100_XMC2GO --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
 
