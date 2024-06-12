@@ -48,6 +48,8 @@ jobs:
         done;
         echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
 
+        echo $GITHUB_ACTION
+
       # checkout the latest github action code
     - name: Checkout actions
       uses: actions/checkout@v4
@@ -127,14 +129,6 @@ jobs:
         # List of all examples in the lib to compile
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
 
-        # board packages we want to run
-        # attention the matrix spans over the fqbn not platform so that we can choose different boards
-        fqbn: [
-          "arduino:avr:uno",
-          "Infineon:xmc:XMC1100_XMC2GO",
-          "Infineon:xmc:XMC4700_Relax_Kit"
-        ]
-
     # These are the steps which should run for each combination of fqbn and example code
     steps:
 
@@ -142,12 +136,11 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
     - name: Compile Sketch
       run: |
-        echo  "FQBN ${{ needs.setup.outputs.fqbn }}"
         export TMPDIR=$HOME/tmp
         mkdir -p $TMPDIR
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         #arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
-        arduino-cli compile --fqbn=arduino:avr:uno --fqbn=Infineon:xmc:XMC1100_XMC2GO --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
+        arduino-cli compile ${{ needs.setup.outputs.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }}
 
 
 
@@ -181,6 +174,9 @@ jobs:
     - name: Run PlatformIO
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
+        
+        echo "${${{ needs.setup.outputs.fqbn }}//fqbn/board}"
+        echo ${{ needs.setup.outputs.fqbn }}
         pio ci --lib="." --board=xmc1100_xmc2go --board=xmc1100_boot_kit --board=xmc4700_relax_kit --board=uno --project-option="lib_deps=Wire"
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
