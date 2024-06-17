@@ -1,0 +1,14 @@
+<map id="show_identity" name="show_identity">
+<area shape="rect" id="node1" title="This function prints the identity of the sensor which is set as factory default inside the sensor fus..." alt="" coords="5,107,119,133"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga5e5bdf8f9096cffa8d3068b9bfbd65ce" title="Get the actual slave number of the sensor. Up to four sensors can be selected via this register field..." alt="" coords="167,5,331,32"/>
+<area shape="rect" id="node3" href="$da/d86/sensorType_8cpp.html#abfbca907358ae6cde45c02cfd5ae8b92" title="Sensor is set with IIF interface with the following settings." alt="" coords="195,107,303,133"/>
+<area shape="rect" id="node8" href="$da/d86/sensorType_8cpp.html#a885fa0eba452ffd13669be06ce128a00" title="Sensor is set with IIF interface with the following settings." alt="" coords="202,157,295,184"/>
+<area shape="rect" id="node10" href="$da/d86/sensorType_8cpp.html#ad5d72d013c258a5aa5ecb022c3e548b8" title="Sensor is set with PWM interface with the following settings." alt="" coords="193,56,305,83"/>
+<area shape="rect" id="node11" href="$da/d86/sensorType_8cpp.html#ad92812466e0693cea965d8862ac6c697" title="Sensor is set with SPC interface with the following settings." alt="" coords="197,208,300,235"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#gaa43b5bc9b7b44e0de15e700dae2d49c7" title="Get the FIR update rate." alt="" coords="382,56,557,83"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga869f1fbeb0c12a789b5486770e1245e0" title="Get the hysteresis mode for HSM, or the unit time if in SPC mode (see manual)" alt="" coords="379,107,560,133"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#gaf8c6d8f62ac8de65a3ac4fa14b6ca74b" title="Get multipurpose register." alt="" coords="407,157,531,184"/>
+<area shape="rect" id="node7" href="$da/d3e/group__tle5012reg.html#ga5f38f5399dd9c38f358e8166584941ec" title="Get the status of the IFA, IFB and IFC output mode." alt="" coords="382,208,557,235"/>
+<area shape="rect" id="node9" href="$da/d3e/group__tle5012reg.html#ga07e708248bbcc386c88a0def5d0cf733" title="Get the temperature value as signed offset compensated temperature value Saturated between &#45;30°C and ..." alt="" coords="409,259,529,285"/>
+<area shape="rect" id="node12" href="$da/d3e/group__tle5012reg.html#gaf02f294840fabc7e0ea522a294c8bc26" title="Get multipurpose register." alt="" coords="406,309,533,336"/>
+</map>

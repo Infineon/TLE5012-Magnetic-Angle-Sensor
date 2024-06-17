@@ -1,0 +1,24 @@
+<map id="setup" name="setup">
+<area shape="rect" id="node1" title=" " alt="" coords="5,436,64,462"/>
+<area shape="rect" id="node2" href="$d2/d6a/group__wicedPal.html#ga6492a8e0a1ca3d3f0b3bbbd5279ffc55" title="begin method with default assignments for the SPI bus and pin setting. The EN pin is only available f..." alt="" coords="125,436,283,462"/>
+<area shape="rect" id="node14" href="$d3/d5d/group__pal.html#aa0f6e3c2f3e37b3414087b1c52261cc9" title="Sends a trigger through out the SPI bus." alt="" coords="2208,461,2357,488"/>
+<area shape="rect" id="node21" href="$da/d19/group__tle5012api.html#gacd3cd344db1e6561f8e5a26fc92ea0f9" title=" " alt="" coords="112,330,296,357"/>
+<area shape="rect" id="node3" href="$da/d19/group__tle5012api.html#ga1b640b2d39e54af974b2699e9cbaf7ab" title=" " alt="" coords="360,410,539,437"/>
+<area shape="rect" id="node5" href="$d3/d5d/group__pal.html#aaf10147dbb4db9c1dddee5343418a893" title="Initializes the SPIC." alt="" coords="409,461,489,488"/>
+<area shape="rect" id="node6" href="$da/d19/group__tle5012api.html#ga32fa9cede7dabe812630f28fd67f45a9" title=" " alt="" coords="1539,360,1721,386"/>
+<area shape="rect" id="node15" href="$da/d19/group__tle5012api.html#ga40e7bbc659f88cd747dcde66ca22e207" title=" " alt="" coords="344,360,555,386"/>
+<area shape="rect" id="node4" href="$d3/d5d/group__pal.html#a9fe4b4e3a68e8c4df663cc084357b460" title="Enables the GPIO output according to the GPIO logic." alt="" coords="640,410,747,437"/>
+<area shape="rect" id="node7" href="$da/d19/group__tle5012api.html#ga693aa704e4e6631219edd80fbee80347" title=" " alt="" coords="1776,258,1947,285"/>
+<area shape="rect" id="node12" href="$da/d19/group__tle5012api.html#ga2430563f51c44e3dcd7438330fa59fd5" title=" " alt="" coords="1995,360,2160,386"/>
+<area shape="rect" id="node13" href="$d3/d5d/group__pal.html#ab4063089bb8c1c5287a9b21b94ef5c28" title="Function which allows 3wire SPI (SSC) by sending and receiving data in the same function." alt="" coords="2211,208,2354,234"/>
+<area shape="rect" id="node8" href="$dd/d22/TLE5012b_8cpp.html#af5f2e5cfee7e8bbbd20d6b568c5927b0" title=" " alt="" coords="2043,56,2112,82"/>
+<area shape="rect" id="node10" href="$dd/d22/TLE5012b_8cpp.html#ad49b292d48f6fdff2fcad35f0a217eef" title=" " alt="" coords="2027,410,2128,437"/>
+<area shape="rect" id="node11" href="$dd/d22/TLE5012b_8cpp.html#a73d3da25810058a7adb4f830bafb961e" title=" " alt="" coords="2017,258,2137,285"/>
+<area shape="rect" id="node9" href="$dd/d22/TLE5012b_8cpp.html#a1d0d34e26b6c32396a3b1dcf5617c7f7" title=" " alt="" coords="2258,56,2307,82"/>
+<area shape="rect" id="node16" href="$da/d19/group__tle5012api.html#ga0601c6d4d0449d1dec934420b74c5a23" title=" " alt="" coords="603,301,784,328"/>
+<area shape="rect" id="node17" href="$da/d19/group__tle5012api.html#gae66fc608d2f5ac4ab9c666c5c96590db" title=" " alt="" coords="832,250,1036,277"/>
+<area shape="rect" id="node18" href="$da/d19/group__tle5012api.html#gab2145a6cfee2789b6178a4397e708abf" title=" " alt="" coords="1084,243,1276,284"/>
+<area shape="rect" id="node19" href="$da/d19/group__tle5012api.html#gaf3d41ee5db94f9867807e03e11c32add" title=" " alt="" coords="1324,208,1484,234"/>
+<area shape="rect" id="node20" href="$da/d19/group__tle5012api.html#ga9140a4c8dcf66a3417edc8a2e0a6520a" title=" " alt="" coords="1532,208,1728,234"/>
+<area shape="rect" id="node22" href="$da/d19/group__tle5012api.html#ga0bccafbd2b4459d84eda14d9761f0803" title="write register offset 0x01" alt="" coords="355,294,544,335"/>
+</map>

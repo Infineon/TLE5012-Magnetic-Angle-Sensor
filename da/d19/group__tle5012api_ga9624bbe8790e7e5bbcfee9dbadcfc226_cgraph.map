@@ -1,0 +1,7 @@
+<map id="Tle5012b::~Tle5012b" name="Tle5012b::~Tle5012b">
+<area shape="rect" id="node1" title="default begin with standard pin setting" alt="" coords="5,31,167,57"/>
+<area shape="rect" id="node2" href="$da/d19/group__tle5012api.html#gac2c7251bb9b2570fd3f065087ad1c9aa" title=" " alt="" coords="215,31,329,57"/>
+<area shape="rect" id="node3" href="$d3/d5d/group__pal.html#a76afcd404cc7f34ee771974ef7dc3a08" title="Deinitializes the SPIC." alt="" coords="420,5,516,32"/>
+<area shape="rect" id="node4" href="$da/d19/group__tle5012api.html#ga36f65d31d68be3190354b6aa32238b8e" title=" " alt="" coords="377,56,559,83"/>
+<area shape="rect" id="node5" href="$d3/d5d/group__pal.html#ae2b3084845cf22ebda8d4705e9d9a40a" title="Disables the GPIO output according to the GPIO logic." alt="" coords="607,56,716,83"/>
+</map>

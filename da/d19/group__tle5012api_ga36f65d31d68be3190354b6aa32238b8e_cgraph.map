@@ -1,0 +1,4 @@
+<map id="Tle5012b::disableSensor" name="Tle5012b::disableSensor">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,187,32"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html#ae2b3084845cf22ebda8d4705e9d9a40a" title="Disables the GPIO output according to the GPIO logic." alt="" coords="235,5,344,32"/>
+</map>

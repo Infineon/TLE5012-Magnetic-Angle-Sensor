@@ -1,0 +1,13 @@
+<map id="show_ACSTAT" name="show_ACSTAT">
+<area shape="rect" id="node1" title=" " alt="" coords="5,233,117,260"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga8f2162fb627251ab55d8667bde599a37" title="Hardware reset, will be performed after chip select returns to high." alt="" coords="165,5,335,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga082c8744bbd02b5a1f14f17e5a12b2d0" title="Get the status of the ADC test vectorGMR magnitude check." alt="" coords="183,56,317,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga1533587a68597cfd51806734e4b0253c" title="Get the status of the DSPU bist check." alt="" coords="187,107,313,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga1b36691833050dba60c99baed8a23db4" title="Get the status of the DSPU overflow check." alt="" coords="171,157,329,184"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#ga7ced426905e0108a215ed3c43314ee6b" title="Get the status of the firmware reset register." alt="" coords="168,208,332,235"/>
+<area shape="rect" id="node7" href="$da/d3e/group__tle5012reg.html#gad5c806eee4391310b5d663d3d0b6c452" title="Get the status of the fuse CRC check." alt="" coords="189,259,311,285"/>
+<area shape="rect" id="node8" href="$da/d3e/group__tle5012reg.html#ga4463c906cd4522f2422b0834d1234cb0" title="Get the status of the GMR magnitude check." alt="" coords="181,309,319,336"/>
+<area shape="rect" id="node9" href="$da/d3e/group__tle5012reg.html#ga737acb367d7d4b1981b57ada890b421a" title="Get the status of the voltage regulator check." alt="" coords="173,360,327,387"/>
+<area shape="rect" id="node10" href="$da/d3e/group__tle5012reg.html#ga48bd2c637a93c39424951bbd0c807c21" title="Get the status of the DSPU watchdog." alt="" coords="185,411,315,437"/>
+<area shape="rect" id="node11" href="$da/d3e/group__tle5012reg.html#gade651779e1b5e12272dd607dc1f4b5f8" title="Get the status of the X,Y out of limit check." alt="" coords="189,461,311,488"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="show_MOD1" name="show_MOD1">
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,108,108"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga9a8d967b21268ae5a44f3ca94263d2a2" title="Get the filter decimation, update rate setting." alt="" coords="156,5,340,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga07e708248bbcc386c88a0def5d0cf733" title="Get the temperature value as signed offset compensated temperature value Saturated between &#45;30°C and ..." alt="" coords="188,56,308,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga54ad53e41fb4afc8569820892b4e8e33" title="Get the status of DSPU operations." alt="" coords="183,107,313,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga85ea8c591eec3e17dfdb4ecd69447e40" title="Get the status of the clock source." alt="" coords="161,157,335,184"/>
+</map>

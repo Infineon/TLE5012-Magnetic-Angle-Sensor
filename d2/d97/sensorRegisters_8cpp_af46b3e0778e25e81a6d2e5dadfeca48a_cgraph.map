@@ -1,0 +1,6 @@
+<map id="show_TCOTY" name="show_TCOTY">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,111,83"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga5903735c8a8d86d1fce87cc43f20a5aa" title="Get CRC of parameters from address 08h to 0Fh." alt="" coords="199,5,323,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#gaca83a800267df2a823e804d1bd3d296a" title="Get offset temperature coefficient for y component." alt="" coords="159,56,364,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga4059073f22dff0b01556d7362d59abf3" title="Get the status of startup bist." alt="" coords="192,107,331,133"/>
+</map>

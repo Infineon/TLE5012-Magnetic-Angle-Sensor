@@ -1,0 +1,6 @@
+<map id="SPIC" name="SPIC">
+<area shape="rect" id="node1" title=" " alt="" coords="113,5,163,32"/>
+<area shape="rect" id="node2" href="$d1/d0a/group__arduinoPal.html#de/d75/classSPICIno" title="Arduino SPIC class This function is setting the basics for a SPIC and the default spi." alt="" coords="5,80,76,107"/>
+<area shape="rect" id="node3" href="$d4/d84/group__mtbPal.html#df/d02/classSPICMtb" title="Mtb SPIC class." alt="" coords="100,80,176,107"/>
+<area shape="rect" id="node4" href="$d2/d6a/group__wicedPal.html#d1/d0e/classSPICWiced" title="Wiced SPIC class." alt="" coords="201,80,291,107"/>
+</map>

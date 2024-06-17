@@ -1,0 +1,26 @@
+<map id="useMultipleSensors.cpp" name="useMultipleSensors.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="217,5,393,32"/>
+<area shape="rect" id="node2" href="$d9/d40/tle5012-conf_8hpp.html" title="TLE5012 Library Configuration." alt="" coords="111,393,245,435"/>
+<area shape="rect" id="node5" href="$da/d1a/useMultipleSensors_8hpp.html" title=" " alt="" coords="431,80,608,107"/>
+<area shape="rect" id="node3" href="$d6/dfd/tle5012-conf-opts_8hpp.html" title="TLE5012 Library Configuration Options." alt="" coords="5,483,169,509"/>
+<area shape="rect" id="node4" href="$d8/d2a/tle5012-conf-dfl_8hpp.html" title="TLE5012 Default Library Configuration." alt="" coords="194,483,346,509"/>
+<area shape="rect" id="node6" title=" " alt="" coords="1535,483,1605,509"/>
+<area shape="rect" id="node7" title=" " alt="" coords="266,237,338,263"/>
+<area shape="rect" id="node8" href="$d6/de8/TLE5012-platf-wiced_8hpp.html" title="TLE5012 Wiced Hardware Platforms." alt="" coords="359,155,541,181"/>
+<area shape="rect" id="node9" href="$d3/d9c/TLE5012-pal-wiced_8hpp.html" title=" " alt="" coords="517,229,655,271"/>
+<area shape="rect" id="node10" href="$da/db2/TLE5012b_8hpp.html" title=" " alt="" coords="1218,319,1415,345"/>
+<area shape="rect" id="node23" title=" " alt="" coords="686,401,790,427"/>
+<area shape="rect" id="node17" title=" " alt="" coords="571,401,662,427"/>
+<area shape="rect" id="node18" title=" " alt="" coords="815,401,949,427"/>
+<area shape="rect" id="node19" href="$d2/d39/gpio-wiced_8hpp.html" title="WICED PAL for the GPIO." alt="" coords="767,319,888,345"/>
+<area shape="rect" id="node20" href="$d8/d76/timer-wiced_8hpp.html" title="WICED Timer PAL." alt="" coords="421,319,549,345"/>
+<area shape="rect" id="node24" href="$da/dee/spic-wiced_8hpp.html" title="WICED PAL for the SPI cover." alt="" coords="624,319,743,345"/>
+<area shape="rect" id="node11" title=" " alt="" coords="1408,401,1479,427"/>
+<area shape="rect" id="node12" href="$d1/d2c/gpio_8hpp.html" title="PAL of the GPIO." alt="" coords="1110,401,1225,427"/>
+<area shape="rect" id="node14" href="$d8/df0/spic_8hpp.html" title="PAL of the SPI cover." alt="" coords="974,401,1086,427"/>
+<area shape="rect" id="node15" href="$de/d8d/tle5012b__util_8hpp.html" title=" " alt="" coords="1503,401,1637,427"/>
+<area shape="rect" id="node16" href="$d5/d3a/tle5012b__reg_8hpp.html" title=" " alt="" coords="1249,401,1384,427"/>
+<area shape="rect" id="node13" title=" " alt="" coords="1132,483,1203,509"/>
+<area shape="rect" id="node21" href="$df/d05/timer_8hpp.html" title="Timer Platform Abstraction Layer." alt="" coords="270,401,414,427"/>
+<area shape="rect" id="node22" title=" " alt="" coords="438,401,547,427"/>
+</map>

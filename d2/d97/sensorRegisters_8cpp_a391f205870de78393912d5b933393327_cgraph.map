@@ -1,0 +1,9 @@
+<map id="show_ADC" name="show_ADC">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,96,159"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga271beec5bb898328cfff83357ffd3737" title="Get GMR ADC x value." alt="" coords="188,5,300,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga67a0c4033d9a6b8cf7545781e326757a" title="Get GMR ADC y value." alt="" coords="188,56,300,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga3527ab50bdb9652cacd8a886e0a92c3b" title="Get Counter value of increments." alt="" coords="144,107,344,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga4c8498ae195f63637492cbea0a8c4f89" title="Get Temperature 25°C offset value." alt="" coords="175,157,313,184"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#ga38c573d73601f5565b0bc88b519240c0" title="Get Temperature Sensor raw value." alt="" coords="150,208,338,235"/>
+<area shape="rect" id="node7" href="$da/d3e/group__tle5012reg.html#ga25e0102e077ecead02c66904cc0e1876" title="Get angle vactor magnitude." alt="" coords="151,259,337,285"/>
+</map>

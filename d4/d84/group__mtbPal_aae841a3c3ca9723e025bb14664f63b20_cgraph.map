@@ -1,0 +1,5 @@
+<map id="GPIOMtb::~GPIOMtb" name="GPIOMtb::~GPIOMtb">
+<area shape="rect" id="node1" title="GPIO MTB destructor." alt="" coords="5,31,160,57"/>
+<area shape="rect" id="node2" href="$d4/d84/group__mtbPal.html#a388811d72f342886d05babc31b5708c9" title="Initializes the MTB GPIO." alt="" coords="213,5,337,32"/>
+<area shape="rect" id="node3" href="$d4/d84/group__mtbPal.html#a25b3310774a824c319bd201c339b2f4a" title="Disables the MTB output according to the GPIO logic." alt="" coords="208,56,343,83"/>
+</map>

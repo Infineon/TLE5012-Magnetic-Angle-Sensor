@@ -1,0 +1,5 @@
+<map id="SPICIno::init" name="SPICIno::init">
+<area shape="rect" id="node1" title="Initialize the SPIC." alt="" coords="5,5,105,32"/>
+<area shape="rect" id="node2" href="$d1/d0a/group__arduinoPal.html#ga602b42ba2dd59c695fc872c5bb579aca" title="New for fetching SPI parameter." alt="" coords="153,5,295,32"/>
+<area shape="rect" id="node3" href="$d1/d0a/group__arduinoPal.html#ga3fe182714d43e7162932410c89a4907d" title="Set the chipselect pin. This function is needed if more than one sensor is in the SPI bus." alt="" coords="343,5,505,32"/>
+</map>
