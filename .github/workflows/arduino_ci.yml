@@ -201,7 +201,7 @@ jobs:
           boards="${{ needs.setup.outputs.fqbn }}"
           echo "===\n $boards \n"
  
-          board1="${boards//fqbn/board}"
+          board1="${boards//fqbn=.*:.*:/board }"
           echo "===\n $board1 \n"
 
           board2="${board1//=.*:/=}"
