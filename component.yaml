@@ -1,0 +1,24 @@
+swisIntegrationToken_M: 674141414141426d63534839456e74566e56745f53357434724e6179534f34784e644449726336494b664d69355f5a626f53487a45487152617a6165664f7242465652363550665176555373346b52645f6846586667634161346353387a6462652d364c77696c5f425a52786c2d52792d2d6c50514d6538507265683234467a444c6137524773436937484277693479464430534941716b7944696d734a6e6d7137746d786733643934585a546b75674438764972786b3d # Unique Token provided to user through email from SWIS, do not change this
+name_M: XFP xensiv-angle-sensor-tlx5012 # Unique name of the component
+devCategory_M: Component # Dev Category should be Component only
+repositoryLink_M: https://bitbucket.vih.infineon.com/scm/xfpl/xensiv-angle-sensor-tlx5012.git # Repository link of the component (Ex: Bitbucket, git)
+productOwner_M: {'windowsLoginName': 'ederjuli'} # windowsLogin Account of the Product Owner
+apiType: C++ Library # Exposed API interface type. Ex: Desktop Application, SWIG, Fast API, Graphiti API, GraphQl API, REST API
+description_M: C++ XFP library for Infineon's automotive angle sensors tlx5012. # Description about the component
+effortInFte: 0.05 # No.of resources working for component
+opCategory: # Service Operation Category. Choose any one from the list. (Application service, Infrastructure service, Design flow service, Shared service)
+status_M: In Production-Improvements # Current Lifecycle of the component. Choose any one from the list. (Ideation, Development, In Production-Maintenance, In Production-Improvements, In Production-No activity, Depricated, On hold)
+uiCategory:  # Type of the user interface used, Choose any one from the list. (Command line, Native app, Web app)
+businessProductOwner: {'windowsLoginName': 'LadurneS'} # windowsLogin Account of the Business Product Owner
+productArchitect: {'windowsLoginName': 'Filies'} # windowsLogin Account of the Product Architect
+teamName_M: DES Makers (EPE) # Name of the team
+
+technologyDetails:
+  technologyFramework: ['Arduino', 'Modus Toolbox', 'Wiced'] # Technology Framework the component is developed in. Ex: ['Angular # 11', 'JavaScript'], ,  Choose from the IT supported Framework from https://confluencewikiprod.intra.infineon.com/display/SWE/Technology+framework%2C+Language+and+Database+-+IT+supported+list
+  language_M: ['C++'] # Language the component is developed in. Ex: ['Python', 'VueJS'],  Choose the IT supported Language from https://confluencewikiprod.intra.infineon.com/display/SWE/Technology+framework%2C+Language+and+Database+-+IT+supported+list
+  developmentEnvironment_M: ['Visual Studio Code'] # Ex: ['Visual Studio Code'] 
+  deploymentEnvironment: ['Embedded System'] # Ex: ['ICP', 'Linux'] 
+  sonarqubeLink:  # Sonarqube link of the component, Ex: https://sonar.intra.infineon.com/dashboard?id=TCP-SW-WEBSTARS-SWIS-BACKEND
+  openSource: Yes # If the product is opensource, Choose one from Yes or No
+  database:  # Ex: MySQL # 8.1, MongoDB # 4.4, Choose the IT supported Database from https://confluencewikiprod.intra.infineon.com/display/SWE/Technology+framework%2C+Language+and+Database+-+IT+supported+list
+
