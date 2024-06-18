@@ -135,8 +135,6 @@ jobs:
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
           cd $GITHUB_WORKSPACE/
-          echo $GITHUB_WORKSPACE
-          pwd
           xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
       # Compile the sample code for the selected board and board support package with the arduino compiler
@@ -201,16 +199,18 @@ jobs:
         run: |
           cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
           boards="${{ needs.setup.outputs.fqbn }}"
-          
+          echo "===\n $boards \n"
+ 
           board1="${boards//fqbn/board}"
+          echo "===\n $board1 \n"
+
           board2="${board1//=.*:/=}"
+          echo "===\n $board2 \n"
+
           "$board2" | awk '{print tolower($0)}'
-          echo "==="
-          echo $boards
-          echo "==="
-          echo $board2
-          echo "==="
-          echo $board3
+          echo "===\n $board2 \n"
+
+
           # pio ci --lib="." ${board3} --project-option="lib_deps=Wire"
         env:
           PLATFORMIO_CI_SRC: ${{ matrix.example }}
