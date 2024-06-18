@@ -174,11 +174,13 @@ jobs:
       run: |
         cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
         boards="${{ needs.setup.outputs.fqbn }}"
+        
         board1="${boards//fqbn/board}"
         board2="${board1//=.*:/=}"
         "$board2" | awk '{print tolower($0)}'
         
-        
+        echo "==="
+        echo $boards
         echo "==="
         echo $board2
         echo "==="
