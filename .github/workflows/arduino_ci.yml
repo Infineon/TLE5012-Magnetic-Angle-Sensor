@@ -201,12 +201,7 @@ jobs:
           boards="${{ needs.setup.outputs.fqbn }}"
           export board=`echo $boards | perl -pe 's/fqbn\=\w+:\w+:/board /gx'`
           export board=`echo $board | perl -ne 'print lc'`
-          echo "===\n $board \n"
-          
-          
-
-
-          # pio ci --lib="." ${board3} --project-option="lib_deps=Wire"
+          pio ci --lib="." ${board} --project-option="lib_deps=Wire"
         env:
           PLATFORMIO_CI_SRC: ${{ matrix.example }}
 
