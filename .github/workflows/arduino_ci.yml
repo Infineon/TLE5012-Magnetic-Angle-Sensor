@@ -193,6 +193,13 @@ jobs:
           cd $GITHUB_WORKSPACE/
           xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
+      - name: Install PlatformIO
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade platformio
+          platformio platform install -f infineonxmc
+          platformio platform install -f atmelavr
+
       # PlatformIO uses python for compiling and it does multiple board compiles
       # at once. PlatformIO is used here to check compatibility, but is not needed for the the flash step
       - name: Run PlatformIO
