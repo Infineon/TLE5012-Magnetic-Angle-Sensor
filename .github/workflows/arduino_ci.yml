@@ -201,8 +201,8 @@ jobs:
           boards="${{ needs.setup.outputs.fqbn }}"
           echo "===\n $boards \n"
           board = "$boards | perl -pe 'lc(s/fqbn\=\w+:\w+:/board /gx)'"
-          board ="board | perl -pw "lc()'"
-          echo "===\n $board \n"
+          board1= "$board | perl -pw "lc()'"
+          echo "===\n $board1 \n"
           
           
 
