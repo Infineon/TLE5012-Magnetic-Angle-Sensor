@@ -68,21 +68,6 @@ jobs:
 
         echo $GITHUB_ACTION
 
-    # prepare the runner for the repo data
-    # setup links inside the self hosted runner for correct directory setup
-    # REPO is the base name of the library which is linked to the right directory structure
-    # check wether the .arduino15 packages dir is available
-    # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
-    - name: Set and check environment, install repos
-      run: |
-        echo ${{ needs.setup.outputs.matrix }}
-
-        export REPO=${{ needs.setup.outputs.repo }}
-        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
-        mkdir -p "$HOME/Arduino/libraries"
-        cd $GITHUB_WORKSPACE/
-        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
-
     # Cache python pip downloads if we have one for faster access
     - name: Cache pip
       uses: actions/cache@v4
@@ -132,6 +117,21 @@ jobs:
     # These are the steps which should run for each combination of fqbn and example code
     steps:
 
+    # prepare the runner for the repo data
+    # setup links inside the self hosted runner for correct directory setup
+    # REPO is the base name of the library which is linked to the right directory structure
+    # check wether the .arduino15 packages dir is available
+    # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
+    - name: Set and check environment, install repos
+      run: |
+        echo ${{ needs.setup.outputs.matrix }}
+
+        export REPO=${{ needs.setup.outputs.repo }}
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        mkdir -p "$HOME/Arduino/libraries"
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
+
     # Compile the sample code for the selected board and board support package with the arduino compiler
     # ln -sf $GITHUB_WORKSPACE/ $HOME/Arduino/libraries/$REPO
     - name: Compile Sketch
@@ -167,6 +167,21 @@ jobs:
         example: ${{ fromJson(needs.setup.outputs.matrix) }}
 
     steps:
+
+    # prepare the runner for the repo data
+    # setup links inside the self hosted runner for correct directory setup
+    # REPO is the base name of the library which is linked to the right directory structure
+    # check wether the .arduino15 packages dir is available
+    # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
+    - name: Set and check environment, install repos
+      run: |
+        echo ${{ needs.setup.outputs.matrix }}
+
+        export REPO=${{ needs.setup.outputs.repo }}
+        ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
+        mkdir -p "$HOME/Arduino/libraries"
+        cd $GITHUB_WORKSPACE/
+        xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
     # PlatformIO uses python for compiling and it does multiple board compiles
     # at once. PlatformIO is used here to check compatibility, but is not needed for the the flash step
