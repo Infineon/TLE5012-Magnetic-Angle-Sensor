@@ -200,15 +200,10 @@ jobs:
           cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
           boards="${{ needs.setup.outputs.fqbn }}"
           echo "===\n $boards \n"
- 
-          board1="${boards//fqbn=.*:.*:/board }"
-          echo "===\n $board1 \n"
-
-          board2="${board1//=.*:/=}"
-          echo "===\n $board2 \n"
-
-          "$board2" | awk '{print tolower($0)}'
-          echo "===\n $board2 \n"
+          echo $boards | perl pe "lc(s/fqbn\=.*:.*:/board\s/gx)"
+          echo "===\n $boards \n"
+          
+          
 
 
           # pio ci --lib="." ${board3} --project-option="lib_deps=Wire"
