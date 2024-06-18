@@ -124,12 +124,12 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
     - name: Set and check environment, install repos
       run: |
-        echo ${{ needs.setup.outputs.matrix }}
-
         export REPO=${{ needs.setup.outputs.repo }}
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
         cd $GITHUB_WORKSPACE/
+        echo $GITHUB_WORKSPACE
+        pwd
         xfp-dev arduino workspace-setup --path $HOME/Arduino/libraries
 
     # Compile the sample code for the selected board and board support package with the arduino compiler
@@ -175,8 +175,6 @@ jobs:
     # ln -sf $GITHUB_WORKSPACE/$REPO/build/ $HOME/Arduino/libraries/$REPO
     - name: Set and check environment, install repos
       run: |
-        echo ${{ needs.setup.outputs.matrix }}
-
         export REPO=${{ needs.setup.outputs.repo }}
         ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
         mkdir -p "$HOME/Arduino/libraries"
