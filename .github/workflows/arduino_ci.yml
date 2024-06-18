@@ -23,6 +23,24 @@ jobs:
       - Linux
 
     steps:
+    # checkout the latest github action code
+    - name: Checkout actions
+      uses: actions/checkout@v4
+
+    # checkout the latest arduino-cli compiler
+    - name: Setup Arduino CLI
+      uses: arduino/setup-arduino-cli@master
+
+    # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
+    # the arduino board support packages can be updated automatically
+    # the XMC board support package is only linked inside the self hosted runner, which allows
+    # to use none official and beta versions
+    - name: Install/Update Arduino Platform
+      run: |
+        arduino-cli core update-index
+        arduino-cli core install "arduino:avr"
+        arduino-cli core install "infineon:xmc"
+
     # Fetch variables and move them to the GITHUB_OUTPUT
     - id: set-matrix
       run: |
@@ -49,24 +67,6 @@ jobs:
         echo "fqbn=$mfqbn" >> $GITHUB_OUTPUT
 
         echo $GITHUB_ACTION
-
-      # checkout the latest github action code
-    - name: Checkout actions
-      uses: actions/checkout@v4
-
-    # checkout the latest arduino-cli compiler
-    - name: Setup Arduino CLI
-      uses: arduino/setup-arduino-cli@master
-
-    # Update the arduino code. Attention this does not setup XMC packages as this are set inside the self hosted runner
-    # the arduino board support packages can be updated automatically
-    # the XMC board support package is only linked inside the self hosted runner, which allows
-    # to use none official and beta versions
-    - name: Install/Update Arduino Platform
-      run: |
-        arduino-cli core update-index
-        arduino-cli core install "arduino:avr"
-        arduino-cli core install "infineon:xmc"
 
     # prepare the runner for the repo data
     # setup links inside the self hosted runner for correct directory setup
