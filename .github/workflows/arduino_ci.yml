@@ -200,7 +200,7 @@ jobs:
           cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
           boards="${{ needs.setup.outputs.fqbn }}"
           echo "===\n $boards \n"
-          echo $boards | perl -pe "lc(s/fqbn\=.*:.*:/board\s/gx)"
+          echo $boards | perl -pe "lc(s/fqbn\=\w+:\w+:/board\s/gx)"
           echo "===\n $boards \n"
           
           
