@@ -9,15 +9,15 @@
  * writes this to the serial port with remark info for each register.
  * Please have look to the sensor manual for more and more detailed information
  * about each register.
- * 
+ *
  * \attention This Sketch needs ca. 35kB of memory and does not compile on the original
  * Arduino Uno. Use the sensorType.ino instead
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */
 
- #if defined(__AVR_ATmega328P__) 
+ #if defined(__AVR_ATmega328P__)
  // Needs more memory than the Arduino UNO has
  void setup()
  {
@@ -57,7 +57,7 @@ void printval(uint16_t regValue, String regType)
 
 /**
  * @brief Function prints the binary code of each documented register
- * 
+ *
  */
 void show_bin()
 {
@@ -713,7 +713,5 @@ void setup() {
 
 void loop() {
 }
-
-
 
 #endif

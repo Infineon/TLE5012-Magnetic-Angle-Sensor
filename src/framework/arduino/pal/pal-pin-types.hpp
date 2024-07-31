@@ -19,8 +19,8 @@ namespace tle5012
      * @addtogroup arduinoPal
      * @{
      * The pin definition here is only used when no PIN_SPI_xx is defined, otherwise the original setting is used.
-     * THe set pins should be valid for esp32 boards for the VSPI (channel 3 SPI).
-     * Change if you have other pin settings
+     * The set pins used here should be valid for esp32 boards with the VSPI (channel 3 SPI).
+     * Change them if you have other pin settings
      */
     #define UNUSED_PIN          0xFF
 

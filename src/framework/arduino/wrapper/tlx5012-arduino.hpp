@@ -33,15 +33,15 @@ namespace tle5012
  * @class Tle5012Ino
  *
  * @brief represents the TLx5012 base class
- * 
+ *
  * This class provides a simple API for connecting the TLE5012B as well as the
  * TLI5012B via SSC interface, which is included into all flavours the TLx5012 sensor.
- * This setup works with the the Sens2Kit (Sensor including XMC1100 mcu), 
- * the breakout board (only the Sensor from the Sens2Kit) and 
+ * This setup works with the the Sens2Kit (Sensor including XMC1100 mcu),
+ * the breakout board (only the Sensor from the Sens2Kit) and
  * bulk chips (read the section on how to connect the bulk chip via 3wire SPI).
- * 
+ *
  * @see Tle5012
- * 
+ *
  */
 
 // Support macros
@@ -53,14 +53,14 @@ namespace tle5012
 
 class Tle5012Ino: public Tle5012b
 {
-	public:
+    public:
 
-		uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
+        uint8_t     mSpiNum = 0;          //!< Number of used SPI channel
 
-					Tle5012Ino();
-					Tle5012Ino(uint8_t csPin, slaveNum slave=TLE5012B_S0);
-					Tle5012Ino(SPIClass3W &bus, uint8_t csPin, uint8_t misoPin, uint8_t     mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
-		errorTypes  begin();
+                    Tle5012Ino();
+                    Tle5012Ino(uint8_t csPin, slaveNum slave=TLE5012B_S0);
+                    Tle5012Ino(SPIClass3W *bus, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin, slaveNum slave=TLE5012B_S0);
+        errorTypes  begin();
 
 };
 

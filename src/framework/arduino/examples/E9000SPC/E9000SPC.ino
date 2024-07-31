@@ -11,14 +11,14 @@
  * multiplying the 12 UT with the sensor slave number up to four sensors can be triggered.
  * This trigger setting UT the unittime must multiplied with the sensors base unittime which
  * is default 3.0µs. Setting the IFA pin to low and waiting atleast the total trigger time
- * will set all registers by the DSP. 
+ * will set all registers by the DSP.
  * For more information please read the SPC Interface section of the manual.
- * The default setup ist: 
- * - unittime =3.0µs, 
+ * The default setup ist:
+ * - unittime =3.0µs,
  * - total trigger time = 90 * 3.0µs = 270 µs
  * - t_mlow the time for the first sensor to trigger = 12 * 3.0µs = 36 µs
  * so we have to set the IFA pin 36µs to low, than back to high and wait (90-12)*3.0µs = 224µs
- *  
+ *
  * SPDX-License-Identifier: MIT
  *
  */
@@ -32,7 +32,7 @@ using namespace tle5012;
 
 float    unitTime    = 3.0;  //!< \brief UT is default 3.0µs but will be read with getHysteresisMode
 float    triggerTime = 90;   //!< \brief trigger total time is default 90UT * 3.0µs
-float    t_mlow      = 12;   //!< \brief trigger will last default for 12 * 3.0µs 
+float    t_mlow      = 12;   //!< \brief trigger will last default for 12 * 3.0µs
 
 
 // Tle5012b Object
@@ -60,11 +60,11 @@ void setup() {
 
   // Fetch sensor UT base value
   uint8_t val = Tle5012Sensor.reg.getHysteresisMode();
-  unitTime = (val == 0 
-    ? 3.0 
-    : (val == 1 
+  unitTime = (val == 0
+    ? 3.0
+    : (val == 1
       ? 2.5
-      : (val == 2 
+      : (val == 2
         ? 2.0
         : 1.5
       )
@@ -74,14 +74,13 @@ void setup() {
   // Fetch SPC Total Trigger Time
   val = Tle5012Sensor.reg.getHSMplp();
   triggerTime = ( val == 0
-    ? 90 
+    ? 90
     : (t_mlow + 12)
   );
 
 }
 
 void loop() {
-
 
   double a = 0.0;
   double rr = 0.0;
@@ -91,7 +90,7 @@ void loop() {
   int16_t rt = 0;
   double s = 0.0;
   int16_t rs = 0;
-  
+
   digitalWrite(IFA, LOW);
   delayMicroseconds(t_mlow + unitTime);
   digitalWrite(IFA, HIGH);

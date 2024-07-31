@@ -11,13 +11,13 @@
  * you fetch a value from the sensor with safety word on, than the safety word register RESP
  * will indicate the sensor who is responding. This should be the same than you have
  * ask for. The loop function will than print out the individual sensor(s) angle values.
- *  
+ *
  * This example also demonstrates how to handle more than on sensor in an array setup.
  * It is not designed for a Kit2Go sensor but for a setup on a normal XMC or Arduino
  * with up to four sensors on one SPI channel.
- * 
+ *
  * \attention Needs much memory which can be too much for the original Arduino Uno
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */
@@ -75,14 +75,14 @@ void setup() {
     sensor[i].reg.getSlaveNumber();
     sensor[i].getAngleValue(a);
     sensor[i].safetyStatus.fetch_Safety(sensor[i].safetyWord);
-  
+
     Serial.print(i);
     Serial.print("\tangle: ");
     Serial.print(a);
     Serial.print("\tSTAT SNR: ");
     Serial.print(sensor[i].reg.getSlaveNumber());
     Serial.print("\tRESP: ");
-  
+
     switch (sensor[i].safetyStatus.responseSlave()) {
       case sensor[i].TLE5012B_S3:
         Serial.print("0x0111 = TLE5012B_S3");

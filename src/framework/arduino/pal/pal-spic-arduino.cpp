@@ -19,22 +19,22 @@ using namespace tle5012;
 
 /**
  * @brief Construct a new SPICIno::SPICIno object
- * 
+ *
  * This function is setting the basics for a SPIC and the default spi.
  * Use this call if:
  * - you use the default SPI channel
  * - if use the default SPI channel with up to four sensors
- * 
+ *
  * @param csPin optional chip select pin. If not set it will be default PIN_SPI_SS
  */
 SPICIno::SPICIno(uint8_t csPin)
 {
-	this->csPin = csPin;
-	#if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
-		this->spi = (SPIClass3W *) &SPI;
-	#else
-		this->spi = new SPIClass3W();
-	#endif
+    this->csPin = csPin;
+    #if defined(UC_FAMILY) && (UC_FAMILY == 1 || UC_FAMILY == 4)
+        this->spi = (SPIClass3W *) &SPI;
+    #else
+        this->spi = new SPIClass3W();
+    #endif
 }
 
 /**
@@ -54,11 +54,11 @@ SPICIno::SPICIno(uint8_t csPin)
  */
 SPICIno::SPICIno(SPIClass3W &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiPin, uint8_t sckPin)
 {
-	this->csPin   = csPin;
-	this->misoPin = misoPin;
-	this->mosiPin = mosiPin;
-	this->sckPin  = sckPin;
-	this->spi     = &port;
+    this->csPin   = csPin;
+    this->misoPin = misoPin;
+    this->mosiPin = mosiPin;
+    this->sckPin  = sckPin;
+    this->spi     = &port;
 }
 
 /**
@@ -71,8 +71,8 @@ SPICIno::SPICIno(SPIClass3W &port, uint8_t csPin, uint8_t misoPin, uint8_t mosiP
  */
 Error_t SPICIno::init()
 {
-	this->spi->begin(this->misoPin, this->mosiPin, this->sckPin, this->csPin);
-	return OK;
+    this->spi->begin(this->misoPin, this->mosiPin, this->sckPin, this->csPin);
+    return OK;
 }
 
 /**
@@ -84,28 +84,28 @@ Error_t SPICIno::init()
  */
 Error_t SPICIno::deinit()
 {
-	this->spi->endTransaction();
-	this->spi->end();
-	return OK;
+    this->spi->endTransaction();
+    this->spi->end();
+    return OK;
 }
 
 /**
- * @brief 
+ * @brief
  * Triggers an update in the register buffer. This function
  * should be triggered once before UPD registers where read as
  * it generates a snapshot of the UPD register values at trigger point
- * 
- * @return Error_t 
+ *
+ * @return Error_t
  */
 Error_t SPICIno::triggerUpdate()
 {
-	digitalWrite(this->sckPin, LOW);
-	digitalWrite(this->mosiPin, HIGH);
-	digitalWrite(this->csPin, LOW);
-	//grace period for register snapshot
-	delayMicroseconds(5);
-	digitalWrite(this->csPin, HIGH);
-	return OK;
+    digitalWrite(this->sckPin, LOW);
+    digitalWrite(this->mosiPin, HIGH);
+    digitalWrite(this->csPin, LOW);
+    //grace period for register snapshot
+    delayMicroseconds(5);
+    digitalWrite(this->csPin, HIGH);
+    return OK;
 }
 
 /*!
@@ -117,9 +117,9 @@ Error_t SPICIno::triggerUpdate()
 */
 Error_t SPICIno::sendReceive(uint16_t* sent_data, uint16_t size_of_sent_data, uint16_t* received_data, uint16_t size_of_received_data)
 {
-	this->spi->setCSPin(this->csPin);
-	this->spi->sendReceiveSpi(sent_data,size_of_sent_data,received_data,size_of_received_data);
-	return OK;
+    this->spi->setCSPin(this->csPin);
+    this->spi->sendReceiveSpi(sent_data,size_of_sent_data,received_data,size_of_received_data);
+    return OK;
 }
- 
+
 /** @} */

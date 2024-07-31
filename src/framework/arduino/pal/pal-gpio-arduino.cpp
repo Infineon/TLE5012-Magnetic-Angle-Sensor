@@ -35,9 +35,9 @@ GPIOIno::GPIOIno() : pin(0), mode(OUTPUT), logic(POSITIVE)
  */
 GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic): pin(pin), mode(mode), logic(logic)
 {
-	this->pin = pin;
-	this->mode = mode;
-	this->logic = logic;
+    this->pin = pin;
+    this->mode = mode;
+    this->logic = logic;
 }
 
 /**
@@ -49,8 +49,8 @@ GPIOIno::GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic): pin(pin), mode(mode
  */
 Error_t GPIOIno::init()
 {
-	pinMode(this->pin, this->mode);
-	return OK;
+    pinMode(this->pin, this->mode);
+    return OK;
 }
 
 /**
@@ -62,12 +62,10 @@ Error_t GPIOIno::init()
  */
 Error_t GPIOIno::changeMode(uint8_t mode)
 {
-	this->mode = mode;
-	pinMode(this->pin, this->mode);
-	return OK;
+    this->mode = mode;
+    pinMode(this->pin, this->mode);
+    return OK;
 }
-
-
 
 /**
  * @brief Deinitialize the GPIO
@@ -78,7 +76,7 @@ Error_t GPIOIno::changeMode(uint8_t mode)
  */
 Error_t GPIOIno::deinit()
 {
-	return OK;
+    return OK;
 }
 
 /**
@@ -93,7 +91,7 @@ Error_t GPIOIno::deinit()
  */
 GPIOIno::VLevel_t GPIOIno::read()
 {
-	return (VLevel_t) digitalRead(this->pin);
+    return (VLevel_t) digitalRead(this->pin);
 }
 
 /**
@@ -106,8 +104,8 @@ GPIOIno::VLevel_t GPIOIno::read()
  */
 Error_t GPIOIno::write(VLevel_t level)
 {
-	digitalWrite(this->pin, level);
-	return OK;
+    digitalWrite(this->pin, level);
+    return OK;
 }
 
 /**
@@ -120,13 +118,13 @@ Error_t GPIOIno::write(VLevel_t level)
  */
 Error_t GPIOIno::enable()
 {
-	if(this->logic == POSITIVE){
-		digitalWrite(this->pin, GPIO_HIGH);
-	}
-	else if(this->logic == NEGATIVE){
-		digitalWrite(this->pin, GPIO_LOW);;
-	}
-	return OK;
+    if(this->logic == POSITIVE){
+        digitalWrite(this->pin, GPIO_HIGH);
+    }
+    else if(this->logic == NEGATIVE){
+        digitalWrite(this->pin, GPIO_LOW);;
+    }
+    return OK;
 }
 
 /**
@@ -139,12 +137,12 @@ Error_t GPIOIno::enable()
  */
 Error_t GPIOIno::disable()
 {
-	if(this->logic == POSITIVE){
-		digitalWrite(this->pin, GPIO_LOW);
-	}
-	else if(this->logic == NEGATIVE){
-		digitalWrite(this->pin, GPIO_HIGH);
-	}
-	return OK;
+    if(this->logic == POSITIVE){
+        digitalWrite(this->pin, GPIO_LOW);
+    }
+    else if(this->logic == NEGATIVE){
+        digitalWrite(this->pin, GPIO_HIGH);
+    }
+    return OK;
 }
 

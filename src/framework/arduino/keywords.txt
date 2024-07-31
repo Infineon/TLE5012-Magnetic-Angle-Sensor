@@ -84,7 +84,7 @@ getFIRUpdateRate KEYWORD2
 getFilterDecimation KEYWORD2
 getFrameCounter KEYWORD2
 getFrameSyncCounter KEYWORD2
-getFulseReload KEYWORD2
+getFuseReload KEYWORD2
 getHSMplp KEYWORD2
 getHysteresisMode KEYWORD2
 getIFABres KEYWORD2
@@ -134,7 +134,7 @@ isStatusDSPU KEYWORD2
 isStatusFuse KEYWORD2
 isStatusGMRA KEYWORD2
 isStatusGMRXY KEYWORD2
-isStatusMagnitideOutOfLimit KEYWORD2
+isStatusMagnitudeOutOfLimit KEYWORD2
 isStatusOverflow KEYWORD2
 isStatusROM KEYWORD2
 isStatusRead KEYWORD2
