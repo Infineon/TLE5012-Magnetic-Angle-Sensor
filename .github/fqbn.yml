@@ -1,0 +1,29 @@
+fqbn:
+  - arduino:avr:uno
+  - Infineon:xmc:XMC1100_XMC2GO
+  - Infineon:xmc:XMC1100_Boot_Kit
+  - Infineon:xmc:XMC1300_Boot_Kit
+  - Infineon:xmc:XMC1400_XMC2GO
+  - Infineon:xmc:XMC1400_Arduino_Kit
+  - Infineon:xmc:XMC4200_Platform2GO
+  - Infineon:xmc:XMC4400_Platform2GO
+  - Infineon:xmc:XMC4700_Relax_Kit
+
+hil:
+  fqbn:         Infineon:xmc:XMC1100_XMC2GO
+  code:         "examples/sensorType"
+
+arduino:avr:uno:
+  port_name:    "port_serial.0"
+  device:       "device.0"
+  platformio:   "uno"
+
+Infineon:xmc:XMC1100_XMC2GO:
+  port_name:    "port_serial.0"
+  device:       "device.0"
+  platformio:   "xmc1100_xmc2go"
+
+Infineon:xmc:XMC4700_Relax_Kit:
+  port_name:    "port_serial.0"
+  device:       "device.0"
+  platformio:   "xmc4700_relax_kit"

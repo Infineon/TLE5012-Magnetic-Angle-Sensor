@@ -8,7 +8,7 @@
  * This example demonstrates how to read multiple raw registers at once.
  * In this case you have to recalculate values like angle, angle speed etc.
  * be your self.
- * 
+ *
  * \details
  * the read command offset of 0x8000 will be set by the readMoreRegisters command
  * so we need only the register offset from where we start and
@@ -17,7 +17,7 @@
  * A max of 15 value can read at once, one additional value is reserved for
  * the safety bit. We only read the registers if checkError is false.
  * Therefore a magnet must be near the sensor, otherwise it will not work.
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */
@@ -47,7 +47,7 @@ void setup() {
   delay(1000);
 }
 
-void loop() 
+void loop()
 {
   if (s && (checkError == 0))
   {
@@ -62,7 +62,7 @@ void loop()
         Serial.print("\t;\t");
         PRINTBIN(data[i]);
         Serial.println();
-      } 
+      }
       s = false;
     }
   }

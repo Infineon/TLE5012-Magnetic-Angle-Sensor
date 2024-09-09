@@ -23,102 +23,102 @@ namespace tle5012
 
 class GPIOPAL
 {
-	public:
+    public:
 
-		/**
-		 * @name   Interrupt event
-		 * @{
-		 */
-		enum IntEvent_t
-		{
-			INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
-			INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
-		};
-		/** @} */
+        /**
+         * @name   Interrupt event
+         * @{
+         */
+        enum IntEvent_t
+        {
+            INT_FALLING_EDGE   = 0,     /**< Interrupt on falling edge */
+            INT_RISING_EDGE    = 1,     /**< Interrupt on rising edge */
+        };
+        /** @} */
 
-		/**
-		 * @name    Voltage level
-		 * @{
-		 */
-		enum VLevel_t
-		{
-			GPIO_LOW   = 0,        /**< Level low */
-			GPIO_HIGH  = 1         /**< Level high */
-		};
-		/** @} */
+        /**
+         * @name    Voltage level
+         * @{
+         */
+        enum VLevel_t
+        {
+            GPIO_LOW   = 0,        /**< Level low */
+            GPIO_HIGH  = 1         /**< Level high */
+        };
+        /** @} */
 
-		/**
-		 * @name    Voltage logic
-		 * @{
-		 */
-		enum VLogic_t
-		{
-			NEGATIVE = 1,       /**< Negative logic. 0 on voltage level high, 1 on voltage low */
-			POSITIVE = 2,       /**< Positive logic. 1 on voltage level high, 0 on voltage low */
-		};
-		/** @} */
+        /**
+         * @name    Voltage logic
+         * @{
+         */
+        enum VLogic_t
+        {
+            NEGATIVE = 1,       /**< Negative logic. 0 on voltage level high, 1 on voltage low */
+            POSITIVE = 2,       /**< Positive logic. 1 on voltage level high, 0 on voltage low */
+        };
+        /** @} */
 
-		/**
-		 * @brief       Initializes the GPIO
-		 * @return      GPIO error code
-		 * @retval      OK if success
-		 * @retval      INIT_ERROR if initialization error
-		 */
-		virtual Error_t        init        () = 0;
+        /**
+         * @brief       Initializes the GPIO
+         * @return      GPIO error code
+         * @retval      OK if success
+         * @retval      INIT_ERROR if initialization error
+         */
+        virtual Error_t        init        () = 0;
 
-		/**
-			 * @brief       Deinitialize the GPIO
-			 * @return      GPIO error code
-			 * @retval      OK if success
-			 * @retval      INIT_ERROR if deinitialization error
-		 */
-		virtual Error_t       deinit      () = 0;
+        /**
+             * @brief       Deinitialize the GPIO
+             * @return      GPIO error code
+             * @retval      OK if success
+             * @retval      INIT_ERROR if deinitialization error
+         */
+        virtual Error_t       deinit      () = 0;
 
-		/**
-			 * @brief       Changes the IN/OUT mode
-			 * @param[in]   mode INPUT or OUTPUT mode of pin
-			 * @return      GPIO error code
-			 * @retval      OK if success
-			 * @retval      INIT_ERROR if deinitialization error
-		 */
-		virtual Error_t       changeMode  (uint8_t mode) = 0;
+        /**
+             * @brief       Changes the IN/OUT mode
+             * @param[in]   mode INPUT or OUTPUT mode of pin
+             * @return      GPIO error code
+             * @retval      OK if success
+             * @retval      INIT_ERROR if deinitialization error
+         */
+        virtual Error_t       changeMode  (uint8_t mode) = 0;
 
-		/**
-		 * @brief       Reads the GPIO voltage level
-		 * @return      GPIO voltage level
-		 * @retval      GPIO_LOW if voltage low
-		 * @retval      GPIO_HIGH if voltage high
-		 */
-		virtual VLevel_t       read        () = 0;
+        /**
+         * @brief       Reads the GPIO voltage level
+         * @return      GPIO voltage level
+         * @retval      GPIO_LOW if voltage low
+         * @retval      GPIO_HIGH if voltage high
+         */
+        virtual VLevel_t       read        () = 0;
 
-		/**
-		 * @brief       Writes the GPIO output voltage level
-		 * @param[in]   level  Voltage level
-		 * @return      GPIO error code
-		 * @retval      OK if success
-		 * @retval      WRITE_ERROR if write error
-		 */
-		virtual Error_t        write       (VLevel_t level) = 0;
+        /**
+         * @brief       Writes the GPIO output voltage level
+         * @param[in]   level  Voltage level
+         * @return      GPIO error code
+         * @retval      OK if success
+         * @retval      WRITE_ERROR if write error
+         */
+        virtual Error_t        write       (VLevel_t level) = 0;
 
-		/**
-		 * @brief       Enables the GPIO output according to the GPIO logic
-		 *              - Low if negative
-		 *              - High if positive
-		 * @return      GPIO interrupt event
-		 * @retval      OK if success
-		 * @retval      WRITE_ERROR if write error
-		 */
-		virtual Error_t        enable      () = 0;
+        /**
+         * @brief       Enables the GPIO output according to the GPIO logic
+         *              - Low if negative
+         *              - High if positive
+         * @return      GPIO interrupt event
+         * @retval      OK if success
+         * @retval      WRITE_ERROR if write error
+         */
+        virtual Error_t        enable      () = 0;
 
-		/**
-		 * @brief       Disables the GPIO output according to the GPIO logic
-		 *              - Low if positive
-		 *              - High if negative
-		 * @return      GPIO error code
-		 * @retval      OK if success
-		 * @retval      WRITE_ERROR if write error
-		 */
-		virtual Error_t        disable     () = 0;
+        /**
+         * @brief       Disables the GPIO output according to the GPIO logic
+         *              - Low if positive
+         *              - High if negative
+         * @return      GPIO error code
+         * @retval      OK if success
+         * @retval      WRITE_ERROR if write error
+         */
+        virtual Error_t        disable     () = 0;
 
 };
 

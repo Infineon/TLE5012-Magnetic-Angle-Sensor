@@ -18,39 +18,39 @@
 
 namespace tle5012
 {
-	/**
-	 * @addtogroup arduinoPal
-	 * @{
-	 */
+    /**
+     * @addtogroup arduinoPal
+     * @{
+     */
 
 
-	/**
-	 * @class  GPIOIno
-	 * @brief  GPIO platform abstraction layer Arduino API
-	 */
-	class GPIOIno: virtual public GPIOPAL
-	{
-		private:
-			uint8_t     pin;
-			uint8_t     mode;
-			VLogic_t    logic;
+    /**
+     * @class  GPIOIno
+     * @brief  GPIO platform abstraction layer Arduino API
+     */
+    class GPIOIno: virtual public GPIOPAL
+    {
+        private:
+            uint8_t     pin;
+            uint8_t     mode;
+            VLogic_t    logic;
 
-		public:
-			static constexpr uint8_t  UNUSED_PIN = 0xFFU;    /**< Unused pin */
+        public:
+            static constexpr uint8_t  UNUSED_PIN = 0xFFU;    /**< Unused pin */
 
-						GPIOIno();
-						GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic);
-						~GPIOIno();
-			Error_t     init();
-			Error_t     changeMode(uint8_t mode);
-			Error_t     deinit();
-			VLevel_t    read();
-			Error_t     write(VLevel_t level);
-			Error_t     enable();
-			Error_t     disable();
-	};
+                        GPIOIno();
+                        GPIOIno(uint8_t pin, uint8_t mode, VLogic_t logic);
+                        ~GPIOIno();
+            Error_t     init();
+            Error_t     changeMode(uint8_t mode);
+            Error_t     deinit();
+            VLevel_t    read();
+            Error_t     write(VLevel_t level);
+            Error_t     enable();
+            Error_t     disable();
+    };
 
-	/** @} */
+    /** @} */
 
 }
 

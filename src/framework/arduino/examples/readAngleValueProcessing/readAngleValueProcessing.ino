@@ -9,12 +9,12 @@
  * speed of the sensor for the angle. Depending on your microcontroller
  * more or less speed on the serial port is possible.
  * For reconfiguring of the SPI interface, have a look at the documentation.
- * 
+ *
  * \attention Use together with the several processing scripts
  * \attention We use fast serial output setting of 1000000 baud and a
  * 10ms delay in the loop. You can set smaller values down to 1ms
  * but that will somehow overload the console log output.
- * 
+ *
  * SPDX-License-Identifier: MIT
  *
  */
