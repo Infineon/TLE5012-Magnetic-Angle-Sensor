@@ -1,0 +1,8 @@
+<map id="gpio&#45;arduino.hpp" name="gpio&#45;arduino.hpp">
+<area shape="rect" id="node1" title="Arduino PAL for the GPIO." alt="" coords="87,5,219,32"/>
+<area shape="rect" id="node2" href="$df/df8/gpio-arduino_8cpp.html" title=" " alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node3" href="$da/de3/TLE5012-pal-ino_8hpp.html" title=" " alt="" coords="160,80,315,107"/>
+<area shape="rect" id="node4" href="$dd/dc6/TLE5012-pal-ino_8cpp.html" title="TLE5012 Arduino Hardware Platforms." alt="" coords="68,155,223,181"/>
+<area shape="rect" id="node5" href="$db/d5f/TLE5012-platf-ino_8hpp.html" title="TLE5012 Arduino Hardware Platforms." alt="" coords="247,155,411,181"/>
+<area shape="rect" id="node6" href="$dd/df3/TLE5012-ino_8hpp.html" title=" " alt="" coords="264,229,395,256"/>
+</map>

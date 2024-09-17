@@ -1,0 +1,17 @@
+<map id="show_STAT" name="show_STAT">
+<area shape="rect" id="node1" title=" " alt="" coords="5,347,100,373"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga5e5bdf8f9096cffa8d3068b9bfbd65ce" title="Get the actual slave number of the sensor. Up to four sensors can be selected via this register field..." alt="" coords="163,5,327,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga6ffe9405a3ed411a04c435d2d274b0ee" title="Check signal path with test vectors." alt="" coords="178,56,313,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga66b29019a46c014c01b3f0ccd6e332f4" title="Check DSPU, CORDIC and CAPCOM at startup." alt="" coords="174,107,317,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga81938e601aa06a209c85cf50ecfa4ba8" title="Cyclic CRC check of configuration registers and startup CRC." alt="" coords="177,157,314,184"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#ga8869ec38c72cee1f3f7430a4537b83d9" title="No value GMR angle value, cyclic check of DSPU output." alt="" coords="172,208,319,235"/>
+<area shape="rect" id="node7" href="$da/d3e/group__tle5012reg.html#ga1282709be8c19fc2f320580298d0f3e8" title="No valid GMR X,Y values, cyclic check of ADC input." alt="" coords="168,259,323,285"/>
+<area shape="rect" id="node8" href="$da/d3e/group__tle5012reg.html#gac81c1242f52971ad506dbfd29b36f4fe" title="Vector lengths cyclic check of X,Y values after error compensation." alt="" coords="148,310,343,351"/>
+<area shape="rect" id="node9" href="$da/d3e/group__tle5012reg.html#ga5805284e9fe863e5d2117b8ce94a24ca" title="Cyclic scheck of DSPU (Digital Signal Processing Unit) overflow." alt="" coords="163,376,328,403"/>
+<area shape="rect" id="node10" href="$da/d3e/group__tle5012reg.html#ga22e9292fbb256e7f961969da421fa843" title="Read status, checks if any status register changed since last readout." alt="" coords="175,427,315,453"/>
+<area shape="rect" id="node11" href="$da/d3e/group__tle5012reg.html#ga0891df97b21bad7095b1d9840dd7b6ab" title="Indication that there was a reset state." alt="" coords="173,477,317,504"/>
+<area shape="rect" id="node12" href="$da/d3e/group__tle5012reg.html#ga46e9c543097c758bd8c44ccf2100ac82" title="Check of ROM&#45;CRC at statup." alt="" coords="176,528,315,555"/>
+<area shape="rect" id="node13" href="$da/d3e/group__tle5012reg.html#ga10401166331ec4fe3f5a7ff411f80b3d" title="Permanent check of internal and external supply voltages." alt="" coords="167,579,323,605"/>
+<area shape="rect" id="node14" href="$da/d3e/group__tle5012reg.html#gabd12ed50cdfd64e74a4133525226e6bb" title="Permanent check of watchdog." alt="" coords="159,629,332,656"/>
+<area shape="rect" id="node15" href="$da/d3e/group__tle5012reg.html#ga617c0696516ae9ddfac1cd1ca6ec384d" title="Cyclic check of X and &gt; raw values." alt="" coords="148,680,343,707"/>
+</map>

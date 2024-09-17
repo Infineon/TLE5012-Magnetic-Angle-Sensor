@@ -1,0 +1,7 @@
+<map id="hsmInterface" name="hsmInterface">
+<area shape="rect" id="node1" title="Sensor is set with IIF interface with the following settings." alt="" coords="5,81,113,108"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#gaa43b5bc9b7b44e0de15e700dae2d49c7" title="Get the FIR update rate." alt="" coords="165,5,339,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga869f1fbeb0c12a789b5486770e1245e0" title="Get the hysteresis mode for HSM, or the unit time if in SPC mode (see manual)" alt="" coords="161,56,343,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#gaf8c6d8f62ac8de65a3ac4fa14b6ca74b" title="Get multipurpose register." alt="" coords="190,107,314,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga5f38f5399dd9c38f358e8166584941ec" title="Get the status of the IFA, IFB and IFC output mode." alt="" coords="165,157,339,184"/>
+</map>

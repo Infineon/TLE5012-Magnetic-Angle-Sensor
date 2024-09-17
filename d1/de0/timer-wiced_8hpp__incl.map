@@ -1,0 +1,10 @@
+<map id="timer&#45;wiced.hpp" name="timer&#45;wiced.hpp">
+<area shape="rect" id="node1" title="WICED Timer PAL." alt="" coords="434,5,562,32"/>
+<area shape="rect" id="node2" href="$d9/d40/tle5012-conf_8hpp.html" title="TLE5012 Library Configuration." alt="" coords="176,80,327,121"/>
+<area shape="rect" id="node5" href="$df/d05/timer_8hpp.html" title="Timer Platform Abstraction Layer." alt="" coords="351,87,495,114"/>
+<area shape="rect" id="node7" title=" " alt="" coords="519,87,629,114"/>
+<area shape="rect" id="node8" title=" " alt="" coords="653,87,757,114"/>
+<area shape="rect" id="node3" href="$d6/dfd/tle5012-conf-opts_8hpp.html" title="TLE5012 Library Configuration Options." alt="" coords="5,169,169,196"/>
+<area shape="rect" id="node4" href="$d8/d2a/tle5012-conf-dfl_8hpp.html" title="TLE5012 Default Library Configuration." alt="" coords="194,169,346,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="388,169,459,196"/>
+</map>

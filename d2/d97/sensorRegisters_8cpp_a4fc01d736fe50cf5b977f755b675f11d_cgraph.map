@@ -1,0 +1,52 @@
+<map id="setup" name="setup">
+<area shape="rect" id="node1" title=" " alt="" coords="5,1323,64,1349"/>
+<area shape="rect" id="node2" href="$d2/d6a/group__wicedPal.html#ga6492a8e0a1ca3d3f0b3bbbd5279ffc55" title="begin method with default assignments for the SPI bus and pin setting. The EN pin is only available f..." alt="" coords="119,107,277,133"/>
+<area shape="rect" id="node7" href="$da/d19/group__tle5012api.html#ga00104aeb3b0271cafb828055ebfd0dbe" title=" " alt="" coords="112,259,284,285"/>
+<area shape="rect" id="node10" href="$d2/d97/sensorRegisters_8cpp.html#ab0fd6873ec0ecc971a5b11a822842454" title=" " alt="" coords="142,563,254,589"/>
+<area shape="rect" id="node21" href="$d2/d97/sensorRegisters_8cpp.html#a391f205870de78393912d5b933393327" title=" " alt="" coords="153,968,243,995"/>
+<area shape="rect" id="node28" href="$d2/d97/sensorRegisters_8cpp.html#a4dfbabeee1ca138326af9b859a683f78" title="Function prints the binary code of each documented register." alt="" coords="157,1171,239,1197"/>
+<area shape="rect" id="node29" href="$d2/d97/sensorRegisters_8cpp.html#a3142565a9b1f009e08e5bd2b98a42c78" title=" " alt="" coords="153,1221,243,1248"/>
+<area shape="rect" id="node35" href="$d2/d97/sensorRegisters_8cpp.html#a7519dc0904caa462f6814de0449ef71c" title=" " alt="" coords="145,1475,251,1501"/>
+<area shape="rect" id="node43" href="$d2/d97/sensorRegisters_8cpp.html#a511afcfec0f12b3b88fbaf58fdbc9f73" title=" " alt="" coords="147,1323,249,1349"/>
+<area shape="rect" id="node44" href="$d2/d97/sensorRegisters_8cpp.html#a0ce9a0c333cc70cb0478d200d542e05b" title=" " alt="" coords="147,1373,249,1400"/>
+<area shape="rect" id="node45" href="$d2/d97/sensorRegisters_8cpp.html#af5f9838a3913b105d6c93e2c2e2ee8f0" title=" " alt="" coords="147,1424,249,1451"/>
+<area shape="rect" id="node46" href="$d2/d97/sensorRegisters_8cpp.html#a5e7ee899b3c6242a0eea7f3a843e2def" title=" " alt="" coords="147,1272,249,1299"/>
+<area shape="rect" id="node47" href="$d2/d97/sensorRegisters_8cpp.html#a0827d36fc3febc3037f30185a37547cd" title=" " alt="" coords="138,1525,258,1552"/>
+<area shape="rect" id="node48" href="$d2/d97/sensorRegisters_8cpp.html#a32f8fc08b8f4a40ae87c09fa518e96cd" title=" " alt="" coords="157,1576,239,1603"/>
+<area shape="rect" id="node49" href="$d2/d97/sensorRegisters_8cpp.html#abed5de3b6b009224467f952103c750fc" title=" " alt="" coords="151,1627,245,1653"/>
+<area shape="rect" id="node50" href="$d2/d97/sensorRegisters_8cpp.html#af46b3e0778e25e81a6d2e5dadfeca48a" title=" " alt="" coords="145,1677,251,1704"/>
+<area shape="rect" id="node3" href="$da/d19/group__tle5012api.html#ga1b640b2d39e54af974b2699e9cbaf7ab" title=" " alt="" coords="353,107,531,133"/>
+<area shape="rect" id="node4" href="$d3/d5d/group__pal.html#aaf10147dbb4db9c1dddee5343418a893" title="Initializes the SPIC." alt="" coords="402,157,482,184"/>
+<area shape="rect" id="node5" href="$da/d19/group__tle5012api.html#ga32fa9cede7dabe812630f28fd67f45a9" title=" " alt="" coords="351,5,533,32"/>
+<area shape="rect" id="node6" href="$da/d19/group__tle5012api.html#ga40e7bbc659f88cd747dcde66ca22e207" title=" " alt="" coords="337,56,547,83"/>
+<area shape="rect" id="node8" href="$da/d19/group__tle5012api.html#ga9140a4c8dcf66a3417edc8a2e0a6520a" title=" " alt="" coords="344,208,540,235"/>
+<area shape="rect" id="node9" href="$d3/d5d/group__pal.html#aa0f6e3c2f3e37b3414087b1c52261cc9" title="Sends a trigger through out the SPI bus." alt="" coords="367,259,517,285"/>
+<area shape="rect" id="node11" href="$da/d3e/group__tle5012reg.html#ga8f2162fb627251ab55d8667bde599a37" title="Hardware reset, will be performed after chip select returns to high." alt="" coords="357,512,527,539"/>
+<area shape="rect" id="node12" href="$da/d3e/group__tle5012reg.html#ga082c8744bbd02b5a1f14f17e5a12b2d0" title="Get the status of the ADC test vectorGMR magnitude check." alt="" coords="375,563,509,589"/>
+<area shape="rect" id="node13" href="$da/d3e/group__tle5012reg.html#ga1533587a68597cfd51806734e4b0253c" title="Get the status of the DSPU bist check." alt="" coords="379,613,505,640"/>
+<area shape="rect" id="node14" href="$da/d3e/group__tle5012reg.html#ga1b36691833050dba60c99baed8a23db4" title="Get the status of the DSPU overflow check." alt="" coords="363,664,521,691"/>
+<area shape="rect" id="node15" href="$da/d3e/group__tle5012reg.html#ga7ced426905e0108a215ed3c43314ee6b" title="Get the status of the firmware reset register." alt="" coords="360,715,524,741"/>
+<area shape="rect" id="node16" href="$da/d3e/group__tle5012reg.html#gad5c806eee4391310b5d663d3d0b6c452" title="Get the status of the fuse CRC check." alt="" coords="381,765,503,792"/>
+<area shape="rect" id="node17" href="$da/d3e/group__tle5012reg.html#ga4463c906cd4522f2422b0834d1234cb0" title="Get the status of the GMR magnitude check." alt="" coords="373,309,511,336"/>
+<area shape="rect" id="node18" href="$da/d3e/group__tle5012reg.html#ga737acb367d7d4b1981b57ada890b421a" title="Get the status of the voltage regulator check." alt="" coords="365,360,519,387"/>
+<area shape="rect" id="node19" href="$da/d3e/group__tle5012reg.html#ga48bd2c637a93c39424951bbd0c807c21" title="Get the status of the DSPU watchdog." alt="" coords="377,411,507,437"/>
+<area shape="rect" id="node20" href="$da/d3e/group__tle5012reg.html#gade651779e1b5e12272dd607dc1f4b5f8" title="Get the status of the X,Y out of limit check." alt="" coords="381,461,503,488"/>
+<area shape="rect" id="node22" href="$da/d3e/group__tle5012reg.html#ga271beec5bb898328cfff83357ffd3737" title="Get GMR ADC x value." alt="" coords="386,1019,498,1045"/>
+<area shape="rect" id="node23" href="$da/d3e/group__tle5012reg.html#ga67a0c4033d9a6b8cf7545781e326757a" title="Get GMR ADC y value." alt="" coords="386,1069,498,1096"/>
+<area shape="rect" id="node24" href="$da/d3e/group__tle5012reg.html#ga3527ab50bdb9652cacd8a886e0a92c3b" title="Get Counter value of increments." alt="" coords="342,816,542,843"/>
+<area shape="rect" id="node25" href="$da/d3e/group__tle5012reg.html#ga4c8498ae195f63637492cbea0a8c4f89" title="Get Temperature 25°C offset value." alt="" coords="373,867,511,893"/>
+<area shape="rect" id="node26" href="$da/d3e/group__tle5012reg.html#ga38c573d73601f5565b0bc88b519240c0" title="Get Temperature Sensor raw value." alt="" coords="348,917,536,944"/>
+<area shape="rect" id="node27" href="$da/d3e/group__tle5012reg.html#ga25e0102e077ecead02c66904cc0e1876" title="Get angle vactor magnitude." alt="" coords="349,968,535,995"/>
+<area shape="rect" id="node30" href="$da/d3e/group__tle5012reg.html#gaa43b5bc9b7b44e0de15e700dae2d49c7" title="Get the FIR update rate." alt="" coords="355,1221,529,1248"/>
+<area shape="rect" id="node31" href="$da/d3e/group__tle5012reg.html#ga869f1fbeb0c12a789b5486770e1245e0" title="Get the hysteresis mode for HSM, or the unit time if in SPC mode (see manual)" alt="" coords="351,1272,533,1299"/>
+<area shape="rect" id="node32" href="$da/d3e/group__tle5012reg.html#ga3014e35ef7bfda6428e2e864f3829549" title="Get the interface Mode on IFA,IFB,IFC." alt="" coords="357,1323,527,1349"/>
+<area shape="rect" id="node33" href="$da/d3e/group__tle5012reg.html#gaa70c332063201dee7561ae30009e00bf" title="Get the orthogonality correction of x y components." alt="" coords="359,1120,525,1147"/>
+<area shape="rect" id="node34" href="$da/d3e/group__tle5012reg.html#ga5f38f5399dd9c38f358e8166584941ec" title="Get the status of the IFA, IFB and IFC output mode." alt="" coords="355,1171,529,1197"/>
+<area shape="rect" id="node36" href="$da/d3e/group__tle5012reg.html#ga4de94f9141bc697adf5f6906d3dbc6cd" title="Get a new calculated angle value." alt="" coords="367,1677,517,1704"/>
+<area shape="rect" id="node37" href="$da/d3e/group__tle5012reg.html#ga7d0091558d28508ba73d57c38c329dca" title="Get the frame counter value. Internal frame counter increments every update period." alt="" coords="358,1373,526,1400"/>
+<area shape="rect" id="node38" href="$da/d3e/group__tle5012reg.html#gad6c7e15d10aa9818373c29f969e85679" title="Get the frame synchronisation counter value Internal frame sub counter within one frame." alt="" coords="343,1424,541,1451"/>
+<area shape="rect" id="node39" href="$da/d3e/group__tle5012reg.html#ga07731a2f9232fb666881daf479b8ccce" title="Get a new number of revolutions value." alt="" coords="332,1475,552,1501"/>
+<area shape="rect" id="node40" href="$da/d3e/group__tle5012reg.html#ga0d63e099f98060d449fd93b81b811008" title="Get a new calculated speed value." alt="" coords="366,1525,518,1552"/>
+<area shape="rect" id="node41" href="$da/d3e/group__tle5012reg.html#gac7b9143eca81df39993f1a06d320ed2a" title="Get the temperature value as signed offset compensated temperature value Saturated between &#45;30°C and ..." alt="" coords="345,1576,539,1603"/>
+<area shape="rect" id="node42" href="$da/d3e/group__tle5012reg.html#gafee770aa138f502639e58a05f5a850f4" title="Do we have a new calculated angle value since last readout." alt="" coords="358,1627,526,1653"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="show_OFFSETS" name="show_OFFSETS">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,125,83"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga862d0b3bb32719d918399536b177dbbd" title="Get amplitude correction value." alt="" coords="173,5,356,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#gab69d3a072be05cccce6b5eabe89e1bf9" title="Get offset correction x value." alt="" coords="203,56,327,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga6ea1defef3f2405293f1ad6592244a2f" title="Get offset correction y value." alt="" coords="203,107,326,133"/>
+</map>

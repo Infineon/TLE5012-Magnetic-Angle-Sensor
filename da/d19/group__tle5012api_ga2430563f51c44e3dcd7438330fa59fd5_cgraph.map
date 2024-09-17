@@ -1,0 +1,5 @@
+<map id="Tle5012b::resetSafety" name="Tle5012b::resetSafety">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,171,57"/>
+<area shape="rect" id="node2" href="$d3/d5d/group__pal.html#ab4063089bb8c1c5287a9b21b94ef5c28" title="Function which allows 3wire SPI (SSC) by sending and receiving data in the same function." alt="" coords="222,5,365,32"/>
+<area shape="rect" id="node3" href="$d3/d5d/group__pal.html#aa0f6e3c2f3e37b3414087b1c52261cc9" title="Sends a trigger through out the SPI bus." alt="" coords="219,56,368,83"/>
+</map>

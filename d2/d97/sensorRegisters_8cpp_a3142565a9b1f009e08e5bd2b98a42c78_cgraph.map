@@ -1,0 +1,8 @@
+<map id="show_IFAB" name="show_IFAB">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,96,133"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#gaa43b5bc9b7b44e0de15e700dae2d49c7" title="Get the FIR update rate." alt="" coords="147,5,322,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga869f1fbeb0c12a789b5486770e1245e0" title="Get the hysteresis mode for HSM, or the unit time if in SPC mode (see manual)" alt="" coords="144,56,325,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga3014e35ef7bfda6428e2e864f3829549" title="Get the interface Mode on IFA,IFB,IFC." alt="" coords="149,107,320,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#gaa70c332063201dee7561ae30009e00bf" title="Get the orthogonality correction of x y components." alt="" coords="152,157,317,184"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#ga5f38f5399dd9c38f358e8166584941ec" title="Get the status of the IFA, IFB and IFC output mode." alt="" coords="147,208,322,235"/>
+</map>

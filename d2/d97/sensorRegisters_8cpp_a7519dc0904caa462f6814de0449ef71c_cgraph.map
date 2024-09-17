@@ -1,0 +1,12 @@
+<map id="show_MAINA" name="show_MAINA">
+<area shape="rect" id="node1" title=" " alt="" coords="5,208,112,235"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga4de94f9141bc697adf5f6906d3dbc6cd" title="Get a new calculated angle value." alt="" coords="205,5,354,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga7d0091558d28508ba73d57c38c329dca" title="Get the frame counter value. Internal frame counter increments every update period." alt="" coords="195,56,363,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#gad6c7e15d10aa9818373c29f969e85679" title="Get the frame synchronisation counter value Internal frame sub counter within one frame." alt="" coords="180,107,379,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga07731a2f9232fb666881daf479b8ccce" title="Get a new number of revolutions value." alt="" coords="169,157,389,184"/>
+<area shape="rect" id="node6" href="$da/d3e/group__tle5012reg.html#ga0d63e099f98060d449fd93b81b811008" title="Get a new calculated speed value." alt="" coords="203,208,355,235"/>
+<area shape="rect" id="node7" href="$da/d3e/group__tle5012reg.html#gac7b9143eca81df39993f1a06d320ed2a" title="Get the temperature value as signed offset compensated temperature value Saturated between &#45;30°C and ..." alt="" coords="182,259,377,285"/>
+<area shape="rect" id="node8" href="$da/d3e/group__tle5012reg.html#gafee770aa138f502639e58a05f5a850f4" title="Do we have a new calculated angle value since last readout." alt="" coords="195,309,363,336"/>
+<area shape="rect" id="node9" href="$da/d3e/group__tle5012reg.html#ga4ea75ec768a18f39656e8490521d7989" title="Do we have a new number of revolutions since last readout." alt="" coords="160,360,399,387"/>
+<area shape="rect" id="node10" href="$da/d3e/group__tle5012reg.html#ga2ec5d06a1a803164cad8c73b6bef22e6" title="Do we have a new calculated speed value since last readout." alt="" coords="194,411,365,437"/>
+</map>

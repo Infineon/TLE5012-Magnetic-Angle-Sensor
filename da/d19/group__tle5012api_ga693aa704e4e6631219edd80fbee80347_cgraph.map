@@ -1,0 +1,10 @@
+<map id="Tle5012b::checkSafety" name="Tle5012b::checkSafety">
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,176,108"/>
+<area shape="rect" id="node2" href="$dd/d22/TLE5012b_8cpp.html#af5f2e5cfee7e8bbbd20d6b568c5927b0" title=" " alt="" coords="272,5,341,32"/>
+<area shape="rect" id="node4" href="$dd/d22/TLE5012b_8cpp.html#ad49b292d48f6fdff2fcad35f0a217eef" title=" " alt="" coords="256,56,357,83"/>
+<area shape="rect" id="node5" href="$dd/d22/TLE5012b_8cpp.html#a73d3da25810058a7adb4f830bafb961e" title=" " alt="" coords="247,107,367,133"/>
+<area shape="rect" id="node6" href="$da/d19/group__tle5012api.html#ga2430563f51c44e3dcd7438330fa59fd5" title=" " alt="" coords="224,157,389,184"/>
+<area shape="rect" id="node3" href="$dd/d22/TLE5012b_8cpp.html#a1d0d34e26b6c32396a3b1dcf5617c7f7" title=" " alt="" coords="487,5,537,32"/>
+<area shape="rect" id="node7" href="$d3/d5d/group__pal.html#ab4063089bb8c1c5287a9b21b94ef5c28" title="Function which allows 3wire SPI (SSC) by sending and receiving data in the same function." alt="" coords="441,132,583,159"/>
+<area shape="rect" id="node8" href="$d3/d5d/group__pal.html#aa0f6e3c2f3e37b3414087b1c52261cc9" title="Sends a trigger through out the SPI bus." alt="" coords="437,183,587,209"/>
+</map>

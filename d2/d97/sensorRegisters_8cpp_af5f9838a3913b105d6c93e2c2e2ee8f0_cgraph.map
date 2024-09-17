@@ -1,0 +1,7 @@
+<map id="show_MOD3" name="show_MOD3">
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,108,108"/>
+<area shape="rect" id="node2" href="$da/d3e/group__tle5012reg.html#ga2449d2c250dc76d43247a40bfd63f745" title="Get the actual 0° angle position The 0° angle position is factory calibrated parallel to the edge of ..." alt="" coords="169,5,314,32"/>
+<area shape="rect" id="node3" href="$da/d3e/group__tle5012reg.html#ga7116be10e748d09dfb658ddd15eeb097" title="Get the pad driver configuration." alt="" coords="172,56,311,83"/>
+<area shape="rect" id="node4" href="$da/d3e/group__tle5012reg.html#ga836bf580483b1da2c573760245d6bc49" title="Get the status of the analog spike filter." alt="" coords="174,107,309,133"/>
+<area shape="rect" id="node5" href="$da/d3e/group__tle5012reg.html#ga0222a62f8dad0942c95481a6fde77e9d" title="Get the status of the SSC output mode." alt="" coords="156,157,327,184"/>
+</map>

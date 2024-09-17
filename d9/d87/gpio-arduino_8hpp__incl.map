@@ -1,0 +1,14 @@
+<map id="gpio&#45;arduino.hpp" name="gpio&#45;arduino.hpp">
+<area shape="rect" id="node1" title="Arduino PAL for the GPIO." alt="" coords="363,5,495,32"/>
+<area shape="rect" id="node2" href="$d9/d40/tle5012-conf_8hpp.html" title="TLE5012 Library Configuration." alt="" coords="189,80,339,121"/>
+<area shape="rect" id="node5" href="$da/db2/TLE5012b_8hpp.html" title=" " alt="" coords="497,87,695,114"/>
+<area shape="rect" id="node3" href="$d6/dfd/tle5012-conf-opts_8hpp.html" title="TLE5012 Library Configuration Options." alt="" coords="182,169,346,196"/>
+<area shape="rect" id="node4" href="$d8/d2a/tle5012-conf-dfl_8hpp.html" title="TLE5012 Default Library Configuration." alt="" coords="5,169,157,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="962,169,1033,196"/>
+<area shape="rect" id="node7" href="$d1/d2c/gpio_8hpp.html" title="PAL of the GPIO." alt="" coords="688,169,803,196"/>
+<area shape="rect" id="node9" href="$d8/df0/spic_8hpp.html" title="PAL of the SPI cover." alt="" coords="827,169,939,196"/>
+<area shape="rect" id="node10" href="$de/d8d/tle5012b__util_8hpp.html" title=" " alt="" coords="370,169,505,196"/>
+<area shape="rect" id="node12" href="$d5/d3a/tle5012b__reg_8hpp.html" title=" " alt="" coords="529,169,663,196"/>
+<area shape="rect" id="node8" title=" " alt="" coords="623,244,694,271"/>
+<area shape="rect" id="node11" title=" " alt="" coords="497,244,567,271"/>
+</map>

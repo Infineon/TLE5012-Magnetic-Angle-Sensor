@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d3/d5d/group__pal.html#d7/db9/classSPIC" title=" " alt="" coords="5,56,56,83"/>
+<area shape="rect" id="node2" href="$d1/d0a/group__arduinoPal.html#de/d75/classSPICIno" title="Arduino SPIC class This function is setting the basics for a SPIC and the default spi." alt="" coords="114,5,185,32"/>
+<area shape="rect" id="node3" href="$d4/d84/group__mtbPal.html#df/d02/classSPICMtb" title="Mtb SPIC class." alt="" coords="111,56,187,83"/>
+<area shape="rect" id="node4" href="$d2/d6a/group__wicedPal.html#d1/d0e/classSPICWiced" title="Wiced SPIC class." alt="" coords="104,107,195,133"/>
+</map>
