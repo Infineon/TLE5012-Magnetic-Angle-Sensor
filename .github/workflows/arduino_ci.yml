@@ -272,7 +272,11 @@ jobs:
           ln -sfn /opt/XMC-for-Arduino ~/.arduino15/packages/Infineon
           mkdir -p "$HOME/Arduino/libraries"
           cd $HOME/Arduino/libraries/${{ needs.setup.outputs.project }}
-          arduino-cli compile --fqbn ${{ matrix.fqbn }} --libraries="." --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} --export-binaries
+          arduino-cli compile --clean --log --warnings all \
+                              --fqbn ${{ matrix.fqbn }} \
+                              --libraries="." \
+                              --libraries="$HOME/Arduino/libraries/." ${{ matrix.example }} \
+                              --export-binaries
 
         # Flashes the compiled HEX file onto the selected MCU
         # REPO: the name of the repository which is also the link name
@@ -289,6 +293,7 @@ jobs:
           export DEVICE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.${{ needs.setup.outputs.repo }}.${{ matrix.device}}`
           export TYPE=`cat ./board2port.yaml | shyaml get-value $HEXNAME.$REPO.type`
           export PORT=`./find_usb.sh $SERIAL_NUM`
+          export PATH=$PATH:/opt/runner_support/Unity
 
           echo "Repo name extracted: " ${{ needs.setup.outputs.repo }}
           echo "Real repo name:      " ${{ needs.setup.outputs.project }}
