@@ -1,3 +1,7 @@
+## Deprecation Notice
+> [!WARNING]  
+> This library is **deprecated** and no longer maintained. Please use our [XENSIV™ TLx5012B Magnetic Angle Sensor Arduino Library](https://github.com/Infineon/arduino-xensiv-angle-sensor-tlx5012) instead.
+
 # TLE5012B-Angle-Sensor
 
 ![PlatformIO CI](https://github.com/OlafFilies/TLE5012-Magnetic-Angle-Sensor/workflows/PlatformIO%20CI/badge.svg)
